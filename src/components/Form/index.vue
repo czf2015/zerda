@@ -1,6 +1,20 @@
 <template>
   <form class="form" :style="{ width }">
-    <fieldset>
+    <content v-if="auto">
+      <div class="form-item" v-for="(item, idx) in datasource" :key="idx">
+        <label :class="{ required: item.required }">{{item.label}}</label>
+        <component
+          :is="adaptComponent(item)"
+          :field="item.field"
+          :value="item.value"
+          :options="adaptOptions(item.options)"
+          :required="item.validation.required"
+          :validation="item.validation"
+          @[item.validation.trigger]="handleTrigger"
+        />
+      </div>
+    </content>
+    <fieldset v-else>
       <legend>{{legend}}</legend>
       <content>
         <div class="form-item" v-for="(item, idx) in datasource" :key="idx">
@@ -70,6 +84,9 @@ export default {
     width: {
       type: String,
     },
+    auto: {
+      type: Boolean,
+    },
   },
   data() {
     return {
@@ -113,6 +130,9 @@ export default {
       formItem.validation.valid = valid;
       formItem.validation.message = message;
       this.canSave = this.formData.every((item) => item.validation.valid);
+      if (this.canSave && this.auto) {
+        this.$emit("change", this.formData);
+      }
     },
     save() {
       // console.log(this.formData);

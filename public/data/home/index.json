@@ -3,18 +3,29 @@
     "id": "1",
     "type": "Banner",
     "usage": "Banner",
+    "effect": "/images/home/banner.png",
     "title": "Banner配置",
     "desc": "",
     "content": [
       {
+        "imgURL": "https://imagecachexxfb.yun.ccb.com/raw/cba6793909136cf277c94951b5b73d27.png",
         "title": "对象存储",
         "desc": "安全、稳定、海量、便捷、低延迟、低成本的云端存储服务",
-        "background": "https://imagecachexxfb.yun.ccb.com/raw/cba6793909136cf277c94951b5b73d27.png",
         "link": "https://yun.ccb.com/product/productcos"
       }
     ],
     "extra": {
       "columns": [
+        {
+          "field": "imgURL",
+          "label": "背景图",
+          "required": true,
+          "validation": {
+            "type": "image",
+            "minSize": 0,
+            "maxSize": 1024
+          }
+        },
         {
           "field": "title",
           "label": "标题",
@@ -36,18 +47,8 @@
           }
         },
         {
-          "field": "background",
-          "label": "背景",
-          "required": true,
-          "validation": {
-            "type": "image",
-            "minSize": 0,
-            "maxSize": 1024
-          }
-        },
-        {
           "field": "link",
-          "label": "链接",
+          "label": "卡片链接",
           "required": false,
           "validation": {
             "type": "link",
@@ -71,6 +72,7 @@
     "id": "2",
     "type": "Recommand",
     "usage": "Recommand",
+    "effect": "/images/home/recommend.png",
     "title": "我们的推荐",
     "desc": "建行云产品系列，祝你上云无忧，轻松运行",
     "content": [
@@ -167,6 +169,7 @@
     "id": "3",
     "type": "Products",
     "usage": "Products",
+    "effect": "/images/home/products.png",
     "title": "我们的云产品",
     "desc": "计算、存储、网络、安全、数据库等全栈式产品，助您顺利上云",
     "content": [
@@ -334,6 +337,7 @@
     "id": "4",
     "type": "Solutions",
     "usage": "Solutions",
+    "effect": "/images/home/solutions.png",
     "title": "我们的解决方案",
     "desc": "为您量身定制“科技+服务”的个性话化解决方案",
     "content": [
@@ -430,6 +434,7 @@
     "id": "5",
     "type": "Trades",
     "usage": "Trades",
+    "effect": "/images/home/trades.png",
     "title": "我们的行业平台",
     "desc": "提供一站式服务平台，跨界支持行业发展",
     "background": "https://yun.ccb.com/common/images/index/business/hangye-bg-gq.png",
@@ -523,6 +528,7 @@
     "id": "6",
     "type": "Certification",
     "usage": "Certification",
+    "effect": "/images/home/certification.png",
     "title": "合规认证",
     "desc": "建设安全可靠的云生态环境，提供值得依赖的优质云服务",
     "content": [
