@@ -4,7 +4,10 @@
       :datasource="datasource"
       :columns="columns"
       :operations="operations"
-      @operate="operateTable"
+      @check="checkTable"
+      @edit="editTable"
+      @add="addTable"
+      @del="delTable"
     />
     <div class="mask" v-if="openDialog">
       <CustomForm
@@ -12,7 +15,8 @@
         :datasource="formData"
         :legend="legend"
         :width="width"
-        @operate="operateForm"
+        @save="saveForm"
+        @cancel="cancelForm"
       />
     </div>
   </div>
@@ -52,35 +56,21 @@ export default {
     };
   },
   methods: {
-    operateTable({ operate, index }) {
-      switch (operate) {
-        case "check":
-          break;
-        case "edit":
-          this.openDialog = true;
-          this.formData = convertFormData(this.columns, this.datasource[index]);
-          break;
-        case "add":
-          break;
-        case "delete":
-          break;
-        default:
-          break;
-      }
+    checkTable(index) {
+      console.log(index);
     },
-    operateForm({ operate, data }) {
-      switch (operate) {
-        case "save":
-          this.openDialog = false;
-          this.$emit("save", data);
-          break;
-        case "cancel":
-          this.openDialog = false;
-          this.$emit("cancel");
-          break;
-        default:
-          break;
-      }
+    editTable(index) {
+      this.openDialog = true;
+      this.formData = convertFormData(this.columns, this.datasource[index]);
+    },
+    addTable() {},
+    delTable() {},
+    saveForm(formData) {
+      this.openDialog = false;
+      this.$emit("save", formData);
+    },
+    cancelForm() {
+      this.openDialog = false;
     },
   },
 };

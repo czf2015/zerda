@@ -116,10 +116,10 @@ export default {
     },
     save() {
       // console.log(this.formData);
-      this.$emit("operate", { operate: "save", data: this.formData });
+      this.$emit("save", this.formData);
     },
     cancel() {
-      this.$emit("operate", { operate: "cancel" });
+      this.$emit("cancel");
     },
   },
 };

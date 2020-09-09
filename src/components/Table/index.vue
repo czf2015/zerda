@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     operate(operation, index) {
-      this.$emit("operate", { operate: operation.field, index });
+      this.$emit(operation.field, index);
     },
   },
 };
