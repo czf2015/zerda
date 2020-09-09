@@ -3,65 +3,599 @@
     "id": "1",
     "type": "Banner",
     "usage": "Banner",
-    "data": {
-      "title": "Banner配置",
-      "desc": "",
-      "content": [
+    "title": "Banner配置",
+    "desc": "",
+    "content": [
+      {
+        "imgURL": "https://imagecachexxfb.yun.ccb.com/raw/cba6793909136cf277c94951b5b73d27.png",
+        "title": "对象存储",
+        "desc": "安全、稳定、海量、便捷、低延迟、低成本的云端存储服务",
+        "link": "https://yun.ccb.com/product/productcos"
+      }
+    ],
+    "extra": {
+      "columns": [
         {
-          "imgURL": "https://imagecachexxfb.yun.ccb.com/raw/cba6793909136cf277c94951b5b73d27.png",
-          "title": "对象存储",
-          "desc": "安全、稳定、海量、便捷、低延迟、低成本的云端存储服务",
-          "link": "https://yun.ccb.com/product/productcos"
+          "field": "imgURL",
+          "label": "背景图",
+          "required": true,
+          "validation": {
+            "type": "image",
+            "minSize": 0,
+            "maxSize": 1024
+          }
+        },
+        {
+          "field": "title",
+          "label": "标题",
+          "required": false,
+          "validation": {
+            "type": "text",
+            "minLength": 5,
+            "maxLength": 10
+          }
+        },
+        {
+          "field": "desc",
+          "label": "描述",
+          "required": false,
+          "validation": {
+            "type": "text",
+            "minLength": 5,
+            "maxLength": 10
+          }
+        },
+        {
+          "field": "link",
+          "label": "卡片链接",
+          "required": false,
+          "validation": {
+            "type": "link",
+            "pattern": "//yun.ccb.com/"
+          }
+        }
+      ],
+      "operations": [
+        {
+          "field": "edit",
+          "label": "编辑"
+        },
+        {
+          "field": "delete",
+          "label": "删除"
         }
       ]
     }
   },
   {
     "id": "2",
-    "type": "Products",
-    "usage": "Products",
-    "data": {
-      "title": "我们的云产品",
-      "desc": "计算、存储、网络、安全、数据库等全栈式产品，助您顺利上云",
-      "content": [
+    "type": "Recommand",
+    "usage": "Recommand",
+    "title": "我们的推荐",
+    "desc": "建行云产品系列，祝你上云无忧，轻松运行",
+    "content": [
+      {
+        "title": "云服务器",
+        "iconURL": "//yun.ccb.com/common/images/recommend_products1.png",
+        "cardURL": "//yun.ccb.com/product/cvm",
+        "button": "",
+        "desc": ""
+      },
+      {
+        "title": "弹性负载均衡",
+        "iconURL": "//yun.ccb.com/common/images/recommend_products2.png",
+        "cardURL": "//yun.ccb.com/product/elb",
+        "button": "",
+        "desc": ""
+      },
+      {
+        "title": "龙卫士",
+        "iconURL": "//yun.ccb.com/common/images/recommend_products3.png",
+        "cardURL": "//yun.ccb.com/product/producthids",
+        "button": "",
+        "desc": ""
+      },
+      {
+        "title": "MPP云数据",
+        "iconURL": "//yun.ccb.com/common/images/recommend_products4.png",
+        "cardURL": "//yun.ccb.com/product/productmpp",
+        "button": "",
+        "desc": ""
+      }
+    ],
+    "extra": {
+      "columns": [
         {
-          "category": "计算",
-          "iconURL": "//yun.ccb.com/common/images/index/midIcon/icon_%E8%AE%A1%E7%AE%97_normal.png",
-          "iconHoverUrl": "//yun.ccb.com/common/images/index/midIcon/icon_blue_%E8%AE%A1%E7%AE%97.png",
-          "children": [
-            {
-              "name": "云服务器",
-              "desc": "稳定、安全、弹性、高性能的云端计算服务，实时满足您的多样性业务需求",
-              "link": "//yun.ccb.com/product/cvm"
-            },
-            {
-              "name": "容器服务",
-              "desc": "稳定、安全、高效、灵活扩展、简单易用的企业级Kubernetes 容器管理平台",
-              "link": "//yun.ccb.com/product/tke"
-            }
-          ]
+          "filed": "title",
+          "label": "名称",
+          "required": true,
+          "validation": {
+            "type": "text",
+            "minLength": 3,
+            "maxLength": 5
+          }
+        },
+        {
+          "filed": "iconURL",
+          "label": "图标",
+          "required": true,
+          "validation": {
+            "type": "link",
+            "pattern": {}
+          }
+        },
+        {
+          "filed": "cardURL",
+          "label": "卡片",
+          "required": true,
+          "validation": {
+            "type": "link",
+            "pattern": {}
+          }
+        },
+        {
+          "filed": "button",
+          "label": "按钮",
+          "validation": {
+            "type": "link",
+            "pattern": {}
+          }
+        },
+        {
+          "filed": "desc",
+          "label": "描述",
+          "validation": {
+            "type": "text",
+            "minLength": 10,
+            "maxLength": 20
+          }
+        }
+      ],
+      "operations": [
+        {
+          "label": "edit",
+          "field": "编辑"
+        },
+        {
+          "label": "del",
+          "field": "删除"
         }
       ]
     }
   },
   {
     "id": "3",
+    "type": "Products",
+    "usage": "Products",
+    "title": "我们的云产品",
+    "desc": "计算、存储、网络、安全、数据库等全栈式产品，助您顺利上云",
+    "content": [
+      {
+        "category": "计算",
+        "iconURL": "//yun.ccb.com/common/images/index/midIcon/icon_%E8%AE%A1%E7%AE%97_normal.png",
+        "iconHoverURL": "//yun.ccb.com/common/images/index/midIcon/icon_blue_%E8%AE%A1%E7%AE%97.png",
+        "children": [
+          {
+            "name": "云服务器",
+            "desc": "稳定、安全、弹性、高性能的云端计算服务，实时满足您的多样性业务需求",
+            "link": "//yun.ccb.com/product/cvm"
+          },
+          {
+            "name": "容器服务",
+            "desc": "稳定、安全、高效、灵活扩展、简单易用的企业级Kubernetes 容器管理平台",
+            "link": "//yun.ccb.com/product/tke"
+          },
+          {
+            "name": "裸金属服务器",
+            "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
+            "link": "//yun.ccb.com/product/productbms"
+          },
+          {
+            "name": "裸金属服务器",
+            "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
+            "link": "//yun.ccb.com/product/productbms"
+          }
+        ]
+      },
+      {
+        "category": "网络",
+        "iconURL": "//yun.ccb.com/common/images/index/midIcon/icon_%E7%BD%91%E7%BB%9C_normal.png",
+        "iconHoverURL": "//yun.ccb.com/common/images/index/midIcon/icon_blue_%E7%BD%91%E7%BB%9C.png",
+        "children": [
+          {
+            "name": "云服务器",
+            "desc": "稳定、安全、弹性、高性能的云端计算服务，实时满足您的多样性业务需求",
+            "link": "//yun.ccb.com/product/cvm"
+          },
+          {
+            "name": "容器服务",
+            "desc": "稳定、安全、高效、灵活扩展、简单易用的企业级Kubernetes 容器管理平台",
+            "link": "//yun.ccb.com/product/tke"
+          },
+          {
+            "name": "裸金属服务器",
+            "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
+            "link": "//yun.ccb.com/product/productbms"
+          }
+        ]
+      },
+      {
+        "category": "存储",
+        "iconURL": "//yun.ccb.com/common/images/index/midIcon/icon_%E5%AD%98%E5%82%A8_normal.png",
+        "iconHoverURL": "//yun.ccb.com/common/images/index/midIcon/icon_blue_%E5%AD%98%E5%82%A8.png",
+        "children": [
+          {
+            "name": "云服务器",
+            "desc": "稳定、安全、弹性、高性能的云端计算服务，实时满足您的多样性业务需求",
+            "link": "//yun.ccb.com/product/cvm"
+          },
+          {
+            "name": "容器服务",
+            "desc": "稳定、安全、高效、灵活扩展、简单易用的企业级Kubernetes 容器管理平台",
+            "link": "//yun.ccb.com/product/tke"
+          },
+          {
+            "name": "裸金属服务器",
+            "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
+            "link": "//yun.ccb.com/product/productbms"
+          }
+        ]
+      }
+    ],
+    "extra": {
+      "columns": [
+        {
+          "field": "category",
+          "label": "类别",
+          "required": true,
+          "validation": {
+            "type": "text",
+            "minLength": 0,
+            "maxLength": 5
+          }
+        },
+        {
+          "field": "iconURL",
+          "label": "默认图标",
+          "required": true,
+          "validation": {
+            "type": "image",
+            "minSize": 0,
+            "maxSize": 1024
+          }
+        },
+        {
+          "field": "iconHoverURL",
+          "label": "选中图标",
+          "required": true,
+          "validation": {
+            "type": "image",
+            "minSize": 0,
+            "maxSize": 1024
+          }
+        }
+      ],
+      "operations": [
+        {
+          "field": "edit",
+          "label": "编辑"
+        },
+        {
+          "field": "delete",
+          "label": "删除"
+        }
+      ],
+      "children": {
+        "columns": [
+          {
+            "field": "name",
+            "label": "名称",
+            "required": true,
+            "validation": {
+              "type": "text",
+              "minLength": 5,
+              "maxLength": 10
+            }
+          },
+          {
+            "field": "desc",
+            "label": "描述",
+            "required": true,
+            "validation": {
+              "type": "text",
+              "minLength": 5,
+              "maxLength": 10
+            }
+          },
+          {
+            "field": "link",
+            "label": "链接",
+            "required": false,
+            "validation": {
+              "type": "link",
+              "pattern": "//yun.ccb.com/"
+            }
+          }
+        ],
+        "operations": [
+          {
+            "field": "edit",
+            "label": "编辑"
+          },
+          {
+            "field": "delete",
+            "label": "删除"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "4",
     "type": "Solutions",
     "usage": "Solutions",
-    "data": {
-      "title": "我们的解决方案",
-      "desc": "为您量身定制“科技+服务”的个性话化解决方案",
-      "content": [
+    "title": "我们的解决方案",
+    "desc": "为您量身定制“科技+服务”的个性话化解决方案",
+    "content": [
+      {
+        "category": "云网络",
+        "children": [
+          {
+            "iconURL": "//yun.ccb.com/common/images/index/solution/云网络1.png",
+            "name": "云网络",
+            "desc": "提供一站式服务平台，跨界支持行业发展",
+            "hover": false
+          }
+        ]
+      }
+    ],
+    "extra": {
+      "columns": [
         {
-          "category": "云网络",
-          "children": [
-            {
-              "iconURL": "//yun.ccb.com/common/images/index/solution/云网络1.png",
-              "name": "云网络",
-              "desc": "提供一站式服务平台，跨界支持行业发展",
-              "hover": false
+          "field": "category",
+          "label": "类别",
+          "required": true,
+          "validation": {
+            "type": "text",
+            "minLength": 0,
+            "maxLength": 5
+          }
+        }
+      ],
+      "operations": [
+        {
+          "field": "edit",
+          "label": "编辑"
+        },
+        {
+          "field": "delete",
+          "label": "删除"
+        }
+      ],
+      "children": {
+        "columns": [
+          {
+            "field": "iconURL",
+            "label": "图标",
+            "required": true,
+            "validation": {
+              "type": "image",
+              "minSize": 0,
+              "maxSize": 1024
             }
-          ]
+          },
+          {
+            "field": "name",
+            "label": "标题",
+            "required": true,
+            "validation": {
+              "type": "text",
+              "minLength": 0,
+              "maxLength": 5
+            }
+          },
+          {
+            "field": "desc",
+            "label": "描述",
+            "required": true,
+            "validation": {
+              "type": "text",
+              "minLength": 5,
+              "maxLength": 10
+            }
+          },
+          {
+            "field": "hovering",
+            "label": "hover状态",
+            "required": true,
+            "validation": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "operations": [
+          {
+            "field": "edit",
+            "label": "编辑"
+          },
+          {
+            "field": "delete",
+            "label": "删除"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "5",
+    "type": "Trades",
+    "usage": "Trades",
+    "title": "我们的行业平台",
+    "desc": "提供一站式服务平台，跨界支持行业发展",
+    "content": {
+      "imgURL": "https://yun.ccb.com/common/images/index/business/hangye-bg-gq.png",
+      "children": [
+        {
+          "title": "区块链贸易融资平台",
+          "desc": "区块链技术助力金融业务，全面提升交易时效性、安全性、便捷性",
+          "hrefUrl": "https://yun.ccb.com/industryPlatform/detail/blockchain.html",
+          "iconUrl": "https://yun.ccb.com/common/images/index/solution/qukuailian.png"
+        },
+        {
+          "title": "住房租赁服务平台",
+          "desc": "要租房，到建行。提供全场景住房租赁综合服务平台",
+          "hrefUrl": "https://yun.ccb.com/industryPlatform/detail/zhufangzulin.html",
+          "iconUrl": "https://yun.ccb.com/common/images/index/solution/zhufang.png"
+        },
+        {
+          "title": "安心养老云平台",
+          "desc": "利用平台专业性，提升政府相关部门、机构、服务商的运营效率",
+          "hrefUrl": "https://yun.ccb.com/industryPlatform/detail/yanglao.html",
+          "iconUrl": "https://yun.ccb.com/common/images/index/solution/yanglao.png"
+        },
+        {
+          "title": "智慧政务服务综合平台",
+          "desc": "智慧政务服务综合平台是全事项、全流程、全覆盖、全场景",
+          "hrefUrl": "https://yun.ccb.com/industryPlatform/detail/smartmunicipality.html",
+          "iconUrl": "https://yun.ccb.com/common/images/index/solution/zhengwu.png"
+        },
+        {
+          "title": "党群综合服务平台",
+          "desc": "全面覆盖党建工会团青各项工作和使用量管理，以“互联网+",
+          "hrefUrl": "https://yun.ccb.com/industryPlatform/detail/dangqun.html",
+          "iconUrl": "https://yun.ccb.com/common/images/index/solution/zongjiao.png"
+        }
+      ]
+    },
+    "extra": {
+      "columns": [
+        {
+          "field": "imgURL",
+          "label": "背景图片",
+          "required": true,
+          "validation": {
+            "type": "image",
+            "minSize": 0,
+            "maxSize": 1028
+          }
+        }
+      ],
+      "operations": [
+        {
+          "field": "edit",
+          "label": "编辑"
+        }
+      ],
+      "children": {
+        "columns": [
+          {
+            "field": "title",
+            "label": "名称",
+            "required": true,
+            "validation": {
+              "type": "text",
+              "minLength": 3,
+              "maxLength": 5
+            }
+          },
+          {
+            "field": "desc",
+            "label": "描述",
+            "required": true,
+            "validation": {
+              "type": "text",
+              "minLength": 5,
+              "maxLength": 15
+            }
+          },
+          {
+            "field": "link",
+            "label": "链接",
+            "required": true,
+            "validation": {
+              "type": "link",
+              "pattern": "/^//yun.ccb.com/"
+            }
+          },
+          {
+            "field": "iconURL",
+            "label": "图标",
+            "required": true,
+            "validation": {
+              "type": "image",
+              "minSize": 0,
+              "maxSize": 1028
+            }
+          }
+        ],
+        "operations": [
+          {
+            "field": "edit",
+            "label": "编辑"
+          },
+          {
+            "field": "del",
+            "label": "删除"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "6",
+    "type": "Certification",
+    "usage": "Certification",
+    "title": "合规认证",
+    "desc": "建设安全可靠的云生态环境，提供值得依赖的优质云服务",
+    "content": [
+      {
+        "title": "ISO 20000",
+        "iconUrl": "//yun.ccb.com/myNatural/img/iso20000_v2.png"
+      },
+      {
+        "title": "可信云",
+        "iconUrl": "//yun.ccb.com/myNatural/img/可信云.png"
+      },
+      {
+        "title": "ISO 27001",
+        "iconUrl": "//yun.ccb.com/myNatural/img/iso27001_v2.png"
+      },
+      {
+        "title": "网络安全等级保护",
+        "iconUrl": "//yun.ccb.com/myNatural/img/DJCP.png"
+      }
+    ],
+    "extra": {
+      "columns": [
+        {
+          "field": "iconURL",
+          "label": "图标",
+          "required": true,
+          "validation": {
+            "type": "image",
+            "minSize": 0,
+            "maxSize": 1024
+          }
+        },
+        {
+          "field": "title",
+          "label": "标题",
+          "required": false,
+          "validation": {
+            "type": "text",
+            "minLength": 5,
+            "maxLength": 10
+          }
+        }
+      ],
+      "operations": [
+        {
+          "field": "edit",
+          "label": "编辑"
+        },
+        {
+          "field": "delete",
+          "label": "删除"
         }
       ]
     }

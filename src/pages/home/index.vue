@@ -56,14 +56,7 @@ export default {
     Parser: () => import("@/components/Parser"),
   },
   data() {
-    // const { componentName } = this.$route.params;
-    // const { props, listeners, classNames, style } = mock[componentName];
     return {
-      // componentName,
-      // props,
-      // listeners,
-      // classNames,
-      // style,
       mock,
     };
   },
