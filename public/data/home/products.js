@@ -2,6 +2,7 @@ module.exports = {
     id: '3',
     type: 'Products',
     usage: 'Products',
+    effect: '/images/home/products.png',
     title: '我们的云产品',
     desc: '计算、存储、网络、安全、数据库等全栈式产品，助您顺利上云',
     content: [{

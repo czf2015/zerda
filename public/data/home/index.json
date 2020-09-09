@@ -7,24 +7,14 @@
     "desc": "",
     "content": [
       {
-        "imgURL": "https://imagecachexxfb.yun.ccb.com/raw/cba6793909136cf277c94951b5b73d27.png",
         "title": "对象存储",
         "desc": "安全、稳定、海量、便捷、低延迟、低成本的云端存储服务",
+        "background": "https://imagecachexxfb.yun.ccb.com/raw/cba6793909136cf277c94951b5b73d27.png",
         "link": "https://yun.ccb.com/product/productcos"
       }
     ],
     "extra": {
       "columns": [
-        {
-          "field": "imgURL",
-          "label": "背景图",
-          "required": true,
-          "validation": {
-            "type": "image",
-            "minSize": 0,
-            "maxSize": 1024
-          }
-        },
         {
           "field": "title",
           "label": "标题",
@@ -46,8 +36,18 @@
           }
         },
         {
+          "field": "background",
+          "label": "背景",
+          "required": true,
+          "validation": {
+            "type": "image",
+            "minSize": 0,
+            "maxSize": 1024
+          }
+        },
+        {
           "field": "link",
-          "label": "卡片链接",
+          "label": "链接",
           "required": false,
           "validation": {
             "type": "link",

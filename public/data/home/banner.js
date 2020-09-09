@@ -2,6 +2,7 @@ module.exports = {
     id: '1',
     type: 'Banner',
     usage: 'Banner',
+    effect: '/images/home/banner.png',
     title: 'Banner配置',
     desc: '',
     content: [

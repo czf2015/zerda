@@ -2,6 +2,7 @@ module.exports = {
     "id": "2",
     type: 'Recommand',
     usage: 'Recommand',
+    effect: '/images/home/recommend.png',
     "title": "我们的推荐",
     "desc": "建行云产品系列，祝你上云无忧，轻松运行",
     "content": [

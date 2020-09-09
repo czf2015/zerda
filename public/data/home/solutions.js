@@ -2,6 +2,7 @@ module.exports = {
     id: '4',
     type: 'Solutions',
     usage: 'Solutions',
+    effect: '/images/home/solutions.png',
     title: '我们的解决方案',
     desc: '为您量身定制“科技+服务”的个性话化解决方案',
     content: [{

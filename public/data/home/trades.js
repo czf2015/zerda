@@ -2,6 +2,7 @@ module.exports = {
     id: '5',
     type: 'Trades',
     usage: 'Trades',
+    effect: '/images/home/trades.png',
     title: '我们的行业平台',
     desc: "提供一站式服务平台，跨界支持行业发展",
     background: "https://yun.ccb.com/common/images/index/business/hangye-bg-gq.png",

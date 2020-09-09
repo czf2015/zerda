@@ -2,6 +2,7 @@ module.exports = {
     id: '6',
     type: 'Certification',
     usage: 'Certification',
+    effect: '/images/home/certification.png',
     title: '合规认证',
     desc: '建设安全可靠的云生态环境，提供值得依赖的优质云服务',
     content: [
