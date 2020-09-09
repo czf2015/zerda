@@ -1,0 +1,46 @@
+input {
+  padding: 0 8px;
+  line-height: 36px;
+  border: 1px solid #DCDFE6;
+  border-radius: 5px;
+}
+
+input:focus {
+  border: 1px solid #409EFF;
+  outline: none;
+}
+
+textarea {
+  width: 480px;
+  min-height: 160px;
+  border: 1px solid #DCDFE6;
+  border-radius: 5px;
+}
+
+textarea:focus {
+  border: 1px solid #409EFF;
+  outline: none;
+}
+
+input[type="submit"] {
+  margin-top: 8px;
+  margin-left: 8px;
+  min-width: 80px;
+  padding: 4px 8px;
+  color: #fff;
+  background: rgb(64, 158, 255);
+  border: none;
+}
+
+select {
+  min-width: 160px;
+  padding: 0 8px;
+  height: 36px;
+  border: 1px solid #DCDFE6;
+  border-radius: 5px;
+}
+
+select:focus {
+  border: 1px solid #409EFF;
+  outline: none;
+}
