@@ -87,11 +87,14 @@ export default {
     z-index: 99;
     background-color: rgba(0, 0, 0, 0.5);
     .dialog {
-      margin: 80px auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin: 0 auto;
       min-width: 720px;
       max-width: 960px;
       background-color: #fff;
-      //   z-index: 999;
     }
   }
 }

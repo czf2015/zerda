@@ -25,7 +25,6 @@ export default {
   props: {
     margin: {
       type: String,
-      default: "0 0.32rem",
     },
     loading: {
       type: Boolean,
