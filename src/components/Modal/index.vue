@@ -13,7 +13,7 @@
       <footer>
         <Submit
           class="btn_save"
-          label="保存"
+          label="确定"
           @click="save"
           :disabled="!canSave"
           :class="{ disabled: !canSave }"

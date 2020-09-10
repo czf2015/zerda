@@ -33,7 +33,7 @@
       <footer>
         <Submit
           class="btn_save"
-          label="保存"
+          label="确定"
           @click="save"
           :disabled="!canSave"
           :class="{ disabled: !canSave }"
@@ -144,7 +144,9 @@ export default {
       this.$emit("save", this.formData);
     },
     cancel() {
-      this.$emit("cancel");
+      if (confirm('放弃修改？')) {
+        this.$emit("cancel");
+      }
     },
   },
 };
