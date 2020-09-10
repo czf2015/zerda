@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <img :src="effect" width="70%" style="margin-left: 15%;" />
+    <img :src="effect" width="80%" style="margin-left: 10%;" />
     <CustomForm :datasource="formData" :auto="true" />
     <TableForm :datasource="table.content" :columns="table.columns" :operations="table.operations" />
   </div>
@@ -31,8 +31,17 @@ export default {
 </script>
 
 
-<style scoped>
+<style lang="less" scoped>
 .container {
-  margin-top: 80px;
+  margin: 80px 40px;
+  padding: 40px;
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.5);
+  > img {
+    border: 1px solid #ebeef5;
+    border-radius: 4px;
+    box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.5);
+  }
 }
 </style>

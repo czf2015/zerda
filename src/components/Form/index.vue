@@ -84,8 +84,7 @@ export default {
       required: true,
     },
     width: {
-      type: String,
-      default: '120'
+      type: Number,
     },
     auto: {
       type: Boolean,

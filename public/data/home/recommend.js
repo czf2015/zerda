@@ -45,6 +45,7 @@ module.exports = {
                     type: 'text',
                     minLength: 3,
                     maxLength: 5,
+                    trigger: "blur"
                 }
             },
             {
@@ -53,7 +54,8 @@ module.exports = {
                 required: true,
                 validation: {
                     type: 'link',
-                    pattern: /^\/\/yun.ccb.com/
+                    pattern: '/^\/\/yun.ccb.com/',
+                    trigger: "blur"
                 }
             },
             {
@@ -62,7 +64,8 @@ module.exports = {
                 required: true,
                 validation: {
                     type: 'link',
-                    pattern: /^\/\/yun.ccb.com/
+                    pattern: '/^\/\/yun.ccb.com/',
+                    trigger: "blur"
                 }
             },
             {
@@ -71,7 +74,8 @@ module.exports = {
                 // required: true,
                 validation: {
                     type: 'link',
-                    pattern: /^\/\/yun.ccb.com/
+                    pattern: '/^\/\/yun.ccb.com/',
+                    trigger: "blur"
                 }
             },
             {
@@ -82,6 +86,7 @@ module.exports = {
                     type: 'text',
                     minLength: 10,
                     maxLength: 20,
+                    trigger: "blur"
                 }
             },
         ],

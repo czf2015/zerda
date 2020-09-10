@@ -56,7 +56,8 @@ module.exports = {
                     validation: {
                         type: 'image',
                         minSize: 0,
-                        maxSize: 1024
+                        maxSize: 1024,
+                        trigger: "blur"
                     }
                 },
                 {
@@ -66,7 +67,8 @@ module.exports = {
                     validation: {
                         type: 'text',
                         minLength: 0,
-                        maxLength: 5
+                        maxLength: 5,
+                        trigger: "blur"
                     }
                 },
                 {
@@ -76,7 +78,8 @@ module.exports = {
                     validation: {
                         type: 'text',
                         minLength: 5,
-                        maxLength: 10
+                        maxLength: 10,
+                        trigger: "blur"
                     }
                 },
                 {
@@ -85,6 +88,7 @@ module.exports = {
                     required: true,
                     validation: {
                         type: 'boolean',
+                        trigger: "blur"
                     }
                 },
             ],

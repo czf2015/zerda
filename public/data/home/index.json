@@ -23,7 +23,8 @@
           "validation": {
             "type": "image",
             "minSize": 0,
-            "maxSize": 1024
+            "maxSize": 1024,
+            "trigger": "blur"
           }
         },
         {
@@ -33,7 +34,8 @@
           "validation": {
             "type": "text",
             "minLength": 5,
-            "maxLength": 10
+            "maxLength": 10,
+            "trigger": "blur"
           }
         },
         {
@@ -43,7 +45,8 @@
           "validation": {
             "type": "text",
             "minLength": 5,
-            "maxLength": 10
+            "maxLength": 10,
+            "trigger": "blur"
           }
         },
         {
@@ -52,7 +55,8 @@
           "required": false,
           "validation": {
             "type": "link",
-            "pattern": "//yun.ccb.com/"
+            "pattern": "//yun.ccb.com/",
+            "trigger": "blur"
           }
         }
       ],
@@ -114,7 +118,8 @@
           "validation": {
             "type": "text",
             "minLength": 3,
-            "maxLength": 5
+            "maxLength": 5,
+            "trigger": "blur"
           }
         },
         {
@@ -123,7 +128,8 @@
           "required": true,
           "validation": {
             "type": "link",
-            "pattern": {}
+            "pattern": "/^//yun.ccb.com/",
+            "trigger": "blur"
           }
         },
         {
@@ -132,7 +138,8 @@
           "required": true,
           "validation": {
             "type": "link",
-            "pattern": {}
+            "pattern": "/^//yun.ccb.com/",
+            "trigger": "blur"
           }
         },
         {
@@ -140,7 +147,8 @@
           "label": "按钮",
           "validation": {
             "type": "link",
-            "pattern": {}
+            "pattern": "/^//yun.ccb.com/",
+            "trigger": "blur"
           }
         },
         {
@@ -149,7 +157,8 @@
           "validation": {
             "type": "text",
             "minLength": 10,
-            "maxLength": 20
+            "maxLength": 20,
+            "trigger": "blur"
           }
         }
       ],
@@ -254,7 +263,8 @@
           "validation": {
             "type": "text",
             "minLength": 0,
-            "maxLength": 5
+            "maxLength": 5,
+            "trigger": "blur"
           }
         },
         {
@@ -264,7 +274,8 @@
           "validation": {
             "type": "image",
             "minSize": 0,
-            "maxSize": 1024
+            "maxSize": 1024,
+            "trigger": "blur"
           }
         },
         {
@@ -274,7 +285,8 @@
           "validation": {
             "type": "image",
             "minSize": 0,
-            "maxSize": 1024
+            "maxSize": 1024,
+            "trigger": "blur"
           }
         }
       ],
@@ -297,7 +309,8 @@
             "validation": {
               "type": "text",
               "minLength": 5,
-              "maxLength": 10
+              "maxLength": 10,
+              "trigger": "blur"
             }
           },
           {
@@ -307,7 +320,8 @@
             "validation": {
               "type": "text",
               "minLength": 5,
-              "maxLength": 10
+              "maxLength": 10,
+              "trigger": "blur"
             }
           },
           {
@@ -316,7 +330,8 @@
             "required": false,
             "validation": {
               "type": "link",
-              "pattern": "//yun.ccb.com/"
+              "pattern": "//yun.ccb.com/",
+              "trigger": "blur"
             }
           }
         ],
@@ -385,7 +400,8 @@
             "validation": {
               "type": "image",
               "minSize": 0,
-              "maxSize": 1024
+              "maxSize": 1024,
+              "trigger": "blur"
             }
           },
           {
@@ -395,7 +411,8 @@
             "validation": {
               "type": "text",
               "minLength": 0,
-              "maxLength": 5
+              "maxLength": 5,
+              "trigger": "blur"
             }
           },
           {
@@ -405,7 +422,8 @@
             "validation": {
               "type": "text",
               "minLength": 5,
-              "maxLength": 10
+              "maxLength": 10,
+              "trigger": "blur"
             }
           },
           {
@@ -413,7 +431,8 @@
             "label": "hover状态",
             "required": true,
             "validation": {
-              "type": "boolean"
+              "type": "boolean",
+              "trigger": "blur"
             }
           }
         ],
@@ -479,7 +498,8 @@
           "validation": {
             "type": "text",
             "minLength": 3,
-            "maxLength": 5
+            "maxLength": 5,
+            "trigger": "blur"
           }
         },
         {
@@ -489,7 +509,8 @@
           "validation": {
             "type": "text",
             "minLength": 5,
-            "maxLength": 15
+            "maxLength": 15,
+            "trigger": "blur"
           }
         },
         {
@@ -498,7 +519,8 @@
           "required": true,
           "validation": {
             "type": "link",
-            "pattern": "/^//yun.ccb.com/"
+            "pattern": "/^//yun.ccb.com/",
+            "trigger": "blur"
           }
         },
         {
@@ -508,7 +530,8 @@
           "validation": {
             "type": "image",
             "minSize": 0,
-            "maxSize": 1028
+            "maxSize": 1028,
+            "trigger": "blur"
           }
         }
       ],
@@ -558,7 +581,8 @@
           "validation": {
             "type": "image",
             "minSize": 0,
-            "maxSize": 1024
+            "maxSize": 1024,
+            "trigger": "blur"
           }
         },
         {
@@ -568,7 +592,8 @@
           "validation": {
             "type": "text",
             "minLength": 5,
-            "maxLength": 10
+            "maxLength": 10,
+            "trigger": "blur"
           }
         }
       ],

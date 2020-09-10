@@ -33,6 +33,7 @@ module.exports = {
                     type: 'image',
                     minSize: 0,
                     maxSize: 1024,//kb
+                    trigger: "blur"
                 }
             },
             {
@@ -43,6 +44,7 @@ module.exports = {
                     type: 'text',
                     minLength: 5,
                     maxLength: 10,
+                    trigger: "blur"
                 }
             },
         ],

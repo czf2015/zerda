@@ -166,16 +166,15 @@ export const operations = [
 ]
 
 export const convertFormData = (columns, rowData) => {
-    // return Object.entries(rowData).map()
     const _convert = (columns) => {
         const ret = []
-        columns.map(({ field, label, options, required, validation, children }) => {
+        columns.forEach(({ field, label, options, required, validation, children }) => {
             if (children && children.length > 0) {
                 ret.push(..._convert(children))
             } else {
                 const value = (validation.type == 'date' || validation.type == 'dateTime') ? new Date(rowData[field]) : rowData[field]
                 ret.push({ field, label, value, options, required, validation })
-            }
+            }   
         })
         return ret
     }

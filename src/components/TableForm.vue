@@ -46,7 +46,6 @@ export default {
     },
     width: {
       type: String,
-      default: '120'
     },
   },
   data() {
@@ -61,8 +60,8 @@ export default {
       console.log(index);
     },
     editTable(index) {
-      this.openDialog = true;
       this.formData = convertFormData(this.columns, this.datasource[index]);
+      this.openDialog = true;
     },
     addTable() {},
     delTable(index) {

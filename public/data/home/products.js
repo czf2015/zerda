@@ -83,7 +83,8 @@ module.exports = {
                 validation: {
                     type: 'text',
                     minLength: 0,
-                    maxLength: 5
+                    maxLength: 5,
+                    trigger: "blur"
                 }
             },
             {
@@ -94,6 +95,7 @@ module.exports = {
                     type: 'image',
                     minSize: 0,
                     maxSize: 1024,//kb
+                    trigger: "blur"
                 }
             },
             {
@@ -104,6 +106,7 @@ module.exports = {
                     type: 'image',
                     minSize: 0,
                     maxSize: 1024,//kb
+                    trigger: "blur"
                 }
             },
         ],
@@ -135,6 +138,7 @@ module.exports = {
                         type: 'text',
                         minLength: 5,
                         maxLength: 10,
+                        trigger: "blur"
                     }
                 },
                 {
@@ -145,6 +149,7 @@ module.exports = {
                         type: 'text',
                         minLength: 5,
                         maxLength: 10,
+                        trigger: "blur"
                     }
                 },
                 {
@@ -153,7 +158,8 @@ module.exports = {
                     required: false,
                     validation: {
                         type: 'link',
-                        pattern: '//yun.ccb.com/'
+                        pattern: '//yun.ccb.com/',
+                        trigger: "blur"
                     }
                 },
             ],
