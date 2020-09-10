@@ -34,7 +34,7 @@ export default {
 <style lang="less" scoped>
 .container {
   margin: 80px 40px;
-  padding: 40px;
+  padding: 60px 60px;
   border: 1px solid #ebeef5;
   border-radius: 4px;
   box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.5);
