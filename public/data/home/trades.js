@@ -56,9 +56,9 @@ module.exports = {
                 label: '描述',
                 required: true,
                 validation: {
-                    type: 'text',
-                    minLength: 5,
-                    maxLength: 15,
+                    type: 'textarea',
+                    minLength: 10,
+                    maxLength: 30,
                     trigger: "blur"
                 }
             },

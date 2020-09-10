@@ -161,6 +161,10 @@ form {
       margin-top: 20px;
       > label {
         margin: 10px 10px;
+        min-width: 100px;
+        text-align: right;
+        font-weight: bold;
+        color: #409EFF;
         &:before {
           content: " ";
           padding-right: 5px;
@@ -181,6 +185,7 @@ form {
   > fieldset {
     padding-bottom: 40px;
     > legend {
+        color: #409EFF;
     }
     > footer {
       display: flex;
@@ -190,7 +195,7 @@ form {
         margin-right: 24px;
       }
       .btn_save.disabled {
-        background: grey;
+        background: #c0c4cc;
       }
       .btn_cancel {
         background: red;
