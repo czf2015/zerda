@@ -2,7 +2,7 @@
 
 <template>
   <el-table :data="datasource" style="width: 100%;" :stripe="strip" :border="border">
-    <el-table-column type="index" :index="1" label="序号" :fixed="true" />
+    <el-table-column type="index" :index="1" label="子项" :fixed="true" />
     <TableColumns :columns="columns" />
     <el-table-column fixed="right" label="操作" width="160">
       <template slot-scope="scope">
