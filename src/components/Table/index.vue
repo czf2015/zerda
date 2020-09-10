@@ -1,21 +1,24 @@
 
 
 <template>
-  <el-table :data="datasource" style="width: 100%;" :stripe="strip" :border="border">
-    <el-table-column type="index" :index="1" label="子项" :fixed="true" />
-    <TableColumns :columns="columns" />
-    <el-table-column fixed="right" label="操作" width="160">
-      <template slot-scope="scope">
-        <el-button
-          v-for="operation in operations"
-          :key="operation.field"
-          @click="operate(operation, scope.$index)"
-          type="text"
-          size="small"
-        >{{operation.label}}</el-button>
-      </template>
-    </el-table-column>
-  </el-table>
+  <div class="table-wrapper">
+    <el-table :data="datasource" class="table" :stripe="strip" :border="border">
+      <el-table-column type="index" :index="1" label="子项" :fixed="true" />
+      <TableColumns :columns="columns" />
+      <el-table-column fixed="right" label="操作" width="160">
+        <template slot-scope="scope">
+          <el-button
+            v-for="operation in operations"
+            :key="operation.field"
+            @click="operate(operation, scope.$index)"
+            type="text"
+            size="small"
+          >{{operation.label}}</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <div class="append-row" @click="append">+</div>
+  </div>
 </template>
 
 <script>
@@ -50,9 +53,25 @@ export default {
     operate(operation, index) {
       this.$emit(operation.field, index);
     },
+    append() {
+      console.log('append')
+    }
   },
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+.table-wrapper {
+  .table {
+    width: 100%;
+  }
+  .append-row {
+    font-weight: lighter;
+    font-size: 24px;
+    line-height: 48px;
+    text-align: center;
+    color: #222;
+    border: 1px dashed rgb(144, 147, 153);
+  }
+}
 </style>
