@@ -71,8 +71,8 @@ export default {
       }
     },
     appendTable() {
-      this.formData = [...this.columns]
-      this.openDialog = true
+      this.formData = [...this.columns];
+      this.openDialog = true;
     },
     saveForm(formData) {
       this.openDialog = false;
