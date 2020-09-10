@@ -121,7 +121,7 @@ module.exports = {
             //     label: '添加'
             // },
             {
-                field: 'delete',
+                field: 'del',
                 label: '删除'
             }
         ],
@@ -171,7 +171,7 @@ module.exports = {
                 //     label: '添加'
                 // },
                 {
-                    field: 'delete',
+                    field: 'del',
                     label: '删除'
                 }
             ],

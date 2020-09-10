@@ -62,7 +62,7 @@
           "label": "编辑"
         },
         {
-          "field": "delete",
+          "field": "del",
           "label": "删除"
         }
       ]
@@ -284,7 +284,7 @@
           "label": "编辑"
         },
         {
-          "field": "delete",
+          "field": "del",
           "label": "删除"
         }
       ],
@@ -326,7 +326,7 @@
             "label": "编辑"
           },
           {
-            "field": "delete",
+            "field": "del",
             "label": "删除"
           }
         ]
@@ -372,7 +372,7 @@
           "label": "编辑"
         },
         {
-          "field": "delete",
+          "field": "del",
           "label": "删除"
         }
       ],
@@ -423,7 +423,7 @@
             "label": "编辑"
           },
           {
-            "field": "delete",
+            "field": "del",
             "label": "删除"
           }
         ]
@@ -578,7 +578,7 @@
           "label": "编辑"
         },
         {
-          "field": "delete",
+          "field": "del",
           "label": "删除"
         }
       ]

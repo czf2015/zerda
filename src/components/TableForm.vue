@@ -64,7 +64,11 @@ export default {
       this.formData = convertFormData(this.columns, this.datasource[index]);
     },
     addTable() {},
-    delTable() {},
+    delTable(index) {
+      if (confirm("确定要删除吗？")) {
+        console.log(index);
+      }
+    },
     saveForm(formData) {
       this.openDialog = false;
       this.$emit("save", formData);
