@@ -53,8 +53,9 @@ module.exports = {
                 label: '图标',
                 required: true,
                 validation: {
-                    type: 'link',
-                    pattern: '/^\/\/yun.ccb.com/',
+                    type: 'image',
+                    minSize: 0,
+                    maxSize: 1024,
                     trigger: "blur"
                 }
             },

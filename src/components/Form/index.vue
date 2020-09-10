@@ -198,8 +198,8 @@ form {
         background: #c0c4cc;
       }
       .btn_cancel {
-        background: red;
         margin-right: 40px;
+        background: red;
       }
     }
   }
