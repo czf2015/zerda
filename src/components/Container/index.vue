@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <img :src="effect" width="100%" />
+    <img :src="effect" width="70%" style="margin-left: 15%;" />
     <CustomForm :datasource="formData" :auto="true" />
     <TableForm :datasource="table.content" :columns="table.columns" :operations="table.operations" />
   </div>
@@ -24,8 +24,9 @@ export default {
     },
   },
   data() {
-    console.log(this.initial);
-    return convert(this.initial);
+    const ret = convert(this.initial)
+    console.log(JSON.stringify(ret))
+    return ret;
   },
 };
 </script>

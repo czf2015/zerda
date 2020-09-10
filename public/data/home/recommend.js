@@ -1,7 +1,7 @@
 module.exports = {
     "id": "2",
-    type: 'Recommand',
-    usage: 'Recommand',
+    type: 'Recommend',
+    usage: 'Recommend',
     effect: '/images/home/recommend.png',
     "title": "我们的推荐",
     "desc": "建行云产品系列，祝你上云无忧，轻松运行",
@@ -11,34 +11,34 @@ module.exports = {
             "iconURL": "//yun.ccb.com/common/images/recommend_products1.png",
             "cardURL": "//yun.ccb.com/product/cvm",
             "button": "",
-            "desc": ""
+            "desc": "立即申请"
         },
         {
             "title": "弹性负载均衡",
             "iconURL": "//yun.ccb.com/common/images/recommend_products2.png",
             "cardURL": "//yun.ccb.com/product/elb",
             "button": "",
-            "desc": ""
+            "desc": "立即申请"
         },
         {
             "title": "龙卫士",
             "iconURL": "//yun.ccb.com/common/images/recommend_products3.png",
             "cardURL": "//yun.ccb.com/product/producthids",
             "button": "",
-            "desc": ""
+            "desc": "立即申请"
         },
         {
             "title": "MPP云数据",
             "iconURL": "//yun.ccb.com/common/images/recommend_products4.png",
             "cardURL": "//yun.ccb.com/product/productmpp",
             "button": "",
-            "desc": ""
+            "desc": "立即申请"
         }
     ],
     extra: {
         columns: [
             {
-                filed: 'title',
+                field: 'title',
                 label: '名称',
                 required: true,
                 validation: {
@@ -48,7 +48,7 @@ module.exports = {
                 }
             },
             {
-                filed: 'iconURL',
+                field: 'iconURL',
                 label: '图标',
                 required: true,
                 validation: {
@@ -57,7 +57,7 @@ module.exports = {
                 }
             },
             {
-                filed: 'cardURL',
+                field: 'cardURL',
                 label: '卡片',
                 required: true,
                 validation: {
@@ -66,7 +66,7 @@ module.exports = {
                 }
             },
             {
-                filed: 'button',
+                field: 'button',
                 label: '按钮',
                 // required: true,
                 validation: {
@@ -75,7 +75,7 @@ module.exports = {
                 }
             },
             {
-                filed: 'desc',
+                field: 'desc',
                 label: '描述',
                 // required: true,
                 validation: {
@@ -86,11 +86,11 @@ module.exports = {
             },
         ],
         operations: [{
-            label: 'edit',
-            field: '编辑'
+            field: 'edit',
+            label: '编辑'
         }, {
-            label: 'del',
-            field: '删除'
+            field: 'del',
+            label: '删除'
         }]
     }
 }

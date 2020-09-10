@@ -8,19 +8,19 @@ module.exports = {
     content: [
         {
             "title": "ISO 20000",
-            "iconUrl": "//yun.ccb.com/myNatural/img/iso20000_v2.png"
+            "iconURL": "//yun.ccb.com/myNatural/img/iso20000_v2.png"
         },
         {
             "title": "可信云",
-            "iconUrl": "//yun.ccb.com/myNatural/img/可信云.png"
+            "iconURL": "//yun.ccb.com/myNatural/img/可信云.png"
         },
         {
             "title": "ISO 27001",
-            "iconUrl": "//yun.ccb.com/myNatural/img/iso27001_v2.png"
+            "iconURL": "//yun.ccb.com/myNatural/img/iso27001_v2.png"
         },
         {
             "title": "网络安全等级保护",
-            "iconUrl": "//yun.ccb.com/myNatural/img/DJCP.png"
+            "iconURL": "//yun.ccb.com/myNatural/img/DJCP.png"
         }
     ],
     extra: {

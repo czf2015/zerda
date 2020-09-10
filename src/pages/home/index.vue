@@ -22,12 +22,12 @@ export default {
     };
   },
   mounted() {
-    fetch("/data/home/index.json").then(res => res.json()).then((data) => {
-      // console.log(res.json());
-      this.raws = data
-      console.log(JSON.stringify(this.raws))
-      this.show = true;
-    });
+    fetch("/data/home/index.json")
+      .then((res) => res.json())
+      .then((data) => {
+        this.raws = data;
+        this.show = true;
+      });
   },
 };
 </script>

@@ -55,6 +55,7 @@ import CustomSwitch from "./Switch.vue";
 import TextArea from "./TextArea.vue";
 import InputText from "./InputText.vue";
 import InputNumber from "./InputNumber.vue";
+import InputImage from "./InputImage.vue";
 // import { capital } from '@/utils/string.js'
 const capital = (str) => str[0].toUpperCase() + str.slice(1);
 
@@ -70,6 +71,7 @@ export default {
     CustomSwitch,
     InputText,
     InputNumber,
+    InputImage,
     TextArea,
   },
   props: {
@@ -103,9 +105,12 @@ export default {
         case "checkbox":
           return "CheckboxGroup";
         case "text":
+        case "link":
           return "InputText";
         case "number":
           return "InputNumber";
+        case "image":
+          return "InputImage";
         case "textarea":
           return "TextArea";
         case "select":
@@ -149,33 +154,33 @@ export default {
 <style lang="less" scoped>
 form {
   padding: 40px;
+  content {
+    > .form-item {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      > label {
+        margin: 10px 10px;
+        &:before {
+          content: " ";
+          padding-right: 5px;
+          color: red;
+        }
+        &.required:before {
+          content: "*";
+          padding-right: 5px;
+          color: red;
+        }
+        &:after {
+          padding: 0 5px;
+          content: ":";
+        }
+      }
+    }
+  }
   > fieldset {
     padding-bottom: 40px;
     > legend {
-    }
-    > content {
-      > .form-item {
-        display: flex;
-        align-items: center;
-        margin-top: 20px;
-        > label {
-          margin: 10px 10px;
-          &:before {
-            content: " ";
-            padding-right: 5px;
-            color: red;
-          }
-          &.required:before {
-            content: "*";
-            padding-right: 5px;
-            color: red;
-          }
-          &:after {
-            padding: 0 5px;
-            content: ":";
-          }
-        }
-      }
     }
     > footer {
       display: flex;

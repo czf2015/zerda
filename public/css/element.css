@@ -1,3 +1,6 @@
-.el-table th>.cell {
+.el-table th {
+  background: rgba(27,31,35,.05);
+}
+.el-table .cell {
   text-align: center;
 }
