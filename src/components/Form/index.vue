@@ -85,6 +85,7 @@ export default {
     },
     width: {
       type: String,
+      default: '120'
     },
     auto: {
       type: Boolean,

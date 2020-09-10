@@ -13,6 +13,7 @@ import TableForm from "@/components/TableForm";
 import { convert } from "./helpers.js";
 
 export default {
+  name: "Container",
   components: {
     CustomForm,
     TableForm,
@@ -24,9 +25,7 @@ export default {
     },
   },
   data() {
-    const ret = convert(this.initial)
-    console.log(JSON.stringify(ret))
-    return ret;
+    return convert(this.initial);
   },
 };
 </script>

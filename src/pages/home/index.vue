@@ -2,13 +2,13 @@
   <Layout :show="show">
     <draggable
       v-bind="dragOptions"
-      tag="container"
+      tag="div"
       class="item-container"
       :list="list"
       :value="value"
       @input="emitter"
     >
-      <Container v-for="(data) in currentValue" :key="data.id" :initial="data" />
+      <Container name="div" v-for="(data) in currentValue" :key="data.id" :initial="data" />
     </draggable>
   </Layout>
 </template>
@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     emitter(value) {
-      console.log(value);
+      // console.log(value);
       this.$emit("input", value);
     },
   },
