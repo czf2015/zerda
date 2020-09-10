@@ -8,6 +8,7 @@
       @edit="editTable"
       @add="addTable"
       @del="delTable"
+      @append="appendTable"
     />
     <div class="mask" v-if="openDialog">
       <CustomForm
@@ -68,6 +69,10 @@ export default {
       if (confirm("确定要删除吗？")) {
         console.log(index);
       }
+    },
+    appendTable() {
+      this.formData = [...this.columns]
+      this.openDialog = true
     },
     saveForm(formData) {
       this.openDialog = false;

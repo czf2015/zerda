@@ -42,7 +42,6 @@ export default {
     },
     strip: {
       type: Boolean,
-      // default: true,
     },
     border: {
       type: Boolean,
@@ -54,8 +53,8 @@ export default {
       this.$emit(operation.field, index);
     },
     append() {
-      console.log('append')
-    }
+      this.$emit("append");
+    },
   },
 };
 </script>
