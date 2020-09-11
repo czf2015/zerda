@@ -29,7 +29,6 @@
 import CustomForm from "@/components/Form";
 import TableForm from "@/components/TableForm";
 import { convert } from "./helpers.js";
-import { truncateSync } from "fs";
 
 export default {
   name: "TableFormPanel",
