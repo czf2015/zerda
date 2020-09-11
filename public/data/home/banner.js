@@ -4,7 +4,7 @@ module.exports = {
     usage: 'Banner',
     effect: '/images/home/banner.png',
     title: 'Banner配置',
-    desc: '',
+    // desc: '',
     content: [
         {
             "imgURL": "https://imagecachexxfb.yun.ccb.com/raw/cba6793909136cf277c94951b5b73d27.png",
