@@ -12,16 +12,16 @@
 
     <el-tabs type="card" v-model="editableTab" closable @tab-remove="removeTab">
       <el-tab-pane
-        v-for="({ category, children }) in initial.content"
-        :key="category"
-        :name="category"
-        :label="category"
+        v-for="({ children, ...chief }) in initial.content"
+        :key="chief.category"
+        :name="chief.category"
+        :label="chief.category"
       >
-        <CustomForm :datasource="convertPanelData(children).formData" :auto="true" />
+        <CustomForm :datasource="convertPanelData(children, chief).formData" :auto="true" />
         <TableForm
-          :datasource="convertPanelData(children).table.content"
-          :columns="convertPanelData(children).table.columns"
-          :operations="convertPanelData(children).table.operations"
+          :datasource="convertPanelData(children, chief).table.content"
+          :columns="convertPanelData(children, chief).table.columns"
+          :operations="convertPanelData(children, chief).table.operations"
         />
       </el-tab-pane>
     </el-tabs>
@@ -54,14 +54,14 @@ export default {
     };
   },
   methods: {
-    convertPanelData(content) {
+    convertPanelData(content, chief) {
       const { columns, children } = this.initial.extra; /* .children; */
       const ret = {
         formData: columns
           ? columns.map((item) => {
               return {
                 ...item,
-                value: content[item.field],
+                value: chief[item.field],
               };
             })
           : [],
