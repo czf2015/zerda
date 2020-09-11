@@ -1,18 +1,22 @@
 <template>
   <div class="container">
-    <!-- <img :src="effect" width="80%" style="margin-left: 10%;" />
-    <CustomForm :datasource="formData" :auto="true" /> -->
-    <div class="title">
-      <h3 v-if="!editTitle" @click="editTitle = true">{{title}}</h3>
-      <input v-else type="text" @blur="editTitle = false" v-model="title" />
-    </div>
-    <div class="desc">
-      <label>描述：</label>
-      <span v-if="!editDesc" @click="editDesc = true">{{desc}}</span>
-      <input v-else type="text" @blur="editDesc = false" v-model="desc" />
-    </div>
+    <h3 class="title" @mouseover="editTitle = true" @mouseleave="editTitle = false">
+      <input type="text" v-if="editTitle" v-model="title" />
+      <span v-else>{{title}}</span>
+    </h3>
+    <!-- <img :src="effect" width="80%" style="margin-left: 10%;" /> -->
+    <!-- <CustomForm :datasource="formData" :auto="true" /> -->
+    <label class="desc">
+      描述：
+      <input type="text" v-model="desc" />
+    </label>
     <CustomForm :datasource="formData" :auto="true" v-show="false" />
-    <TableForm :datasource="table.content" :columns="table.columns" :operations="table.operations" />
+    <TableForm
+      style="margin-top: 20px;"
+      :datasource="table.content"
+      :columns="table.columns"
+      :operations="table.operations"
+    />
   </div>
 </template>
 
@@ -39,7 +43,6 @@ export default {
       ...convert(this.initial),
       editTitle: false,
       title: this.initial.title || "标题",
-      editDesc: false,
       desc: this.initial.desc,
     };
   },
@@ -65,12 +68,8 @@ export default {
   > .desc {
     margin: 10px 0;
     line-height: 36px;
-    & > label {
-      color: #409eff;
-    }
-    & > input,
-    & > p {
-      color: #333;
+    > input[type="text"] {
+      min-width: 556px;
     }
   }
 
