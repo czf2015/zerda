@@ -83,7 +83,7 @@ module.exports = {
                     }
                 },
                 {
-                    field: 'hovering',
+                    field: 'hover',
                     label: 'hover状态',
                     required: true,
                     validation: {

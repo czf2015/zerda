@@ -89,6 +89,7 @@ export default {
         table: {
           content,
           columns: children.columns,
+          operations: children.operations,
         },
       };
     },
