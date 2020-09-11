@@ -2,9 +2,9 @@
   <div class="container">
     <img :src="effect" width="80%" style="margin-left: 10%;" />
     <CustomForm :datasource="formData" :auto="true" />
-    <el-tabs type="card" v-model="editableTab" closable @tab-remove="removeTab">
+    <el-tabs :type="cardType" v-model="activeTab" editable @edit="handleTabsEdit">
       <el-tab-pane
-        v-for="({ children, ...chief }) in initial.content"
+        v-for="({ children, ...chief }) in content"
         :key="chief.category"
         :name="chief.category"
         :label="chief.category"
@@ -20,6 +20,7 @@
           :operations="convertPanelData(children, chief).table.operations"
         />
       </el-tab-pane>
+      <!-- <el-tab-pane name="add" label="+" /> -->
     </el-tabs>
   </div>
 </template>
@@ -28,6 +29,7 @@
 import CustomForm from "@/components/Form";
 import TableForm from "@/components/TableForm";
 import { convert } from "./helpers.js";
+import { truncateSync } from "fs";
 
 export default {
   name: "TableFormPanel",
@@ -40,17 +42,26 @@ export default {
       type: Object,
       required: true,
     },
+    cardType: {
+      type: String,
+      default: "card",
+    },
   },
   data() {
+    const { content } = this.initial;
+    const { formData, effect } = convert(this.initial);
     return {
-      ...convert(this.initial),
-      editableTab: this.initial.content[0].category,
+      effect,
+      formData,
+      content,
+      activeTab: content[0] && content[0].category,
+      closable: false,
     };
   },
   methods: {
     convertPanelData(content, chief) {
       const { columns, children } = this.initial.extra;
-      const ret = {
+      return {
         formData: columns
           ? columns.map((item) => {
               return {
@@ -64,10 +75,51 @@ export default {
           columns: children.columns,
         },
       };
-      console.log(ret);
-      return ret;
     },
-    removeTab() {},
+    removeTab(targetName) {
+      console.log(targetName);
+    },
+    handleTabsEdit(targetName, action) {
+      console.log({ targetName, action });
+      if (action === "add") {
+        let newTabName = ++this.tabIndex + "";
+        this.content.push({
+          title: "New Tab",
+          name: newTabName,
+          content: "New Tab content",
+        });
+        this.activeTab = newTabName;
+      }
+      if (action === "remove") {
+        let tabs = this.content;
+        let activeName = this.activeTab;
+        if (activeName === targetName) {
+          tabs.forEach((tab, index) => {
+            if (tab.name === targetName) {
+              let nextTab = tabs[index + 1] || tabs[index - 1];
+              if (nextTab) {
+                activeName = nextTab.name;
+              }
+            }
+          });
+        }
+
+        this.activeTab = activeName;
+        this.content = tabs.filter((tab) => tab.name !== targetName);
+      }
+    },
+  },
+  watch: {
+    activeTab() {
+      console.log("-------------");
+      console.log(this.activeTab);
+      if (this.activeTab == "+") {
+        this.closable = false;
+      }
+    },
+    tabIndex() {
+      return this.content.length;
+    },
   },
 };
 </script>
