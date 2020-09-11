@@ -10,14 +10,14 @@
   >
     <el-table-column type="index" :index="1" label="子项" :fixed="true" />
     <TableColumns :columns="columns" />
-    <el-table-column fixed="right" label="操作" width="160">
+    <el-table-column fixed="right" label="操作" width="240">
       <template slot-scope="scope">
         <el-button
           v-for="operation in operations"
           :key="operation.field"
           @click="operate(operation, scope.$index)"
-          :type="operation.field == 'del' ? 'danger' : 'primary'"
-          size="small"
+          :type="operation.field == 'del' ? 'danger' : operation.field == 'edit' ? 'primary' : 'text'"
+          size="mini"
         >{{operation.label}}</el-button>
       </template>
     </el-table-column>

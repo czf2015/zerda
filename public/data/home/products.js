@@ -126,6 +126,14 @@ module.exports = {
             {
                 field: 'del',
                 label: '删除'
+            },
+            {
+                field: 'up',
+                label: '上移'
+            },
+            {
+                field: 'down',
+                label: '下移'
             }
         ],
         children: {
@@ -179,6 +187,14 @@ module.exports = {
                 {
                     field: 'del',
                     label: '删除'
+                },
+                {
+                    field: 'up',
+                    label: '上移'
+                },
+                {
+                    field: 'down',
+                    label: '下移'
                 }
             ],
         }

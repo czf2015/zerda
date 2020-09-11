@@ -91,12 +91,22 @@ module.exports = {
                 }
             },
         ],
-        operations: [{
-            field: 'edit',
-            label: '编辑'
-        }, {
-            field: 'del',
-            label: '删除'
-        }]
+        operations: [
+            {
+                field: 'edit',
+                label: '编辑'
+            }, {
+                field: 'del',
+                label: '删除'
+            },
+            {
+                field: 'up',
+                label: '上移'
+            },
+            {
+                field: 'down',
+                label: '下移'
+            }
+        ]
     }
 }
