@@ -23,6 +23,7 @@
 
 <script>
 export default {
+  name: "Tabs",
   props: {
     initial: {
       type: Object,
@@ -32,14 +33,15 @@ export default {
   data() {
     const { editableTabsValue, editableTabs = [] } = this.initial;
     return {
-      editableTabsValue: editableTabsValue || (editableTabs[0] && editableTabs[0].name),
+      editableTabsValue:
+        editableTabsValue || (editableTabs[0] && editableTabs[0].name),
       editableTabs,
       tabIndex: editableTabs.length,
     };
   },
   methods: {
     addTab(targetName) {
-      console.log(targetName)
+      console.log(targetName);
       let newTabName = ++this.tabIndex + "";
       this.editableTabs.push({
         title: "New Tab",

@@ -1,6 +1,6 @@
 module.exports = {
     "id": "2",
-    type: 'Recommend',
+    type: 'Container',
     usage: 'Recommend',
     effect: '/images/home/recommend.png',
     "title": "我们的推荐",

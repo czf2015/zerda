@@ -1,6 +1,6 @@
 module.exports = {
     id: '6',
-    type: 'Certification',
+    type: 'Container',
     usage: 'Certification',
     effect: '/images/home/certification.png',
     title: '合规认证',

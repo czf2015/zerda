@@ -1,6 +1,6 @@
 module.exports = {
     id: '3',
-    type: 'Products',
+    type: 'TableFormPanel',
     usage: 'Products',
     effect: '/images/home/products.png',
     title: '我们的云产品',
@@ -26,7 +26,7 @@ module.exports = {
                 "link": "//yun.ccb.com/product/productbms"
             },
             {
-                "name": "裸金属服务器",
+                "name": "裸金属服务器1",
                 "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
                 "link": "//yun.ccb.com/product/productbms"
             }
@@ -47,7 +47,7 @@ module.exports = {
                 "link": "//yun.ccb.com/product/tke"
             },
             {
-                "name": "裸金属服务器",
+                "name": "裸金属服务器2",
                 "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
                 "link": "//yun.ccb.com/product/productbms"
             }
@@ -68,7 +68,7 @@ module.exports = {
                 "link": "//yun.ccb.com/product/tke"
             },
             {
-                "name": "裸金属服务器",
+                "name": "裸金属服务器3",
                 "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
                 "link": "//yun.ccb.com/product/productbms"
             }

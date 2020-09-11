@@ -8,7 +8,11 @@
       :value="value"
       @input="emitter"
     >
-      <Container name="div" v-for="(data) in currentValue" :key="data.id" :initial="data" />
+      <!-- <div v-for="(data) in currentValue" :key="data.id">
+        <component v-if="data.type !== 'Container'" :is="data.type" :initial="data" />
+        <div v-else>{{data.type}}</div>
+      </div>-->
+      <component v-for="(data) in currentValue" :key="data.id" :is="data.type" :initial="data" />
     </draggable>
   </Layout>
 </template>
@@ -17,14 +21,16 @@
 <script>
 import Layout from "@/layouts/default";
 import Container from "@/components/Container";
+import TableFormPanel from "@/components/Panel/TableForm";
 import draggable from "vuedraggable";
 
 export default {
   name: "HomePage",
   components: {
     Layout,
-    Container,
     draggable,
+    Container,
+    TableFormPanel,
   },
   data() {
     return {

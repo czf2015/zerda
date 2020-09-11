@@ -1,6 +1,6 @@
 module.exports = {
     id: '5',
-    type: 'Trades',
+    type: 'Container',
     usage: 'Trades',
     effect: '/images/home/trades.png',
     title: '我们的行业平台',

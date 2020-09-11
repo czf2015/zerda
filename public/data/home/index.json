@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "type": "Banner",
+    "type": "Container",
     "usage": "Banner",
     "effect": "/images/home/banner.png",
     "title": "Banner配置",
@@ -74,7 +74,7 @@
   },
   {
     "id": "2",
-    "type": "Recommend",
+    "type": "Container",
     "usage": "Recommend",
     "effect": "/images/home/recommend.png",
     "title": "我们的推荐",
@@ -177,7 +177,7 @@
   },
   {
     "id": "3",
-    "type": "Products",
+    "type": "TableFormPanel",
     "usage": "Products",
     "effect": "/images/home/products.png",
     "title": "我们的云产品",
@@ -204,7 +204,7 @@
             "link": "//yun.ccb.com/product/productbms"
           },
           {
-            "name": "裸金属服务器",
+            "name": "裸金属服务器1",
             "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
             "link": "//yun.ccb.com/product/productbms"
           }
@@ -226,7 +226,7 @@
             "link": "//yun.ccb.com/product/tke"
           },
           {
-            "name": "裸金属服务器",
+            "name": "裸金属服务器2",
             "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
             "link": "//yun.ccb.com/product/productbms"
           }
@@ -248,7 +248,7 @@
             "link": "//yun.ccb.com/product/tke"
           },
           {
-            "name": "裸金属服务器",
+            "name": "裸金属服务器3",
             "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
             "link": "//yun.ccb.com/product/productbms"
           }
@@ -351,7 +351,7 @@
   },
   {
     "id": "4",
-    "type": "Solutions",
+    "type": "TableFormPanel",
     "usage": "Solutions",
     "effect": "/images/home/solutions.png",
     "title": "我们的解决方案",
@@ -452,7 +452,7 @@
   },
   {
     "id": "5",
-    "type": "Trades",
+    "type": "Container",
     "usage": "Trades",
     "effect": "/images/home/trades.png",
     "title": "我们的行业平台",
@@ -550,7 +550,7 @@
   },
   {
     "id": "6",
-    "type": "Certification",
+    "type": "Container",
     "usage": "Certification",
     "effect": "/images/home/certification.png",
     "title": "合规认证",

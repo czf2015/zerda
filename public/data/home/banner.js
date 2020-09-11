@@ -1,6 +1,6 @@
 module.exports = {
     id: '1',
-    type: 'Banner',
+    type: 'Container',
     usage: 'Banner',
     effect: '/images/home/banner.png',
     title: 'Banner配置',
