@@ -8,17 +8,17 @@ export const convert = ({ id, type, usage, title, desc, background, content, ext
             ...extra,
         },
         formData: [
-            {
-                field: "title",
-                label: "标题",
-                required: true,
-                value: title || "",
-                validation: {
-                    type: "text",
-                    minLength: 5,
-                    maxLength: 10,
-                },
-            },
+            // {
+            //     field: "title",
+            //     label: "标题",
+            //     required: true,
+            //     value: title || "",
+            //     validation: {
+            //         type: "text",
+            //         minLength: 5,
+            //         maxLength: 10,
+            //     },
+            // },
             {
                 field: "desc",
                 label: "描述",
@@ -41,17 +41,17 @@ export const convert = ({ id, type, usage, title, desc, background, content, ext
                     maxSize: 10,
                 },
             },
-            {
-                field: "usage",
-                label: "用途",
-                required: false,
-                value: usage || "",
-                validation: {
-                    type: "text",
-                    minLength: 5,
-                    maxLength: 10,
-                },
-            },
+            // {
+            //     field: "usage",
+            //     label: "用途",
+            //     required: false,
+            //     value: usage || "",
+            //     validation: {
+            //         type: "text",
+            //         minLength: 5,
+            //         maxLength: 10,
+            //     },
+            // },
         ]
     }
 }

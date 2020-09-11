@@ -1,6 +1,6 @@
 export const convert = ({ id, type, usage, title, desc, background, content, extra, effect }) => {
     const formData = [
-        {
+       /*  {
             field: "title",
             label: "标题",
             required: true,
@@ -10,7 +10,7 @@ export const convert = ({ id, type, usage, title, desc, background, content, ext
                 minLength: 5,
                 maxLength: 10,
             },
-        }/* , {
+        }, {
             field: "usage",
             label: "用途",
             required: false,

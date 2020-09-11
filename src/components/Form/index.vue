@@ -1,5 +1,5 @@
 <template>
-  <form class="form" :style="{ width }">
+  <form class="form" :style="{ width, margin, padding }">
     <content v-if="auto">
       <div class="form-item" v-for="(item, idx) in datasource" :key="idx">
         <label :class="{ required: item.required }">{{item.label}}</label>
@@ -89,6 +89,12 @@ export default {
     auto: {
       type: Boolean,
     },
+    padding: {
+      type: String
+    },
+    margin: {
+      type: String
+    }
   },
   data() {
     return {
@@ -163,7 +169,7 @@ form {
       margin-top: 20px;
       > label {
         margin: 10px 10px;
-        min-width: 100px;
+        min-width: 80px;
         text-align: right;
         font-weight: bold;
         color: #409EFF;

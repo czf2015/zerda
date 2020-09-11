@@ -4,12 +4,12 @@
       <input type="text" v-if="editTitle" v-model="title" />
       <span v-else>{{title}}</span>
     </h3>
-    <!-- <img :src="effect" width="80%" style="margin-left: 10%;" />
-    <CustomForm :datasource="formData" :auto="true" />-->
-    <label class="desc">
+    <!-- <img :src="effect" width="80%" style="margin-left: 10%;" /> -->
+    <CustomForm :datasource="formData" :auto="true" padding="0" />
+    <!-- <label class="desc">
       描述：
       <input type="text" v-model="desc" />
-    </label>
+    </label> -->
     <el-tabs
       :type="cardType"
       style="margin-top: 20px;"
@@ -61,7 +61,7 @@ export default {
     },
   },
   data() {
-    const { content, title, desc } = this.initial;
+    const { content, title } = this.initial;
     const { formData, effect } = convert(this.initial);
     return {
       effect,
@@ -71,7 +71,7 @@ export default {
       closable: false,
       editTitle: false,
       title: title || "标题",
-      desc,
+      // desc,
     };
   },
   methods: {
@@ -143,7 +143,7 @@ export default {
 
 <style lang="less" scoped>
 .container {
-  margin: 20px 40px;
+  margin: 40px 40px;
   // padding: 60px 60px;
   // border: 1px solid #ebeef5;
   // border-radius: 4px;
@@ -153,7 +153,7 @@ export default {
     font-size: 24px;
     line-height: 48px;
     font-weight: bold;
-    border-left: 5px solid green;
+    border-left: 4px solid green;
   }
 
   > .desc {
