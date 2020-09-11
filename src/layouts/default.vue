@@ -45,13 +45,13 @@ export default {
   data() {
     return {
       loading: true,
-      list: [],
       dragOptions: {
         animation: 0,
         group: "description",
         disabled: false,
         ghostClass: "ghost",
       },
+      list: [],
       value: null,
     };
   },
