@@ -2,14 +2,6 @@
   <div class="container">
     <img :src="effect" width="80%" style="margin-left: 10%;" />
     <CustomForm :datasource="formData" :auto="true" />
-    <slot name="control">
-      <el-button
-        style="margin-bottom: 20px;"
-        size="small"
-        @click="addTab(editableTabsValue)"
-      >add tab</el-button>
-    </slot>
-
     <el-tabs type="card" v-model="editableTab" closable @tab-remove="removeTab">
       <el-tab-pane
         v-for="({ children, ...chief }) in initial.content"
@@ -17,7 +9,11 @@
         :name="chief.category"
         :label="chief.category"
       >
-        <CustomForm :datasource="convertPanelData(children, chief).formData" :auto="true" />
+        <CustomForm
+          style="margin-top: -40px;"
+          :datasource="convertPanelData(children, chief).formData"
+          :auto="true"
+        />
         <TableForm
           :datasource="convertPanelData(children, chief).table.content"
           :columns="convertPanelData(children, chief).table.columns"
@@ -36,7 +32,6 @@ import { convert } from "./helpers.js";
 export default {
   name: "TableFormPanel",
   components: {
-    // Container,
     CustomForm,
     TableForm,
   },
@@ -47,7 +42,6 @@ export default {
     },
   },
   data() {
-    // console.log()
     return {
       ...convert(this.initial),
       editableTab: this.initial.content[0].category,
@@ -55,7 +49,7 @@ export default {
   },
   methods: {
     convertPanelData(content, chief) {
-      const { columns, children } = this.initial.extra; /* .children; */
+      const { columns, children } = this.initial.extra;
       const ret = {
         formData: columns
           ? columns.map((item) => {
