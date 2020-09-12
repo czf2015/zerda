@@ -4,7 +4,7 @@
 
 
 <script>
-import Page from "@/layouts/Page";
+import Page from "@/layouts/default";
 
 export default {
   name: "Categories",
