@@ -1,13 +1,27 @@
 <template>
   <div id="app">
-    <router-view />
+    <AppHeader />
+    <div class="flex">
+      <AppAside class="aside" />
+      <router-view />
+    </div>
+    <AppFooter />
   </div>
 </template>
 
 
 <script>
+import AppHeader from "@/layouts/partials/AppHeader";
+import AppFooter from "@/layouts/partials/AppFooter";
+import AppAside from "@/layouts/partials/AppAside";
+
 export default {
   name: "App",
+  components: {
+    AppHeader,
+    AppFooter,
+    AppAside,
+  },
 };
 </script>
 
@@ -29,5 +43,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+}
+
+.flex {
+  display: flex;
+}
+
+.aside {
+  min-height: 100vh;
 }
 </style>

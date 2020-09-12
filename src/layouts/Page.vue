@@ -1,37 +1,26 @@
 <template>
-  <div class="page" v-show="!loading">
-    <AppHeader />
-    <main :style="{margin}">
-      <draggable
-        v-bind="dragOptions"
-        tag="div"
-        class="item-container"
-        :list="list"
-        :value="value"
-        @input="emitter"
-      >
-        <component v-for="(data) in currentValue" :key="data.id" :is="data.type" :initial="data" />
-      </draggable>
-    </main>
-    <AppAside />
-    <AppFooter />
-  </div>
+  <main v-show="!loading" :style="{margin}">
+    <draggable
+      v-bind="dragOptions"
+      tag="div"
+      class="item-container"
+      :list="list"
+      :value="value"
+      @input="emitter"
+    >
+      <component v-for="(data) in currentValue" :key="data.id" :is="data.type" :initial="data" />
+    </draggable>
+  </main>
 </template>
 
 
 <script>
-import AppHeader from "./partials/AppHeader";
-import AppFooter from "./partials/AppFooter";
-import AppAside from "./partials/AppAside";
 import Container from "@/components/TableForm/Container";
 import Panel from "@/components/TableForm/Panel";
 import draggable from "vuedraggable";
 
 export default {
   components: {
-    AppHeader,
-    AppFooter,
-    AppAside,
     draggable,
     Container,
     Panel,

@@ -1,15 +1,15 @@
 <template>
-  <Layout />
+  <Page />
 </template>
 
 
 <script>
-import Layout from "@/layouts/default";
+import Page from "@/layouts/Page";
 
 export default {
   name: "HomePage",
   components: {
-    Layout,
+    Page,
   },
 };
 </script>
