@@ -183,7 +183,7 @@
   {
     "id": "4",
     "type": "Panel",
-    "usage": "Solutions",
+    "usage": "Scene",
     "effect": "/images/home/solutions.png",
     "title": "应用场景",
     "desc": "",
@@ -291,7 +291,7 @@
   },
   {
     "id": "4",
-    "type": "Container",
+    "type": "Panel",
     "usage": "Solutions",
     "effect": "/images/home/solutions.png",
     "title": "方案简介",

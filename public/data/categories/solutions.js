@@ -1,6 +1,6 @@
 module.exports = {
     id: '4',
-    type: 'Container',
+    type: 'Panel',
     usage: 'Solutions',
     effect: '/images/home/solutions.png',
     title: '方案简介',

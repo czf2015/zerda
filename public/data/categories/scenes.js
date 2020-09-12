@@ -1,7 +1,7 @@
 module.exports = {
     id: '4',
     type: 'Panel',
-    usage: 'Solutions',
+    usage: 'Scene',
     effect: '/images/home/solutions.png',
     title: '应用场景',
     desc: '',
