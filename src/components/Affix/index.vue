@@ -19,7 +19,8 @@ export default {
 <style lang="less" scoped>
 .affix {
   position: fixed;
-  bottom: 40px;
-  right: 40px;
+  bottom: 0px;
+  right: 0px;
+  z-index: 10000;
 }
 </style>

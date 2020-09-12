@@ -1,7 +1,7 @@
 <template>
   <ul class="sidebar">
     <li v-for="(item, idx) in list" :key="idx" @click="handleClick(item)">
-      <Icon :src="item.icon" width="24px" height="24px" />
+      <Icon v-if="item.icon" :src="item.icon" width="24px" height="24px" />
       <span class="desc">{{ item.text }}</span>
     </li>
   </ul>
@@ -35,11 +35,17 @@ export default {
 <style lang="less" scoped>
 .sidebar {
   display: inline-block;
-  padding: 5px;
-  background: #fff;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 0 5px / 5px 5px / 5px 0;
-  z-index: 9999;
+  padding: 10px;
+  color: #fff;
+  background-color: #409eff;
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transition: 0.3s;
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer;
   > li {
     display: flex;
     align-items: center;
@@ -47,8 +53,6 @@ export default {
       margin-top: 10px;
     }
     > .desc {
-      font-size: 12px;
-      color: #409eff;
       border-bottom: 1px solid;
       &:not(:first-child) {
         margin-left: 8px;

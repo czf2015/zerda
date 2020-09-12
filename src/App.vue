@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <AppHeader />
-    <div class="flex">
-      <AppAside class="aside" />
+    <AppAside class="app-left" />
+    <div class="app-right">
+      <AppHeader />
       <router-view />
+      <AppFooter />
     </div>
-    <AppFooter />
   </div>
 </template>
 
@@ -43,14 +43,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-}
-
-.flex {
   display: flex;
 }
 
-.aside {
+.app-left {
   width: 16%;
   min-height: 100vh;
+}
+
+.app-right {
+  width: 84%;
 }
 </style>
