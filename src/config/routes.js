@@ -2,6 +2,14 @@ export default {
     mode: 'history',
     base: '',// process.env.BASE_URL,
     routes: [
+        // {
+        //     path: '/demos/:componentName',
+        //     name: 'demos-component',
+        //     component: () => import('@/pages/demos/_componentName'),
+        //     meta: {
+        //         requiresAuth: false,
+        //     },
+        // },
         {
             path: '',
             name: 'home',
@@ -11,9 +19,9 @@ export default {
             },
         },
         {
-            path: '/demos/:componentName',
-            name: 'demos-component',
-            component: () => import('@/pages/demos/_componentName'),
+            path: '/categories',
+            name: 'categories',
+            component: () => import('@/pages/categories'),
             meta: {
                 requiresAuth: false,
             },
