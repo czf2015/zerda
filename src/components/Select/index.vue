@@ -25,8 +25,7 @@
 <script>
 import TableForm from "@/components/TableForm";
 import Submit from "@/components/Form/Submit";
-import * as tableProps from "@/mock/table";
-import { defaultOptions } from "./mock";
+import { defaultOptions, tableProps } from "./mock";
 
 export default {
   components: {

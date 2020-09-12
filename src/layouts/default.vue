@@ -11,7 +11,7 @@
     >
       <component v-for="(data) in currentValue" :key="data.id" :is="data.type" :initial="data" />
     </draggable>
-    <Affix>
+    <Affix :pos="{ bottom: '20px', right: '4px' }">
       <SideBar :list="bars" />
     </Affix>
   </main>

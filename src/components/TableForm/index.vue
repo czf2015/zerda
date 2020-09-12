@@ -13,6 +13,7 @@
     <div class="mask" v-if="openDialog">
       <CustomForm
         class="dialog"
+        :style="{ transform }"
         :datasource="formData"
         :legend="legend"
         :width="width"
@@ -48,6 +49,9 @@ export default {
     width: {
       type: String,
     },
+    transform: {
+      type: String
+    }
   },
   data() {
     return {
