@@ -71,7 +71,6 @@ export default {
       closable: false,
       editTitle: false,
       title: title || "标题",
-      // desc,
     };
   },
   methods: {

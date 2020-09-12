@@ -43,7 +43,6 @@ export default {
       ...convert(this.initial),
       editTitle: false,
       title: this.initial.title || "标题",
-      // desc: this.initial.desc,
     };
   },
 };
