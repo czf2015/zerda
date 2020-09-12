@@ -26,7 +26,7 @@
 <script>
 import CustomTable from "@/components/Table";
 import CustomForm from "@/components/Form";
-import { convertFormData } from "@/mock/table.js";
+import { convertFormData } from "./helpers.js";
 
 export default {
   components: {

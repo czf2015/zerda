@@ -58,3 +58,19 @@ export const convert = ({ id, type, usage, title, desc, background, content, ext
         formData,
     }
 }
+
+export const convertFormData = (columns, rowData) => {
+    const _convert = (columns) => {
+        const ret = []
+        columns.forEach(({ field, label, options, required, validation, children }) => {
+            if (children && children.length > 0) {
+                ret.push(..._convert(children))
+            } else {
+                const value = (validation.type == 'date' || validation.type == 'dateTime') ? new Date(rowData[field]) : rowData[field]
+                ret.push({ field, label, value, options, required, validation })
+            }   
+        })
+        return ret
+    }
+    return _convert(columns)
+}

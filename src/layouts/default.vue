@@ -23,8 +23,8 @@
 import AppHeader from "./partials/AppHeader";
 import AppFooter from "./partials/AppFooter";
 import AppAside from "./partials/AppAside";
-import Container from "@/components/Container";
-import TableFormPanel from "@/components/Panel/TableForm";
+import Container from "@/components/TableForm/Container";
+import Panel from "@/components/TableForm/Panel";
 import draggable from "vuedraggable";
 
 export default {
@@ -34,7 +34,7 @@ export default {
     AppAside,
     draggable,
     Container,
-    TableFormPanel,
+    Panel,
   },
 
   props: {

@@ -1,6 +1,6 @@
 module.exports = {
     id: '3',
-    type: 'TableFormPanel',
+    type: 'Panel',
     usage: 'Products',
     effect: '/images/home/products.png',
     title: '我们的云产品',

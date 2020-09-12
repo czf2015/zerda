@@ -1,6 +1,6 @@
 module.exports = {
     id: '4',
-    type: 'TableFormPanel',
+    type: 'Panel',
     usage: 'Solutions',
     effect: '/images/home/solutions.png',
     title: '我们的解决方案',
