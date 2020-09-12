@@ -1,5 +1,6 @@
 <template>
   <main class="main" v-show="!loading" :style="{margin}">
+    <SkinSelect class="top-right" />
     <draggable
       v-bind="dragOptions"
       tag="div"
@@ -23,6 +24,7 @@ import Container from "@/components/TableForm/Container";
 import Panel from "@/components/TableForm/Panel";
 import Affix from "@/components/Affix";
 import SideBar from "@/components/SideBar";
+import SkinSelect from "@/components/Select";
 
 export default {
   components: {
@@ -30,7 +32,8 @@ export default {
     Container,
     Panel,
     Affix,
-    SideBar
+    SkinSelect,
+    SideBar,
   },
 
   props: {
@@ -50,22 +53,22 @@ export default {
       list: [],
       value: null,
       bars: [
-                {
-                    link: 'wwww.baidu.com',
-                    // icon: 'https://dss1.bdstatic.com/6OF1bjeh1BF3odCf/it/u=3997521572,425720479&fm=74&app=80&f=JPEG&size=f121,90?sec=1880279984&t=24d78aa497d23ca09084ff40ac52bde0',
-                    text: '保存',
-                },
-                {
-                    link: 'wwww.baidu.com',
-                    // icon: 'https://dss1.bdstatic.com/6OF1bjeh1BF3odCf/it/u=3997521572,425720479&fm=74&app=80&f=JPEG&size=f121,90?sec=1880279984&t=24d78aa497d23ca09084ff40ac52bde0',
-                    text: '预览',
-                },
-                {
-                    link: 'wwww.baidu.com',
-                    // icon: 'https://dss1.bdstatic.com/6OF1bjeh1BF3odCf/it/u=3997521572,425720479&fm=74&app=80&f=JPEG&size=f121,90?sec=1880279984&t=24d78aa497d23ca09084ff40ac52bde0',
-                    text: '发布',
-                }
-            ]
+        {
+          link: "wwww.baidu.com",
+          // icon: 'https://dss1.bdstatic.com/6OF1bjeh1BF3odCf/it/u=3997521572,425720479&fm=74&app=80&f=JPEG&size=f121,90?sec=1880279984&t=24d78aa497d23ca09084ff40ac52bde0',
+          text: "保存",
+        },
+        {
+          link: "wwww.baidu.com",
+          // icon: 'https://dss1.bdstatic.com/6OF1bjeh1BF3odCf/it/u=3997521572,425720479&fm=74&app=80&f=JPEG&size=f121,90?sec=1880279984&t=24d78aa497d23ca09084ff40ac52bde0',
+          text: "预览",
+        },
+        {
+          link: "wwww.baidu.com",
+          // icon: 'https://dss1.bdstatic.com/6OF1bjeh1BF3odCf/it/u=3997521572,425720479&fm=74&app=80&f=JPEG&size=f121,90?sec=1880279984&t=24d78aa497d23ca09084ff40ac52bde0',
+          text: "发布",
+        },
+      ],
     };
   },
   computed: {
@@ -96,6 +99,12 @@ export default {
 <style lang="less" scoped>
 .main {
   // width: 84%;
+  position: relative;
+  .top-right {
+    position: absolute;
+    top: -100px;
+    right: 40px;
+  }
   .item-container {
     cursor: ns-resize;
   }

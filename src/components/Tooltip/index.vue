@@ -46,7 +46,7 @@ export default {
 </script>
 
 
-<style lang="less" scope>
+<style lang="less" scoped>
 .wrapper {
   position: relative;
   margin-top: 100px;

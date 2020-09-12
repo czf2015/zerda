@@ -79,7 +79,7 @@ export default {
 </script>
 
 
-<style lang="less" scope>
+<style lang="less" scoped>
 .input-image {
   display: flex;
   >input[type="text"]:first-child {

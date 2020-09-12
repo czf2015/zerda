@@ -62,7 +62,7 @@ export default {
 </script>
 
 
-<style lang="less" scope>
+<style lang="less" scoped>
 .modal {
   padding: 10px;
   header {

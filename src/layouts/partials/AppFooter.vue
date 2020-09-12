@@ -2,7 +2,7 @@
   <footer>footer</footer>
 </template>
 
-<style scope>
+<style lang="less" scoped>
 footer {
   line-height: 100px;
   text-align: center;

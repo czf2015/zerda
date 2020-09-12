@@ -50,7 +50,7 @@ export default {
 </script>
 
 
-<style lang="less" scope>
+<style lang="less" scoped>
 .frames {
   transform-origin: left top;
   // transform: scale(3);
