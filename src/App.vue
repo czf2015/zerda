@@ -50,6 +50,7 @@ body {
 }
 
 .aside {
+  width: 16%;
   min-height: 100vh;
 }
 </style>

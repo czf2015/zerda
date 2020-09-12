@@ -1,5 +1,5 @@
 <template>
-  <main v-show="!loading" :style="{margin}">
+  <main class="main" v-show="!loading" :style="{margin}">
     <draggable
       v-bind="dragOptions"
       tag="div"
@@ -68,3 +68,9 @@ export default {
   },
 };
 </script>
+
+<style lang="less" scoped>
+.main {
+  width: 84%;
+}
+</style>
