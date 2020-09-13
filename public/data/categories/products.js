@@ -1,5 +1,5 @@
 module.exports = {
-    id: '3',
+    id: '2',
     type: 'Container',
     usage: 'Products',
     effect: '/images/home/products.png',
