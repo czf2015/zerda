@@ -81,29 +81,29 @@
     "content": [
       {
         "title": "云服务器",
-        "iconURL": "//yun.ccb.com/common/images/recommend_products1.png",
-        "cardURL": "//yun.ccb.com/product/cvm",
+        "imageURL": "//yun.ccb.com/common/images/recommend_products1.png",
+        "link": "//yun.ccb.com/product/cvm",
         "button": "",
         "desc": "立即申请"
       },
       {
         "title": "弹性负载均衡",
-        "iconURL": "//yun.ccb.com/common/images/recommend_products2.png",
-        "cardURL": "//yun.ccb.com/product/elb",
+        "imageURL": "//yun.ccb.com/common/images/recommend_products2.png",
+        "link": "//yun.ccb.com/product/elb",
         "button": "",
         "desc": "立即申请"
       },
       {
         "title": "龙卫士",
-        "iconURL": "//yun.ccb.com/common/images/recommend_products3.png",
-        "cardURL": "//yun.ccb.com/product/producthids",
+        "imageURL": "//yun.ccb.com/common/images/recommend_products3.png",
+        "link": "//yun.ccb.com/product/producthids",
         "button": "",
         "desc": "立即申请"
       },
       {
         "title": "MPP云数据",
-        "iconURL": "//yun.ccb.com/common/images/recommend_products4.png",
-        "cardURL": "//yun.ccb.com/product/productmpp",
+        "imageURL": "//yun.ccb.com/common/images/recommend_products4.png",
+        "link": "//yun.ccb.com/product/productmpp",
         "button": "",
         "desc": "立即申请"
       }
@@ -122,8 +122,8 @@
           }
         },
         {
-          "field": "iconURL",
-          "label": "图标",
+          "field": "imageURL",
+          "label": "图片",
           "required": true,
           "validation": {
             "type": "image",
@@ -133,8 +133,8 @@
           }
         },
         {
-          "field": "cardURL",
-          "label": "卡片",
+          "field": "link",
+          "label": "链接",
           "required": true,
           "validation": {
             "type": "link",

@@ -67,7 +67,7 @@ module.exports = {
             },
             {
                 field: 'link',
-                label: '类别',
+                label: '链接',
                 required: true,
                 validation: {
                     type: 'link',
