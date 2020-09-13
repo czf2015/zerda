@@ -4,3 +4,7 @@
 .el-table .cell {
   text-align: center;
 }
+
+.el-select .el-input__inner {
+  min-width: 190px;
+}
