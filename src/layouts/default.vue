@@ -11,6 +11,9 @@
     >
       <component v-for="(data) in currentValue" :key="data.id" :is="data.type" :initial="data" />
     </draggable>
+    <Affix :pos="{ top: '45%', right: '0px' }">
+      <div class="right-center-btn">悬浮</div>
+    </Affix>
     <Affix :pos="{ bottom: '20px', right: '4px' }">
       <SideBar :list="bars" />
     </Affix>
@@ -107,6 +110,14 @@ export default {
   }
   .item-container {
     cursor: ns-resize;
+  }
+  .right-center-btn {
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    background: #66b1ff;
+    border-radius: 50%;
   }
 }
 </style>
