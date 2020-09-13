@@ -46,6 +46,7 @@ export default {
     Carousel: () => import("@/components/Carousel"),
     Dnd: () => import("@/components/Dnd"),
     Parser: () => import("@/components/Parser"),
+    Loading: () => import("@/components/Loading/Ripple"),
     // toTest
     // 方法
     // Message: () => import("@/components/Message"),

@@ -319,6 +319,8 @@ export default {
         }
     },
 
-    Dnd: {}
+    Dnd: {},
+
+    Loading: {}
 
 }
