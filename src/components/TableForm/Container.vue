@@ -1,9 +1,17 @@
 <template>
   <div class="table-form-container">
     <h3 class="title" @mouseover="editTitle = true" @mouseleave="editTitle = false">
-      <span class="top-right">
-        <img v-if="editTitle" src="/svg/close-active.svg" class="icon" @click="handleRemove" />
-        <img v-else src="/svg/close.svg" class="icon" />
+      <span v-if="editTitle" class="top-right">
+        <img src="/svg/up-active.svg" class="icon" />
+        <img src="/svg/down-active.svg" class="icon" />
+        <img src="/svg/close-active.svg" class="icon" @click="handleRemove" />
+        <!-- <img src="/svg/close.svg" class="icon" /> -->
+      </span>
+       <span v-else class="top-right">
+        <!-- <img src="/svg/up.svg" class="icon" />
+        <img src="/svg/down.svg" class="icon" /> -->
+        <!-- <img v-if="editTitle" src="/svg/close-active.svg" class="icon" @click="handleRemove" /> -->
+        <!-- <img src="/svg/close.svg" class="icon" /> -->
       </span>
       <input type="text" v-if="editTitle" v-model="title" />
       <span v-else>{{title}}</span>
