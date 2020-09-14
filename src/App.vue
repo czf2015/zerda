@@ -36,6 +36,7 @@ html {
 
 body {
   font-size: 0.14rem;
+  overflow: hidden;
 }
 
 #app {
@@ -48,10 +49,12 @@ body {
 
 .app-left {
   width: 16%;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .app-right {
   width: 84%;
+  height: 100vh;
+  overflow-y: auto;
 }
 </style>
