@@ -8,28 +8,28 @@ module.exports = {
     "content": [
         {
             "title": "云服务器",
-            "imageURL": "//yun.ccb.com/common/images/recommend_products1.png",
+            "imgURL": "//yun.ccb.com/common/images/recommend_products1.png",
             "link": "//yun.ccb.com/product/cvm",
             "button": "",
             "desc": "立即申请"
         },
         {
             "title": "弹性负载均衡",
-            "imageURL": "//yun.ccb.com/common/images/recommend_products2.png",
+            "imgURL": "//yun.ccb.com/common/images/recommend_products2.png",
             "link": "//yun.ccb.com/product/elb",
             "button": "",
             "desc": "立即申请"
         },
         {
             "title": "龙卫士",
-            "imageURL": "//yun.ccb.com/common/images/recommend_products3.png",
+            "imgURL": "//yun.ccb.com/common/images/recommend_products3.png",
             "link": "//yun.ccb.com/product/producthids",
             "button": "",
             "desc": "立即申请"
         },
         {
             "title": "MPP云数据",
-            "imageURL": "//yun.ccb.com/common/images/recommend_products4.png",
+            "imgURL": "//yun.ccb.com/common/images/recommend_products4.png",
             "link": "//yun.ccb.com/product/productmpp",
             "button": "",
             "desc": "立即申请"
@@ -49,7 +49,7 @@ module.exports = {
                 }
             },
             {
-                field: 'imageURL',
+                field: 'imgURL',
                 label: '图片',
                 required: true,
                 validation: {
