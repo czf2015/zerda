@@ -11,6 +11,22 @@ export default {
             },
         },
         {
+            path: '/header',
+            name: 'header',
+            component: () => import('@/pages/header'),
+            meta: {
+                requiresAuth: false,
+            },
+        },
+        {
+            path: '/footer',
+            name: 'footer',
+            component: () => import('@/pages/home'),
+            meta: {
+                requiresAuth: false,
+            },
+        },
+        {
             path: '',
             name: 'home',
             component: () => import('@/pages/home'),
