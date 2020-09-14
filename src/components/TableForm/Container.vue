@@ -1,18 +1,11 @@
 <template>
-  <div class="table-form-container">
+  <div class="table-form-container" @mouseover="hover = true" @mouseleave="hover = false">
+    <span v-show="hover" class="top-right">
+      <i class="icon_up" />
+      <i class="icon_down" />
+      <i class="icon_close" @click="handleRemove" />
+    </span>
     <h3 class="title" @mouseover="editTitle = true" @mouseleave="editTitle = false">
-      <span v-if="editTitle" class="top-right">
-        <img src="/svg/up-active.svg" class="icon" />
-        <img src="/svg/down-active.svg" class="icon" />
-        <img src="/svg/close-active.svg" class="icon" @click="handleRemove" />
-        <!-- <img src="/svg/close.svg" class="icon" /> -->
-      </span>
-       <span v-else class="top-right">
-        <!-- <img src="/svg/up.svg" class="icon" />
-        <img src="/svg/down.svg" class="icon" /> -->
-        <!-- <img v-if="editTitle" src="/svg/close-active.svg" class="icon" @click="handleRemove" /> -->
-        <!-- <img src="/svg/close.svg" class="icon" /> -->
-      </span>
       <input type="text" v-if="editTitle" v-model="title" />
       <span v-else>{{title}}</span>
     </h3>
@@ -55,13 +48,14 @@ export default {
       ...convert(this.initial),
       editTitle: false,
       title: this.initial.title || "标题",
+      hover: false,
     };
   },
   methods: {
     handleRemove() {
-      console.log('remove')
-    }
-  }
+      console.log("remove");
+    },
+  },
 };
 </script>
 
@@ -74,20 +68,43 @@ export default {
   // border: 1px solid #ebeef5;
   // border-radius: 4px;
   // box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.5);
+  > .top-right {
+    position: absolute;
+    top: 24px;
+    right: 0;
+    > .icon_up,
+    > .icon_down,
+    > .icon_close {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      background-size: cover;
+    }
+    > .icon_up {
+      background-image: url(/svg/up.svg);
+      &:hover {
+        background-image: url(/svg/up-active.svg);
+      }
+    }
+    > .icon_down {
+      background-image: url(/svg/down.svg);
+      &:hover {
+        background-image: url(/svg/down-active.svg);
+      }
+    }
+    > .icon_close {
+      background-image: url(/svg/close.svg);
+      &:hover {
+        background-image: url(/svg/close-active.svg);
+      }
+    }
+  }
   > .title {
     padding-left: 10px;
     font-size: 24px;
     line-height: 48px;
     font-weight: bold;
     border-left: 4px solid green;
-    > .top-right {
-      position: absolute;
-      top: 24px;
-      right: 0;
-      > .icon {
-        width: 24px;
-      }
-    }
   }
 
   > .desc {
