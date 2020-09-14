@@ -1,5 +1,7 @@
 <template>
-  <Cascader v-bind="props" v-on="listeners" :class="classNames" :style="style" />
+  <main id="header">
+    <Cascader v-bind="props" v-on="listeners" :class="classNames" :style="style" />
+  </main>
 </template>
 
 <script>
@@ -20,3 +22,10 @@ export default {
   },
 };
 </script>
+
+
+<style lang="less" scoped>
+#header {
+  min-height: 85vh;
+}
+</style>

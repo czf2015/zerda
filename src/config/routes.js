@@ -42,5 +42,21 @@ export default {
                 requiresAuth: false,
             },
         },
+        {
+            path: '/review',
+            name: 'review',
+            component: () => import('@/pages/review'),
+            meta: {
+                requiresAuth: false,
+            },
+        },
+        {
+            path: '/document',
+            name: 'document',
+            component: () => import('@/pages/document'),
+            meta: {
+                requiresAuth: false,
+            },
+        },
     ],
 }
