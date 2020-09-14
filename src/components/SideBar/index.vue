@@ -46,10 +46,11 @@ export default {
     flex-direction: column;
     width: 36px;
     min-height: 36px;
+    font-weight: bold;
     color: #444950;
     background: #fff;
     &:first-child {
-      color: #2254f4;
+      color: #409EFF;
     }
     &:nth-child(2) {
       color: green;
