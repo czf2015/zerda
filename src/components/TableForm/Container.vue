@@ -1,6 +1,10 @@
 <template>
-  <div class="container">
+  <div class="table-form-container">
     <h3 class="title" @mouseover="editTitle = true" @mouseleave="editTitle = false">
+      <span class="top-right">
+        <img v-if="editTitle" src="/svg/close-active.svg" class="icon" @click="handleRemove" />
+        <img v-else src="/svg/close.svg" class="icon" />
+      </span>
       <input type="text" v-if="editTitle" v-model="title" />
       <span v-else>{{title}}</span>
     </h3>
@@ -45,12 +49,18 @@ export default {
       title: this.initial.title || "标题",
     };
   },
+  methods: {
+    handleRemove() {
+      console.log('remove')
+    }
+  }
 };
 </script>
 
 
 <style lang="less" scoped>
-.container {
+.table-form-container {
+  position: relative;
   margin: 40px 40px;
   // padding: 60px 60px;
   // border: 1px solid #ebeef5;
@@ -62,6 +72,14 @@ export default {
     line-height: 48px;
     font-weight: bold;
     border-left: 4px solid green;
+    > .top-right {
+      position: absolute;
+      top: 24px;
+      right: 0;
+      > .icon {
+        width: 24px;
+      }
+    }
   }
 
   > .desc {

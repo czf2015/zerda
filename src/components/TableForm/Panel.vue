@@ -1,6 +1,10 @@
 <template>
-  <div class="container">
+  <div class="table-form-panel">
     <h3 class="title" @mouseover="editTitle = true" @mouseleave="editTitle = false">
+      <span class="top-right">
+        <img v-if="editTitle" src="/svg/close-active.svg" class="icon" @click="handleRemove" />
+        <img v-else src="/svg/close.svg" class="icon" />
+      </span>
       <input type="text" v-if="editTitle" v-model="title" />
       <span v-else>{{title}}</span>
     </h3>
@@ -9,7 +13,7 @@
     <!-- <label class="desc">
       描述：
       <input type="text" v-model="desc" />
-    </label> -->
+    </label>-->
     <el-tabs
       :type="cardType"
       style="margin-top: 20px;"
@@ -124,6 +128,9 @@ export default {
         this.content = tabs.filter((tab) => tab.name !== targetName);
       }
     },
+    handleRemove() {
+      console.log("remove");
+    },
   },
   watch: {
     activeTab() {
@@ -142,7 +149,8 @@ export default {
 
 
 <style lang="less" scoped>
-.container {
+.table-form-panel {
+  position: relative;
   margin: 40px 40px;
   // padding: 60px 60px;
   // border: 1px solid #ebeef5;
@@ -154,6 +162,14 @@ export default {
     line-height: 48px;
     font-weight: bold;
     border-left: 4px solid green;
+    > .top-right {
+      position: absolute;
+      top: 24px;
+      right: 0;
+      > .icon {
+        width: 24px;
+      }
+    }
   }
 
   > .desc {
