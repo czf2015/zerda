@@ -1,6 +1,6 @@
 <template>
   <el-menu
-    default-active="3"
+    :default-active="pathIndexMap[$route.path]"
     class="el-menu-vertical-demo"
     @open="handleOpen"
     @close="handleClose"
@@ -31,32 +31,32 @@
       <i class="el-icon-location"></i>
       <span slot="title">首页管理</span>
     </el-submenu>-->
-    <el-menu-item index="1" @click="goTo('/header')">
+    <el-menu-item :index="pathIndexMap['/header']" @click="goTo('/header')">
       <i class="el-icon-location"></i>
       <span slot="title">首部管理</span>
     </el-menu-item>
 
-    <el-menu-item index="2" @click="goTo('/footer')">
+    <el-menu-item :index="pathIndexMap['/footer']" @click="goTo('/footer')">
       <i class="el-icon-location"></i>
       <span slot="title">尾部管理</span>
     </el-menu-item>
 
-    <el-menu-item index="3" @click="goTo()">
+    <el-menu-item :index="pathIndexMap['/']" @click="goTo()">
       <i class="el-icon-location"></i>
       <span slot="title">首页管理</span>
     </el-menu-item>
 
-    <el-menu-item index="4" @click="goTo('/categories')">
+    <el-menu-item :index="pathIndexMap['/categories']" @click="goTo('/categories')">
       <i class="el-icon-menu"></i>
       <span slot="title">内容管理</span>
     </el-menu-item>
 
-    <el-menu-item index="5" @click="goTo('/document')" disabled>
+    <el-menu-item :index="pathIndexMap['/document']" @click="goTo('/document')" disabled>
       <i class="el-icon-document"></i>
       <span slot="title">文档管理</span>
     </el-menu-item>
 
-    <el-menu-item index="6" @click="goTo('/review')">
+    <el-menu-item :index="pathIndexMap['/review']" @click="goTo('/review')">
       <i class="el-icon-setting"></i>
       <span slot="title">审核管理</span>
     </el-menu-item>
@@ -70,6 +70,18 @@ export default {
     //   type: Array,
     //   required: true,
     // },
+  },
+  data() {
+    return {
+      pathIndexMap: {
+        "/header": "1",
+        "/footer": "2",
+        "/": "3",
+        "/categories": "4",
+        "/document": "5",
+        "/review": "6",
+      },
+    };
   },
   methods: {
     handleOpen(msg) {},
