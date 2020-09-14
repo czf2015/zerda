@@ -103,6 +103,7 @@ export default {
 .main {
   // width: 84%;
   position: relative;
+  min-height: 85vh;
   .top-right {
     position: absolute;
     top: -100px;
