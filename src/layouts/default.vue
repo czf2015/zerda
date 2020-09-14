@@ -11,10 +11,10 @@
     >
       <component v-for="(data) in currentValue" :key="data.id" :is="data.type" :initial="data" />
     </draggable>
-    <Affix :pos="{ top: '45%', right: '0px' }">
+    <Affix :pos="{ top: '42%', right: '0px' }">
       <div class="right-center-btn">悬浮</div>
     </Affix>
-    <Affix :pos="{ bottom: '20px', right: '4px' }">
+    <Affix :pos="{ bottom: '80px', right: '4px' }">
       <SideBar :list="bars" />
     </Affix>
   </main>
