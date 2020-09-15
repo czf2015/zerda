@@ -4,6 +4,7 @@ import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import 'normalize.css/normalize.css'
 import 'element-ui/lib/theme-chalk/index.css'
+import '../public/css/initCss.css'
 import locale from 'element-ui/lib/locale/lang/en'
 import Router from 'vue-router';
 import routes from './config/routes'

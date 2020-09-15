@@ -1,4 +1,4 @@
-// import App from "../App.vue"
+const MainContainer = () => import('@/components/MainContainer')
 export default {
     mode: 'history',
     base: '',// process.env.BASE_URL,
@@ -53,7 +53,7 @@ export default {
         },
         {
             path: '/document',
-            component: () => import('@/pages/document'),
+            component: MainContainer,
             redirect: '/document/category-management',
             name: 'Document',
             meta: {
@@ -79,6 +79,36 @@ export default {
                 component: () => import('@/pages/document/document-editing'),
                 name: 'DocumentEditing',
                 meta: { title: '文档编辑' }
+              }
+            ]
+        },
+        {
+            path: '/skypegmwcn',
+            component: MainContainer,
+            redirect: '/skypegmwcn/header-navigate',
+            name: 'Skypegmwcn',
+            meta: {
+              title: '官网内容运营'
+              // icon: 'nested'
+            },
+            children: [
+              {
+                path: 'header-navigate',
+                component: () => import('@/pages/skypegmwcn/header-navigate/index'),
+                name: 'HeaderNavigate',
+                meta: { title: '官网头部导航管理' }
+              },
+              {
+                path: 'footer-navigate',
+                component: () => import('@/pages/skypegmwcn/footer-navigate/index'),
+                name: 'FooterNavigate',
+                meta: { title: '官网底部导航管理' }
+              },
+              {
+                path: 'home-page',
+                component: () => import('@/pages/skypegmwcn/home-page/index'),
+                name: 'HomePage',
+                meta: { title: '官网首页内容管理' }
               }
             ]
           },

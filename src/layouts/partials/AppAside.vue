@@ -55,6 +55,20 @@
       <i class="el-icon-document"></i>
       <span slot="title">文档管理</span>
     </el-menu-item> -->
+    <el-submenu index="/skypegmwcn">
+      <template slot="title">
+        <i class="el-icon-location"></i>
+        <span>官网内容运营</span>
+      </template>
+
+      <el-menu-item-group>
+        <el-menu-item index="头部导航配置" @click="goTo('/skypegmwcn/header-navigate')">头部导航配置</el-menu-item>
+        <el-menu-item index="底部导航配置" @click="goTo('/skypegmwcn/footer-navigate')">底部导航配置</el-menu-item>
+        <el-menu-item index="首页内容配置" @click="goTo('/skypegmwcn/home-page')">首页内容配置</el-menu-item>
+      </el-menu-item-group>
+
+    </el-submenu>
+
     <el-submenu index="/document">
       <template slot="title">
         <i class="el-icon-location"></i>
@@ -63,15 +77,10 @@
 
       <el-menu-item-group>
         <el-menu-item index="类别管理" @click="goTo('/document/category-management')">类别管理</el-menu-item>
-      </el-menu-item-group>
-
-      <el-menu-item-group>
         <el-menu-item index="产品管理" @click="goTo('/document/product-management')">产品管理</el-menu-item>
-      </el-menu-item-group>
-
-      <el-menu-item-group>
         <el-menu-item index="文档编辑" @click="goTo('/document/document-editing')">文档编辑</el-menu-item>
       </el-menu-item-group>
+
     </el-submenu>
     <el-menu-item index="/review" @click="goTo('/review')">
       <i class="el-icon-setting"></i>
@@ -97,3 +106,12 @@ export default {
   },
 };
 </script>
+<style lang="less" scoped>
+/deep/ .el-menu-item-group{
+  >ul{
+    >li{
+      text-indent: 20px;
+    }
+  }
+}
+</style>
