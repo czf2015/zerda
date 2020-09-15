@@ -57,3 +57,19 @@ export const mixin = (...mixins) => {
     const Mixin = mixin(mixin1, mixin2, mixin3)
     console.log(Mixin.prototype)
 */
+
+
+Function.prototype.curry = function (...args) {
+    return (..._args) => {
+        return this.apply(null, args.concat(_args))
+    }
+}
+
+export const memoizer = (memo, formula) => {
+    return (n) => {
+        if (typeof memo[n] === 'undefined') {
+            memo[n] = formula(recur, n)
+        }
+        return memo[n]
+    }
+}
