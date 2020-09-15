@@ -1,3 +1,4 @@
+// import App from "../App.vue"
 export default {
     mode: 'history',
     base: '',// process.env.BASE_URL,
@@ -52,11 +53,34 @@ export default {
         },
         {
             path: '/document',
-            name: 'document',
             component: () => import('@/pages/document'),
+            redirect: '/document/category-management',
+            name: 'Document',
             meta: {
-                requiresAuth: false,
+              title: '文档',
+              requiresAuth: false,
+              // icon: 'nested'
             },
-        },
+            children: [
+              {
+                path: 'category-management',
+                component: () => import('@/pages/document/category-management'),
+                name: 'CategoryManagement',
+                meta: { title: '类别管理' }
+              },
+              {
+                path: 'product-management',
+                component: () => import('@/pages/document/product-management'),
+                name: 'ProductManagement',
+                meta: { title: '产品管理' }
+              },
+              {
+                path: 'document-editing',
+                component: () => import('@/pages/document/document-editing'),
+                name: 'DocumentEditing',
+                meta: { title: '文档编辑' }
+              }
+            ]
+          },
     ],
 }

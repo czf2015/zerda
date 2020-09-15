@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import ElementUI from 'element-ui'
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 import 'normalize.css/normalize.css'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/en'
@@ -11,6 +13,7 @@ import store from './store'
 
 Vue.use(Router);
 Vue.use(ElementUI, { locale })
+Vue.use(mavonEditor)
 
 Vue.config.productionTip = false
 

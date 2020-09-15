@@ -1,8 +1,9 @@
 <template>
-  <main id="document">document</main>
+  <router-view />
 </template>
 
-
+<script>
+</script>
 <style scoped>
 #document {
   min-height: 85vh;

@@ -51,11 +51,28 @@
       <span slot="title">内容管理</span>
     </el-menu-item>
 
-    <el-menu-item index="/document" @click="goTo('/document')" disabled>
+    <!-- <el-menu-item index="/document" @click="goTo('/document')" disabled>
       <i class="el-icon-document"></i>
       <span slot="title">文档管理</span>
-    </el-menu-item>
+    </el-menu-item> -->
+    <el-submenu index="/document">
+      <template slot="title">
+        <i class="el-icon-location"></i>
+        <span>文档管理</span>
+      </template>
 
+      <el-menu-item-group>
+        <el-menu-item index="类别管理" @click="goTo('/document/category-management')">类别管理</el-menu-item>
+      </el-menu-item-group>
+
+      <el-menu-item-group>
+        <el-menu-item index="产品管理" @click="goTo('/document/product-management')">产品管理</el-menu-item>
+      </el-menu-item-group>
+
+      <el-menu-item-group>
+        <el-menu-item index="文档编辑" @click="goTo('/document/document-editing')">文档编辑</el-menu-item>
+      </el-menu-item-group>
+    </el-submenu>
     <el-menu-item index="/review" @click="goTo('/review')">
       <i class="el-icon-setting"></i>
       <span slot="title">审核管理</span>
