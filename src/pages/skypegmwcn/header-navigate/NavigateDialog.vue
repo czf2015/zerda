@@ -1,19 +1,40 @@
 <template>
   <div>
-    <new-dialog :show-dialog="show" width="30%" :title="title" @cancel="handleCancel" @confirm="handeleConfirm">
+    <new-dialog :show-dialog="show" width="40%" :title="title" @cancel="handleCancel" @confirm="handeleConfirm">
       <div slot="body" class="dialog-container">
-        <el-form ref="ruleForm" :model="formData" status-icon :rules="rules" label-width="100px" class="demo-ruleForm" size="mini">
-          <el-form-item prop="categoryName">
-            <span slot="label">中文名称</span>
-            <el-input v-model="formData.categoryName" type="text" autocomplete="off" />
+        <el-form ref="ruleForm" :model="formData" status-icon :rules="rules" label-width="120px" class="demo-ruleForm" size="mini">
+          <el-form-item prop="title">
+            <span slot="label">标题</span>
+            <el-input v-model="formData.title" type="text" autocomplete="off" />
           </el-form-item>
-          <el-form-item prop="categoryNameEn">
-            <span slot="label">英文名称</span>
-            <el-input v-model="formData.categoryNameEn" type="text" autocomplete="off" />
+          <el-form-item prop="mark">
+            <span slot="label">标识</span>
+            <el-input v-model="formData.mark" type="text" autocomplete="off" />
           </el-form-item>
-          <el-form-item prop="iconUrl">
-            <span slot="label">图标URL</span>
-            <el-input v-model="formData.iconUrl" type="text" autocomplete="off" />
+          <el-form-item prop="type">
+            <span slot="label">类型</span>
+              <el-select v-model="formData.type" placeholder="请选择类型">
+                <el-option label="菜单组" value="1" />
+                <el-option label="菜单链接" value="2" />
+              </el-select>
+          </el-form-item>
+          <el-form-item prop="link">
+            <span slot="label">链接</span>
+            <el-input v-model="formData.link" type="text" autocomplete="off" />
+          </el-form-item>
+          <el-form-item prop="openMode">
+            <span slot="label">链接打开方式</span>
+              <el-select v-model="formData.openMode" placeholder="请选择链接打开方式">
+                <el-option label="当前页跳转" value="1" />
+                <el-option label="新窗口打开" value="2" />
+              </el-select>
+          </el-form-item>
+          <el-form-item prop="tag">
+            <span slot="label">标签</span>
+              <el-select v-model="formData.tag" placeholder="请选择标签">
+                <el-option label="无" value="1" />
+                <el-option label="新品" value="2" />
+              </el-select>
           </el-form-item>
           <el-form-item prop="weight">
             <span slot="label">权重</span>
@@ -78,28 +99,40 @@ export default {
       show: false,
       actionType: 'add',
       formData: {
-        categoryName: '',
-        categoryNameEn: '',
-        iconUrl: '',
+        title: '',
+        mark: '',
+        type: '',
+        link: '',
+        openMode: '',
+        tag: '',
         weight: ''
       },
       rules: {
-        categoryName: [
-          { required: true, message: '请输入中文名称', trigger: 'blur' }
+        title: [
+          { required: true, message: '请输入标题', trigger: 'blur' }
         ],
-        categoryNameEn: [
+        mark: [
           { required: true, message: '请输入英文名称', trigger: 'blur' }
         ],
-        iconUrl: [
-          { required: true, message: '请输入图标URL', trigger: 'blur' }
+        type: [
+          { required: true, message: '请选择类型', trigger: 'blur' }
         ],
-        weight: [
-          { required: true, message: '请输入权重', trigger: 'blur' }
+        openMode: [
+          { required: true, message: '请选择打开方式', trigger: 'blur' }
         ],
         age: [
           { validator: checkAge, trigger: 'blur' }
         ]
-      }
+      },
+      options: [
+        {
+          value: '选项1',
+          label: '菜单链接'
+        }, {
+          value: '选项2',
+          label: '菜单链接'
+        }
+      ],
     }
   },
   computed: {
@@ -109,11 +142,11 @@ export default {
     title() {
       switch (this.actionType) {
         case 'add':
-          return '新增类别'
+          return '添加导航项'
         case 'edit':
-          return '编辑类别'
+          return '修改导航项'
         default:
-          return '新增类别'
+          return '添加导航项'
       }
     }
   },
@@ -127,7 +160,7 @@ export default {
       this.show = false
     },
     handeleConfirm() {
-      // this.show = false
+      this.show = false
     }
   }
 }

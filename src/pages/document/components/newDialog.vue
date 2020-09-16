@@ -80,6 +80,12 @@ export default {
   }
   .el-dialog__body{
     padding: 20px;
+    input{
+      min-width: 0;
+    }
+    .el-select{
+      width: 100%;
+    }
   }
   .el-dialog__footer{
     padding: 10px 20px;

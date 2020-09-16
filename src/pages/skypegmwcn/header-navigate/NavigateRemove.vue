@@ -2,7 +2,7 @@
   <div>
     <new-dialog :show-dialog="show" width="30%" :title="title" @cancel="handleCancel" @confirm="handeleConfirm">
       <div slot="body" class="dialog-container">
-        <i class="el-icon-question" />您确认删除此类别吗？
+        <i class="el-icon-question" />您确认删除此导航项吗？
       </div>
     </new-dialog>
   </div>
@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       show: false,
-      title: '删除类别'
+      title: '删除导航项'
     }
   },
   computed: {
