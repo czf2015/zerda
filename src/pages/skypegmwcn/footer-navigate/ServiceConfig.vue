@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div :id="componentId">
     <p style="textAlign: right; marginBottom: 15px">
-      <el-button type="primary">添加记录</el-button>
+      <el-button type="primary" @click="handleAdd">添加记录</el-button>
     </p>
     <el-table
       :data="tableData"
@@ -27,9 +27,9 @@
       >
         <template slot-scope="scope">
           <p>
-            <el-link type="primary" :underline="false" @click="handleClick('edit', scope.row)">编辑</el-link>
+            <el-link type="primary" :underline="false" @click="handleEdit(scope.$index)">编辑</el-link>
             <span style="margin: 0 5px; color: #cccccc;">|</span>
-            <el-link type="primary" :underline="false" @click="handleRemove(scope.row)">删除</el-link>
+            <el-link type="primary" :underline="false" @click="handleRemove(scope.$index)">删除</el-link>
           </p>
           <p>
             <el-link 
@@ -53,15 +53,19 @@
         </template>
       </el-table-column>
     </el-table>
+    <ServiceDialog ref="ServiceDialog" :handelTableData="handelTableData"/>
+    <RemoveDialog ref="RemoveDialog" :removeConfirm="handelTableData" :propData="{ title:'删除服务', content: '您确认删除此服务吗' }"/>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import ServiceDialog from './ServiceDialog'
+import RemoveDialog from './RemoveDialog'
 
 export default {
   name: 'ServiceConfig',
-  components: {  },
+  components: { ServiceDialog, RemoveDialog },
   props: {
     // actionType: {
     //   type: String,
@@ -97,6 +101,10 @@ export default {
           link: '王小虎',
         },
       ],
+      componentId: Date.now(),
+      actionType: 'add',
+      selectIndex: ''
+
     }
   },
   computed: {
@@ -105,12 +113,23 @@ export default {
     ]),
   },
   methods: {
-    handleRemove(row) {
-      console.log(row)
+    handleAdd() {
+      this.actionType = 'add'
+      this.$refs['ServiceDialog'].showDialog('add')
+    },
+    handleEdit(index) {
+      this.actionType = 'edit'
+      this.selectIndex = index
+      this.$refs['ServiceDialog'].showDialog('edit', this.tableData[index])
+    },
+    handleRemove(index) {
+      this.actionType = 'remove'
+      this.selectIndex = index
+      this.$refs['RemoveDialog'].showDialog()
     },
     handleMove(type, index) {
       if(this.timer) return;
-      const tableRows = document.getElementsByClassName('el-table__row');
+      const tableRows = document.getElementById(this.componentId).getElementsByClassName('el-table__row');
       if(type === 1) {
         tableRows[index].className += ' transform-down'
         tableRows[index + type].className += ' transform-up'
@@ -129,6 +148,26 @@ export default {
         this.timer = null
       }, 1000)
     },
+    handelTableData(actionType, newData) {
+      switch(actionType) {
+        case 'add':
+          this.tableData.push(newData)
+          break
+        case 'edit':
+          this.tableData.splice(this.selectIndex, 1, newData)
+          break
+        case 'remove':
+          this.tableData.splice(this.selectIndex, 1)
+          break
+        default: 
+          break
+      }
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(1111)
+        }, 1000)
+      })
+    }
   }
 }
 </script>

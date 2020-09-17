@@ -56,7 +56,7 @@ export default {
     handleConfirm() {
       if (this.loading) return
       this.loading = true
-      this.$emit('confirm')
+      this.$emit('confirm', () => this.loading = false)
     }
   }
 }

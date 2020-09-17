@@ -11,10 +11,10 @@
             <ServiceConfig/>
           </el-tab-pane>
           <el-tab-pane label="导航配置" name="second">
-            <NavARecConfig />
+            <NavARecConfig/>
           </el-tab-pane>
           <el-tab-pane label="推荐配置" name="third">
-            <NavARecConfig />
+            <NavARecConfig/>
           </el-tab-pane>
         </el-tabs>
       </div>
