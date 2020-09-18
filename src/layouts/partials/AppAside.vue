@@ -48,7 +48,7 @@
 
     <el-menu-item index="/categories" @click="goTo('/categories')">
       <i class="el-icon-menu"></i>
-      <span slot="title">内容管理</span>
+      <span slot="title">类别管理</span>
     </el-menu-item>
 
     <!-- <el-menu-item index="/document" @click="goTo('/document')" disabled>
@@ -62,9 +62,9 @@
       </template>
 
       <el-menu-item-group>
-        <el-menu-item index="头部导航配置" @click="goTo('/skypegmwcn/header-navigate')">头部导航配置</el-menu-item>
-        <el-menu-item index="底部导航配置" @click="goTo('/skypegmwcn/footer-navigate')">底部导航配置</el-menu-item>
-        <el-menu-item index="首页内容配置" @click="goTo('/skypegmwcn/home-page')">首页内容配置</el-menu-item>
+        <el-menu-item index="/skypegmwcn/header-navigate" @click="goTo('/skypegmwcn/header-navigate')">头部导航配置</el-menu-item>
+        <el-menu-item index="/skypegmwcn/footer-navigate" @click="goTo('/skypegmwcn/footer-navigate')">底部导航配置</el-menu-item>
+        <el-menu-item index="/skypegmwcn/home-page" @click="goTo('/skypegmwcn/home-page')">首页内容配置</el-menu-item>
       </el-menu-item-group>
 
     </el-submenu>
@@ -76,9 +76,9 @@
       </template>
 
       <el-menu-item-group>
-        <el-menu-item index="类别管理" @click="goTo('/document/category-management')">类别管理</el-menu-item>
-        <el-menu-item index="产品管理" @click="goTo('/document/product-management')">产品管理</el-menu-item>
-        <el-menu-item index="文档编辑" @click="goTo('/document/document-editing')">文档编辑</el-menu-item>
+        <el-menu-item index="/document/category-management" @click="goTo('/document/category-management')">类别管理</el-menu-item>
+        <el-menu-item index="/document/product-managemen" @click="goTo('/document/product-management')">产品管理</el-menu-item>
+        <el-menu-item index="/document/document-editing" @click="goTo('/document/document-editing')">文档编辑</el-menu-item>
       </el-menu-item-group>
 
     </el-submenu>
