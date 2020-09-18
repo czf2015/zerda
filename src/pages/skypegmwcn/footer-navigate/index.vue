@@ -1,97 +1,43 @@
 <template>
-  <div class="product-management">
-    <div>
-      <div class="product-management-header">
-        <span>请选择：</span>
-        <el-select v-model="value" placeholder="请选择">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
-        <el-select v-model="value" placeholder="请选择">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
-        <el-button type="primary" @click="handleClick('add')">新增产品</el-button>
+  <div class="footer-management">
+        <el-card shadow="hover" class="header-management-header">
+      <div slot="header" class="clearfix">
+        <span>底部导航配置</span>
       </div>
-      <div class="product-management-body">
-        <el-table
-          :data="tableData"
-          border
-          style="width: 100%"
-        >
-          <el-table-column
-            prop="date"
-            label="图标"
-            width="180"
-          >
-            <template>
-              <el-image
-                style="width: 50px; height: 50px"
-                :src="'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'"
-              />
-            </template>
-          </el-table-column>
-          <el-table-column
-            prop="weight"
-            label="权重"
-            width="180"
-          />
-          <el-table-column
-            prop="categoryName"
-            label="类别名称"
-            width="180"
-          />
-          <el-table-column
-            prop="categoryNameEn"
-            label="类别名称（英文）"
-            width="180"
-          />
-          <el-table-column
-            label="操作"
-          >
-            <template slot-scope="scope">
-              <a href="javascript:;" style="marginRight: 15px;" @click="handleClick('edit', scope.row)">编辑</a>
-              <a href="javascript:;" @click="handleRemove(scope.row)">删除</a>
-            </template>
-          </el-table-column>
-        </el-table>
-        <div class="pagination-container">
-          <el-pagination
-            layout="prev, pager, next, sizes, jumper"
-            :current-page="currentPage"
-            :page-sizes="[100, 200, 300, 400]"
-            :page-size="100"
-            :total="400"
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-          />
-        </div>
+
+      <div id="cascaderContainer">
+        <el-tabs v-model="activeName" @tab-click="handleClick">
+          <el-tab-pane label="服务配置" name="first">
+            <ServiceConfig/>
+          </el-tab-pane>
+          <el-tab-pane label="导航配置" name="second">
+            <NavARecConfig/>
+          </el-tab-pane>
+          <el-tab-pane label="推荐配置" name="third">
+            <NavARecConfig/>
+          </el-tab-pane>
+        </el-tabs>
       </div>
-    </div>
-    <ProductDialog ref="CategoryDialog" />
-    <ProductRemove ref="CategoryRemove" />
+      
+      
+    </el-card>
+    <!-- <ProductDialog ref="CategoryDialog" /> -->
+    <!-- <ProductRemove ref="CategoryRemove" /> -->
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import ProductDialog from './ProductDialog'
-import ProductRemove from './ProductRemove'
+import ServiceConfig from './ServiceConfig'
+import NavARecConfig from './NavARecConfig'
 
 export default {
   name: 'CategoryManagement',
-  components: { ProductDialog, ProductRemove },
+  components: { ServiceConfig, NavARecConfig },
   data() {
     return {
       currentPage: 1,
+      activeName: "first",
       tableData: [
         {
           date: '2016-05-02',
@@ -143,7 +89,7 @@ export default {
   },
   methods: {
     handleClick(actionType, rowData) {
-      this.$refs['CategoryDialog'].showDialog(actionType, rowData)
+      // this.$refs['CategoryDialog'].showDialog(actionType, rowData)
     },
     handleRemove(rowData) {
       this.$refs['CategoryRemove'].showDialog(rowData)
@@ -153,7 +99,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.product-management {
+.footer-management {
   padding: 15px;
   &-header {
     margin-bottom: 30px;

@@ -56,7 +56,7 @@ export default {
     handleConfirm() {
       if (this.loading) return
       this.loading = true
-      this.$emit('confirm')
+      this.$emit('confirm', () => this.loading = false)
     }
   }
 }
@@ -80,6 +80,12 @@ export default {
   }
   .el-dialog__body{
     padding: 20px;
+    input{
+      min-width: 0;
+    }
+    .el-select{
+      width: 100%;
+    }
   }
   .el-dialog__footer{
     padding: 10px 20px;

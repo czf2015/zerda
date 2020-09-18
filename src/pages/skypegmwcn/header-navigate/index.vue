@@ -1,50 +1,62 @@
 <template>
-  <div class="category-management">
-    <el-card shadow="hover" class="category-management-header">
+  <div class="header-management">
+    <el-card shadow="hover" class="header-management-header">
       <div slot="header" class="clearfix">
         <span>头部导航配置</span>
       </div>
 
-      <!-- <el-tabs tab-position="left" style="height: 200px;">
-        <el-tab-pane>
-          <span slot="label">我的行程 <i class="el-icon-arrow-right" /></span>
-        </el-tab-pane>
-        <el-tab-pane label="配置管理">配置管理</el-tab-pane>
-        <el-tab-pane label="角色管理">角色管理</el-tab-pane>
-        <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
-      </el-tabs> -->
       <div id="cascaderContainer">
-
         <ul class="cascader-header">
-          <li><i class="el-icon-folder-add"/></li>
-          <li><i class="el-icon-folder-add"/></li>
-          <li><i class="el-icon-folder-add"/></li>
+          <li><i class="el-icon-folder-add" @click="handleadd(1)"/></li>
+          <li v-for="(value, index) in expandArr" :key="value" @click="handleadd(2+index)"><i class="el-icon-folder-add"/></li>
         </ul>
 
-        <el-cascader-panel :options="options" width="250px" size="small">
-          <span slot-scope="{ node, data }" @click="handleClick(node, data)">{{node.label}}</span>
-        </el-cascader-panel>
+        <el-cascader-panel :options="options" width="250px" size="small" @expand-change="handleExpandChange">
+          <el-popover
+            slot-scope="{ node, data }"
+            :value="visible === node.label"
+            placement="bottom"
+            trigger="manual"
+            :visible-arrow="false"
+            width="100px"
+          >
+            <ul class="menu-container">
+              <li @click="handleEdit(node)">
+                <i class="el-icon-document-add" />
+                <a href="javascript:;">更新</a>
+              </li>
+              <li @click="handleRemove(node)">
+                <i class="el-icon-delete" />
+                <a href="javascript:;">删除</a>
+              </li>
+            </ul>
 
+            <span slot="reference" @mousedown="showMenu($event, node, data)" style="display: block">{{node.label}}</span>
+          </el-popover>
+        </el-cascader-panel>
       </div>
       
       
     </el-card>
 
-    <CategoryDialog ref="CategoryDialog" />
-    <CategoryRemove ref="CategoryRemove" />
+    <NavigateDialog ref="NavigateDialog" />
+    <NavigateRemove ref="NavigateRemove" />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import CategoryDialog from './CategoryDialog'
-import CategoryRemove from './CategoryRemove'
+import NavigateDialog from './NavigateDialog'
+import NavigateRemove from './NavigateRemove'
 
 export default {
   name: 'CategoryManagement',
-  components: { CategoryDialog, CategoryRemove },
+  components: { NavigateDialog, NavigateRemove },
   data() {
     return {
+      visible: '',
+      actionType: 'add',
+      expandArr: [],
       options: [{
           value: 'zhinan',
           label: '指南',
@@ -251,30 +263,43 @@ export default {
     document.getElementById('cascaderContainer').oncontextmenu = function(e) {
       return false
     }
+    document.onclick = () => {
+      this.visible = ''
+    }
   },
   beforeDestroy() {
-    document.getElementById('cascaderContainer').oncontextmenu = null
+    document.onclick = document.getElementById('cascaderContainer').oncontextmenu = null
   },
   methods: {
-    handleClick(node, data) {
-      console.log(node, data)
-      // this.$refs['CategoryDialog'].showDialog(actionType, rowData)
+    handleExpandChange(expandArr) {
+      this.expandArr = expandArr
     },
-    handleRemove(rowData) {
-      this.$refs['CategoryRemove'].showDialog(rowData)
+    handleadd(index) {
+      this.actionType = 'add'
+      this.$refs['NavigateDialog'].showDialog(this.actionType, { expandArr: this.expandArr, index })
     },
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`)
+    handleEdit(node) {
+      this.actionType = 'edit'
+      this.$refs['NavigateDialog'].showDialog(this.actionType, node)
+      this.visible = ''
     },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`)
+    handleRemove(node) {
+      this.$refs['NavigateRemove'].showDialog(node)
+      this.visible = ''
+    },
+    showMenu(e, node, data) {
+      if (e.which === 1) {
+        this.visible = ''
+        return
+      }
+      this.visible = node.label
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
-.category-management {
+.header-management {
   padding: 15px;
   &-header {
     margin-bottom: 30px;
@@ -301,16 +326,41 @@ export default {
       padding-left: 30px;
       list-style: none;
       box-sizing: border-box;
+      border-right: solid 1px #E4E7ED;
+      cursor: pointer;
+      &:last-child{
+        border-right: none;
+      }
     }
   }
 }
+
 /deep/ .el-cascader-panel {
   min-height: 400px;
+  border: none;
   .el-scrollbar__wrap{
   overflow-x: hidden;
   overflow-y: scroll;
   height: 100%;
   }
+}
+
+.menu-container{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  width: 80px;
+  >li{
+    padding: 0;
+    margin: 10px 0;
+    list-style: none;
+    i{
+      margin-right: 10px;
+    }
+  }
+}
+.el-popover{
+  min-width: 100px;
 }
 
 </style>

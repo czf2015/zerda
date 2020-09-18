@@ -256,5 +256,8 @@ export default {
   .el-card__body{
     padding: 0
   }
+  .el-select .el-input__inner{
+    min-width: unset
+  }
 }
 </style>
