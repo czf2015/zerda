@@ -1,7 +1,7 @@
 <template>
   <div :id="componentId">
     <p style="textAlign: right; marginBottom: 15px">
-      <el-button type="primary">添加记录</el-button>
+      <el-button type="primary" @click="handleAdd">添加记录</el-button>
     </p>
     <el-table
       :data="tableData"
@@ -21,8 +21,8 @@
               align="left"
             />
             <el-table-column
-              prop="imgLink"
-              label="图片链接"
+              prop="mark"
+              label="标识"
               width="180"
               align="left"
             />
@@ -54,9 +54,9 @@
       >
         <template slot-scope="scope">
           <p>
-            <el-link type="primary" :underline="false" @click="handleClick('edit', scope.row)">编辑</el-link>
+            <el-link type="primary" :underline="false" @click="handleEdit(scope.$index)">编辑</el-link>
             <span style="margin: 0 5px; color: #cccccc;">|</span>
-            <el-link type="primary" :underline="false" @click="handleRemove(scope.row)">删除</el-link>
+            <el-link type="primary" :underline="false" @click="handleRemove(scope.$index)">删除</el-link>
           </p>
           <p>
             <el-link 
@@ -80,15 +80,19 @@
         </template>
       </el-table-column>
     </el-table>
+    <NavARecDialog ref="NavARecDialog" :handelTableData="handelTableData" />
+    <RemoveDialog ref="RemoveDialog" :removeConfirm="handelTableData" :propData="{ title:'删除服务', content: '您确认删除此服务吗' }"/>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import NavARecDialog from './NavARecDialog'
+import RemoveDialog from './RemoveDialog'
 
 export default {
   name: 'NavARecConfig',
-  components: {  },
+  components: { NavARecDialog, RemoveDialog },
   props: {
     acitveName: {
       type: String,
@@ -106,8 +110,8 @@ export default {
             {
               id: 1-1,
               title: '234',
-              imgLink: '100',
-              link: '王小虎',
+              mark: '王小虎',
+              link: '100',
             },
           ]
         },
@@ -151,8 +155,19 @@ export default {
     
   },
   methods: {
-    handleRemove(row) {
-      console.log(row)
+    handleAdd() {
+      this.actionType = 'add'
+      this.$refs['NavARecDialog'].showDialog('add')
+    },
+    handleEdit(index) {
+      this.actionType = 'edit'
+      this.selectIndex = index
+      this.$refs['NavARecDialog'].showDialog('edit', this.tableData[index])
+    },
+    handleRemove(index) {
+      this.actionType = 'remove'
+      this.selectIndex = index
+      this.$refs['RemoveDialog'].showDialog()
     },
     handleMove(type, index) {
       if(this.timer) return;
@@ -192,6 +207,26 @@ export default {
       //     expandedRow.className = 'el-table__expanded-cell'
       //   }))
       // }
+    },
+    handelTableData(actionType, newData) {
+      switch(actionType) {
+        case 'add':
+          this.tableData.push(newData)
+          break
+        case 'edit':
+          this.tableData.splice(this.selectIndex, 1, newData)
+          break
+        case 'remove':
+          this.tableData.splice(this.selectIndex, 1)
+          break
+        default: 
+          break
+      }
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(1111)
+        }, 1000)
+      })
     }
   }
 }

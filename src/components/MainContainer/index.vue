@@ -1,11 +1,14 @@
 <template>
-  <router-view />
+  <div id="main-container">
+    <router-view />
+  </div>
+  
 </template>
 
 <script>
 </script>
 <style scoped>
-#document {
+#main-container {
   min-height: 85vh;
 }
 </style>

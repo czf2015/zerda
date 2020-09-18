@@ -52,7 +52,8 @@ export default {
         link: [
           { required: true, message: '请输入链接', trigger: 'blur' }
         ],
-      }
+      },
+      actionType: 'add'
     }
   },
   // mounted() {
