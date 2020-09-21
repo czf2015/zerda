@@ -76,7 +76,6 @@ export default {
     },
     handleChange(formData) {
       this.formData = formData
-      console.log(JSON.stringify(this.formData))
     }
   }
 };
