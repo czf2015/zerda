@@ -71,6 +71,7 @@ export default {
       this.formData = convertFormData(this.columns, this.datasource[index]);
       this.openDialog = true;
       this.isRevised = true
+      this.$emit('edit', index)
     },
     addTable() {},
     delTable(index) {
@@ -85,7 +86,7 @@ export default {
       this.datasource.splice(index, 2, this.datasource[index + 1], this.datasource[index])
     },
     appendTable() {
-      this.formData = [...this.columns];
+      this.formData = JSON.parse(JSON.stringify(this.columns))
       this.openDialog = true;
     },
     saveForm(formData) {

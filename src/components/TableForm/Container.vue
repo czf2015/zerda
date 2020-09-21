@@ -18,9 +18,10 @@
     <CustomForm :datasource="formData" :auto="true" v-show="false" />
     <TableForm
       style="margin-top: 20px;"
-      :datasource="table.content"
-      :columns="table.columns"
-      :operations="table.operations"
+      :datasource="content"
+      :columns="columns"
+      :operations="operations"
+      @edit="handleEdit"
       @save="saveTable"
       @append="appendTable"
     />
@@ -50,19 +51,33 @@ export default {
     },
   },
   data() {
+    const { table, formData } = convert(this.initial)
     return {
-      ...convert(this.initial),
+      formData,
+      ...table,
       editTitle: false,
       title: this.initial.title || "标题",
       hover: false,
+      editIndex: -1,
     };
   },
   methods: {
     saveTable(formData) {
-      console.log(formData)
+      const data = {}
+      formData.forEach(({ field, value }) => {
+        data[field] = value
+      })
+      this.content.splice(this.editIndex, 1, data)
     },
     appendTable(formData) {
-      console.log(formData)
+      const data = {}
+      formData.forEach(({ field, value }) => {
+        data[field] = value
+      })
+      this.content.push(data)
+    },
+    handleEdit(idx) {
+      this.editIndex = idx
     }
   }
 };

@@ -37,6 +37,9 @@
           :datasource="convertPanelData(children, chief).table.content"
           :columns="convertPanelData(children, chief).table.columns"
           :operations="convertPanelData(children, chief).table.operations"
+          @edit="handleEdit"
+          @save="saveTable"
+          @append="appendTable"
         />
       </el-tab-pane>
       <!-- <el-tab-pane name="add" label="+" /> -->
@@ -58,7 +61,7 @@ export default {
   props: {
     moveable: {
       type: String,
-      default: 'updown'
+      default: "updown",
     },
     initial: {
       type: Object,
@@ -81,6 +84,7 @@ export default {
       editTitle: false,
       title: title || "标题",
       hover: false,
+      editIndex: -1,
     };
   },
   methods: {
@@ -133,6 +137,27 @@ export default {
         this.activeTab = activeName;
         this.content = tabs.filter((tab) => tab.name !== targetName);
       }
+    },
+    saveTable(formData) {
+      const { content } = this.table;
+      const data = {};
+      formData.forEach(({ field, value }) => {
+        data[field] = value;
+      });
+      content[this.editIndex] = data;
+      this.table.content = content;
+    },
+    appendTable(formData) {
+      const { content } = this.table;
+      const data = {};
+      formData.forEach(({ field, value }) => {
+        data[field] = value;
+      });
+      content.push(data);
+      this.table.content = content;
+    },
+    handleEdit(idx) {
+      this.editIndex = idx;
     },
   },
   watch: {
