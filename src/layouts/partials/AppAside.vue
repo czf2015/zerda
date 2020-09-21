@@ -55,6 +55,18 @@
       <i class="el-icon-document"></i>
       <span slot="title">文档管理</span>
     </el-menu-item> -->
+    <el-submenu index="/staticpage">
+      <template slot="title">
+        <i class="el-icon-location"></i>
+        <span>静态页面管理</span>
+      </template>
+
+      <el-menu-item-group>
+        <el-menu-item index="/staticpage/staticpage-category" @click="goTo('/staticpage/staticpage-category')">静态页面分类管理</el-menu-item>
+      </el-menu-item-group>
+
+    </el-submenu>
+
     <el-submenu index="/skypegmwcn">
       <template slot="title">
         <i class="el-icon-location"></i>

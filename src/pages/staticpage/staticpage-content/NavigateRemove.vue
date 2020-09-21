@@ -1,0 +1,60 @@
+<template>
+  <div>
+    <new-dialog :show-dialog="show" width="30%" :title="title" @cancel="handleCancel" @confirm="handeleConfirm">
+      <div slot="body" class="dialog-container">
+        <i class="el-icon-question" />您确认删除此导航项吗？
+      </div>
+    </new-dialog>
+  </div>
+</template>
+
+<script>
+import { mapGetters } from 'vuex'
+import newDialog from '@/pages/document/components/newDialog'
+
+export default {
+  name: 'CategoryRemove',
+  components: { newDialog },
+  props: {
+  },
+  data() {
+    return {
+      show: false,
+      title: '删除导航项'
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'CategoryRemove'
+    ])
+  },
+  methods: {
+    showDialog(rawData) {
+      console.log(rawData)
+      this.show = true
+    },
+    handleCancel() {
+      this.show = false
+    },
+    handeleConfirm() {
+      // this.show = false
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.dialog {
+  &-container {
+    padding: 0 20px 0 0;
+    .el-form-item__label{
+      span {
+        font-weight: 400;
+      }
+    }
+  }
+}
+::v-deep .el-icon-question{
+  color: orange;
+}
+</style>

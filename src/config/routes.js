@@ -52,6 +52,29 @@ export default {
             },
         },
         {
+            path: '/staticpage',
+            name: 'StaticPage',
+            component: MainContainer,
+            redirect: '/staticpage/staticpage-category',
+            meta: {
+                requiresAuth: false,
+            },
+            children: [
+              {
+                path: 'staticpage-category',
+                component: () => import('@/pages/staticpage/staticpage-category'),
+                name: 'StaticPageContentCategory',
+                meta: { title: '静态页面类别管理' }
+              },
+              {
+                path: 'staticpage-content',
+                component: () => import('@/pages/staticpage/staticpage-content'),
+                name: 'StaticPageContent',
+                meta: { title: '静态页面类别管理' }
+              },
+            ]
+        },
+        {
             path: '/document',
             component: MainContainer,
             redirect: '/document/category-management',
