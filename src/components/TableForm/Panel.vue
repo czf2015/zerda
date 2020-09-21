@@ -10,7 +10,7 @@
       <span v-else>{{title}}</span>
     </h3>
     <!-- <img :src="effect" width="80%" style="margin-left: 10%;" /> -->
-    <CustomForm :datasource="formData" :auto="true" padding="0" />
+    <CustomForm :datasource="formData" :auto="true" padding="0"  @change="handleChange" />
     <!-- <label class="desc">
       描述：
       <input type="text" v-model="desc" />
@@ -159,6 +159,9 @@ export default {
     handleEdit(idx) {
       this.editIndex = idx;
     },
+    handleChange(formData) {
+      this.formData = formData
+    }
   },
   watch: {
     activeTab() {

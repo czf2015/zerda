@@ -6,16 +6,11 @@
       <i class="icon_close" @click="$emit('del')" />
     </span>
     <h3 class="title" @mouseover="editTitle = true" @mouseleave="editTitle = false">
-      <input type="text" v-if="editTitle" v-model="title" />
+      <input type="text" v-if="editTitle" v-model="title" maxlength="10" />
       <span v-else>{{title}}</span>
     </h3>
     <!-- <img :src="effect" width="80%" style="margin-left: 10%;" /> -->
-    <CustomForm :datasource="formData" :auto="true" padding="0" />
-    <!-- <label class="desc">
-      描述：
-      <input type="text" v-model="desc" />
-    </label>-->
-    <CustomForm :datasource="formData" :auto="true" v-show="false" />
+    <CustomForm :datasource="formData" :auto="true" padding="0" @change="handleChange" />
     <TableForm
       style="margin-top: 20px;"
       :datasource="content"
@@ -78,6 +73,10 @@ export default {
     },
     handleEdit(idx) {
       this.editIndex = idx
+    },
+    handleChange(formData) {
+      this.formData = formData
+      console.log(JSON.stringify(this.formData))
     }
   }
 };
