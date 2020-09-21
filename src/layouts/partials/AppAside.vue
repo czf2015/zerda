@@ -71,7 +71,7 @@
 
     <el-submenu index="/document">
       <template slot="title">
-        <i class="el-icon-location"></i>
+        <i class="el-icon-document"></i>
         <span>文档管理</span>
       </template>
 
