@@ -10,6 +10,7 @@
       />
       {{label}}
     </label>
+    <p :class="valid ? 'none' : 'warning'">{{message}}</p>
   </div>
 </template>
 
@@ -75,9 +76,20 @@ export default {
 
 <style lang="less" scoped>
 .radio-group {
+  position: relative;
   display: flex;
   .radio-item {
     margin-left: 24px;
+  }
+  .none {
+    display: none;
+  }
+
+  .warning {
+    position: absolute;
+    bottom: -28px;
+    font-size: 12px;
+    color: red;
   }
 }
 </style>

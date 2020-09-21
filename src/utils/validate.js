@@ -8,6 +8,7 @@ export const validate = ({ value, validation, required }) => {
     }
     switch (validation.type) {
         case 'text':
+        case 'textarea':
             return (validation.maxLength && value.length > validation.maxLength)
                 ? { valid: false, message: `字符数至多${validation.maxLength}个` }
                 : (validation.minLength && value.length < validation.minLength)
@@ -25,10 +26,10 @@ export const validate = ({ value, validation, required }) => {
                 : (validation.startTime && !dateCompare(value, validation.startTime))
                     ? { valid: false, message: `起始时间为${dateFormat(value)}` }
                     : { valid: true, message: '' }
-        // case 'boolean':
-        //     return validation.required && isNull(value)
-        //         ? { valid: false, message: '必选项' }
-        //         : { valid: true, message: '' }
+        case 'boolean':
+            return validation.required && isNull(value)
+                ? { valid: false, message: '必选项' }
+                : { valid: true, message: '' }
         // case 'link':
         //     return validation.required && isNull(value)
         //         ? { valid: false, message: '必选项' }

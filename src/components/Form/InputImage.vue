@@ -10,6 +10,7 @@
     >
       <el-button size="small" type="primary">点击上传</el-button>
     </el-upload>
+    <p :class="valid ? 'none' : 'warning'">{{message}}</p>
   </div>
 </template>
 
@@ -81,9 +82,20 @@ export default {
 
 <style lang="less" scoped>
 .input-image {
+  position: relative;
   display: flex;
   >input[type="text"]:first-child {
       margin-right: 20px;
+  }
+  .none {
+    display: none;
+  }
+
+  .warning {
+    position: absolute;
+    bottom: -28px;
+    font-size: 12px;
+    color: red;
   }
 }
 </style>
