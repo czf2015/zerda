@@ -14,6 +14,7 @@ export default {
     },
     value: {
       type: String,
+      default: ''
     },
     required: {
         type: Boolean,

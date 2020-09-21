@@ -156,8 +156,8 @@
           "label": "描述",
           "validation": {
             "type": "text",
-            "minLength": 10,
-            "maxLength": 20,
+            "minLength": 2,
+            "maxLength": 10,
             "trigger": "blur"
           }
         }
