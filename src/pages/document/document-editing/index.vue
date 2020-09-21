@@ -33,8 +33,8 @@
                 />
               </el-select>
             </div>
-            <div class="card-body-left">
-              <el-tree id="cancledefultMenu" :data="treeData">
+            <div class="card-body-left" id="cancledefultMenu">
+              <el-tree :data="treeData">
                 <el-popover
                   slot-scope="{ node, data }"
                   :value="visible === node.label"
@@ -246,6 +246,7 @@ export default {
     padding: 0;
     margin: 10px 0;
     list-style: none;
+    cursor: pointer;
     i{
       margin-right: 10px;
     }

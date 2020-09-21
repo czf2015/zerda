@@ -349,11 +349,11 @@ export default {
   padding: 0;
   margin: 0;
   list-style: none;
+  width: 80px;
   >li{
     padding: 0;
     margin: 10px 0;
     list-style: none;
-    cursor: pointer;
     i{
       margin-right: 10px;
     }
