@@ -34,7 +34,7 @@
             "type": "text",
             "minLength": 5,
             "maxLength": 10,
-            "trigger": "blur"
+            "trigger": "change"
           }
         },
         {
@@ -45,7 +45,7 @@
             "type": "text",
             "minLength": 5,
             "maxLength": 10,
-            "trigger": "blur"
+            "trigger": "change"
           }
         },
         {
@@ -54,7 +54,7 @@
           "required": false,
           "validation": {
             "type": "link",
-            "pattern": "//yun.ccb.com/",
+            "pattern": "https://yun.ccb.com/",
             "trigger": "blur"
           }
         }
@@ -67,6 +67,14 @@
         {
           "field": "del",
           "label": "删除"
+        },
+        {
+          "field": "up",
+          "label": "上移"
+        },
+        {
+          "field": "down",
+          "label": "下移"
         }
       ]
     }
@@ -81,29 +89,29 @@
     "content": [
       {
         "title": "云服务器",
-        "imgURL": "//yun.ccb.com/common/images/recommend_products1.png",
-        "link": "//yun.ccb.com/product/cvm",
+        "imgURL": "https://yun.ccb.com/common/images/recommend_products1.png",
+        "link": "https://yun.ccb.com/product/cvm",
         "button": "",
         "desc": "立即申请"
       },
       {
         "title": "弹性负载均衡",
-        "imgURL": "//yun.ccb.com/common/images/recommend_products2.png",
-        "link": "//yun.ccb.com/product/elb",
+        "imgURL": "https://yun.ccb.com/common/images/recommend_products2.png",
+        "link": "https://yun.ccb.com/product/elb",
         "button": "",
         "desc": "立即申请"
       },
       {
         "title": "龙卫士",
-        "imgURL": "//yun.ccb.com/common/images/recommend_products3.png",
-        "link": "//yun.ccb.com/product/producthids",
+        "imgURL": "https://yun.ccb.com/common/images/recommend_products3.png",
+        "link": "https://yun.ccb.com/product/producthids",
         "button": "",
         "desc": "立即申请"
       },
       {
         "title": "MPP云数据",
-        "imgURL": "//yun.ccb.com/common/images/recommend_products4.png",
-        "link": "//yun.ccb.com/product/productmpp",
+        "imgURL": "https://yun.ccb.com/common/images/recommend_products4.png",
+        "link": "https://yun.ccb.com/product/productmpp",
         "button": "",
         "desc": "立即申请"
       }
@@ -118,7 +126,7 @@
             "type": "text",
             "minLength": 3,
             "maxLength": 5,
-            "trigger": "blur"
+            "trigger": "change"
           }
         },
         {
@@ -138,8 +146,8 @@
           "required": true,
           "validation": {
             "type": "link",
-            "pattern": "/^//yun.ccb.com/",
-            "trigger": "blur"
+            "pattern": "^\/\/yun.ccb.com",
+            "trigger": "link"
           }
         },
         {
@@ -147,8 +155,8 @@
           "label": "按钮",
           "validation": {
             "type": "link",
-            "pattern": "/^//yun.ccb.com/",
-            "trigger": "blur"
+            "pattern": "^\/\/yun.ccb.com",
+            "trigger": "link"
           }
         },
         {
@@ -156,9 +164,9 @@
           "label": "描述",
           "validation": {
             "type": "text",
-            "minLength": 10,
-            "maxLength": 20,
-            "trigger": "blur"
+            "minLength": 2,
+            "maxLength": 10,
+            "trigger": "change"
           }
         }
       ],
@@ -192,72 +200,72 @@
     "content": [
       {
         "category": "计算",
-        "iconURL": "//yun.ccb.com/common/images/index/midIcon/icon_%E8%AE%A1%E7%AE%97_normal.png",
-        "iconHoverURL": "//yun.ccb.com/common/images/index/midIcon/icon_blue_%E8%AE%A1%E7%AE%97.png",
+        "iconURL": "https://yun.ccb.com/common/images/index/midIcon/icon_%E8%AE%A1%E7%AE%97_normal.png",
+        "iconHoverURL": "https://yun.ccb.com/common/images/index/midIcon/icon_blue_%E8%AE%A1%E7%AE%97.png",
         "children": [
           {
             "name": "云服务器",
             "desc": "稳定、安全、弹性、高性能的云端计算服务，实时满足您的多样性业务需求",
-            "link": "//yun.ccb.com/product/cvm"
+            "link": "https://yun.ccb.com/product/cvm"
           },
           {
             "name": "容器服务",
             "desc": "稳定、安全、高效、灵活扩展、简单易用的企业级Kubernetes 容器管理平台",
-            "link": "//yun.ccb.com/product/tke"
+            "link": "https://yun.ccb.com/product/tke"
           },
           {
             "name": "裸金属服务器",
             "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
-            "link": "//yun.ccb.com/product/productbms"
+            "link": "https://yun.ccb.com/product/productbms"
           },
           {
             "name": "裸金属服务器1",
             "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
-            "link": "//yun.ccb.com/product/productbms"
+            "link": "https://yun.ccb.com/product/productbms"
           }
         ]
       },
       {
         "category": "网络",
-        "iconURL": "//yun.ccb.com/common/images/index/midIcon/icon_%E7%BD%91%E7%BB%9C_normal.png",
-        "iconHoverURL": "//yun.ccb.com/common/images/index/midIcon/icon_blue_%E7%BD%91%E7%BB%9C.png",
+        "iconURL": "https://yun.ccb.com/common/images/index/midIcon/icon_%E7%BD%91%E7%BB%9C_normal.png",
+        "iconHoverURL": "https://yun.ccb.com/common/images/index/midIcon/icon_blue_%E7%BD%91%E7%BB%9C.png",
         "children": [
           {
             "name": "云服务器",
             "desc": "稳定、安全、弹性、高性能的云端计算服务，实时满足您的多样性业务需求",
-            "link": "//yun.ccb.com/product/cvm"
+            "link": "https://yun.ccb.com/product/cvm"
           },
           {
             "name": "容器服务",
             "desc": "稳定、安全、高效、灵活扩展、简单易用的企业级Kubernetes 容器管理平台",
-            "link": "//yun.ccb.com/product/tke"
+            "link": "https://yun.ccb.com/product/tke"
           },
           {
             "name": "裸金属服务器2",
             "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
-            "link": "//yun.ccb.com/product/productbms"
+            "link": "https://yun.ccb.com/product/productbms"
           }
         ]
       },
       {
         "category": "存储",
-        "iconURL": "//yun.ccb.com/common/images/index/midIcon/icon_%E5%AD%98%E5%82%A8_normal.png",
-        "iconHoverURL": "//yun.ccb.com/common/images/index/midIcon/icon_blue_%E5%AD%98%E5%82%A8.png",
+        "iconURL": "https://yun.ccb.com/common/images/index/midIcon/icon_%E5%AD%98%E5%82%A8_normal.png",
+        "iconHoverURL": "https://yun.ccb.com/common/images/index/midIcon/icon_blue_%E5%AD%98%E5%82%A8.png",
         "children": [
           {
             "name": "云服务器",
             "desc": "稳定、安全、弹性、高性能的云端计算服务，实时满足您的多样性业务需求",
-            "link": "//yun.ccb.com/product/cvm"
+            "link": "https://yun.ccb.com/product/cvm"
           },
           {
             "name": "容器服务",
             "desc": "稳定、安全、高效、灵活扩展、简单易用的企业级Kubernetes 容器管理平台",
-            "link": "//yun.ccb.com/product/tke"
+            "link": "https://yun.ccb.com/product/tke"
           },
           {
             "name": "裸金属服务器3",
             "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
-            "link": "//yun.ccb.com/product/productbms"
+            "link": "https://yun.ccb.com/product/productbms"
           }
         ]
       }
@@ -272,7 +280,7 @@
             "type": "text",
             "minLength": 0,
             "maxLength": 5,
-            "trigger": "blur"
+            "trigger": "change"
           }
         },
         {
@@ -326,7 +334,7 @@
               "type": "text",
               "minLength": 5,
               "maxLength": 10,
-              "trigger": "blur"
+              "trigger": "change"
             }
           },
           {
@@ -337,7 +345,7 @@
               "type": "text",
               "minLength": 5,
               "maxLength": 10,
-              "trigger": "blur"
+              "trigger": "change"
             }
           },
           {
@@ -346,7 +354,7 @@
             "required": false,
             "validation": {
               "type": "link",
-              "pattern": "//yun.ccb.com/",
+              "pattern": "https://yun.ccb.com/",
               "trigger": "blur"
             }
           }
@@ -384,7 +392,7 @@
         "category": "云网络",
         "children": [
           {
-            "iconURL": "//yun.ccb.com/common/images/index/solution/云网络1.png",
+            "iconURL": "https://yun.ccb.com/common/images/index/solution/云网络1.png",
             "name": "云网络",
             "desc": "提供一站式服务平台，跨界支持行业发展",
             "hover": false
@@ -401,7 +409,8 @@
           "validation": {
             "type": "text",
             "minLength": 0,
-            "maxLength": 5
+            "maxLength": 5,
+            "trigger": "change"
           }
         }
       ],
@@ -436,7 +445,7 @@
               "type": "text",
               "minLength": 0,
               "maxLength": 5,
-              "trigger": "blur"
+              "trigger": "change"
             }
           },
           {
@@ -447,7 +456,7 @@
               "type": "textarea",
               "minLength": 10,
               "maxLength": 30,
-              "trigger": "blur"
+              "trigger": "change"
             }
           },
           {
@@ -531,7 +540,7 @@
             "type": "text",
             "minLength": 3,
             "maxLength": 5,
-            "trigger": "blur"
+            "trigger": "change"
           }
         },
         {
@@ -542,7 +551,7 @@
             "type": "textarea",
             "minLength": 10,
             "maxLength": 30,
-            "trigger": "blur"
+            "trigger": "change"
           }
         },
         {
@@ -551,8 +560,8 @@
           "required": true,
           "validation": {
             "type": "link",
-            "pattern": "/^//yun.ccb.com/",
-            "trigger": "blur"
+            "pattern": "^\/\/yun.ccb.com",
+            "trigger": "link"
           }
         },
         {
@@ -597,19 +606,19 @@
     "content": [
       {
         "title": "ISO 20000",
-        "iconURL": "//yun.ccb.com/myNatural/img/iso20000_v2.png"
+        "iconURL": "https://yun.ccb.com/myNatural/img/iso20000_v2.png"
       },
       {
         "title": "可信云",
-        "iconURL": "//yun.ccb.com/myNatural/img/可信云.png"
+        "iconURL": "https://yun.ccb.com/myNatural/img/可信云.png"
       },
       {
         "title": "ISO 27001",
-        "iconURL": "//yun.ccb.com/myNatural/img/iso27001_v2.png"
+        "iconURL": "https://yun.ccb.com/myNatural/img/iso27001_v2.png"
       },
       {
         "title": "网络安全等级保护",
-        "iconURL": "//yun.ccb.com/myNatural/img/DJCP.png"
+        "iconURL": "https://yun.ccb.com/myNatural/img/DJCP.png"
       }
     ],
     "extra": {
@@ -633,7 +642,7 @@
             "type": "text",
             "minLength": 5,
             "maxLength": 10,
-            "trigger": "blur"
+            "trigger": "change"
           }
         }
       ],

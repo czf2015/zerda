@@ -66,10 +66,11 @@ Function.prototype.curry = function (...args) {
 }
 
 export const memoizer = (memo, formula) => {
-    return (n) => {
+    const recur = (n) => {
         if (typeof memo[n] === 'undefined') {
             memo[n] = formula(recur, n)
         }
         return memo[n]
     }
+    return recur
 }

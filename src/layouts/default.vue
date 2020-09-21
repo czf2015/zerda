@@ -9,7 +9,16 @@
       :value="value"
       @input="emitter"
     >
-      <component v-for="(data) in currentValue" :key="data.id" :is="data.type" :initial="data" />
+      <component
+        v-for="(data, idx) in currentValue"
+        :key="data.id"
+        :is="data.type"
+        :initial="data"
+        @up="handleUp(idx)"
+        @down="handleDown(idx)"
+        @del="handleDel(idx)"
+        :moveable="moveable(idx)"
+      />
     </draggable>
     <Affix :pos="{ top: '42%', right: '20px' }">
       <div class="right-center-btn">悬浮</div>
@@ -91,6 +100,34 @@ export default {
           this.list = data;
           this.loading = false;
         });
+    },
+    handleUp(idx) {
+      if (this.value) {
+        this.value.splice(idx - 1, 2, this.value[idx], this.value[idx - 1]);
+      } else {
+        this.list.splice(idx - 1, 2, this.list[idx], this.list[idx - 1]);
+      }
+    },
+    handleDown(idx) {
+      if (this.value) {
+        this.value.splice(idx, 2, this.value[idx + 1], this.value[idx]);
+      } else {
+        this.list.splice(idx, 2, this.list[idx + 1], this.list[idx]);
+      }
+    },
+    handleDel(idx) {
+      if (this.value) {
+        this.value.splice(idx, 1);
+      } else {
+        this.list.splice(idx, 1);
+      }
+    },
+    moveable(idx) {
+      return idx == 0
+        ? "down"
+        : idx == this.currentValue.length - 1
+        ? "up"
+        : "updown";
     },
   },
   mounted() {

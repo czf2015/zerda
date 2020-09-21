@@ -1,34 +1,37 @@
 <template>
-  <el-switch
-    v-model="checked"
-    :active-text="activeText"
-    :inactive-text="inactiveText"
-    :active-color="activeColor"
-    :inactive-color="inactiveColor"
-  />
+  <div class="switch">
+    <el-switch
+      v-model="checked"
+      :active-text="activeText"
+      :inactive-text="inactiveText"
+      :active-color="activeColor"
+      :inactive-color="inactiveColor"
+    />
+    <p :class="valid ? 'none' : 'warning'">{{message}}</p>
+  </div>
 </template>
 
 <script>
-import { validate } from '@/utils/validate.js'
+import { validate } from "@/utils/validate.js";
 
 export default {
   name: "CustomSwitch",
   props: {
     field: {
       type: String,
-      required: true
+      required: true,
     },
     value: {
       type: Boolean,
       default: false,
     },
     required: {
-        type: Boolean,
-        default: false,
+      type: Boolean,
+      default: false,
     },
     validation: {
       type: Object,
-      required: true
+      required: true,
     },
     activeText: {
       type: String,
@@ -52,16 +55,37 @@ export default {
   },
   watch: {
     checked() {
-      const { valid, message } = validate({ value: this.checked, validation: this.validation, required: this.required })
+      const { valid, message } = validate({
+        value: this.checked,
+        validation: this.validation,
+        required: this.required,
+      });
       this.valid = valid;
       this.message = message;
-      this.$emit("change", {
-          field: this.field,
-          value: this.checked,
-          valid,
-          message,
+      this.$emit(this.validation.trigger || 'change', {
+        field: this.field,
+        value: this.checked,
+        valid,
+        message,
       });
     },
   },
 };
 </script>
+
+
+<style lang="less" scoped>
+.switch {
+  position: relative;
+  .none {
+    display: none;
+  }
+
+  .warning {
+    position: absolute;
+    bottom: -28px;
+    font-size: 12px;
+    color: red;
+  }
+}
+</style>

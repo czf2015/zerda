@@ -10,6 +10,7 @@
       />
       {{label}}
     </label>
+    <p :class="valid ? 'none' : 'warning'">{{message}}</p>
   </div>
 </template>
 
@@ -61,7 +62,7 @@ export default {
       const { valid, message } = validate({ value: this.picked, validation: this.validation, required: this.required })
       this.valid = valid;
       this.message = message;
-      this.$emit("change", {
+      this.$emit(this.validation.trigger || 'change', {
         field: this.field,
         value: e.target.value,
         valid,
@@ -75,9 +76,20 @@ export default {
 
 <style lang="less" scoped>
 .radio-group {
+  position: relative;
   display: flex;
   .radio-item {
     margin-left: 24px;
+  }
+  .none {
+    display: none;
+  }
+
+  .warning {
+    position: absolute;
+    bottom: -28px;
+    font-size: 12px;
+    color: red;
   }
 }
 </style>

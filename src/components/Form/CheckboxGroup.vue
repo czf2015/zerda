@@ -15,6 +15,7 @@
       />
       {{label}}
     </label>
+    <p :class="valid ? 'none' : 'warning'">{{message}}</p>
   </div>
 </template>
 
@@ -71,7 +72,7 @@ export default {
       const { valid, message } = validate({ value: this.selected, validation: this.validation, required: this.required })
       this.valid = valid;
       this.message = message;
-      this.$emit("change", {
+      this.$emit(this.validation.trigger || 'change', {
         field: this.field,
         value: this.selected,
         valid,
@@ -85,9 +86,20 @@ export default {
 
 <style lang="less" scoped>
 .checkbox-group {
+  position: relative;
   display: flex;
   .checkbox-item {
     margin-left: 24px;
+  }
+  .none {
+    display: none;
+  }
+
+  .warning {
+    position: absolute;
+    bottom: -28px;
+    font-size: 12px;
+    color: red;
   }
 }
 </style>

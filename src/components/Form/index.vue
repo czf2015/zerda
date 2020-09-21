@@ -8,14 +8,15 @@
           :field="item.field"
           :value="item.value"
           :options="adaptOptions(item.options)"
-          :required="item.validation.required"
+          :required="item.required"
           :validation="item.validation"
           @[item.validation.trigger]="handleTrigger"
         />
       </div>
     </content>
-    <fieldset v-else>
-      <legend>{{legend}}</legend>
+    <!-- <fieldset v-else> -->
+    <!-- <legend>{{legend}}</legend> -->
+    <div class="modal" v-else>
       <content>
         <div class="form-item" v-for="(item, idx) in datasource" :key="idx">
           <label :class="{ required: item.required }">{{item.label}}</label>
@@ -24,7 +25,7 @@
             :field="item.field"
             :value="item.value"
             :options="adaptOptions(item.options)"
-            :required="item.validation.required"
+            :required="item.required"
             :validation="item.validation"
             @[item.validation.trigger]="handleTrigger"
           />
@@ -40,7 +41,8 @@
         />
         <Submit class="btn_cancel" label="取消" @click="cancel" />
       </footer>
-    </fieldset>
+    </div>
+    <!-- </fieldset> -->
   </form>
 </template>
 
@@ -90,11 +92,11 @@ export default {
       type: Boolean,
     },
     padding: {
-      type: String
+      type: String,
     },
     margin: {
-      type: String
-    }
+      type: String,
+    },
   },
   data() {
     return {
@@ -140,7 +142,8 @@ export default {
       formItem.value = value;
       formItem.validation.valid = valid;
       formItem.validation.message = message;
-      this.canSave = this.formData.every((item) => item.validation.valid);
+      this.canSave = this.formData.every((item) => item.validation.valid !== false);
+      console.log(this.canSave)
       if (this.canSave && this.auto) {
         this.$emit("change", this.formData);
       }
@@ -150,7 +153,7 @@ export default {
       this.$emit("save", this.formData);
     },
     cancel() {
-      if (confirm('放弃修改？')) {
+      if (confirm("放弃修改？")) {
         this.$emit("cancel");
       }
     },
@@ -172,7 +175,7 @@ form {
         min-width: 80px;
         text-align: right;
         font-weight: bold;
-        color: #409EFF;
+        color: #409eff;
         &:before {
           content: " ";
           padding-right: 5px;
@@ -190,11 +193,12 @@ form {
       }
     }
   }
-  > fieldset {
-    padding-bottom: 40px;
-    > legend {
-        color: #409EFF;
-    }
+  // > fieldset {
+  //   padding-bottom: 40px;
+  //   > legend {
+  //       color: #409EFF;
+  //   }
+  .modal {
     > footer {
       display: flex;
       justify-content: flex-end;
@@ -211,5 +215,6 @@ form {
       }
     }
   }
+  // }
 }
 </style>

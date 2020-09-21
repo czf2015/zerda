@@ -8,6 +8,8 @@
       @edit="editTable"
       @add="addTable"
       @del="delTable"
+      @up="upTable"
+      @down="downTable"
       @append="appendTable"
     />
     <div class="mask" v-if="openDialog">
@@ -58,6 +60,7 @@ export default {
       openDialog: false,
       legend: "请填写内容",
       formData: [],
+      isRevised: false,
     };
   },
   methods: {
@@ -67,23 +70,36 @@ export default {
     editTable(index) {
       this.formData = convertFormData(this.columns, this.datasource[index]);
       this.openDialog = true;
+      this.isRevised = true
+      this.$emit('edit', index)
     },
     addTable() {},
     delTable(index) {
       if (confirm("确定要删除吗？")) {
-        console.log(index);
+        this.datasource.splice(index, 1)
       }
     },
+    upTable(index) {
+      this.datasource.splice(index - 1, 2, this.datasource[index], this.datasource[index -1])
+    },
+    downTable(index) {
+      this.datasource.splice(index, 2, this.datasource[index + 1], this.datasource[index])
+    },
     appendTable() {
-      this.formData = [...this.columns];
+      this.formData = JSON.parse(JSON.stringify(this.columns))
       this.openDialog = true;
     },
     saveForm(formData) {
       this.openDialog = false;
-      this.$emit("save", formData);
+      if (this.isRevised) {
+        this.$emit("save", formData);
+      } else {
+        this.$emit("append", formData)
+      }
     },
     cancelForm() {
       this.openDialog = false;
+      this.isRevised = false
     },
   },
 };

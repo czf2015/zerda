@@ -48,7 +48,7 @@
 
     <el-menu-item index="/categories" @click="goTo('/categories')">
       <i class="el-icon-menu"></i>
-      <span slot="title">内容管理</span>
+      <span slot="title">类别管理</span>
     </el-menu-item>
 
     <!-- <el-menu-item index="/document" @click="goTo('/document')" disabled>
@@ -83,13 +83,13 @@
 
     <el-submenu index="/document">
       <template slot="title">
-        <i class="el-icon-location"></i>
+        <i class="el-icon-document"></i>
         <span>文档管理</span>
       </template>
 
       <el-menu-item-group>
         <el-menu-item index="/document/category-management" @click="goTo('/document/category-management')">类别管理</el-menu-item>
-        <el-menu-item index="/document/product-management" @click="goTo('/document/product-management')">产品管理</el-menu-item>
+        <el-menu-item index="/document/product-managemen" @click="goTo('/document/product-management')">产品管理</el-menu-item>
         <el-menu-item index="/document/document-editing" @click="goTo('/document/document-editing')">文档编辑</el-menu-item>
       </el-menu-item-group>
 

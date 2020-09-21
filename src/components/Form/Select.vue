@@ -1,8 +1,11 @@
 <template>
-  <select :multiple="multiple" v-model="selected">
-    <option disabled>请选择</option>
-    <option v-for="({ label, value }) in options" :key="value" :value="value">{{label}}</option>
-  </select>
+  <div class="select">
+    <select :multiple="multiple" v-model="selected">
+      <option disabled>请选择</option>
+      <option v-for="({ label, value }) in options" :key="value" :value="value">{{label}}</option>
+    </select>
+    <p :class="valid ? 'none' : 'warning'">{{message}}</p>
+  </div>
 </template>
 
 <script>
@@ -47,7 +50,7 @@ export default {
       const { valid, message } = validate({ value: this.selected, validation: this.validation, required: this.required })
       this.valid = valid;
       this.message = message;
-      this.$emit("change", {
+      this.$emit(this.validation.trigger || 'change', {
           field: this.field,
           value: this.selected,
           valid,
@@ -57,3 +60,20 @@ export default {
   },
 };
 </script>
+
+
+<style lang="less" scoped>
+.select {
+  position: relative;
+  .none {
+    display: none;
+  }
+
+  .warning {
+    position: absolute;
+    bottom: -28px;
+    font-size: 12px;
+    color: red;
+  }
+}
+</style>

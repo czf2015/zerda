@@ -18,6 +18,7 @@
           @click="operate(operation, scope.$index)"
           :type="operation.field == 'del' ? 'danger' : operation.field == 'edit' ? 'primary' : 'text'"
           size="mini"
+          :disabled="isDisabled(operation.field, scope.$index)"
         >{{operation.label}}</el-button>
       </template>
     </el-table-column>
@@ -61,6 +62,9 @@ export default {
     append() {
       this.$emit("append");
     },
+    isDisabled(field, index) {
+      return (field == 'up' && index == 0) || (field == 'down' && index == this.datasource.length - 1)
+    }
   },
 };
 </script>

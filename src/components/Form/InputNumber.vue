@@ -1,9 +1,12 @@
 <template>
-  <input type="number" v-model.number="inputNumber" @blur="handleInput" />
+  <div class="input-number">
+    <input type="number" v-model.number="inputNumber" />
+    <p :class="valid ? 'none' : 'warning'">{{message}}</p>
+  </div>
 </template>
 
 <script>
-import { validate } from '@/utils/validate.js'
+import { validate } from "@/utils/validate.js";
 
 export default {
   name: "InputNumber",
@@ -16,13 +19,13 @@ export default {
       type: Number,
     },
     required: {
-        type: Boolean,
-        default: false
+      type: Boolean,
+      default: false,
     },
     validation: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -31,13 +34,16 @@ export default {
       message: this.validation.message || "",
     };
   },
-  methods: {
-    handleInput() {
-      //   console.log(this.inputNumber);
-      const { valid, message } = validate({ value: this.inputNumber, validation: this.validation, required: this.required })
+  watch: {
+    inputNumber() {
+      const { valid, message } = validate({
+        value: this.inputNumber,
+        validation: this.validation,
+        required: this.required,
+      });
       this.valid = valid;
       this.message = message;
-      this.$emit("blur", {
+      this.$emit(this.validation.trigger || 'change', {
         field: this.field,
         value: this.inputNumber,
         valid,
@@ -47,3 +53,20 @@ export default {
   },
 };
 </script>
+
+
+<style lang="less" scoped>
+.input-number {
+  position: relative;
+  .none {
+    display: none;
+  }
+
+  .warning {
+    position: absolute;
+    bottom: -28px;
+    font-size: 12px;
+    color: red;
+  }
+}
+</style>

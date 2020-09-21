@@ -1,5 +1,8 @@
 <template>
-  <el-date-picker type="date" placeholder="选择日期" v-model="date" />
+  <div class="date-picker">
+    <el-date-picker type="date" placeholder="选择日期" v-model="date" />
+    <p :class="valid ? 'none' : 'warning'">{{message}}</p>
+  </div>
 </template>
 
 
@@ -77,7 +80,7 @@ export default {
       });
       this.valid = valid;
       this.message = message;
-      this.$emit("change", {
+      this.$emit(this.validation.trigger || 'change', {
         field: this.field,
         value: dateTime,
         valid,
@@ -92,3 +95,22 @@ export default {
   },
 };
 </script>
+
+
+
+
+<style lang="less" scoped>
+.date-picker {
+  position: relative;
+  .none {
+    display: none;
+  }
+
+  .warning {
+    position: absolute;
+    bottom: -28px;
+    font-size: 12px;
+    color: red;
+  }
+}
+</style>

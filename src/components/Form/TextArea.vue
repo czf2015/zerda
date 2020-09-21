@@ -1,5 +1,8 @@
 <template>
-  <textarea v-model="inputText" @blur="handleInput" />
+  <div class="textarea">
+    <textarea v-model="inputText" />
+    <p :class="valid ? 'none' : 'warning'">{{message}}</p>
+  </div>
 </template>
 
 <script>
@@ -31,8 +34,8 @@ export default {
       message: this.validation.message || "",
     };
   },
-  methods: {
-    handleInput() {
+  watch: {
+    inputText() {
       const { valid, message } = validate({
         value: this.inputText,
         validation: this.validation,
@@ -40,7 +43,7 @@ export default {
       });
       this.valid = valid;
       this.message = message;
-      this.$emit("blur", {
+      this.$emit(this.validation.trigger || 'change', {
         field: this.field,
         value: this.inputText,
         valid,
@@ -50,3 +53,19 @@ export default {
   },
 };
 </script>
+
+<style lang="less" scoped>
+.textarea {
+  position: relative;
+  .none {
+    display: none;
+  }
+
+  .warning {
+    position: absolute;
+    bottom: -28px;
+    font-size: 12px;
+    color: red;
+  }
+}
+</style>
