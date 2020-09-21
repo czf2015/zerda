@@ -146,8 +146,8 @@
           "required": true,
           "validation": {
             "type": "link",
-            "pattern": "/^//yun.ccb.com/",
-            "trigger": "blur"
+            "pattern": "^\/\/yun.ccb.com",
+            "trigger": "link"
           }
         },
         {
@@ -155,8 +155,8 @@
           "label": "按钮",
           "validation": {
             "type": "link",
-            "pattern": "/^//yun.ccb.com/",
-            "trigger": "blur"
+            "pattern": "^\/\/yun.ccb.com",
+            "trigger": "link"
           }
         },
         {
@@ -560,8 +560,8 @@
           "required": true,
           "validation": {
             "type": "link",
-            "pattern": "/^//yun.ccb.com/",
-            "trigger": "blur"
+            "pattern": "^\/\/yun.ccb.com",
+            "trigger": "link"
           }
         },
         {

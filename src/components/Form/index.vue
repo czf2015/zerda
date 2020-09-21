@@ -8,7 +8,7 @@
           :field="item.field"
           :value="item.value"
           :options="adaptOptions(item.options)"
-          :required="item.validation.required"
+          :required="item.required"
           :validation="item.validation"
           @[item.validation.trigger]="handleTrigger"
         />
@@ -25,7 +25,7 @@
             :field="item.field"
             :value="item.value"
             :options="adaptOptions(item.options)"
-            :required="item.validation.required"
+            :required="item.required"
             :validation="item.validation"
             @[item.validation.trigger]="handleTrigger"
           />

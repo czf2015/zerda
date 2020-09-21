@@ -43,7 +43,7 @@ export default {
       });
       this.valid = valid;
       this.message = message;
-      this.$emit("change", {
+      this.$emit(this.validation.trigger || 'change', {
         field: this.field,
         value: this.inputNumber,
         valid,

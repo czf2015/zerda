@@ -37,10 +37,11 @@ export default {
   },
   watch: {
     inputText() {
+      debugger
       const { valid, message } = validate({ value: this.inputText, validation: this.validation, required: this.required })
       this.valid = valid;
       this.message = message;
-      this.$emit("change", {
+      this.$emit(this.validation.trigger || 'change', {
         field: this.field,
         value: this.inputText,
         valid,
