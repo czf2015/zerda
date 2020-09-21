@@ -1,9 +1,9 @@
 <template>
   <div class="table-form-panel" @mouseover="hover = true" @mouseleave="hover = false">
     <span v-show="hover" class="top-right">
-      <i class="icon_up" />
-      <i class="icon_down" />
-      <i class="icon_close" @click="handleRemove" />
+      <i class="icon_up" @click="$emit('up')" v-show="moveable != 'down'" />
+      <i class="icon_down" @click="$emit('down')" v-show="moveable != 'up'" />
+      <i class="icon_close" @click="$emit('del')" />
     </span>
     <h3 class="title" @mouseover="editTitle = true" @mouseleave="editTitle = false">
       <input type="text" v-if="editTitle" v-model="title" />
@@ -56,6 +56,10 @@ export default {
     TableForm,
   },
   props: {
+    moveable: {
+      type: String,
+      default: 'updown'
+    },
     initial: {
       type: Object,
       required: true,
@@ -129,9 +133,6 @@ export default {
         this.activeTab = activeName;
         this.content = tabs.filter((tab) => tab.name !== targetName);
       }
-    },
-    handleRemove() {
-      console.log("remove");
     },
   },
   watch: {

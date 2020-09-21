@@ -36,7 +36,7 @@ export default {
 .sidebar {
   margin: 0;
   padding: 0;
-  border-radius: 5px;
+  border-radius: 8px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5);
   cursor: pointer;
   > .sidebar-item {
@@ -49,6 +49,7 @@ export default {
     font-weight: bold;
     color: #444950;
     background: #fff;
+    border-bottom: solid 1px #ccc;
     &:first-child {
       color: #409EFF;
     }

@@ -8,6 +8,8 @@
       @edit="editTable"
       @add="addTable"
       @del="delTable"
+      @up="upTable"
+      @down="downTable"
       @append="appendTable"
     />
     <div class="mask" v-if="openDialog">
@@ -71,8 +73,14 @@ export default {
     addTable() {},
     delTable(index) {
       if (confirm("确定要删除吗？")) {
-        console.log(index);
+        this.datasource.splice(index, 1)
       }
+    },
+    upTable(index) {
+      this.datasource.splice(index - 1, 2, this.datasource[index], this.datasource[index -1])
+    },
+    downTable(index) {
+      this.datasource.splice(index, 2, this.datasource[index + 1], this.datasource[index])
     },
     appendTable() {
       this.formData = [...this.columns];
