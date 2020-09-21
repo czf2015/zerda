@@ -401,7 +401,8 @@
           "validation": {
             "type": "text",
             "minLength": 0,
-            "maxLength": 5
+            "maxLength": 5,
+            "trigger": "blur"
           }
         }
       ],

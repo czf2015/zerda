@@ -21,6 +21,8 @@
       :datasource="table.content"
       :columns="table.columns"
       :operations="table.operations"
+      @save="saveTable"
+      @append="appendTable"
     />
   </div>
 </template>
@@ -55,6 +57,14 @@ export default {
       hover: false,
     };
   },
+  methods: {
+    saveTable(formData) {
+      console.log(formData)
+    },
+    appendTable(formData) {
+      console.log(formData)
+    }
+  }
 };
 </script>
 

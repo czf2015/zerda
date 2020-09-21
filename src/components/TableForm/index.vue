@@ -60,6 +60,7 @@ export default {
       openDialog: false,
       legend: "请填写内容",
       formData: [],
+      isRevised: false,
     };
   },
   methods: {
@@ -69,6 +70,7 @@ export default {
     editTable(index) {
       this.formData = convertFormData(this.columns, this.datasource[index]);
       this.openDialog = true;
+      this.isRevised = true
     },
     addTable() {},
     delTable(index) {
@@ -88,10 +90,15 @@ export default {
     },
     saveForm(formData) {
       this.openDialog = false;
-      this.$emit("save", formData);
+      if (this.isRevised) {
+        this.$emit("save", formData);
+      } else {
+        this.$emit("append", formData)
+      }
     },
     cancelForm() {
       this.openDialog = false;
+      this.isRevised = false
     },
   },
 };

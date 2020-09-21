@@ -31,6 +31,7 @@ export const convert = ({ id, type, usage, title, desc, background, content, ext
                 type: "text",
                 minLength: 10,
                 maxLength: 20,
+                trigger: 'blur'
             },
         })
     }
@@ -43,7 +44,8 @@ export const convert = ({ id, type, usage, title, desc, background, content, ext
             validation: {
                 type: "image",
                 minSize: 5,
-                maxSize: 10,
+                maxSize: 1024,
+                trigger: 'blur'
             },
         })
     }

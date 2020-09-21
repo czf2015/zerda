@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     handleInput() {
-    //   console.log(this.inputText);
+      console.log(this.inputText);
       const { valid, message } = validate({ value: this.inputText, validation: this.validation, required: this.required })
       this.valid = valid;
       this.message = message;
