@@ -58,7 +58,7 @@ import TextArea from "./TextArea.vue";
 import InputText from "./InputText.vue";
 import InputNumber from "./InputNumber.vue";
 import InputImage from "./InputImage.vue";
-// import { capital } from '@/utils/string.js'
+
 const capital = (str) => str[0].toUpperCase() + str.slice(1);
 
 export default {
@@ -123,10 +123,10 @@ export default {
           return "TextArea";
         case "select":
           return "CustomSelect";
-        case "switch":
+        case "boolean":
+        case "bool":
           return "CustomSwitch";
         default:
-          // console.log(capital(type));
           return capital(type);
       }
     },
@@ -144,12 +144,11 @@ export default {
       formItem.validation.message = message;
       this.canSave = this.formData.every((item) => item.validation.valid !== false);
       console.log(this.canSave)
-      if (this.canSave && this.auto) {
+      if (this.auto) {
         this.$emit("change", this.formData);
       }
     },
     save() {
-      // console.log(this.formData);
       this.$emit("save", this.formData);
     },
     cancel() {

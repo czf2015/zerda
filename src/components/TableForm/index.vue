@@ -4,13 +4,12 @@
       :datasource="datasource"
       :columns="columns"
       :operations="operations"
-      @check="checkTable"
-      @edit="editTable"
-      @add="addTable"
-      @del="delTable"
-      @up="upTable"
-      @down="downTable"
-      @append="appendTable"
+      @check="handleTableCheck"
+      @edit="handleTableEdit"
+      @del="handleTableDel"
+      @up="handleTableUp"
+      @down="handleTableDown"
+      @append="handleTableAppend"
     />
     <div class="mask" v-if="openDialog">
       <CustomForm
@@ -19,8 +18,8 @@
         :datasource="formData"
         :legend="legend"
         :width="width"
-        @save="saveForm"
-        @cancel="cancelForm"
+        @save="handleFormSave"
+        @cancel="handleFormCancel"
       />
     </div>
   </div>
@@ -29,7 +28,7 @@
 <script>
 import CustomTable from "@/components/Table";
 import CustomForm from "@/components/Form";
-import { convertFormData } from "./helpers.js";
+import { combine } from "./helpers.js";
 
 export default {
   components: {
@@ -64,40 +63,40 @@ export default {
     };
   },
   methods: {
-    checkTable(index) {
+    handleTableCheck(index) {
       console.log(index);
     },
-    editTable(index) {
-      this.formData = convertFormData(this.columns, this.datasource[index]);
+    handleTableEdit(index) {
+      this.formData = combine(this.columns, this.datasource[index]);
       this.openDialog = true;
       this.isRevised = true
       this.$emit('edit', index)
     },
-    addTable() {},
-    delTable(index) {
+    handleTableDel(index) {
       if (confirm("确定要删除吗？")) {
-        this.datasource.splice(index, 1)
+        this.$emit('del', index)
       }
     },
-    upTable(index) {
-      this.datasource.splice(index - 1, 2, this.datasource[index], this.datasource[index -1])
+    handleTableUp(index) {
+      this.$emit('up', index)
     },
-    downTable(index) {
-      this.datasource.splice(index, 2, this.datasource[index + 1], this.datasource[index])
+    handleTableDown(index) {
+      this.$emit('down', index)
     },
-    appendTable() {
+    handleTableAppend() {
       this.formData = JSON.parse(JSON.stringify(this.columns))
       this.openDialog = true;
     },
-    saveForm(formData) {
+    handleFormSave(formData) {
       this.openDialog = false;
       if (this.isRevised) {
         this.$emit("save", formData);
+        this.isRevised = false
       } else {
         this.$emit("append", formData)
       }
     },
-    cancelForm() {
+    handleFormCancel() {
       this.openDialog = false;
       this.isRevised = false
     },

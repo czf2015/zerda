@@ -118,7 +118,7 @@ export default {
 
   .warning {
     position: absolute;
-    bottom: -28px;
+    bottom: -16px;
     font-size: 12px;
     color: red;
   }

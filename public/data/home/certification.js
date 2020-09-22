@@ -1,3 +1,91 @@
+const operations = [
+    // {
+    //     field: 'check',
+    //     label: '查看'
+    // },
+    {
+        field: 'edit',
+        label: '编辑'
+    },
+    // {
+    //     field: 'add',
+    //     label: '添加'
+    // },
+    {
+        field: 'del',
+        label: '删除'
+    },
+    {
+        field: 'up',
+        label: '上移'
+    },
+    {
+        field: 'down',
+        label: '下移'
+    }
+]
+
+const extra = [
+    {
+        field: 'title',
+        label: '标题',
+        mode: 'single',
+        required: true,
+        validation: {
+            type: 'text',
+            minLength: 0,
+            maxLength: 10,
+            trigger: 'change'
+        }
+    },
+    {
+        field: 'desc',
+        label: '描述',
+        mode: 'single',
+        required: true,
+        validation: {
+            type: 'text',
+            minLength: 0,
+            maxLength: 20,
+            trigger: 'change'
+        }
+    },
+    {
+        field: 'content',
+        label: '内容',
+        mode: 'multiple',
+        children: [
+            {
+                field: 'iconURL',
+                label: '图标',
+                mode: 'single',
+                required: true,
+                validation: {
+                    type: 'image',
+                    minSize: 0,
+                    maxSize: 1024,//kb
+                    trigger: "blur"
+                }
+            },
+            {
+                field: 'title',
+                label: '标题',
+                mode: 'single',
+                required: false,
+                validation: {
+                    type: 'text',
+                    minLength: 5,
+                    maxLength: 10,
+                    trigger: "blur"
+                }
+            },
+
+        ],
+        operations,
+    }
+]
+
+
 module.exports = {
     id: '6',
     type: 'Container',
@@ -23,56 +111,5 @@ module.exports = {
             "iconURL": "//yun.ccb.com/myNatural/img/DJCP.png"
         }
     ],
-    extra: {
-        columns: [
-            {
-                field: 'iconURL',
-                label: '图标',
-                required: true,
-                validation: {
-                    type: 'image',
-                    minSize: 0,
-                    maxSize: 1024,//kb
-                    trigger: "blur"
-                }
-            },
-            {
-                field: 'title',
-                label: '标题',
-                required: false,
-                validation: {
-                    type: 'text',
-                    minLength: 5,
-                    maxLength: 10,
-                    trigger: "blur"
-                }
-            },
-        ],
-        operations: [
-            // {
-            //     field: 'check',
-            //     label: '查看'
-            // },
-            {
-                field: 'edit',
-                label: '编辑'
-            },
-            // {
-            //     field: 'add',
-            //     label: '添加'
-            // },
-            {
-                field: 'del',
-                label: '删除'
-            },
-            {
-                field: 'up',
-                label: '上移'
-            },
-            {
-                field: 'down',
-                label: '下移'
-            }
-        ],
-    },
+    extra,
 }
