@@ -117,10 +117,12 @@ export default {
       }
     },
     handleDel(idx) {
-      if (this.value) {
-        this.value.splice(idx, 1);
-      } else {
-        this.list.splice(idx, 1);
+      if (confirm('确定删除？')) {
+        if (this.value) {
+          this.value.splice(idx, 1);
+        } else {
+          this.list.splice(idx, 1);
+        }
       }
     },
     moveable(idx) {

@@ -118,20 +118,22 @@ export default {
           break;
         case "remove":
           console.log(targetName)
-          if (this.activeTab === targetName) {
-            tabs.forEach((tab, index) => {
-              for (let index = 0; index < tabs.length; index++) {
-                if (tabs[index].category === targetName) {
-                  const nextTab = tabs[index + 1] || tabs[index - 1];
-                  if (nextTab) {
-                    this.activeTab = nextTab.category;
+          if (confirm('确定删除该栏？')) {
+            if (this.activeTab === targetName) {
+              tabs.forEach((tab, index) => {
+                for (let index = 0; index < tabs.length; index++) {
+                  if (tabs[index].category === targetName) {
+                    const nextTab = tabs[index + 1] || tabs[index - 1];
+                    if (nextTab) {
+                      this.activeTab = nextTab.category;
+                    }
+                    break
                   }
-                  break
                 }
-              }
-            })
+              })
+            }
+            this.store.content = tabs.filter((tab) => tab.category !== targetName);
           }
-          this.store.content = tabs.filter((tab) => tab.category !== targetName);
           break;
         default:
           break;
