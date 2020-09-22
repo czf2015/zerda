@@ -1,12 +1,12 @@
 <template>
   <div class="input-text">
-    <input type="text" v-model="inputText" />
+    <input type="text" :value="inputText" @[validation.trigger]="handleTrigger" />
     <p :class="valid ? 'none' : 'warning'">{{message}}</p>
   </div>
 </template>
 
 <script>
-import { validate } from '@/utils/validate.js'
+import { validate } from "@/utils/validate.js";
 
 export default {
   name: "InputText",
@@ -17,16 +17,16 @@ export default {
     },
     value: {
       type: String,
-      default: ''
+      default: "",
     },
     required: {
-        type: Boolean,
-        default: false
+      type: Boolean,
+      default: false,
     },
     validation: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -35,20 +35,25 @@ export default {
       message: this.validation.message || "",
     };
   },
-  watch: {
-    inputText() {
-      debugger
-      const { valid, message } = validate({ value: this.inputText, validation: this.validation, required: this.required })
+  methods: {
+    handleTrigger(e) {
+      this.inputText = e.target.value
+      const { valid, message } = validate({
+        value: this.inputText,
+        validation: this.validation,
+        required: this.required,
+      });
       this.valid = valid;
       this.message = message;
-      this.$emit(this.validation.trigger || 'change', {
+      debugger
+      this.$emit(this.validation.trigger, {
         field: this.field,
         value: this.inputText,
         valid,
         message,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

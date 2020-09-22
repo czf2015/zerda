@@ -62,7 +62,7 @@ export default {
       });
       this.valid = valid;
       this.message = message;
-      this.$emit(this.validation.trigger || 'change', {
+      this.$emit(this.validation.trigger, {
         field: this.field,
         value: this.checked,
         valid,

@@ -56,7 +56,7 @@ const extra = [
                     type: 'text',
                     minLength: 0,
                     maxLength: 5,
-                    trigger: "blur"
+                    trigger: "change"
                 }
             },
             {
@@ -119,7 +119,7 @@ const extra = [
                         required: false,
                         validation: {
                             type: 'link',
-                            pattern: '//yun.ccb.com/',
+                            pattern: '^\/\/yun.ccb.com',
                             trigger: "blur"
                         }
                     },

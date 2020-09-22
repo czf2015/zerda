@@ -13,13 +13,13 @@
       :type="cardType"
       style="margin-top: 20px;"
       v-model="activeTab"
+      :before-leave="handleTabLeave"
       editable
       @edit="handleTabsEdit"
     >
       <el-tab-pane
-        v-for="({ category, formData, tableData }) in panelDatas"
-        :key="category"
-        :name="category"
+        v-for="({ category, formData, tableData }, idx) in panelDatas"
+        :key="idx"
         :label="category"
       >
         <Compose
@@ -70,7 +70,7 @@ export default {
   data() {
     return {
       store: this.initial,
-      activeTab: this.initial.content[0] && this.initial.content[0].category,
+      activeTab: 0,
       closable: false,
       canTabLeave: true,
     };
@@ -108,36 +108,35 @@ export default {
 
   methods: {
     handleTabsEdit(targetName, action) {
-      const tabs = this.store.content
+      const tabs = this.store.content;
       switch (action) {
         case "add":
-          this.activeTab = `tab ${tabs.length + 1}`;
+          this.activeTab = tabs.length;
           tabs.push({
-            category: this.activeTab
-          })
+            category: `tab ${this.activeTab}`,
+          });
           break;
         case "remove":
-          console.log(targetName)
-          if (confirm('确定删除该栏？')) {
+          console.log(targetName);
+          if (confirm("确定删除该栏？")) {
             if (this.activeTab === targetName) {
-              tabs.forEach((tab, index) => {
-                for (let index = 0; index < tabs.length; index++) {
-                  if (tabs[index].category === targetName) {
-                    const nextTab = tabs[index + 1] || tabs[index - 1];
-                    if (nextTab) {
-                      this.activeTab = nextTab.category;
-                    }
-                    break
-                  }
-                }
-              })
+              if (targetName < tabs.length - 1) {
+                this.activeTab = targetName + 1;
+              } else {
+                this.activeTab = targetName - 1;
+              }
             }
-            this.store.content = tabs.filter((tab) => tab.category !== targetName);
+            this.store.splice(targetName, 1);
           }
           break;
         default:
           break;
       }
+    },
+    handleTabLeave() {
+      // console.log(e.name);
+      // console.log(this.activeTab);
+      return this.canTabLeave
     },
     handleFormChange(formData) {
       this.formData = formData;
@@ -146,52 +145,33 @@ export default {
       this.store.title = val;
     },
     handlePanelTableSave({ index, value }) {
-      this.store.content
-        .find((panelData) => panelData.category == this.activeTab)
-        .children.splice(index, 1, extract(value));
+      this.store.content[this.activeTab].children.splice(
+        index,
+        1,
+        extract(value)
+      );
     },
     handlePanelTableAppend(formData) {
-      this.store.content
-        .find((panelData) => panelData.category == this.activeTab)
-        .children.push(extract(formData));
+      this.store.content[this.activeTab].children.push(extract(formData));
     },
     handlePanelTableDelete(index) {
-      this.store.content
-        .find((panelData) => panelData.category == this.activeTab)
-        .children.splice(index, 1);
+      this.store.content[this.activeTab].children.splice(index, 1);
     },
     handlePanelFormChange(formData) {
-      const panelData = this.store.content.find(
-        (panelData) => panelData.category == this.activeTab
-      );
+      const panelData = this.store.content[this.activeTab];
       formData.forEach(({ field, value }) => {
         panelData[field] = value;
-        if (field == 'category') {
-          this.activeTab = value
-        }
       });
-      // this.canTabLeave = formData.every(({ validation }) => validation.valid)
+      this.canTabLeave = formData.every(({ validation }) => validation.valid)
     },
     handlePanelTableUp(index) {
-      const panelTable = this.store.content.find(
-        (panelData) => panelData.category == this.activeTab
-      ).children;
+      const panelTable = this.store.content[this.activeTab].children;
       panelTable.splice(index - 1, 2, panelTable[index], panelTable[index - 1]);
     },
     handlePanelTableDown(index) {
-      const panelTable = this.store.content.find(
-        (panelData) => panelData.category == this.activeTab
-      ).children;
+      const panelTable = this.store.content[this.activeTab].children;
       panelTable.splice(index, 2, panelTable[index + 1], panelTable[index]);
     },
   },
-  watch: {
-    activeTab(tabName, old) {
-      console.log(old)
-      // this.activeTab = old
-      // return old
-      return false
-    }
-  }
 };
 </script>

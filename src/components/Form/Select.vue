@@ -50,7 +50,7 @@ export default {
       const { valid, message } = validate({ value: this.selected, validation: this.validation, required: this.required })
       this.valid = valid;
       this.message = message;
-      this.$emit(this.validation.trigger || 'change', {
+      this.$emit(this.validation.trigger, {
           field: this.field,
           value: this.selected,
           valid,

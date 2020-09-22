@@ -23,7 +23,7 @@
           "type": "text",
           "minLength": 0,
           "maxLength": 10,
-          "trigger": "change"
+          "trigger": "input"
         }
       },
       {
@@ -52,7 +52,7 @@
               "type": "text",
               "minLength": 0,
               "maxLength": 10,
-              "trigger": "change"
+              "trigger": "input"
             }
           },
           {
@@ -64,7 +64,7 @@
               "type": "text",
               "minLength": 0,
               "maxLength": 20,
-              "trigger": "change"
+              "trigger": "input"
             }
           },
           {
@@ -74,7 +74,7 @@
             "required": false,
             "validation": {
               "type": "link",
-              "pattern": "^//yun.ccb.com",
+              "pattern": "^\/\/yun.ccb.com",
               "trigger": "change"
             }
           }
@@ -147,7 +147,7 @@
           "type": "text",
           "minLength": 0,
           "maxLength": 10,
-          "trigger": "change"
+          "trigger": "input"
         }
       },
       {
@@ -159,7 +159,7 @@
           "type": "text",
           "minLength": 0,
           "maxLength": 20,
-          "trigger": "change"
+          "trigger": "input"
         }
       },
       {
@@ -176,7 +176,7 @@
               "type": "text",
               "minLength": 3,
               "maxLength": 5,
-              "trigger": "blur"
+              "trigger": "input"
             }
           },
           {
@@ -198,7 +198,7 @@
             "required": true,
             "validation": {
               "type": "link",
-              "pattern": "/^//yun.ccb.com/",
+              "pattern": "^\/\/yun.ccb.com",
               "trigger": "blur"
             }
           },
@@ -208,7 +208,7 @@
             "mode": "single",
             "validation": {
               "type": "link",
-              "pattern": "/^//yun.ccb.com/",
+              "pattern": "^\/\/yun.ccb.com",
               "trigger": "blur"
             }
           },
@@ -220,7 +220,7 @@
               "type": "text",
               "minLength": 10,
               "maxLength": 20,
-              "trigger": "blur"
+              "trigger": "input"
             }
           }
         ],
@@ -335,7 +335,7 @@
           "type": "text",
           "minLength": 0,
           "maxLength": 10,
-          "trigger": "change"
+          "trigger": "input"
         }
       },
       {
@@ -347,7 +347,7 @@
           "type": "text",
           "minLength": 0,
           "maxLength": 20,
-          "trigger": "change"
+          "trigger": "input"
         }
       },
       {
@@ -364,7 +364,7 @@
               "type": "text",
               "minLength": 0,
               "maxLength": 5,
-              "trigger": "blur"
+              "trigger": "input"
             }
           },
           {
@@ -405,7 +405,7 @@
                   "type": "text",
                   "minLength": 5,
                   "maxLength": 10,
-                  "trigger": "blur"
+                  "trigger": "input"
                 }
               },
               {
@@ -417,7 +417,7 @@
                   "type": "text",
                   "minLength": 5,
                   "maxLength": 10,
-                  "trigger": "blur"
+                  "trigger": "input"
                 }
               },
               {
@@ -427,7 +427,7 @@
                 "required": false,
                 "validation": {
                   "type": "link",
-                  "pattern": "//yun.ccb.com/",
+                  "pattern": "^\/\/yun.ccb.com",
                   "trigger": "blur"
                 }
               }
@@ -485,7 +485,7 @@
           "type": "text",
           "minLength": 0,
           "maxLength": 10,
-          "trigger": "change"
+          "trigger": "input"
         }
       },
       {
@@ -497,7 +497,7 @@
           "type": "text",
           "minLength": 0,
           "maxLength": 20,
-          "trigger": "change"
+          "trigger": "input"
         }
       },
       {
@@ -514,7 +514,7 @@
               "type": "text",
               "minLength": 0,
               "maxLength": 5,
-              "trigger": "change"
+              "trigger": "input"
             }
           },
           {
@@ -543,7 +543,7 @@
                   "type": "text",
                   "minLength": 0,
                   "maxLength": 5,
-                  "trigger": "blur"
+                  "trigger": "input"
                 }
               },
               {
@@ -555,7 +555,7 @@
                   "type": "textarea",
                   "minLength": 10,
                   "maxLength": 30,
-                  "trigger": "blur"
+                  "trigger": "input"
                 }
               },
               {
@@ -642,7 +642,7 @@
           "type": "text",
           "minLength": 0,
           "maxLength": 10,
-          "trigger": "change"
+          "trigger": "input"
         }
       },
       {
@@ -654,7 +654,7 @@
           "type": "text",
           "minLength": 0,
           "maxLength": 20,
-          "trigger": "change"
+          "trigger": "input"
         }
       },
       {
@@ -671,7 +671,7 @@
               "type": "text",
               "minLength": 3,
               "maxLength": 5,
-              "trigger": "blur"
+              "trigger": "input"
             }
           },
           {
@@ -683,7 +683,7 @@
               "type": "textarea",
               "minLength": 10,
               "maxLength": 30,
-              "trigger": "blur"
+              "trigger": "input"
             }
           },
           {
@@ -693,7 +693,7 @@
             "required": true,
             "validation": {
               "type": "link",
-              "pattern": "/^//yun.ccb.com/",
+              "pattern": "^\/\/yun.ccb.com",
               "trigger": "blur"
             }
           },
@@ -766,7 +766,7 @@
           "type": "text",
           "minLength": 0,
           "maxLength": 10,
-          "trigger": "change"
+          "trigger": "input"
         }
       },
       {
@@ -778,7 +778,7 @@
           "type": "text",
           "minLength": 0,
           "maxLength": 20,
-          "trigger": "change"
+          "trigger": "input"
         }
       },
       {
@@ -807,7 +807,7 @@
               "type": "text",
               "minLength": 5,
               "maxLength": 10,
-              "trigger": "blur"
+              "trigger": "input"
             }
           }
         ],

@@ -86,7 +86,7 @@ const extra = [
                 required: true,
                 validation: {
                     type: 'link',
-                    pattern: '/^\/\/yun.ccb.com/',
+                    pattern: '^\/\/yun.ccb.com',
                     trigger: "blur"
                 }
             },
@@ -97,7 +97,7 @@ const extra = [
                 // required: true,
                 validation: {
                     type: 'link',
-                    pattern: '/^\/\/yun.ccb.com/',
+                    pattern: '^\/\/yun.ccb.com',
                     trigger: "blur"
                 }
             },
