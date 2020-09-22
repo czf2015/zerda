@@ -103,6 +103,7 @@ export default {
     },
     handleUp(idx) {
       if (this.value) {
+        console.log(idx)
         this.value.splice(idx - 1, 2, this.value[idx], this.value[idx - 1]);
       } else {
         this.list.splice(idx - 1, 2, this.list[idx], this.list[idx - 1]);

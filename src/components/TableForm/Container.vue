@@ -1,146 +1,89 @@
 <template>
-  <div class="table-form-container" @mouseover="hover = true" @mouseleave="hover = false">
-    <span v-show="hover" class="top-right">
-      <i class="icon_up" @click="$emit('up')" v-show="moveable != 'down'" />
-      <i class="icon_down" @click="$emit('down')" v-show="moveable != 'up'" />
-      <i class="icon_close" @click="$emit('del')" />
-    </span>
-    <h3 class="title" @mouseover="editTitle = true" @mouseleave="editTitle = false">
-      <input type="text" v-if="editTitle" v-model="title" maxlength="10" />
-      <span v-else>{{title}}</span>
-    </h3>
-    <!-- <img :src="effect" width="80%" style="margin-left: 10%;" /> -->
-    <CustomForm :datasource="formData" :auto="true" padding="0" @change="handleChange" />
-    <TableForm
-      style="margin-top: 20px;"
-      :datasource="content"
-      :columns="columns"
-      :operations="operations"
-      @edit="handleEdit"
-      @save="saveTable"
-      @append="appendTable"
+  <Wrapper
+    :moveable="moveable"
+    :title="store.title"
+    @change="handleTitleChange"
+    @up="$emit('up')"
+    @down="$emit('down')"
+    @del="$emit('del')"
+  >
+    <Compose
+      :auto="true"
+      :initial="{ formData, tableData }"
+      @change="handleFormChange"
+      @save="handleTableSave"
+      @append="handleTableAppend"
+      @del="handleTableDelete"
     />
-  </div>
+  </Wrapper>
 </template>
 
 
 <script>
-import CustomForm from "@/components/Form";
-import TableForm from "@/components/TableForm";
-import { convert } from "./helpers.js";
+import Wrapper from "./Wrapper";
+import Compose from "./Compose";
+import { extract } from "./helpers";
 
 export default {
-  name: "Container",
+  name: "TableFormContainer",
+
   components: {
-    CustomForm,
-    TableForm,
+    Wrapper,
+    Compose,
   },
+
   props: {
     moveable: {
       type: String,
-      default: 'updown'
+      default: "updown",
     },
     initial: {
       type: Object,
       required: true,
     },
   },
+
   data() {
-    const { table, formData } = convert(this.initial)
     return {
-      formData,
-      ...table,
-      editTitle: false,
-      title: this.initial.title || "标题",
-      hover: false,
-      editIndex: -1,
+      store: this.initial,
     };
   },
+
+  computed: {
+    formData() {
+      const form = this.store.extra.filter(
+        (item) => item.field !== "title" && item.field !== "content"
+      );
+      return form.map((item) => {
+        return { ...item, value: this.store[item.field] };
+      });
+    },
+    tableData() {
+      const table = this.store.extra.find((item) => item.field == "content");
+      return {
+        datasource: this.store.content,
+        columns: table.children,
+        operations: table.operations,
+      };
+    },
+  },
+
   methods: {
-    saveTable(formData) {
-      const data = {}
-      formData.forEach(({ field, value }) => {
-        data[field] = value
-      })
-      this.content.splice(this.editIndex, 1, data)
+    handleTitleChange(val) {
+      this.store.title = val;
     },
-    appendTable(formData) {
-      const data = {}
-      formData.forEach(({ field, value }) => {
-        data[field] = value
-      })
-      this.content.push(data)
+    handleTableSave({ index, value }) {
+      this.store.content.splice(index, 1, extract(value));
     },
-    handleEdit(idx) {
-      this.editIndex = idx
+    handleTableAppend(formData) {
+      this.store.content.push(extract(formData));
     },
-    handleChange(formData) {
-      this.formData = formData
-    }
-  }
+    handleTableDelete(index) {
+      this.store.content.splice(index, 1);
+    },
+    handleFormChange(formData) {
+      console.log(formData);
+    },
+  },
 };
 </script>
-
-
-<style lang="less" scoped>
-.table-form-container {
-  position: relative;
-  margin: 40px 40px;
-  // padding: 60px 60px;
-  // border: 1px solid #ebeef5;
-  // border-radius: 4px;
-  // box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.5);
-  > .top-right {
-    position: absolute;
-    top: 24px;
-    right: 0;
-    > .icon_up,
-    > .icon_down,
-    > .icon_close {
-      display: inline-block;
-      width: 24px;
-      height: 24px;
-      background-size: cover;
-    }
-    > .icon_up {
-      background-image: url(/svg/up.svg);
-      &:hover {
-        background-image: url(/svg/up-active.svg);
-      }
-    }
-    > .icon_down {
-      background-image: url(/svg/down.svg);
-      &:hover {
-        background-image: url(/svg/down-active.svg);
-      }
-    }
-    > .icon_close {
-      background-image: url(/svg/close.svg);
-      &:hover {
-        background-image: url(/svg/close-active.svg);
-      }
-    }
-  }
-  > .title {
-    padding-left: 10px;
-    font-size: 24px;
-    line-height: 48px;
-    font-weight: bold;
-    border-left: 4px solid green;
-  }
-
-  > .desc {
-    margin: 10px 0;
-    line-height: 36px;
-    > input[type="text"] {
-      min-width: 556px;
-    }
-  }
-
-  > img {
-    border: 1px solid #ebeef5;
-    border-radius: 4px;
-    box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.5);
-  }
-}
-</style>

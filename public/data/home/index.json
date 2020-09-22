@@ -13,71 +13,92 @@
         "link": "https://yun.ccb.com/product/productcos"
       }
     ],
-    "extra": {
-      "columns": [
-        {
-          "field": "imgURL",
-          "label": "背景图",
-          "required": true,
-          "validation": {
-            "type": "image",
-            "minSize": 0,
-            "maxSize": 1024,
-            "trigger": "blur"
-          }
-        },
-        {
-          "field": "title",
-          "label": "标题",
-          "required": false,
-          "validation": {
-            "type": "text",
-            "minLength": 5,
-            "maxLength": 10,
-            "trigger": "change"
-          }
-        },
-        {
-          "field": "desc",
-          "label": "描述",
-          "required": false,
-          "validation": {
-            "type": "text",
-            "minLength": 5,
-            "maxLength": 10,
-            "trigger": "change"
-          }
-        },
-        {
-          "field": "link",
-          "label": "卡片链接",
-          "required": false,
-          "validation": {
-            "type": "link",
-            "pattern": "https://yun.ccb.com/",
-            "trigger": "blur"
-          }
+    "extra": [
+      {
+        "field": "title",
+        "label": "标题",
+        "mode": "single",
+        "required": true,
+        "validation": {
+          "type": "text",
+          "minLength": 0,
+          "maxLength": 10,
+          "trigger": "change"
         }
-      ],
-      "operations": [
-        {
-          "field": "edit",
-          "label": "编辑"
-        },
-        {
-          "field": "del",
-          "label": "删除"
-        },
-        {
-          "field": "up",
-          "label": "上移"
-        },
-        {
-          "field": "down",
-          "label": "下移"
-        }
-      ]
-    }
+      },
+      {
+        "field": "content",
+        "label": "内容",
+        "mode": "multiple",
+        "children": [
+          {
+            "field": "imgURL",
+            "label": "背景图",
+            "mode": "single",
+            "required": true,
+            "validation": {
+              "type": "image",
+              "minSize": 0,
+              "maxSize": 1024,
+              "trigger": "blur"
+            }
+          },
+          {
+            "field": "title",
+            "label": "标题",
+            "mode": "single",
+            "required": true,
+            "validation": {
+              "type": "text",
+              "minLength": 0,
+              "maxLength": 10,
+              "trigger": "change"
+            }
+          },
+          {
+            "field": "desc",
+            "label": "描述",
+            "mode": "single",
+            "required": false,
+            "validation": {
+              "type": "text",
+              "minLength": 0,
+              "maxLength": 20,
+              "trigger": "change"
+            }
+          },
+          {
+            "field": "link",
+            "label": "链接",
+            "mode": "single",
+            "required": false,
+            "validation": {
+              "type": "link",
+              "pattern": "^//yun.ccb.com",
+              "trigger": "change"
+            }
+          }
+        ],
+        "operations": [
+          {
+            "field": "edit",
+            "label": "编辑"
+          },
+          {
+            "field": "del",
+            "label": "删除"
+          },
+          {
+            "field": "up",
+            "label": "上移"
+          },
+          {
+            "field": "down",
+            "label": "下移"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "2",
@@ -89,272 +110,116 @@
     "content": [
       {
         "title": "云服务器",
-        "imgURL": "https://yun.ccb.com/common/images/recommend_products1.png",
-        "link": "https://yun.ccb.com/product/cvm",
+        "imgURL": "//yun.ccb.com/common/images/recommend_products1.png",
+        "link": "//yun.ccb.com/product/cvm",
         "button": "",
         "desc": "立即申请"
       },
       {
         "title": "弹性负载均衡",
-        "imgURL": "https://yun.ccb.com/common/images/recommend_products2.png",
-        "link": "https://yun.ccb.com/product/elb",
+        "imgURL": "//yun.ccb.com/common/images/recommend_products2.png",
+        "link": "//yun.ccb.com/product/elb",
         "button": "",
         "desc": "立即申请"
       },
       {
         "title": "龙卫士",
-        "imgURL": "https://yun.ccb.com/common/images/recommend_products3.png",
-        "link": "https://yun.ccb.com/product/producthids",
+        "imgURL": "//yun.ccb.com/common/images/recommend_products3.png",
+        "link": "//yun.ccb.com/product/producthids",
         "button": "",
         "desc": "立即申请"
       },
       {
         "title": "MPP云数据",
-        "imgURL": "https://yun.ccb.com/common/images/recommend_products4.png",
-        "link": "https://yun.ccb.com/product/productmpp",
+        "imgURL": "//yun.ccb.com/common/images/recommend_products4.png",
+        "link": "//yun.ccb.com/product/productmpp",
         "button": "",
         "desc": "立即申请"
       }
     ],
-    "extra": {
-      "columns": [
-        {
-          "field": "title",
-          "label": "名称",
-          "required": true,
-          "validation": {
-            "type": "text",
-            "minLength": 3,
-            "maxLength": 5,
-            "trigger": "change"
-          }
-        },
-        {
-          "field": "imgURL",
-          "label": "图片",
-          "required": true,
-          "validation": {
-            "type": "image",
-            "minSize": 0,
-            "maxSize": 1024,
-            "trigger": "blur"
-          }
-        },
-        {
-          "field": "link",
-          "label": "链接",
-          "required": true,
-          "validation": {
-            "type": "link",
-            "pattern": "^\/\/yun.ccb.com",
-            "trigger": "link"
-          }
-        },
-        {
-          "field": "button",
-          "label": "按钮",
-          "validation": {
-            "type": "link",
-            "pattern": "^\/\/yun.ccb.com",
-            "trigger": "link"
-          }
-        },
-        {
-          "field": "desc",
-          "label": "描述",
-          "validation": {
-            "type": "text",
-            "minLength": 2,
-            "maxLength": 10,
-            "trigger": "change"
-          }
-        }
-      ],
-      "operations": [
-        {
-          "field": "edit",
-          "label": "编辑"
-        },
-        {
-          "field": "del",
-          "label": "删除"
-        },
-        {
-          "field": "up",
-          "label": "上移"
-        },
-        {
-          "field": "down",
-          "label": "下移"
-        }
-      ]
-    }
-  },
-  {
-    "id": "3",
-    "type": "Panel",
-    "usage": "Products",
-    "effect": "/images/home/products.png",
-    "title": "我们的云产品",
-    "desc": "计算、存储、网络、安全、数据库等全栈式产品，助您顺利上云",
-    "content": [
+    "extra": [
       {
-        "category": "计算",
-        "iconURL": "https://yun.ccb.com/common/images/index/midIcon/icon_%E8%AE%A1%E7%AE%97_normal.png",
-        "iconHoverURL": "https://yun.ccb.com/common/images/index/midIcon/icon_blue_%E8%AE%A1%E7%AE%97.png",
-        "children": [
-          {
-            "name": "云服务器",
-            "desc": "稳定、安全、弹性、高性能的云端计算服务，实时满足您的多样性业务需求",
-            "link": "https://yun.ccb.com/product/cvm"
-          },
-          {
-            "name": "容器服务",
-            "desc": "稳定、安全、高效、灵活扩展、简单易用的企业级Kubernetes 容器管理平台",
-            "link": "https://yun.ccb.com/product/tke"
-          },
-          {
-            "name": "裸金属服务器",
-            "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
-            "link": "https://yun.ccb.com/product/productbms"
-          },
-          {
-            "name": "裸金属服务器1",
-            "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
-            "link": "https://yun.ccb.com/product/productbms"
-          }
-        ]
+        "field": "title",
+        "label": "标题",
+        "mode": "single",
+        "required": true,
+        "validation": {
+          "type": "text",
+          "minLength": 0,
+          "maxLength": 10,
+          "trigger": "change"
+        }
       },
       {
-        "category": "网络",
-        "iconURL": "https://yun.ccb.com/common/images/index/midIcon/icon_%E7%BD%91%E7%BB%9C_normal.png",
-        "iconHoverURL": "https://yun.ccb.com/common/images/index/midIcon/icon_blue_%E7%BD%91%E7%BB%9C.png",
-        "children": [
-          {
-            "name": "云服务器",
-            "desc": "稳定、安全、弹性、高性能的云端计算服务，实时满足您的多样性业务需求",
-            "link": "https://yun.ccb.com/product/cvm"
-          },
-          {
-            "name": "容器服务",
-            "desc": "稳定、安全、高效、灵活扩展、简单易用的企业级Kubernetes 容器管理平台",
-            "link": "https://yun.ccb.com/product/tke"
-          },
-          {
-            "name": "裸金属服务器2",
-            "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
-            "link": "https://yun.ccb.com/product/productbms"
-          }
-        ]
+        "field": "desc",
+        "label": "描述",
+        "mode": "single",
+        "required": true,
+        "validation": {
+          "type": "text",
+          "minLength": 0,
+          "maxLength": 20,
+          "trigger": "change"
+        }
       },
       {
-        "category": "存储",
-        "iconURL": "https://yun.ccb.com/common/images/index/midIcon/icon_%E5%AD%98%E5%82%A8_normal.png",
-        "iconHoverURL": "https://yun.ccb.com/common/images/index/midIcon/icon_blue_%E5%AD%98%E5%82%A8.png",
+        "field": "content",
+        "label": "内容",
+        "mode": "multiple",
         "children": [
           {
-            "name": "云服务器",
-            "desc": "稳定、安全、弹性、高性能的云端计算服务，实时满足您的多样性业务需求",
-            "link": "https://yun.ccb.com/product/cvm"
-          },
-          {
-            "name": "容器服务",
-            "desc": "稳定、安全、高效、灵活扩展、简单易用的企业级Kubernetes 容器管理平台",
-            "link": "https://yun.ccb.com/product/tke"
-          },
-          {
-            "name": "裸金属服务器3",
-            "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
-            "link": "https://yun.ccb.com/product/productbms"
-          }
-        ]
-      }
-    ],
-    "extra": {
-      "columns": [
-        {
-          "field": "category",
-          "label": "类别",
-          "required": true,
-          "validation": {
-            "type": "text",
-            "minLength": 0,
-            "maxLength": 5,
-            "trigger": "change"
-          }
-        },
-        {
-          "field": "iconURL",
-          "label": "默认图标",
-          "required": true,
-          "validation": {
-            "type": "image",
-            "minSize": 0,
-            "maxSize": 1024,
-            "trigger": "blur"
-          }
-        },
-        {
-          "field": "iconHoverURL",
-          "label": "选中图标",
-          "required": true,
-          "validation": {
-            "type": "image",
-            "minSize": 0,
-            "maxSize": 1024,
-            "trigger": "blur"
-          }
-        }
-      ],
-      "operations": [
-        {
-          "field": "edit",
-          "label": "编辑"
-        },
-        {
-          "field": "del",
-          "label": "删除"
-        },
-        {
-          "field": "up",
-          "label": "上移"
-        },
-        {
-          "field": "down",
-          "label": "下移"
-        }
-      ],
-      "children": {
-        "columns": [
-          {
-            "field": "name",
+            "field": "title",
             "label": "名称",
+            "mode": "single",
             "required": true,
             "validation": {
               "type": "text",
-              "minLength": 5,
-              "maxLength": 10,
-              "trigger": "change"
+              "minLength": 3,
+              "maxLength": 5,
+              "trigger": "blur"
             }
           },
           {
-            "field": "desc",
-            "label": "描述",
+            "field": "imgURL",
+            "label": "图片",
+            "mode": "single",
             "required": true,
             "validation": {
-              "type": "text",
-              "minLength": 5,
-              "maxLength": 10,
-              "trigger": "change"
+              "type": "image",
+              "minSize": 0,
+              "maxSize": 1024,
+              "trigger": "blur"
             }
           },
           {
             "field": "link",
             "label": "链接",
-            "required": false,
+            "mode": "single",
+            "required": true,
             "validation": {
               "type": "link",
-              "pattern": "https://yun.ccb.com/",
+              "pattern": "/^//yun.ccb.com/",
+              "trigger": "blur"
+            }
+          },
+          {
+            "field": "button",
+            "label": "按钮",
+            "mode": "single",
+            "validation": {
+              "type": "link",
+              "pattern": "/^//yun.ccb.com/",
+              "trigger": "blur"
+            }
+          },
+          {
+            "field": "desc",
+            "label": "描述",
+            "mode": "single",
+            "validation": {
+              "type": "text",
+              "minLength": 10,
+              "maxLength": 20,
               "trigger": "blur"
             }
           }
@@ -378,7 +243,217 @@
           }
         ]
       }
-    }
+    ]
+  },
+  {
+    "id": "3",
+    "type": "Panel",
+    "usage": "Products",
+    "effect": "/images/home/products.png",
+    "title": "我们的云产品",
+    "desc": "计算、存储、网络、安全、数据库等全栈式产品，助您顺利上云",
+    "content": [
+      {
+        "category": "计算",
+        "iconURL": "//yun.ccb.com/common/images/index/midIcon/icon_%E8%AE%A1%E7%AE%97_normal.png",
+        "iconHoverURL": "//yun.ccb.com/common/images/index/midIcon/icon_blue_%E8%AE%A1%E7%AE%97.png",
+        "children": [
+          {
+            "name": "云服务器",
+            "desc": "稳定、安全、弹性、高性能的云端计算服务，实时满足您的多样性业务需求",
+            "link": "//yun.ccb.com/product/cvm"
+          },
+          {
+            "name": "容器服务",
+            "desc": "稳定、安全、高效、灵活扩展、简单易用的企业级Kubernetes 容器管理平台",
+            "link": "//yun.ccb.com/product/tke"
+          },
+          {
+            "name": "裸金属服务器",
+            "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
+            "link": "//yun.ccb.com/product/productbms"
+          },
+          {
+            "name": "裸金属服务器1",
+            "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
+            "link": "//yun.ccb.com/product/productbms"
+          }
+        ]
+      },
+      {
+        "category": "网络",
+        "iconURL": "//yun.ccb.com/common/images/index/midIcon/icon_%E7%BD%91%E7%BB%9C_normal.png",
+        "iconHoverURL": "//yun.ccb.com/common/images/index/midIcon/icon_blue_%E7%BD%91%E7%BB%9C.png",
+        "children": [
+          {
+            "name": "云服务器",
+            "desc": "稳定、安全、弹性、高性能的云端计算服务，实时满足您的多样性业务需求",
+            "link": "//yun.ccb.com/product/cvm"
+          },
+          {
+            "name": "容器服务",
+            "desc": "稳定、安全、高效、灵活扩展、简单易用的企业级Kubernetes 容器管理平台",
+            "link": "//yun.ccb.com/product/tke"
+          },
+          {
+            "name": "裸金属服务器2",
+            "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
+            "link": "//yun.ccb.com/product/productbms"
+          }
+        ]
+      },
+      {
+        "category": "存储",
+        "iconURL": "//yun.ccb.com/common/images/index/midIcon/icon_%E5%AD%98%E5%82%A8_normal.png",
+        "iconHoverURL": "//yun.ccb.com/common/images/index/midIcon/icon_blue_%E5%AD%98%E5%82%A8.png",
+        "children": [
+          {
+            "name": "云服务器",
+            "desc": "稳定、安全、弹性、高性能的云端计算服务，实时满足您的多样性业务需求",
+            "link": "//yun.ccb.com/product/cvm"
+          },
+          {
+            "name": "容器服务",
+            "desc": "稳定、安全、高效、灵活扩展、简单易用的企业级Kubernetes 容器管理平台",
+            "link": "//yun.ccb.com/product/tke"
+          },
+          {
+            "name": "裸金属服务器3",
+            "desc": "提供云端独享的高性能、无虚拟化的物理服务器，更适合性能敏感型业务需求",
+            "link": "//yun.ccb.com/product/productbms"
+          }
+        ]
+      }
+    ],
+    "extra": [
+      {
+        "field": "title",
+        "label": "标题",
+        "mode": "single",
+        "required": true,
+        "validation": {
+          "type": "text",
+          "minLength": 0,
+          "maxLength": 10,
+          "trigger": "change"
+        }
+      },
+      {
+        "field": "desc",
+        "label": "描述",
+        "mode": "single",
+        "required": true,
+        "validation": {
+          "type": "text",
+          "minLength": 0,
+          "maxLength": 20,
+          "trigger": "change"
+        }
+      },
+      {
+        "field": "content",
+        "label": "内容",
+        "mode": "multiple",
+        "children": [
+          {
+            "field": "category",
+            "label": "类别",
+            "mode": "single",
+            "required": true,
+            "validation": {
+              "type": "text",
+              "minLength": 0,
+              "maxLength": 5,
+              "trigger": "blur"
+            }
+          },
+          {
+            "field": "iconURL",
+            "label": "默认图标",
+            "required": true,
+            "mode": "single",
+            "validation": {
+              "type": "image",
+              "minSize": 0,
+              "maxSize": 1024,
+              "trigger": "blur"
+            }
+          },
+          {
+            "field": "iconHoverURL",
+            "label": "选中图标",
+            "mode": "single",
+            "required": true,
+            "validation": {
+              "type": "image",
+              "minSize": 0,
+              "maxSize": 1024,
+              "trigger": "blur"
+            }
+          },
+          {
+            "field": "children",
+            "label": "子项",
+            "mode": "multiple",
+            "children": [
+              {
+                "field": "name",
+                "label": "名称",
+                "mode": "single",
+                "required": true,
+                "validation": {
+                  "type": "text",
+                  "minLength": 5,
+                  "maxLength": 10,
+                  "trigger": "blur"
+                }
+              },
+              {
+                "field": "desc",
+                "label": "描述",
+                "mode": "single",
+                "required": true,
+                "validation": {
+                  "type": "text",
+                  "minLength": 5,
+                  "maxLength": 10,
+                  "trigger": "blur"
+                }
+              },
+              {
+                "field": "link",
+                "label": "链接",
+                "mode": "single",
+                "required": false,
+                "validation": {
+                  "type": "link",
+                  "pattern": "//yun.ccb.com/",
+                  "trigger": "blur"
+                }
+              }
+            ],
+            "operations": [
+              {
+                "field": "edit",
+                "label": "编辑"
+              },
+              {
+                "field": "del",
+                "label": "删除"
+              },
+              {
+                "field": "up",
+                "label": "上移"
+              },
+              {
+                "field": "down",
+                "label": "下移"
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "4",
@@ -392,7 +467,7 @@
         "category": "云网络",
         "children": [
           {
-            "iconURL": "https://yun.ccb.com/common/images/index/solution/云网络1.png",
+            "iconURL": "//yun.ccb.com/common/images/index/solution/云网络1.png",
             "name": "云网络",
             "desc": "提供一站式服务平台，跨界支持行业发展",
             "hover": false
@@ -400,46 +475,40 @@
         ]
       }
     ],
-    "extra": {
-      "columns": [
-        {
-          "field": "category",
-          "label": "类别",
-          "required": true,
-          "validation": {
-            "type": "text",
-            "minLength": 0,
-            "maxLength": 5,
-            "trigger": "change"
-          }
+    "extra": [
+      {
+        "field": "title",
+        "label": "标题",
+        "mode": "single",
+        "required": true,
+        "validation": {
+          "type": "text",
+          "minLength": 0,
+          "maxLength": 10,
+          "trigger": "change"
         }
-      ],
-      "operations": [
-        {
-          "field": "edit",
-          "label": "编辑"
-        },
-        {
-          "field": "del",
-          "label": "删除"
+      },
+      {
+        "field": "desc",
+        "label": "描述",
+        "mode": "single",
+        "required": true,
+        "validation": {
+          "type": "text",
+          "minLength": 0,
+          "maxLength": 20,
+          "trigger": "change"
         }
-      ],
-      "children": {
-        "columns": [
+      },
+      {
+        "field": "content",
+        "label": "内容",
+        "mode": "multiple",
+        "children": [
           {
-            "field": "iconURL",
-            "label": "图标",
-            "required": true,
-            "validation": {
-              "type": "image",
-              "minSize": 0,
-              "maxSize": 1024,
-              "trigger": "blur"
-            }
-          },
-          {
-            "field": "name",
-            "label": "标题",
+            "field": "category",
+            "label": "类别",
+            "mode": "single",
             "required": true,
             "validation": {
               "type": "text",
@@ -449,46 +518,79 @@
             }
           },
           {
-            "field": "desc",
-            "label": "描述",
-            "required": true,
-            "validation": {
-              "type": "textarea",
-              "minLength": 10,
-              "maxLength": 30,
-              "trigger": "change"
-            }
-          },
-          {
-            "field": "hover",
-            "label": "hover状态",
-            "required": true,
-            "validation": {
-              "type": "boolean",
-              "trigger": "blur"
-            }
-          }
-        ],
-        "operations": [
-          {
-            "field": "edit",
-            "label": "编辑"
-          },
-          {
-            "field": "del",
-            "label": "删除"
-          },
-          {
-            "field": "up",
-            "label": "上移"
-          },
-          {
-            "field": "down",
-            "label": "下移"
+            "field": "children",
+            "label": "子项",
+            "mode": "multiple",
+            "children": [
+              {
+                "field": "iconURL",
+                "label": "图标",
+                "mode": "single",
+                "required": true,
+                "validation": {
+                  "type": "image",
+                  "minSize": 0,
+                  "maxSize": 1024,
+                  "trigger": "blur"
+                }
+              },
+              {
+                "field": "name",
+                "label": "标题",
+                "mode": "single",
+                "required": true,
+                "validation": {
+                  "type": "text",
+                  "minLength": 0,
+                  "maxLength": 5,
+                  "trigger": "blur"
+                }
+              },
+              {
+                "field": "desc",
+                "label": "描述",
+                "mode": "single",
+                "required": true,
+                "validation": {
+                  "type": "textarea",
+                  "minLength": 10,
+                  "maxLength": 30,
+                  "trigger": "blur"
+                }
+              },
+              {
+                "field": "hover",
+                "label": "hover状态",
+                "mode": "single",
+                "required": true,
+                "validation": {
+                  "type": "boolean",
+                  "trigger": "blur"
+                }
+              }
+            ],
+            "operations": [
+              {
+                "field": "edit",
+                "label": "编辑"
+              },
+              {
+                "field": "del",
+                "label": "删除"
+              },
+              {
+                "field": "up",
+                "label": "上移"
+              },
+              {
+                "field": "down",
+                "label": "下移"
+              }
+            ]
           }
         ]
       }
-    }
+    ]
   },
   {
     "id": "5",
@@ -530,71 +632,104 @@
         "iconURL": "https://yun.ccb.com/common/images/index/solution/zongjiao.png"
       }
     ],
-    "extra": {
-      "columns": [
-        {
-          "field": "title",
-          "label": "名称",
-          "required": true,
-          "validation": {
-            "type": "text",
-            "minLength": 3,
-            "maxLength": 5,
-            "trigger": "change"
-          }
-        },
-        {
-          "field": "desc",
-          "label": "描述",
-          "required": true,
-          "validation": {
-            "type": "textarea",
-            "minLength": 10,
-            "maxLength": 30,
-            "trigger": "change"
-          }
-        },
-        {
-          "field": "link",
-          "label": "链接",
-          "required": true,
-          "validation": {
-            "type": "link",
-            "pattern": "^\/\/yun.ccb.com",
-            "trigger": "link"
-          }
-        },
-        {
-          "field": "iconURL",
-          "label": "图标",
-          "required": true,
-          "validation": {
-            "type": "image",
-            "minSize": 0,
-            "maxSize": 1028,
-            "trigger": "blur"
-          }
+    "extra": [
+      {
+        "field": "title",
+        "label": "标题",
+        "mode": "single",
+        "required": true,
+        "validation": {
+          "type": "text",
+          "minLength": 0,
+          "maxLength": 10,
+          "trigger": "change"
         }
-      ],
-      "operations": [
-        {
-          "field": "edit",
-          "label": "编辑"
-        },
-        {
-          "field": "del",
-          "label": "删除"
-        },
-        {
-          "field": "up",
-          "label": "上移"
-        },
-        {
-          "field": "down",
-          "label": "下移"
+      },
+      {
+        "field": "desc",
+        "label": "描述",
+        "mode": "single",
+        "required": true,
+        "validation": {
+          "type": "text",
+          "minLength": 0,
+          "maxLength": 20,
+          "trigger": "change"
         }
-      ]
-    }
+      },
+      {
+        "field": "content",
+        "label": "内容",
+        "mode": "multiple",
+        "children": [
+          {
+            "field": "title",
+            "label": "名称",
+            "mode": "single",
+            "required": true,
+            "validation": {
+              "type": "text",
+              "minLength": 3,
+              "maxLength": 5,
+              "trigger": "blur"
+            }
+          },
+          {
+            "field": "desc",
+            "label": "描述",
+            "mode": "single",
+            "required": true,
+            "validation": {
+              "type": "textarea",
+              "minLength": 10,
+              "maxLength": 30,
+              "trigger": "blur"
+            }
+          },
+          {
+            "field": "link",
+            "label": "链接",
+            "mode": "single",
+            "required": true,
+            "validation": {
+              "type": "link",
+              "pattern": "/^//yun.ccb.com/",
+              "trigger": "blur"
+            }
+          },
+          {
+            "field": "iconURL",
+            "label": "图标",
+            "mode": "single",
+            "required": true,
+            "validation": {
+              "type": "image",
+              "minSize": 0,
+              "maxSize": 1028,
+              "trigger": "blur"
+            }
+          }
+        ],
+        "operations": [
+          {
+            "field": "edit",
+            "label": "编辑"
+          },
+          {
+            "field": "del",
+            "label": "删除"
+          },
+          {
+            "field": "up",
+            "label": "上移"
+          },
+          {
+            "field": "down",
+            "label": "下移"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "6",
@@ -606,64 +741,95 @@
     "content": [
       {
         "title": "ISO 20000",
-        "iconURL": "https://yun.ccb.com/myNatural/img/iso20000_v2.png"
+        "iconURL": "//yun.ccb.com/myNatural/img/iso20000_v2.png"
       },
       {
         "title": "可信云",
-        "iconURL": "https://yun.ccb.com/myNatural/img/可信云.png"
+        "iconURL": "//yun.ccb.com/myNatural/img/可信云.png"
       },
       {
         "title": "ISO 27001",
-        "iconURL": "https://yun.ccb.com/myNatural/img/iso27001_v2.png"
+        "iconURL": "//yun.ccb.com/myNatural/img/iso27001_v2.png"
       },
       {
         "title": "网络安全等级保护",
-        "iconURL": "https://yun.ccb.com/myNatural/img/DJCP.png"
+        "iconURL": "//yun.ccb.com/myNatural/img/DJCP.png"
       }
     ],
-    "extra": {
-      "columns": [
-        {
-          "field": "iconURL",
-          "label": "图标",
-          "required": true,
-          "validation": {
-            "type": "image",
-            "minSize": 0,
-            "maxSize": 1024,
-            "trigger": "blur"
-          }
-        },
-        {
-          "field": "title",
-          "label": "标题",
-          "required": false,
-          "validation": {
-            "type": "text",
-            "minLength": 5,
-            "maxLength": 10,
-            "trigger": "change"
-          }
+    "extra": [
+      {
+        "field": "title",
+        "label": "标题",
+        "mode": "single",
+        "required": true,
+        "validation": {
+          "type": "text",
+          "minLength": 0,
+          "maxLength": 10,
+          "trigger": "change"
         }
-      ],
-      "operations": [
-        {
-          "field": "edit",
-          "label": "编辑"
-        },
-        {
-          "field": "del",
-          "label": "删除"
-        },
-        {
-          "field": "up",
-          "label": "上移"
-        },
-        {
-          "field": "down",
-          "label": "下移"
+      },
+      {
+        "field": "desc",
+        "label": "描述",
+        "mode": "single",
+        "required": true,
+        "validation": {
+          "type": "text",
+          "minLength": 0,
+          "maxLength": 20,
+          "trigger": "change"
         }
-      ]
-    }
+      },
+      {
+        "field": "content",
+        "label": "内容",
+        "mode": "multiple",
+        "children": [
+          {
+            "field": "iconURL",
+            "label": "图标",
+            "mode": "single",
+            "required": true,
+            "validation": {
+              "type": "image",
+              "minSize": 0,
+              "maxSize": 1024,
+              "trigger": "blur"
+            }
+          },
+          {
+            "field": "title",
+            "label": "标题",
+            "mode": "single",
+            "required": false,
+            "validation": {
+              "type": "text",
+              "minLength": 5,
+              "maxLength": 10,
+              "trigger": "blur"
+            }
+          }
+        ],
+        "operations": [
+          {
+            "field": "edit",
+            "label": "编辑"
+          },
+          {
+            "field": "del",
+            "label": "删除"
+          },
+          {
+            "field": "up",
+            "label": "上移"
+          },
+          {
+            "field": "down",
+            "label": "下移"
+          }
+        ]
+      }
+    ]
   }
 ]
