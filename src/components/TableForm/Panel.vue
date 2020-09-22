@@ -151,29 +151,23 @@ export default {
     },
     handlePanelTableSave({ index, value }) {
       this.store.content
-        .find((panelData) => {
-          panelData.category == this.activeTab;
-        })
+        .find((panelData) => panelData.category == this.activeTab)
         .children.splice(index, 1, extract(value));
     },
     handlePanelTableAppend(formData) {
       this.store.content
-        .find((panelData) => {
-          panelData.category == this.activeTab;
-        })
+        .find((panelData) => panelData.category == this.activeTab)
         .children.push(extract(formData));
     },
     handlePanelTableDelete(index) {
       this.store.content
-        .find((panelData) => {
-          panelData.category == this.activeTab;
-        })
+        .find((panelData) => panelData.category == this.activeTab)
         .children.splice(index, 1);
     },
     handlePanelFormChange(formData) {
-      const panelData = this.store.content.find((panelData) => {
-        panelData.category == this.activeTab;
-      });
+      const panelData = this.store.content.find(
+        (panelData) => panelData.category == this.activeTab
+      );
       formData.forEach(({ field, value }) => {
         panelData[field] = value;
       });

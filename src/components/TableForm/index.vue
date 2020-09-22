@@ -6,7 +6,6 @@
       :operations="operations"
       @check="handleTableCheck"
       @edit="handleTableEdit"
-      @add="handleTableAdd"
       @del="handleTableDel"
       @up="handleTableUp"
       @down="handleTableDown"
@@ -68,16 +67,15 @@ export default {
       console.log(index);
     },
     handleTableEdit(index) {
-      debugger
       this.formData = combine(this.columns, this.datasource[index]);
       this.openDialog = true;
       this.isRevised = true
       this.$emit('edit', index)
     },
-    handleTableAdd() {},
     handleTableDel(index) {
       if (confirm("确定要删除吗？")) {
-        this.datasource.splice(index, 1)
+        // this.datasource.splice(index, 1)
+        this.$emit('del', index)
       }
     },
     handleTableUp(index) {
