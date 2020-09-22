@@ -8,6 +8,7 @@
       :list="list"
       :value="value"
       @input="emitter"
+      group="targets"
     >
       <component
         v-for="(data, idx) in currentValue"
@@ -21,7 +22,20 @@
       />
     </draggable>
     <Affix :pos="{ top: '42%', right: '20px' }">
-      <div class="right-center-btn">悬浮</div>
+      <div class="right-center-btn" @click="show = !show">悬浮</div>
+      <div class="list" v-show="show">
+        <draggable
+          v-bind="dragOptions"
+          tag="div"
+          class="item-container"
+          :list="list"
+          :value="value"
+          @input="emitter"
+          :group="{ name: 'targets', pull: 'clone', put: false }"
+        >
+          <div v-for="({ id, title }) in list" class="list-item" :key="id">{{title}}</div>
+        </draggable>
+      </div>
     </Affix>
     <Affix :pos="{ bottom: '60px', right: '20px' }">
       <SideBar :list="bars" />
@@ -81,6 +95,7 @@ export default {
           text: "发布",
         },
       ],
+      show: false,
     };
   },
   computed: {
@@ -103,7 +118,7 @@ export default {
     },
     handleUp(idx) {
       if (this.value) {
-        console.log(idx)
+        console.log(idx);
         this.value.splice(idx - 1, 2, this.value[idx], this.value[idx - 1]);
       } else {
         this.list.splice(idx - 1, 2, this.list[idx], this.list[idx - 1]);
@@ -117,7 +132,7 @@ export default {
       }
     },
     handleDel(idx) {
-      if (confirm('确定删除？')) {
+      if (confirm("确定删除？")) {
         if (this.value) {
           this.value.splice(idx, 1);
         } else {
@@ -159,6 +174,22 @@ export default {
     color: #fff;
     background: #66b1ff;
     border-radius: 50%;
+  }
+  .list {
+    position: absolute;
+    right: 50px;
+    top: -50px;
+    z-index: 99999;
+    .list-item {
+      width: 120px;
+      text-align: center;
+      line-height: 2;
+      color: green;
+      background-color: #fff;
+      border-bottom: 1px solid #ccc;
+      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+    }
   }
 }
 </style>
