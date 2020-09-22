@@ -134,8 +134,9 @@ export default {
       }
     },
     handleTabLeave() {
-      // console.log(e.name);
-      // console.log(this.activeTab);
+      if (!this.canTabLeave) {
+        alert('当前填写内容不符合格式要求，请您进行修改!')
+      }
       return this.canTabLeave
     },
     handleFormChange(formData) {
