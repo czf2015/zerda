@@ -253,7 +253,7 @@ export default {
   }
 }
 ::v-deep .el-card{
-  height: 100%;
+  // height: 100%;
   .el-card__body{
     padding: 0
   }
