@@ -97,7 +97,7 @@ export default {
             return { ...item, value: panelData[item.field] };
           }),
           tableData: {
-            datasource: panelData.children,
+            datasource: panelData.children || [],
             columns: table.children,
             operations: table.operations,
           },
@@ -107,43 +107,38 @@ export default {
   },
 
   methods: {
-    removeTab(targetName) {
-      console.log(targetName);
-    },
     handleTabsEdit(targetName, action) {
-      console.log({ targetName, action });
-      if (action === "add") {
-        let newTabName = ++this.tabIndex + "";
-        this.content.push({
-          title: "New Tab",
-          name: newTabName,
-          content: "New Tab content",
-        });
-        this.activeTab = newTabName;
-      }
-      if (action === "remove") {
-        let tabs = this.content;
-        let activeName = this.activeTab;
-        if (activeName === targetName) {
-          tabs.forEach((tab, index) => {
-            if (tab.name === targetName) {
-              let nextTab = tabs[index + 1] || tabs[index - 1];
-              if (nextTab) {
-                activeName = nextTab.name;
+      const tabs = this.store.content
+      switch (action) {
+        case "add":
+          this.activeTab = `tab ${tabs.length + 1}`;
+          tabs.push({
+            category: this.activeTab
+          })
+          break;
+        case "remove":
+          console.log(targetName)
+          if (this.activeTab === targetName) {
+            tabs.forEach((tab, index) => {
+              for (let index = 0; index < tabs.length; index++) {
+                if (tabs[index].category === targetName) {
+                  const nextTab = tabs[index + 1] || tabs[index - 1];
+                  if (nextTab) {
+                    this.activeTab = nextTab.category;
+                  }
+                  break
+                }
               }
-            }
-          });
-        }
-
-        this.activeTab = activeName;
-        this.content = tabs.filter((tab) => tab.name !== targetName);
+            })
+          }
+          this.store.content = tabs.filter((tab) => tab.category !== targetName);
+          break;
+        default:
+          break;
       }
     },
     handleTabLeave() {
       // return this.$refs.customForm.canSave
-    },
-    handleContentChange(formData) {
-      // console.log(formData)
     },
     handleFormChange(formData) {
       this.formData = formData;
@@ -178,24 +173,24 @@ export default {
       const panelTable = this.store.content.find(
         (panelData) => panelData.category == this.activeTab
       ).children;
-      panelTable.splice(index - 1, 2, panelTable[index], panelTable[index - 1])
+      panelTable.splice(index - 1, 2, panelTable[index], panelTable[index - 1]);
     },
     handlePanelTableDown(index) {
       const panelTable = this.store.content.find(
         (panelData) => panelData.category == this.activeTab
-      ).children
-      panelTable.splice(index, 2, panelTable[index + 1], panelTable[index])
+      ).children;
+      panelTable.splice(index, 2, panelTable[index + 1], panelTable[index]);
     },
   },
-  watch: {
-    activeTab() {
-      if (this.activeTab == "+") {
-        this.closable = false;
-      }
-    },
-    tabIndex() {
-      return this.content.length;
-    },
-  },
+  // watch: {
+  //   activeTab() {
+  //     if (this.activeTab == "+") {
+  //       this.closable = false;
+  //     }
+  //   },
+  //   tabIndex() {
+  //     return this.content.length;
+  //   },
+  // },
 };
 </script>

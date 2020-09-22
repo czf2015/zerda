@@ -144,7 +144,7 @@ export default {
       formItem.validation.message = message;
       this.canSave = this.formData.every((item) => item.validation.valid !== false);
       console.log(this.canSave)
-      if (this.canSave && this.auto) {
+      if (this.auto) {
         this.$emit("change", this.formData);
       }
     },
