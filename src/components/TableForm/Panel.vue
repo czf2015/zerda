@@ -30,6 +30,8 @@
           @save="handlePanelTableSave"
           @append="handlePanelTableAppend"
           @del="handlePanelTableDelete"
+          @up="handlePanelTableUp"
+          @down="handlePanelTableDown"
         />
       </el-tab-pane>
     </el-tabs>
@@ -171,6 +173,18 @@ export default {
       formData.forEach(({ field, value }) => {
         panelData[field] = value;
       });
+    },
+    handlePanelTableUp(index) {
+      const panelTable = this.store.content.find(
+        (panelData) => panelData.category == this.activeTab
+      ).children;
+      panelTable.splice(index - 1, 2, panelTable[index], panelTable[index - 1])
+    },
+    handlePanelTableDown(index) {
+      const panelTable = this.store.content.find(
+        (panelData) => panelData.category == this.activeTab
+      ).children
+      panelTable.splice(index, 2, panelTable[index + 1], panelTable[index])
     },
   },
   watch: {

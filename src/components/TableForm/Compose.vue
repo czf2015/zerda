@@ -8,6 +8,8 @@
       @save="handleTableSave"
       @append="handleTableAppend"
       @del="handleTableDelete"
+      @up="handleTableUp"
+      @down="handleTableDown"
     />
   </div>
 </template>
@@ -59,6 +61,12 @@ export default {
     },
     handleTableDelete(index) {
       this.$emit("del", index);
+    },
+    handleTableUp(index) {
+      this.$emit("up", index);
+    },
+    handleTableDown(index) {
+      this.$emit("down", index);
     },
   },
 };

@@ -14,6 +14,8 @@
       @save="handleTableSave"
       @append="handleTableAppend"
       @del="handleTableDelete"
+      @up="handleTableUp"
+      @down="handleTableDown"
     />
   </Wrapper>
 </template>
@@ -80,6 +82,13 @@ export default {
     },
     handleTableDelete(index) {
       this.store.content.splice(index, 1);
+    },
+    handleTableUp(index) {
+      console.log('------')
+      this.store.content.splice(index - 1, 2, this.store.content[index], this.store.content[index - 1])
+    },
+    handleTableDown(index) {
+      this.store.content.splice(index, 2, this.store.content[index + 1], this.store.content[index])
     },
     handleFormChange(formData) {
       console.log(formData);

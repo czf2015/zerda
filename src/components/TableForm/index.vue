@@ -74,15 +74,14 @@ export default {
     },
     handleTableDel(index) {
       if (confirm("确定要删除吗？")) {
-        // this.datasource.splice(index, 1)
         this.$emit('del', index)
       }
     },
     handleTableUp(index) {
-      this.datasource.splice(index - 1, 2, this.datasource[index], this.datasource[index -1])
+      this.$emit('up', index)
     },
     handleTableDown(index) {
-      this.datasource.splice(index, 2, this.datasource[index + 1], this.datasource[index])
+      this.$emit('down', index)
     },
     handleTableAppend() {
       this.formData = JSON.parse(JSON.stringify(this.columns))
