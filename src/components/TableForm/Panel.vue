@@ -15,7 +15,6 @@
       v-model="activeTab"
       editable
       @edit="handleTabsEdit"
-      :before-leave="handleTabLeave"
     >
       <el-tab-pane
         v-for="({ category, formData, tableData }) in panelDatas"
@@ -73,6 +72,7 @@ export default {
       store: this.initial,
       activeTab: this.initial.content[0] && this.initial.content[0].category,
       closable: false,
+      canTabLeave: true,
     };
   },
 
@@ -139,9 +139,6 @@ export default {
           break;
       }
     },
-    handleTabLeave() {
-      // return this.$refs.customForm.canSave
-    },
     handleFormChange(formData) {
       this.formData = formData;
     },
@@ -169,7 +166,11 @@ export default {
       );
       formData.forEach(({ field, value }) => {
         panelData[field] = value;
+        if (field == 'category') {
+          this.activeTab = value
+        }
       });
+      // this.canTabLeave = formData.every(({ validation }) => validation.valid)
     },
     handlePanelTableUp(index) {
       const panelTable = this.store.content.find(
@@ -184,15 +185,13 @@ export default {
       panelTable.splice(index, 2, panelTable[index + 1], panelTable[index]);
     },
   },
-  // watch: {
-  //   activeTab() {
-  //     if (this.activeTab == "+") {
-  //       this.closable = false;
-  //     }
-  //   },
-  //   tabIndex() {
-  //     return this.content.length;
-  //   },
-  // },
+  watch: {
+    activeTab(tabName, old) {
+      console.log(old)
+      // this.activeTab = old
+      // return old
+      return false
+    }
+  }
 };
 </script>
