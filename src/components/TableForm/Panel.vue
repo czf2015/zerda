@@ -150,17 +150,33 @@ export default {
       this.store.title = val;
     },
     handlePanelTableSave({ index, value }) {
-      console.log(this.activeTab);
-      this.store.content.splice(index, 1, extract(value));
+      this.store.content
+        .find((panelData) => {
+          panelData.category == this.activeTab;
+        })
+        .children.splice(index, 1, extract(value));
     },
     handlePanelTableAppend(formData) {
-      this.store.content.push(extract(formData));
+      this.store.content
+        .find((panelData) => {
+          panelData.category == this.activeTab;
+        })
+        .children.push(extract(formData));
     },
     handlePanelTableDelete(index) {
-      this.store.content.splice(index, 1);
+      this.store.content
+        .find((panelData) => {
+          panelData.category == this.activeTab;
+        })
+        .children.splice(index, 1);
     },
     handlePanelFormChange(formData) {
-      console.log(formData);
+      const panelData = this.store.content.find((panelData) => {
+        panelData.category == this.activeTab;
+      });
+      formData.forEach(({ field, value }) => {
+        panelData[field] = value;
+      });
     },
   },
   watch: {
