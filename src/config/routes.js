@@ -70,7 +70,7 @@ export default {
                 path: 'staticpage-content',
                 component: () => import('@/pages/staticpage/staticpage-content'),
                 name: 'StaticPageContent',
-                meta: { title: '静态页面类别管理' }
+                meta: { title: '静态页面内容管理' }
               },
             ]
         },

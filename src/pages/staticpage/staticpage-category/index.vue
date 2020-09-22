@@ -181,7 +181,7 @@ export default {
       this.$refs[activeDialog].showDialog(this.actionType, data)
       this.visible = ''
     },
-    handleStatus(actionType, node) {
+    handleStatus(actionType, data) {
       switch(actionType) {
         case 'on':
           this.propData = {
@@ -198,13 +198,13 @@ export default {
         case 'remove':
           this.propData = {
             title: '删除',
-            content: '是否删除此页面？'
+            content: data.type === 'leaf' ? '是否删除此页面？' : '是否删除此分类？'
           }
           break;
         default:
           break
       }
-      this.$refs['RemoveDialog'].showDialog(node)
+      this.$refs['RemoveDialog'].showDialog(data)
       this.visible = ''
     },
     showMenu(e, node, data) {

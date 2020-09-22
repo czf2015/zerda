@@ -1,257 +1,98 @@
 <template>
-  <div class="header-management">
-    <el-card shadow="hover" class="header-management-header">
-      <div slot="header" class="clearfix">
-        <span>头部导航配置</span>
+  <div class="staticpage-content">
+    <el-card>
+      <div slot="header">
+        <h3>官网静态页面内容管理</h3>
       </div>
+      <el-container style="backgroundColor: #fafafa">
+      <el-aside width="200px" style="padding: 20px 10px 20px 20px">
+        <el-card shadow="hover">
+          <!-- <div slot="header" class="card-header">
+          </div> -->
+          <div class="card-body-left">
+            <!-- <draggable v-model="modelData" :options="{group:{name: 'staticPage',pull:'clone'},sort: true}" animation="300" @end="originTEdit">
+              <transition-group> -->
+                <div v-for="(componentData, index) in modelData" :key="componentData.componentId + index">{{componentData.title}}</div>
+              <!-- </transition-group>
+            </draggable> -->
+          </div>
+        </el-card>
+      </el-aside>
 
-      <div id="cascaderContainer">
-        <ul class="cascader-header">
-          <li><i class="el-icon-folder-add" @click="handleadd(1)"/></li>
-          <li v-for="(value, index) in expandArr" :key="value" @click="handleadd(2+index)"><i class="el-icon-folder-add"/></li>
-        </ul>
-
-        <el-cascader-panel :options="options" width="250px" size="small" @expand-change="handleExpandChange">
-          <el-popover
-            slot-scope="{ node, data }"
-            :value="visible === node.label"
-            placement="bottom"
-            trigger="manual"
-            :visible-arrow="false"
-            width="100px"
-          >
-            <ul class="menu-container">
-              <li @click="handleEdit(node)">
-                <i class="el-icon-document-add" />
-                <a href="javascript:;">更新</a>
-              </li>
-              <li @click="handleRemove(node)">
-                <i class="el-icon-delete" />
-                <a href="javascript:;">删除</a>
-              </li>
-            </ul>
-
-            <span slot="reference" @mousedown="showMenu($event, node, data)" style="display: block">{{node.label}}</span>
-          </el-popover>
-        </el-cascader-panel>
-      </div>
-      
-      
+      <el-main>
+        <draggable v-model="contentData" group="staticPage" animation="300" @end="editTOrigin" @start="onMove">
+          <transition-group>
+            <div class="component-container" v-for="(componentData, index) in contentData" :key="componentData.componentId + index">
+              <component 
+                :componentData="componentData"
+                :index="index"
+                :is="componentData.componentId"
+                :upDateContentData="upDateContentData"
+              />
+            </div>
+          </transition-group>
+        </draggable>
+      </el-main>
+    </el-container>
     </el-card>
-
-    <NavigateDialog ref="NavigateDialog" />
-    <NavigateRemove ref="NavigateRemove" />
+    <div class="model-container">
+      <p @click="showModel = !showModel">
+        <i class="el-icon-star-on"/>
+      </p>
+      <div :class="showModel ? 'showModel' : ''">
+        <draggable v-model="modelData" :options="{group:{name: 'staticPage',pull:'clone'},sort: true}" animation="300" @end="originTEdit">
+          <transition-group>
+            <div class="model" v-for="(componentData, index) in modelData" :key="componentData.componentId + index">{{componentData.title}}</div>
+          </transition-group>
+        </draggable>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import draggable from 'vuedraggable'
 import { mapGetters } from 'vuex'
-import NavigateDialog from './NavigateDialog'
-import NavigateRemove from './NavigateRemove'
+import BcsicInfo from './BcsicInfo'
+import Banner from './Banner'
+import HTML from './HTML'
+
 
 export default {
-  name: 'CategoryManagement',
-  components: { NavigateDialog, NavigateRemove },
+  name: 'StaticPageContent',
+  components: { draggable, BcsicInfo, Banner, HTML },
   data() {
     return {
-      visible: '',
-      actionType: 'add',
-      expandArr: [],
-      options: [{
-          value: 'zhinan',
-          label: '指南',
-          children: [{
-            value: 'shejiyuanze',
-            label: '设计原则',
-            children: [{
-              value: 'yizhi',
-              label: '一致'
-            }, {
-              value: 'fankui',
-              label: '反馈'
-            }, {
-              value: 'xiaolv',
-              label: '效率'
-            }, {
-              value: 'kekong',
-              label: '可控'
-            }]
-          }, {
-            value: 'daohang',
-            label: '导航',
-            children: [{
-              value: 'cexiangdaohang',
-              label: '侧向导航'
-            }, {
-              value: 'dingbudaohang',
-              label: '顶部导航'
-            }]
-          }]
-        }, {
-          value: 'zujian',
-          label: '组件',
-          children: [{
-            value: 'basic',
-            label: 'Basic',
-            children: [{
-              value: 'layout',
-              label: 'Layout 布局'
-            }, {
-              value: 'color',
-              label: 'Color 色彩'
-            }, {
-              value: 'typography',
-              label: 'Typography 字体'
-            }, {
-              value: 'icon',
-              label: 'Icon 图标'
-            }, {
-              value: 'button',
-              label: 'Button 按钮'
-            }]
-          }, {
-            value: 'form',
-            label: 'Form',
-            children: [{
-              value: 'radio',
-              label: 'Radio 单选框'
-            }, {
-              value: 'checkbox',
-              label: 'Checkbox 多选框'
-            }, {
-              value: 'input',
-              label: 'Input 输入框'
-            }, {
-              value: 'input-number',
-              label: 'InputNumber 计数器'
-            }, {
-              value: 'select',
-              label: 'Select 选择器'
-            }, {
-              value: 'cascader',
-              label: 'Cascader 级联选择器'
-            }, {
-              value: 'switch',
-              label: 'Switch 开关'
-            }, {
-              value: 'slider',
-              label: 'Slider 滑块'
-            }, {
-              value: 'time-picker',
-              label: 'TimePicker 时间选择器'
-            }, {
-              value: 'date-picker',
-              label: 'DatePicker 日期选择器'
-            }, {
-              value: 'datetime-picker',
-              label: 'DateTimePicker 日期时间选择器'
-            }, {
-              value: 'upload',
-              label: 'Upload 上传'
-            }, {
-              value: 'rate',
-              label: 'Rate 评分'
-            }, {
-              value: 'form',
-              label: 'Form 表单'
-            }]
-          }, {
-            value: 'data',
-            label: 'Data',
-            children: [{
-              value: 'table',
-              label: 'Table 表格'
-            }, {
-              value: 'tag',
-              label: 'Tag 标签'
-            }, {
-              value: 'progress',
-              label: 'Progress 进度条'
-            }, {
-              value: 'tree',
-              label: 'Tree 树形控件'
-            }, {
-              value: 'pagination',
-              label: 'Pagination 分页'
-            }, {
-              value: 'badge',
-              label: 'Badge 标记'
-            }]
-          }, {
-            value: 'notice',
-            label: 'Notice',
-            children: [{
-              value: 'alert',
-              label: 'Alert 警告'
-            }, {
-              value: 'loading',
-              label: 'Loading 加载'
-            }, {
-              value: 'message',
-              label: 'Message 消息提示'
-            }, {
-              value: 'message-box',
-              label: 'MessageBox 弹框'
-            }, {
-              value: 'notification',
-              label: 'Notification 通知'
-            }]
-          }, {
-            value: 'navigation',
-            label: 'Navigation',
-            children: [{
-              value: 'menu',
-              label: 'NavMenu 导航菜单'
-            }, {
-              value: 'tabs',
-              label: 'Tabs 标签页'
-            }, {
-              value: 'breadcrumb',
-              label: 'Breadcrumb 面包屑'
-            }, {
-              value: 'dropdown',
-              label: 'Dropdown 下拉菜单'
-            }, {
-              value: 'steps',
-              label: 'Steps 步骤条'
-            }]
-          }, {
-            value: 'others',
-            label: 'Others',
-            children: [{
-              value: 'dialog',
-              label: 'Dialog 对话框'
-            }, {
-              value: 'tooltip',
-              label: 'Tooltip 文字提示'
-            }, {
-              value: 'popover',
-              label: 'Popover 弹出框'
-            }, {
-              value: 'card',
-              label: 'Card 卡片'
-            }, {
-              value: 'carousel',
-              label: 'Carousel 走马灯'
-            }, {
-              value: 'collapse',
-              label: 'Collapse 折叠面板'
-            }]
-          }]
-        }, {
-          value: 'ziyuan',
-          label: '资源',
-          children: [{
-            value: 'axure',
-            label: 'Axure Components'
-          }, {
-            value: 'sketch',
-            label: 'Sketch Templates'
-          }, {
-            value: 'jiaohu',
-            label: '组件交互文档'
-          }]
-        }]
+      moveId: -1,
+      contentData: [
+        {
+          componentId: 'BcsicInfo',
+          title: '页面元信息'
+        },
+        {
+          componentId: 'Banner',
+          title: 'Banner'
+        },
+        {
+          componentId: 'HTML',
+          title: 'HTML内容'
+        }
+      ],
+      modelData: [
+        {
+          componentId: 'BcsicInfo',
+          title: '页面元信息'
+        },
+        {
+          componentId: 'Banner',
+          title: 'Banner'
+        },
+        {
+          componentId: 'HTML',
+          title: 'HTML内容'
+        }
+      ],
+      showModel: false
     }
   },
   computed: {
@@ -260,15 +101,8 @@ export default {
     ])
   },
   mounted() {
-    document.getElementById('cascaderContainer').oncontextmenu = function(e) {
-      return false
-    }
-    document.onclick = () => {
-      this.visible = ''
-    }
   },
   beforeDestroy() {
-    document.onclick = document.getElementById('cascaderContainer').oncontextmenu = null
   },
   methods: {
     handleExpandChange(expandArr) {
@@ -293,74 +127,112 @@ export default {
         return
       }
       this.visible = node.label
+    },
+    originTEdit(e) {
+      return
+      // console.log(e)
+      // var that=this;
+      // var  items=this.contentData.filter(function(m){
+      //   return  m.componentId==that.moveId
+      // })
+      //如果模板到编辑
+      // if(items.length<2) return;
+      // this.contentData.splice(e.newDraggableIndex, 1)
+    },
+    editTOrigin(e) {
+      const that = this
+      const items = this.modelData.filter((m) => {
+        return m.componentId === that.moveId
+      })
+      // //如果编辑到模板
+      if(items.length<2) return;
+      this.modelData.splice(e.newDraggableIndex, 1)
+    },
+    onMove(e,originalEvent) {
+      console.log(e.oldDraggableIndex)
+      this.moveId=this.contentData[e.oldDraggableIndex].componentId;
+    },
+    upDateContentData(actionType, index, newData) {
+      switch(actionType) {
+        case 'add':
+          break
+        case 'edit':
+          this.contentData.splice(index, 1, newData)
+          break
+        case 'remove':
+          this.contentData.splice(index, 1)
+          break
+      }
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
-.header-management {
-  padding: 15px;
-  &-header {
-    margin-bottom: 30px;
-    .el-select{
-      margin-right: 20px;
+.staticpage-content{
+  /deep/ .el-container{
+    .el-aside{
+      .el-card__body{
+        min-height: 500px;
+      }
     }
+    .el-main{}
   }
-  &-body {
-    a{
-      color: #66b1ff;
-    }
+}
+.model-container{
+  position: fixed;
+  top: 100px;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  cursor: pointer;
+  >p{
+    width: 30px;
+    height: 30px;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+    line-height: 30px;
+    background-color: blue;
+    border-radius: 30px;
+    font-size: 30px;
+    color: #fff;
   }
-  .pagination-container{
-    text-align: right;
-    margin: 20px 0;
-  }
-  .cascader-header{
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    >li{
-      width: 180px;
-      padding-left: 30px;
-      list-style: none;
-      box-sizing: border-box;
-      border-right: solid 1px #E4E7ED;
-      cursor: pointer;
+  >div{
+    position: absolute;
+    width: 150px;
+    height: auto;
+    top: 50px;
+    right: -150px;
+    padding: 20px;
+    line-height: 20px;
+    background-color: #fff;
+    border: 1px solid #EBEEF5;
+    box-sizing: border-box;
+    transform: translateX(0);
+    transition: 1s all;
+    .model{
+      text-align: center;
+      height: 35px;
+      line-height: 35px;
+      border: 1px solid #EBEEF5;
+      margin-bottom: 20px;
       &:last-child{
-        border-right: none;
+        margin-bottom: 0;
       }
     }
   }
-}
-
-/deep/ .el-cascader-panel {
-  min-height: 400px;
-  border: none;
-  .el-scrollbar__wrap{
-  overflow-x: hidden;
-  overflow-y: scroll;
-  height: 100%;
+  .showModel{
+    transform: translateX(-150px);
+    // transition: 1s all;
   }
 }
-
-.menu-container{
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  width: 80px;
-  >li{
-    padding: 0;
-    margin: 10px 0;
-    list-style: none;
-    i{
-      margin-right: 10px;
-    }
-  }
+.component-container{
+  margin-bottom: 20px;
 }
-.el-popover{
-  min-width: 100px;
-}
-
 </style>

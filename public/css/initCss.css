@@ -1,5 +1,5 @@
 /*包含以下四种的链接*/
 a,a:hover,a:active,a:focus{color:#606266;text-decoration:none;}
-p{
+h1,h2,h3,p{
     margin: 0;
 }
