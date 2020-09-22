@@ -4,11 +4,11 @@
       <div slot="body" class="dialog-container">
         <el-form ref="ruleForm" :model="formData" status-icon :rules="rules" label-width="100px" class="demo-ruleForm" size="mini">
           <el-form-item prop="catgoryName">
-            <span slot="label">标题</span>
+            <span slot="label">类别名称</span>
             <el-input v-model="formData.catgoryName" type="text" autocomplete="off" />
           </el-form-item>
           <el-form-item prop="catgoryMark">
-            <span slot="label">图片链接</span>
+            <span slot="label">类别标识</span>
             <el-input v-model="formData.catgoryMark" type="text" autocomplete="off" />
           </el-form-item>
         </el-form>
