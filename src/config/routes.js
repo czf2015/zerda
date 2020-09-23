@@ -22,7 +22,7 @@ export default {
         {
             path: '/footer',
             name: 'footer',
-            component: () => import('@/pages/home'),
+            component: () => import('@/pages/footer'),
             meta: {
                 requiresAuth: false,
             },

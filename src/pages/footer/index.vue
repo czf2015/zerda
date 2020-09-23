@@ -1,5 +1,5 @@
 <template>
-  <Page />
+  <Page top="10px" />
 </template>
 
 
