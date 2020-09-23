@@ -114,9 +114,10 @@ export default {
     fetchData(page) {
       this.loading = true;
       fetch(`/data/${page}/index.json`)
+      // fetch(`/api?name=${page}`)
         .then((res) => res.json())
-        .then((data) => {
-          this.list = data;
+        .then(({ data }) => {
+          this.list = data
           this.dragList = JSON.parse(JSON.stringify(data))
           this.loading = false;
         });

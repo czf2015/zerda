@@ -29,7 +29,7 @@ export default {
         },
         {
             path: '',
-            name: 'home',
+            name: 'homePage',
             component: () => import('@/pages/home'),
             meta: {
                 requiresAuth: false,
