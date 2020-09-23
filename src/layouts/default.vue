@@ -10,30 +10,29 @@
       @input="emitter"
       group="targets"
     >
-      <component
-        v-for="(data, idx) in currentValue"
-        :key="data.id"
-        :is="data.type"
-        :initial="data"
-        @up="handleUp(idx)"
-        @down="handleDown(idx)"
-        @del="handleDel(idx)"
-        :moveable="moveable(idx)"
-      />
+      <transition-group type="transition" name="flip-list">
+        <component
+          v-for="(data, idx) in currentValue"
+          :key="data.id"
+          :is="data.type"
+          :initial="data"
+          @up="handleUp(idx)"
+          @down="handleDown(idx)"
+          @del="handleDel(idx)"
+          :moveable="moveable(idx)"
+        />
+      </transition-group>
     </draggable>
     <Affix :pos="{ top: '42%', right: '20px' }">
-      <div class="right-center-btn" @click="show = !show">悬浮</div>
+      <div class="right-center-btn" @click="show = !show">添加</div>
       <div class="list" v-show="show">
         <draggable
           v-bind="dragOptions"
-          tag="div"
-          class="item-container"
-          :list="list"
-          :value="value"
-          @input="emitter"
+          :list="dragList"
+          :sort="false"
           :group="{ name: 'targets', pull: 'clone', put: false }"
         >
-          <div v-for="({ id, title }) in list" class="list-item" :key="id">{{title}}</div>
+          <div v-for="({ id, title }) in dragList" class="list-item" :key="id">{{title}}</div>
         </draggable>
       </div>
     </Affix>
@@ -77,6 +76,7 @@ export default {
         ghostClass: "ghost",
       },
       list: [],
+      dragList: [],
       value: null,
       bars: [
         {
@@ -113,12 +113,12 @@ export default {
         .then((res) => res.json())
         .then((data) => {
           this.list = data;
+          this.dragList = JSON.parse(JSON.stringify(data))
           this.loading = false;
         });
     },
     handleUp(idx) {
       if (this.value) {
-        console.log(idx);
         this.value.splice(idx - 1, 2, this.value[idx], this.value[idx - 1]);
       } else {
         this.list.splice(idx - 1, 2, this.list[idx], this.list[idx - 1]);
@@ -164,7 +164,13 @@ export default {
     top: -100px;
     right: 40px;
   }
-  .item-container {
+  .flip-list-move {
+    transition: transform 0.5s;
+  }
+  .no-move {
+    transition: transform 0s;
+  }
+  .item-container:active {
     cursor: ns-resize;
   }
   .right-center-btn {
@@ -178,8 +184,7 @@ export default {
   .list {
     position: absolute;
     right: 50px;
-    top: -50px;
-    z-index: 99999;
+    top: -60px;
     .list-item {
       width: 120px;
       text-align: center;
