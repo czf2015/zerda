@@ -1,44 +1,27 @@
 <template>
   <div>
-    <new-dialog :show-dialog="show" width="40%" :title="title" @cancel="handleCancel" @confirm="handeleConfirm">
+    <new-dialog :show-dialog="show" width="40%" :title="'编辑页面元信息'" @cancel="handleCancel" @confirm="handeleConfirm">
       <div slot="body" class="dialog-container">
         <el-form ref="ruleForm" :model="formData" status-icon :rules="rules" label-width="120px" class="demo-ruleForm" size="mini">
-          <el-form-item prop="title">
-            <span slot="label">标题</span>
-            <el-input v-model="formData.title" type="text" autocomplete="off" />
+          <el-form-item prop="pageTitle">
+            <span slot="label">页面标题</span>
+            <el-input v-model="formData.pageTitle" type="text" autocomplete="off" />
           </el-form-item>
-          <el-form-item prop="mark">
-            <span slot="label">标识</span>
-            <el-input v-model="formData.mark" type="text" autocomplete="off" />
+          <el-form-item prop="SEOKeyWords">
+            <span slot="label">SEO关键字</span>
+            <el-input v-model="formData.SEOKeyWords" type="text" autocomplete="off" />
           </el-form-item>
-          <el-form-item prop="type">
-            <span slot="label">类型</span>
-              <el-select v-model="formData.type" placeholder="请选择类型">
-                <el-option label="菜单组" value="1" />
-                <el-option label="菜单链接" value="2" />
-              </el-select>
+          <el-form-item prop="SEOKeyDescription">
+            <span slot="label">SEO描述</span>
+            <el-input v-model="formData.SEOKeyDescription" type="text" autocomplete="off" />
           </el-form-item>
-          <el-form-item prop="link">
-            <span slot="label">链接</span>
-            <el-input v-model="formData.link" type="text" autocomplete="off" />
+          <el-form-item prop="definitionCSS">
+            <span slot="label">自定义css</span>
+            <el-input v-model="formData.definitionCSS" type="textarea" autocomplete="off" />
           </el-form-item>
-          <el-form-item prop="openMode">
-            <span slot="label">链接打开方式</span>
-              <el-select v-model="formData.openMode" placeholder="请选择链接打开方式">
-                <el-option label="当前页跳转" value="1" />
-                <el-option label="新窗口打开" value="2" />
-              </el-select>
-          </el-form-item>
-          <el-form-item prop="tag">
-            <span slot="label">标签</span>
-              <el-select v-model="formData.tag" placeholder="请选择标签">
-                <el-option label="无" value="1" />
-                <el-option label="新品" value="2" />
-              </el-select>
-          </el-form-item>
-          <el-form-item prop="weight">
-            <span slot="label">权重</span>
-            <el-input v-model="formData.weight" type="text" autocomplete="off" />
+          <el-form-item prop="definitionJS">
+            <span slot="label">自定义js</span>
+            <el-input v-model="formData.definitionJS" type="textarea" autocomplete="off" />
           </el-form-item>
         </el-form>
       </div>
@@ -48,16 +31,16 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import newDialog from '@/pages/document/components/newDialog'
+import newDialog from '@/components/newDialog'
 
 export default {
-  name: 'CategoryDialog',
+  name: 'BcsicInfoDialog',
   components: { newDialog },
   props: {
-    // actionType: {
-    //   type: String,
-    //   default: 'add'
-    // }
+    upDateContentData: {
+      type: Function,
+      default: () => {}
+    }
   },
   data() {
     var checkAge = (rule, value, callback) => {
@@ -99,16 +82,14 @@ export default {
       show: false,
       actionType: 'add',
       formData: {
-        title: '',
-        mark: '',
-        type: '',
-        link: '',
-        openMode: '',
-        tag: '',
-        weight: ''
+        pageTitle: '',
+        SEOKeyWords: '',
+        SEOKeyDescription: '',
+        definitionCSS: '',
+        definitionJS: '',
       },
       rules: {
-        title: [
+        pageTitle: [
           { required: true, message: '请输入标题', trigger: 'blur' }
         ],
         mark: [
@@ -124,15 +105,6 @@ export default {
           { validator: checkAge, trigger: 'blur' }
         ]
       },
-      options: [
-        {
-          value: '选项1',
-          label: '菜单链接'
-        }, {
-          value: '选项2',
-          label: '菜单链接'
-        }
-      ],
     }
   },
   computed: {
@@ -151,16 +123,17 @@ export default {
     }
   },
   methods: {
-    showDialog(actionType, rawData) {
-      console.log(rawData)
-      this.actionType = actionType
+    showDialog(formData) {
+      this.formData = formData
       this.show = true
     },
     handleCancel() {
       this.show = false
     },
-    handeleConfirm() {
+    handeleConfirm(cb) {
       this.show = false
+      this.upDateContentData('BcsicInfo', this.formData)
+      cb && cb()
     }
   }
 }

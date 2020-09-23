@@ -268,7 +268,8 @@ export default {
     }
   },
   beforeDestroy() {
-    document.onclick = document.getElementById('cascaderContainer').oncontextmenu = null
+    debugger
+    document.onclick = null
   },
   methods: {
     handleExpandChange(expandArr) {

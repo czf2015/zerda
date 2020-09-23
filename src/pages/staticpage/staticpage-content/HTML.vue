@@ -1,22 +1,31 @@
 <template>
-  <el-card shadow="hover">
-    <div slot="header">
-      <h3>
-        {{ componentData.title }}
-        <el-button type="danger" icon="el-icon-close" circle style="float: right; padding: 3px" @click="handleRemove" />
-      </h3>
+  <div>
+    <div class="card-container" @click="showDialog">
+      <el-card shadow="hover">
+        <div slot="header">
+          <h3>
+            {{ componentData.title }}
+          </h3>
+        </div>
+        <div class="html-container">
+          <p>
+            <span>内容：</span>
+            <span>{{componentData.pateTitle || "未设置"}}</span>
+          </p>
+        </div>
+      </el-card>
     </div>
-    <div></div>
-  </el-card>
+    <HTMLDialog ref="HTMLDialog" :upDateContentData="upDateContentData"/>
+  </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-// import newDialog from '@/pages/document/components/newDialog'
+import HTMLDialog from './HTMLDialog'
 
 export default {
   name: 'HTML',
-  // components: { newDialog },
+  components: { HTMLDialog },
   props: {
     componentData: {
       type: Object,
@@ -45,23 +54,27 @@ export default {
   },
   methods: {
     showDialog(actionType, rawData) {
-      console.log(rawData)
-      this.actionType = actionType
-      this.show = true
+      this.$refs['HTMLDialog'].showDialog({ ...this.componentData })
     },
-    handleCancel() {
-      this.show = false
-    },
-    handeleConfirm() {
-      this.show = false
-    },
-    handleRemove() {
-      this.upDateContentData('remove', this.index)
-    }
   }
 }
 </script>
 
 <style lang="less" scoped>
-
+.card-container{
+  cursor: pointer;
+  .html-container{
+  p{
+    display: flex;
+    margin-bottom: 20px;
+    span:first-child{
+      width: 150px;
+    }
+    span:last-child{
+      word-break: break-all;
+      flex: 1;
+    }
+  }
+}
+}
 </style>

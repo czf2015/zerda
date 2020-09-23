@@ -67,7 +67,7 @@ export default {
                 meta: { title: '静态页面类别管理' }
               },
               {
-                path: 'staticpage-content',
+                path: 'staticpage-content/:pageId',
                 component: () => import('@/pages/staticpage/staticpage-content'),
                 name: 'StaticPageContent',
                 meta: { title: '静态页面内容管理' }

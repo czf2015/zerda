@@ -261,15 +261,15 @@ export default {
       }
     }
     .add-button{
-    text-align: center;
-    padding: 3px;
-    margin: 5px 0;
-    border: 1px dashed #16A9A9;
-    cursor: pointer;
-    >i{
-      margin-right: 12px;
+      text-align: center;
+      padding: 3px;
+      margin: 5px 0;
+      border: 1px dashed #16A9A9;
+      cursor: pointer;
+      >i{
+        margin-right: 12px;
+      }
     }
-  }
   }
 }
 p{
