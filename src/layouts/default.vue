@@ -10,7 +10,7 @@
       @input="emitter"
       group="targets"
     >
-      <transition-group type="transition" name="flip-list">
+      <transition-group type="transition" name="flip-list" class="drop-area-inner">
         <component
           v-for="(data, idx) in currentValue"
           :key="data.id"
@@ -170,8 +170,15 @@ export default {
   .no-move {
     transition: transform 0s;
   }
+  .item-container {
+    >.drop-area-inner {
+      display: block;
+      min-height: 84vh;
+    }
+  }
   .item-container:active {
     cursor: ns-resize;
+    
   }
   .right-center-btn {
     width: 40px;
