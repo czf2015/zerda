@@ -25,7 +25,7 @@
     </draggable>
     <Affix :pos="{ top: '42%', right: '20px' }">
       <div class="right-center-btn" @click="show = !show">添加</div>
-      <div class="list" v-show="show">
+      <div class="list" v-show="show" :style="{ top }">
         <draggable
           v-bind="dragOptions"
           :list="dragList"
@@ -65,7 +65,11 @@ export default {
     margin: {
       type: String,
     },
+    top: {
+      type: String,
+    }
   },
+  
   data() {
     return {
       loading: true,
@@ -110,9 +114,10 @@ export default {
     fetchData(page) {
       this.loading = true;
       fetch(`/data/${page}/index.json`)
+      // fetch(`/api?name=${page}`)
         .then((res) => res.json())
-        .then((data) => {
-          this.list = data;
+        .then(({ data }) => {
+          this.list = data
           this.dragList = JSON.parse(JSON.stringify(data))
           this.loading = false;
         });
@@ -178,7 +183,6 @@ export default {
   }
   .item-container:active {
     cursor: ns-resize;
-    
   }
   .right-center-btn {
     width: 40px;
@@ -190,8 +194,8 @@ export default {
   }
   .list {
     position: absolute;
-    right: 50px;
     top: -60px;
+    right: 50px;
     .list-item {
       width: 120px;
       text-align: center;
