@@ -48,8 +48,8 @@ export default {
   margin: 40px 40px;
   > .top-right {
     position: absolute;
-    top: 24px;
-    right: 0;
+    top: 8px;
+    right: 8px;
     > .icon_up,
     > .icon_down,
     > .icon_close {

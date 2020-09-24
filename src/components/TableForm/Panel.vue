@@ -11,7 +11,7 @@
     <CustomForm :datasource="formData" :auto="true" padding="0" @change="handleFormChange" />
     <el-tabs
       :type="cardType"
-      style="margin-top: 20px;"
+      style="margin: 20px 10px 20px 0;"
       v-model="activeTab"
       :before-leave="handleTabLeave"
       editable

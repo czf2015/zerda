@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="compose">
     <CustomForm :datasource="formData" :auto="auto" @change="handleFormChange" padding="0" />
     <TableForm
       style="margin-top: 20px;"
