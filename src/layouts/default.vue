@@ -191,8 +191,8 @@ export default {
   }
   .right-center-btn {
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     line-height: 40px;
     text-align: center;
     color: #fff;
