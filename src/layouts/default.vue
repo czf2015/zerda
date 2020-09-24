@@ -22,7 +22,7 @@
         />
       </transition-group>
     </draggable>
-    <Affix :pos="{ top: '42%', right: '20px' }">
+    <Affix :pos="{ top: '42%', right: '16px' }">
       <div class="right-center-btn" @click="show = !show">添加</div>
       <div class="list" v-show="show" :style="{ top }">
         <draggable
@@ -198,7 +198,7 @@ export default {
   .list {
     position: absolute;
     top: -60px;
-    right: 50px;
+    right: 44px;
     .list-item {
       width: 120px;
       text-align: center;
