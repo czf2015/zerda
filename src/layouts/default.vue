@@ -106,8 +106,8 @@ export default {
     },
     fetchData(page) {
       this.loading = true;
-      fetch(`/data/${page}/index.json`)
-      // fetch(`/api?name=${page}`)
+      // fetch(`/data/${page}/index.json`)
+      fetch(`/api?name=${page}`)
         .then((res) => res.json())
         .then(({ data }) => {
           this.list = data
