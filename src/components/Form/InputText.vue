@@ -45,7 +45,6 @@ export default {
       });
       this.valid = valid;
       this.message = message;
-      debugger
       this.$emit(this.validation.trigger, {
         field: this.field,
         value: this.inputText,

@@ -31,7 +31,6 @@ export const validate = ({ value, validation, required }) => {
                 ? { valid: false, message: '必选项' }
                 : { valid: true, message: '' }
         case 'link':
-            debugger
             return required && !new RegExp(validation.pattern).test(value)
                 ? { valid: false, message: `格式不符合规则：${validation.pattern}` }
                 : { valid: true, message: '' }

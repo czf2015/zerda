@@ -6,13 +6,12 @@
       tag="div"
       class="item-container"
       :list="list"
-      :value="value"
       @input="emitter"
       group="targets"
     >
       <transition-group type="transition" name="flip-list" class="drop-area-inner">
         <component
-          v-for="(data, idx) in currentValue"
+          v-for="(data, idx) in list"
           :key="data.id"
           :is="data.type"
           :initial="data"
@@ -32,7 +31,7 @@
           :sort="false"
           :group="{ name: 'targets', pull: 'clone', put: false }"
         >
-          <div v-for="({ id, title }) in dragList" class="list-item" :key="id">{{title}}</div>
+          <div v-for="({ title }, idx) in dragList" class="list-item" :key="idx" @mousedown="handleDragCopy(idx)">{{title}}</div>
         </draggable>
       </div>
     </Affix>
@@ -81,7 +80,6 @@ export default {
       },
       list: [],
       dragList: [],
-      value: null,
       bars: [
         {
           link: "wwww.baidu.com",
@@ -101,11 +99,6 @@ export default {
       ],
       show: false,
     };
-  },
-  computed: {
-    currentValue() {
-      return this.value ? this.value : this.list;
-    },
   },
   methods: {
     emitter(value) {
@@ -148,10 +141,14 @@ export default {
     moveable(idx) {
       return idx == 0
         ? "down"
-        : idx == this.currentValue.length - 1
+        : idx == this.list.length - 1
         ? "up"
         : "updown";
     },
+    handleDragCopy(idx) {
+      const ids = this.list.map(item => item.id)
+      this.dragList[idx] = { ...this.dragList[idx], id: `${Math.max(...ids) + 1}` }
+    }
   },
   mounted() {
     this.fetchData(this.$route.name);
@@ -179,10 +176,16 @@ export default {
     >.drop-area-inner {
       display: block;
       min-height: 84vh;
+      >* {
+        padding: 10px 0 0 10px;
+        border: 1px solid #ebeef5;
+        border-radius: 4px;
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+      }
+      >:active {
+        cursor: ns-resize;
+      }
     }
-  }
-  .item-container:active {
-    cursor: ns-resize;
   }
   .right-center-btn {
     width: 40px;
