@@ -91,6 +91,7 @@
         <el-menu-item index="/document/category-management" @click="goTo('/document/category-management')">类别管理</el-menu-item>
         <el-menu-item index="/document/product-managemen" @click="goTo('/document/product-management')">产品管理</el-menu-item>
         <el-menu-item index="/document/document-editing" @click="goTo('/document/document-editing')">文档编辑</el-menu-item>
+        <el-menu-item index="/document/document-review" @click="goTo('/document/document-review')">文档审核</el-menu-item>
       </el-menu-item-group>
 
     </el-submenu>
