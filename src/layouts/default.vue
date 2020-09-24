@@ -49,6 +49,7 @@ import Panel from "@/components/TableForm/Panel";
 import Affix from "@/components/Affix";
 import SideBar from "@/components/SideBar";
 import SkinSelect from "@/components/Select";
+import { isDev } from '@/config/env'
 
 export default {
   components: {
@@ -106,8 +107,9 @@ export default {
     },
     fetchData(page) {
       this.loading = true;
-      fetch(`/data/${page}/index.json`)
-      // fetch(`/api?name=${page}`)
+      // Todo
+      const api = isDev ? `/data/${page}/index.json` : `/api?name=${page}`
+      fetch(api)
         .then((res) => res.json())
         .then(({ data }) => {
           this.list = data
