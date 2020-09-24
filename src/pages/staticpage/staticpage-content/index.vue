@@ -2,40 +2,51 @@
   <div class="staticpage-content">
     <el-card>
       <div slot="header">
-        <h3>官网静态页面内容管理</h3>
+        <!-- <h3> -->
+        <el-cascader
+          placeholder="请选择或搜素要编辑的页面"
+          :options="options"
+          size="mini"
+          @change="goToNewPage"
+          filterable>
+          <p slot="reference" slot-scope="{ node }" style="display: block">
+            {{node.label}}
+          </p>
+        </el-cascader>
+        <!-- </h3> -->
       </div>
       <el-container style="backgroundColor: #fafafa">
-      <el-aside width="200px" style="padding: 20px 10px 20px 20px">
+      <!-- <el-aside width="200px" style="padding: 20px 10px 20px 20px; display: none">
         <el-card shadow="hover">
-          <!-- <div slot="header" class="card-header">
-          </div> -->
+          <div slot="header" class="card-header">
+          </div>
           <div class="card-body-left">
-            <!-- <draggable v-model="modelData" :options="{group:{name: 'staticPage',pull:'clone'},sort: true}" animation="300" @end="originTEdit">
-              <transition-group> -->
-                <div v-for="(componentData, index) in modelData" :key="componentData.componentId + index">{{componentData.title}}</div>
-              <!-- </transition-group>
-            </draggable> -->
+            <draggable v-model="modelData" :options="{group:{name: 'staticPage',pull:'clone'},sort: true}" animation="300" @end="originTEdit">
+              <transition-group>
+            <div v-for="(componentData, index) in modelData" :key="componentData.componentId + index">{{componentData.title}}</div>
+              </transition-group>
+            </draggable>
           </div>
         </el-card>
-      </el-aside>
+      </el-aside> -->
 
-      <el-main>
-        <draggable v-model="contentData" group="staticPage" animation="300" @end="editTOrigin" @start="onMove">
-          <transition-group>
-            <div class="component-container" v-for="(componentData, index) in contentData" :key="componentData.componentId + index">
-              <component 
-                :componentData="componentData"
-                :index="index"
-                :is="componentData.componentId"
-                :upDateContentData="upDateContentData"
-              />
-            </div>
-          </transition-group>
-        </draggable>
-      </el-main>
-    </el-container>
+        <el-main>
+          <!-- <draggable v-model="contentData" group="staticPage" animation="300" @end="editTOrigin" @start="onMove">
+            <transition-group> -->
+              <div class="component-container" v-for="(componentData, index) in contentData" :key="componentData.componentId + index">
+                <component 
+                  :componentData="componentData"
+                  :index="index"
+                  :is="componentData.componentId"
+                  :upDateContentData="upDateContentData"
+                />
+              </div>
+            <!-- </transition-group>
+          </draggable> -->
+        </el-main>
+      </el-container>
     </el-card>
-    <div class="model-container">
+    <!-- <div class="model-container">
       <p @click="showModel = !showModel">
         <i class="el-icon-star-on"/>
       </p>
@@ -46,12 +57,12 @@
           </transition-group>
         </draggable>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import draggable from 'vuedraggable'
+// import draggable from 'vuedraggable'
 import { mapGetters } from 'vuex'
 import BcsicInfo from './BcsicInfo'
 import Banner from './Banner'
@@ -60,18 +71,30 @@ import HTML from './HTML'
 
 export default {
   name: 'StaticPageContent',
-  components: { draggable, BcsicInfo, Banner, HTML },
+  components: { BcsicInfo, Banner, HTML },
   data() {
     return {
       moveId: -1,
       contentData: [
         {
           componentId: 'BcsicInfo',
-          title: '页面元信息'
+          title: '页面元信息',
+          pageTitle: '',
+          SEOKeyWords: '',
+          SEOKeyDescription: '',
+          definitionCSS: '',
+          definitionJS: '',
         },
         {
           componentId: 'Banner',
-          title: 'Banner'
+          title: 'Banner',
+          buttonList: [
+            {
+              buttonName: '123',
+              buttonLink: '123',
+              buttonType: '111'
+            },
+          ]
         },
         {
           componentId: 'HTML',
@@ -92,7 +115,77 @@ export default {
           title: 'HTML内容'
         }
       ],
-      showModel: false
+       options: [{
+          value: 'zhinan',
+          label: '指南',
+          type: 'node',
+          children: [{
+            value: 'shejiyuanze',
+            label: '设计原则',
+            type: 'leaf',
+            status: 'on'
+          }, {
+            value: 'daohang',
+            label: '导航',
+            type: 'leaf',
+            status: 'off'
+          }]
+        }, {
+          value: 'zujian',
+          label: '组件',
+          children: [{
+            value: 'basic',
+            label: 'Basic',
+            type: 'leaf',
+            status: 'on'
+          }, {
+            value: 'form',
+            label: 'Form',
+            type: 'leaf',
+            status: 'off'
+          }, {
+            value: 'data',
+            label: 'Data',
+            type: 'leaf',
+            status: 'on'
+          }, {
+            value: 'notice',
+            label: 'Notice',
+            type: 'leaf',
+            status: 'on'
+          }, {
+            value: 'navigation',
+            label: 'Navigation',
+            type: 'leaf',
+            status: 'on'
+          }, {
+            value: 'others',
+            label: 'Others',
+            type: 'leaf',
+            status: 'on'
+          }]
+        }, {
+          value: 'ziyuan',
+          label: '资源',
+          children: [{
+            value: 'axure',
+            label: 'Axure Components',
+            type: 'leaf',
+            status: 'on'
+          }, {
+            value: 'sketch',
+            label: 'Sketch Templates',
+            type: 'leaf',
+            status: 'off'
+          }, {
+            value: 'jiaohu',
+            label: '组件交互文档',
+            type: 'leaf',
+            status: 'on'
+          }]
+        }], 
+      showModel: false,
+      pageId: ''
     }
   },
   computed: {
@@ -101,6 +194,11 @@ export default {
     ])
   },
   mounted() {
+    this.pageId = this.$route.params.pageId
+    if(this.pageId) {
+      this.getPageData()
+    }
+    console.log(this.$route.params)
   },
   beforeDestroy() {
   },
@@ -108,36 +206,8 @@ export default {
     handleExpandChange(expandArr) {
       this.expandArr = expandArr
     },
-    handleadd(index) {
-      this.actionType = 'add'
-      this.$refs['NavigateDialog'].showDialog(this.actionType, { expandArr: this.expandArr, index })
-    },
-    handleEdit(node) {
-      this.actionType = 'edit'
-      this.$refs['NavigateDialog'].showDialog(this.actionType, node)
-      this.visible = ''
-    },
-    handleRemove(node) {
-      this.$refs['NavigateRemove'].showDialog(node)
-      this.visible = ''
-    },
-    showMenu(e, node, data) {
-      if (e.which === 1) {
-        this.visible = ''
-        return
-      }
-      this.visible = node.label
-    },
     originTEdit(e) {
       return
-      // console.log(e)
-      // var that=this;
-      // var  items=this.contentData.filter(function(m){
-      //   return  m.componentId==that.moveId
-      // })
-      //如果模板到编辑
-      // if(items.length<2) return;
-      // this.contentData.splice(e.newDraggableIndex, 1)
     },
     editTOrigin(e) {
       const that = this
@@ -152,17 +222,30 @@ export default {
       console.log(e.oldDraggableIndex)
       this.moveId=this.contentData[e.oldDraggableIndex].componentId;
     },
-    upDateContentData(actionType, index, newData) {
-      switch(actionType) {
-        case 'add':
+    upDateContentData(dataType, newData) {
+      let index = -1
+      switch(dataType) {
+        case 'BcsicInfo':
+          index = 0
           break
-        case 'edit':
-          this.contentData.splice(index, 1, newData)
+        case 'Banner':
+          index = 1
           break
-        case 'remove':
-          this.contentData.splice(index, 1)
+        case 'HTML':
+          index = 2
           break
+        default :
+          return
       }
+      this.contentData.splice(index, 1, newData)
+    },
+    goToNewPage(idList) {
+      if(this.pageId === idList[1]) return;
+      this.pageId = idList[1]
+      this.$router.push({ path: '/staticpage/staticpage-content/' + idList[1]});
+    },
+    getPageData() {
+      console.log(this.pageId)
     }
   }
 }
@@ -170,16 +253,14 @@ export default {
 
 <style lang="less" scoped>
 .staticpage-content{
-  /deep/ .el-container{
-    .el-aside{
-      .el-card__body{
-        min-height: 500px;
-      }
+  /deep/ .el-card{
+    input{
+      min-width: 120px; 
     }
-    .el-main{}
   }
 }
 .model-container{
+  display: none;
   position: fixed;
   top: 100px;
   right: 0;

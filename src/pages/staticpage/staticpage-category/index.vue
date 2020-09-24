@@ -164,7 +164,7 @@ export default {
     }
   },
   beforeDestroy() {
-    document.onclick = document.getElementById('cascaderContainer').oncontextmenu = null
+    document.onclick = null
   },
   methods: {
     handleExpandChange(expandArr) {
@@ -219,7 +219,7 @@ export default {
       this.visible = node.label
     },
     goTo(data) {
-      this.$router.push({ name: 'StaticPageContent', params: { userId:  data.id}});
+      this.$router.push({ name: 'StaticPageContent', params: { pageId:  data.id || 0}});
     },
   }
 }

@@ -1,53 +1,61 @@
 <template>
-  <el-card shadow="hover" @click="showDialog">
-    <div slot="header">
-      <h3>
-        {{ componentData.title }}
-        <el-button type="danger" icon="el-icon-close" circle style="float: right; padding: 3px" @click="handleRemove" />
-      </h3>
+  <div>
+    <div class="card-container" @click="showDialog">
+      <el-card shadow="hover">
+        <div slot="header">
+          <h3>
+            {{ componentData.title }}
+            <!-- <el-button type="danger" icon="el-icon-close" circle style="float: right; padding: 3px" @click="handleRemove" /> -->
+          </h3>
+        </div>
+        <div class="detail-container">
+          <p>
+            <span>页面标题：</span>
+            <span>{{componentData.pageTitle || "未设置"}}</span>
+          </p>
+          <p>
+            <span>SEO关键字：</span>
+            <span>{{componentData.SEOKeyWords || "未设置"}}</span>
+          </p>
+          <p>
+            <span>SEO描述：</span>
+            <span>{{componentData.SEOKeyDescription || "未设置"}}</span>
+          </p>
+          <p>
+            <span>自定义css：</span>
+            <span>{{componentData.definitionCSS || "未设置"}}</span>
+          </p>
+          <p>
+            <span>自定义js：</span>
+            <span>{{componentData.definitionJS || "未设置"}}</span>
+          </p>
+        </div>
+      </el-card>
     </div>
-    <div class="detail-container">
-      <p>
-        <span>页面标题：</span>
-        <span>{{componentData.pateTitle || "未设置"}}</span>
-      </p>
-      <p>
-        <span>SEO关键字：</span>
-        <span>{{componentData.pateTitle || "未设置"}}</span>
-      </p>
-      <p>
-        <span>SEO描述：</span>
-        <span>{{componentData.pateTitle || "未设置"}}</span>
-      </p>
-      <p>
-        <span>自定义css：</span>
-        <span>{{componentData.pateTitle || "未设置"}}</span>
-      </p>
-      <p>
-        <span>自定义js：</span>
-        <span>{{componentData.pateTitle || "未设置"}}</span>
-      </p>
-    </div>
-  </el-card>
+    <BcsicInfoDialog ref="BcsicInfoDialog" :upDateContentData="upDateContentData"/>
+  </div>
+
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-// import newDialog from '@/pages/document/components/newDialog'
+import BcsicInfoDialog from './BcsicInfoDialog'
 
 export default {
   name: 'BcsicInfo',
-  // components: { newDialog },
+  components: { BcsicInfoDialog },
   props: {
     componentData: {
       type: Object,
       default: () => {
-        return {}
+        return {
+          pageTitle: '',
+          SEOKeyWords: '',
+          SEOKeyDescription: '',
+          definitionCSS: '',
+          definitionJS: '',
+        }
       }
-    },
-    index: {
-      type: Number,
-      default: -1
     },
     upDateContentData: {
       type: Function,
@@ -65,37 +73,31 @@ export default {
     ]),
   },
   methods: {
-    showDialog(actionType, rawData) {
-      console.log(rawData)
-      this.actionType = actionType
-      this.show = true
+    showDialog() {
+      this.$refs['BcsicInfoDialog'].showDialog({ ...this.componentData })
     },
-    handleCancel() {
-      this.show = false
-    },
-    handeleConfirm(newData) {
-      this.show = false
-      this.upDateContentData('edit', this.index, newData)
-    },
-    handleRemove() {
-      this.upDateContentData('remove', this.index)
-    }
+    // handleRemove() {
+    //   this.upDateContentData('remove', this.index)
+    // }
   }
 }
 </script>
 
 <style lang="less" scoped>
-.detail-container{
+.card-container{
+  cursor: pointer;
+  .detail-container{
   p{
     display: flex;
+    margin-bottom: 20px;
     span:first-child{
       width: 150px;
     }
     span:last-child{
-      overflow: hidden;
-      text-overflow: ellipsis;
+      word-break: break-all;
       flex: 1;
     }
   }
+}
 }
 </style>

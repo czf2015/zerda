@@ -132,7 +132,7 @@ export default {
     this.getTreeData()
   },
   beforeDestroy() {
-    document.onclick = document.getElementById('cancledefultMenu').oncontextmenu = null
+    document.onclick = null
   },
   methods: {
     getTreeData() {
