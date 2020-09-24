@@ -45,7 +45,7 @@ export default {
 <style lang="less" scoped>
 .wrapper {
   position: relative;
-  margin: 40px 40px;
+  margin: 20px;
   > .top-right {
     position: absolute;
     top: 8px;

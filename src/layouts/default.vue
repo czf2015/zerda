@@ -23,7 +23,7 @@
       </transition-group>
     </draggable>
     <Affix :pos="{ top: '42%', right: '16px' }">
-      <div class="right-center-btn" @click="show = !show">添加</div>
+      <i class="right-center-btn" @click="show = !show" :class="{ active: show }" />
       <div class="list" v-show="show" :style="{ top }">
         <draggable
           v-bind="dragOptions"
@@ -188,26 +188,38 @@ export default {
     }
   }
   .right-center-btn {
-    width: 40px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
     line-height: 40px;
     text-align: center;
     color: #fff;
-    background: #66b1ff;
     border-radius: 50%;
+    background-image: url(/svg/add.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    &.active {
+      transform: rotate(45deg);
+    }
   }
   .list {
     position: absolute;
     top: -60px;
-    right: 44px;
+    right: 24px;
     .list-item {
       width: 120px;
       text-align: center;
       line-height: 2;
-      color: green;
+      color: #409eff;
       background-color: #fff;
       border-bottom: 1px solid #ccc;
-      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5);
+      box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.5);
       cursor: pointer;
+      &:hover {
+        color: #fff;
+        background-color: #bfbfbf;
+        cursor: move;
+      }
     }
   }
 }
