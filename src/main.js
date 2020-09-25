@@ -13,7 +13,8 @@ import store from './store'
 
 
 Vue.use(Router);
-Vue.use(ElementUI, { locale })
+Vue.use(ElementUI)
+// Vue.use(ElementUI, { locale })
 Vue.use(mavonEditor)
 
 Vue.config.productionTip = false

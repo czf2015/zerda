@@ -102,6 +102,12 @@ export default {
                 component: () => import('@/pages/document/document-editing'),
                 name: 'DocumentEditing',
                 meta: { title: '文档编辑' }
+              },
+              {
+                path: 'document-review',
+                component: () => import('@/pages/document/document-review'),
+                name: 'DocumentReview',
+                meta: { title: '文档编辑' }
               }
             ]
         },

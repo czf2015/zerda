@@ -10,5 +10,6 @@
 <style scoped>
 #main-container {
   min-height: 85vh;
+  min-width: 1000px;
 }
 </style>
