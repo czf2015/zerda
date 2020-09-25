@@ -4,7 +4,7 @@
       <el-card shadow="hover" class="product-review-header">
         <el-row :gutter="10">
           <el-col :span="2"><span>审核状态：</span></el-col>
-          <el-col :span="5">
+          <el-col :span="4">
             <el-select v-model="searchForm.auditStatus" placeholder="请选择" size="mini">
               <el-option
                 v-for="(label, value) in auditStatusConfig"
@@ -26,20 +26,24 @@
               end-placeholder="结束日期">
             </el-date-picker>
           </el-col>
-        </el-row>
-        <el-row :gutter="10">
-          <el-col :span="2"><span>提审人：</span></el-col>
-          <el-col :span="5">
-            <el-input v-model="input" placeholder="请输入提审人" size="mini"></el-input>
-          </el-col>
-          <el-col :span="2"><span>标题：</span></el-col>
-          <el-col :span="5">
-            <el-input v-model="input" placeholder="请输入标题" size="mini"></el-input>
-          </el-col>
-          <el-col :span="5" style="textAlign: right">
+          <el-col :span="5" style="textAlign: center">
             <el-button type="primary" size="mini" @click="handleSearch">查询</el-button>
             <el-button size="mini" @click="handleInitSearch">重置</el-button>
           </el-col>
+        </el-row>
+        <el-row :gutter="10">
+          <el-col :span="2"><span>提审人：</span></el-col>
+          <el-col :span="4">
+            <el-input v-model="input" placeholder="请输入提审人" size="mini"></el-input>
+          </el-col>
+          <el-col :span="2"><span>标题：</span></el-col>
+          <el-col :span="4">
+            <el-input v-model="input" placeholder="请输入标题" size="mini"></el-input>
+          </el-col>
+          <!-- <el-col :span="5" style="textAlign: right">
+            <el-button type="primary" size="mini" @click="handleSearch">查询</el-button>
+            <el-button size="mini" @click="handleInitSearch">重置</el-button>
+          </el-col> -->
         </el-row>
       </el-card>
       <el-card shadow="hover" class="product-review-body">

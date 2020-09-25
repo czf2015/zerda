@@ -7,7 +7,7 @@
 
       <div id="cascaderContainer">
         <ul class="cascader-header">
-          <li><i class="el-icon-folder-add" @click="handleadd(1)"/></li>
+          <li @click="handleadd(1)"><i class="el-icon-folder-add"/></li>
           <li v-for="(value, index) in expandArr" :key="value" @click="handleadd(2+index)"><i class="el-icon-folder-add"/></li>
         </ul>
 
@@ -58,145 +58,125 @@ export default {
       actionType: 'add',
       expandArr: [],
       cascaderProps: {
-        value: 'id',
+        value: 'menuId',
         label: 'title',
-        children: 'subTopNavParams'
+        children: 'topNavSubMenus'
       },
       options: [
+    {
+      "menuId": 10,
+      "pid": 0,
+      "title": "首页",
+      "menuType": "item",
+      "link": null,
+      "openMode": null,
+      "weight": 500,
+      "tag": null,
+      "topNavSubMenus": null
+    },
+    {
+      "menuId": 11,
+      "pid": 0,
+      "title": "云产品",
+      "menuType": "directory",
+      "link": null,
+      "openMode": null,
+      "weight": 400,
+      "tag": null,
+      "topNavSubMenus": [
         {
-          "id": 1,
-          "pid": 0,
-          "title": "首页",
-          "menuType": "item",
+          "menuId": 110,
+          "pid": 11,
+          "title": "计算",
+          "menuType": "directory",
           "link": null,
           "openMode": null,
           "weight": 500,
           "tag": null,
-          "creator": null,
-          "committer": null,
-          "subTopNavParams": []
+          "topNavSubMenus": [
+            {
+              "menuId": 1101,
+              "pid": 110,
+              "title": "云服务器",
+              "menuType": "item",
+              "link": null,
+              "openMode": null,
+              "weight": 500,
+              "tag": null,
+              "topNavSubMenus": null
+            },
+            {
+              "menuId": 1102,
+              "pid": 110,
+              "title": "容器服务",
+              "menuType": "item",
+              "link": null,
+              "openMode": null,
+              "weight": 400,
+              "tag": null,
+              "topNavSubMenus": null
+            }
+          ]
         },
         {
-          "id": 11,
-          "pid": 0,
-          "title": "云产品",
+          "menuId": 111,
+          "pid": 11,
+          "title": "存储",
           "menuType": "directory",
           "link": null,
           "openMode": null,
           "weight": 400,
           "tag": null,
-          "creator": null,
-          "committer": null,
-          "subTopNavParams": [
+          "topNavSubMenus": [
             {
-              "id": 110,
-              "pid": 11,
-              "title": "计算",
-              "menuType": "directory",
+              "menuId": 1111,
+              "pid": 111,
+              "title": "云硬盘",
+              "menuType": "item",
               "link": null,
               "openMode": null,
               "weight": 500,
               "tag": null,
-              "creator": null,
-              "committer": null,
-              "subTopNavParams": [
-                {
-                  "id": 7,
-                  "pid": 110,
-                  "title": "云服务器",
-                  "menuType": "item",
-                  "link": null,
-                  "openMode": null,
-                  "weight": 500,
-                  "tag": null,
-                  "creator": null,
-                  "committer": null,
-                  "subTopNavParams": null
-                },
-                {
-                  "id": 8,
-                  "pid": 110,
-                  "title": "容器服务",
-                  "menuType": "item",
-                  "link": null,
-                  "openMode": null,
-                  "weight": 400,
-                  "tag": null,
-                  "creator": null,
-                  "committer": null,
-                  "subTopNavParams": null
-                }
-              ]
+              "topNavSubMenus": null
             },
             {
-              "id": 111,
-              "pid": 11,
-              "title": "存储",
-              "menuType": "directory",
+              "menuId": 1112,
+              "pid": 111,
+              "title": "对象存储",
+              "menuType": "item",
               "link": null,
               "openMode": null,
               "weight": 400,
               "tag": null,
-              "creator": null,
-              "committer": null,
-              "subTopNavParams": [
-                {
-                  "id": null,
-                  "pid": 111,
-                  "title": "云硬盘",
-                  "menuType": "item",
-                  "link": null,
-                  "openMode": null,
-                  "weight": 500,
-                  "tag": null,
-                  "creator": null,
-                  "committer": null,
-                  "subTopNavParams": null
-                },
-                {
-                  "id": null,
-                  "pid": 111,
-                  "title": "对象存储",
-                  "menuType": "item",
-                  "link": null,
-                  "openMode": null,
-                  "weight": 400,
-                  "tag": null,
-                  "creator": null,
-                  "committer": null,
-                  "subTopNavParams": null
-                }
-              ]
-            },
-            {
-              "id": 112,
-              "pid": 11,
-              "title": "网络",
-              "menuType": "directory",
-              "link": null,
-              "openMode": null,
-              "weight": 300,
-              "tag": null,
-              "creator": null,
-              "committer": null,
-              "subTopNavParams": []
+              "topNavSubMenus": null
             }
           ]
         },
         {
-          "id": 3,
-          "pid": 0,
-          "title": "解决方案",
+          "menuId": 112,
+          "pid": 11,
+          "title": "网络",
           "menuType": "directory",
           "link": null,
           "openMode": null,
           "weight": 300,
           "tag": null,
-          "creator": null,
-          "committer": null,
-          "subTopNavParams": []
+          "topNavSubMenus": null
         }
       ]
+    },
+    {
+      "menuId": 12,
+      "pid": 0,
+      "title": "解决方案",
+      "menuType": "directory",
+      "link": null,
+      "openMode": null,
+      "weight": 300,
+      "tag": null,
+      "topNavSubMenus": null
+    }
+  ]
     }
   },
   computed: {
@@ -218,7 +198,6 @@ export default {
   methods: {
     handleExpandChange(expandArr) {
       this.expandArr = expandArr
-      debugger
     },
     handleadd(index) {
       this.actionType = 'add'
@@ -269,6 +248,8 @@ export default {
     margin: 0;
     >li{
       width: 180px;
+      height: 34px;
+      line-height: 34px;
       padding-left: 30px;
       list-style: none;
       box-sizing: border-box;
@@ -277,6 +258,9 @@ export default {
       &:last-child{
         border-right: none;
       }
+      &:hover{
+      background-color: #F5F7FA;
+    }
     }
   }
 }
