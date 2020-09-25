@@ -4,7 +4,7 @@
       <el-card shadow="hover" class="product-review-header">
         <el-row :gutter="10">
           <el-col :span="2"><span>审核状态：</span></el-col>
-          <el-col :span="5">
+          <el-col :span="4">
             <el-select v-model="searchForm.auditStatus" placeholder="请选择" size="mini">
               <el-option
                 v-for="(label, value) in auditStatusConfig"
@@ -13,6 +13,38 @@
                 :value="value"
               />
             </el-select>
+          </el-col>
+          <el-col :span="2"><span>提审类型：</span></el-col>
+          <el-col :span="4">
+            <el-select v-model="searchForm.auditType" placeholder="请选择" size="mini">
+              <el-option
+                v-for="(label, value) in auditTypeConfig"
+                :key="value"
+                :label="label"
+                :value="value"
+              />
+            </el-select>
+          </el-col>
+          <el-col :span="2"><span>模块标题：</span></el-col>
+          <el-col :span="4">
+            <el-select v-model="searchForm.module" placeholder="请选择" size="mini">
+              <el-option
+                v-for="(label, value) in modulesConfig"
+                :key="value"
+                :label="label"
+                :value="value"
+              />
+            </el-select>
+          </el-col>
+          <el-col :span="5" style="textAlign: center">
+            <el-button type="primary" size="mini" @click="handleSearch">查询</el-button>
+            <el-button size="mini" @click="handleInitSearch">重置</el-button>
+          </el-col>
+        </el-row>
+        <el-row :gutter="10">
+          <el-col :span="2"><span>提审人：</span></el-col>
+          <el-col :span="4">
+            <el-input v-model="input" placeholder="请输入提审人" size="mini"></el-input>
           </el-col>
           <el-col :span="2"><span>日期：</span></el-col>
           <el-col :span="10">
@@ -26,20 +58,10 @@
               end-placeholder="结束日期">
             </el-date-picker>
           </el-col>
-        </el-row>
-        <el-row :gutter="10">
-          <el-col :span="2"><span>提审人：</span></el-col>
-          <el-col :span="5">
-            <el-input v-model="input" placeholder="请输入提审人" size="mini"></el-input>
-          </el-col>
-          <el-col :span="2"><span>标题：</span></el-col>
-          <el-col :span="5">
+          <!-- <el-col :span="2"><span>标题：</span></el-col> -->
+          <!-- <el-col :span="5">
             <el-input v-model="input" placeholder="请输入标题" size="mini"></el-input>
-          </el-col>
-          <el-col :span="5" style="textAlign: right">
-            <el-button type="primary" size="mini" @click="handleSearch">查询</el-button>
-            <el-button size="mini" @click="handleInitSearch">重置</el-button>
-          </el-col>
+          </el-col> -->
         </el-row>
       </el-card>
       <el-card shadow="hover" class="product-review-body">
@@ -52,6 +74,7 @@
           <el-table-column
             type="selection"
             width="55"
+            fixed
             :selectable="checkStatus"
           />
           <el-table-column
@@ -60,10 +83,31 @@
             width="180"
           />
           <el-table-column
-            prop="title"
-            label="标题"
+            prop="pageTitle"
+            label="页面标题"
             width="180"
           />
+          <el-table-column
+            prop="moduleTitle"
+            label="模块标题"
+            width="180"
+          />
+          <el-table-column
+            label="查看修改详情"
+          >
+            <template slot-scope="scope">
+              <a href="javascript:;" @click="checkoutModifyDetail(scope.row)">查看详情</a>
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="auditStatus"
+            label="提审类型"
+            width="200"
+          >
+            <template slot-scope="scope">
+              <span>{{ auditTypeConfig[scope.row.auditType] }}</span>
+            </template>
+          </el-table-column>
           <el-table-column
             prop="submitAuditUser"
             label="提审人"
@@ -85,9 +129,12 @@
           </el-table-column>
           <el-table-column
             label="操作"
+            width="120"
+            fixed="right"
           >
-            <template slot-scope="scope" v-if="scope.row.auditStatus === 'toAudit'">
-              <a href="javascript:;" @click="handleReject(scope.row)">驳回</a>
+            <template slot-scope="scope">
+              <a href="javascript:;" style="marginRight: 10px">预览</a>
+              <a href="javascript:;" @click="handleReject(scope.row)" v-if="scope.row.auditStatus === 'toAudit'">驳回</a>
             </template>
           </el-table-column>
         </el-table>
@@ -106,6 +153,7 @@
     </div>
     <RejectDialog ref="RejectDialog" />
     <ApproveDialog ref="ApproveDialog" />
+    <ModifiDetailDialog ref="ModifiDetailDialog" />
   </div>
 </template>
 
@@ -113,10 +161,11 @@
 import { mapGetters } from 'vuex'
 import RejectDialog from './RejectDialog'
 import ApproveDialog from './ApproveDialog'
+import ModifiDetailDialog from './ModifiDetailDialog'
 
 export default {
   name: 'DocumentReview',
-  components: { RejectDialog, ApproveDialog },
+  components: { RejectDialog, ApproveDialog, ModifiDetailDialog },
   data() {
     return {
       value1: '',
@@ -125,7 +174,9 @@ export default {
       currentPage: 1,
       currentPageSize: 10,
       searchForm: {
+        auditType: '',
         auditStatus: '',
+        module: '',
         submitAuditTime: '',
         title: '',
         submitAuditUser: ''
@@ -157,14 +208,28 @@ export default {
           title: '计算',
           submitAuditUser: '王小虎',
           submitAuditTime: '2020-01-04',
-          auditStatus: 'toAudit'
+          // auditStatus: 'toAudit'
         }
       ],
       tableSelection: [],
       auditStatusConfig: {
+        all: '全部',
         toAudit: '待审核',
         approve: '已通过',
         reject: '已驳回'
+      },
+      auditTypeConfig: {
+        all: '全部',
+        toOffLine: '提交下线',
+        toAudit: '提交审核',
+      },
+      modulesConfig: {
+        all: '全部',
+        homePageNav: '官网导航管理',
+        homePageFooterNav: '官网底部导航管理',
+        homePageContent: '官网首页内容管理',
+        customization: '定制化页面管理',
+        staticPage: '静态页面管理'
       },
       //  [
       //   {
@@ -226,6 +291,9 @@ export default {
     },
     handleApprove() {
       this.$refs['ApproveDialog'].showDialog(this.tableSelection)
+    },
+    checkoutModifyDetail(rowData) {
+      this.$refs['ModifiDetailDialog'].showDialog(rowData)
     },
     handleSelectionChange(tableSelection) {
       this.tableSelection = tableSelection
