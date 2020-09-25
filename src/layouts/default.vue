@@ -50,6 +50,7 @@ import Affix from "@/components/Affix";
 import SideBar from "@/components/SideBar";
 import SkinSelect from "@/components/Select";
 import { isDev } from '@/config/env'
+import request from '@/utils/request'
 
 export default {
   components: {
@@ -109,8 +110,7 @@ export default {
       this.loading = true;
       // Todo
       const api = isDev ? `/data/${page}/index.json` : `/api?name=${page}`
-      fetch(api)
-        .then((res) => res.json())
+      request(api)
         .then(({ data }) => {
           this.list = data
           this.dragList = JSON.parse(JSON.stringify(data))
