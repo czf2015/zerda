@@ -1,6 +1,6 @@
 <template>
   <div class="header-management">
-    <el-card shadow="hover" class="header-management-header">
+    <el-card shadow="hover" class="header-management-header" v-loading="loading">
       <div slot="header" class="clearfix">
         <span>头部导航配置</span>
       </div>
@@ -11,7 +11,7 @@
           <li v-for="(value, index) in expandArr" :key="value" @click="handleadd(2+index)"><i class="el-icon-folder-add"/></li>
         </ul>
 
-        <el-cascader-panel :options="options" :props="cascaderProps" width="250px" size="small" @expand-change="handleExpandChange">
+        <el-cascader-panel :options="topNavMenu" :props="cascaderProps" width="250px" size="small" @expand-change="handleExpandChange">
           <el-popover
             slot-scope="{ node, data }"
             :value="visible === node.label"
@@ -39,7 +39,7 @@
       
     </el-card>
 
-    <NavigateDialog ref="NavigateDialog" />
+    <NavigateDialog ref="NavigateDialog" :queryTopNavMenus="queryTopNavMenus"/>
     <NavigateRemove ref="NavigateRemove" />
   </div>
 </template>
@@ -48,6 +48,7 @@
 import { mapGetters } from 'vuex'
 import NavigateDialog from './NavigateDialog'
 import NavigateRemove from './NavigateRemove'
+import { queryTopNavMenus } from '@/api/skypegmwcn'
 
 export default {
   name: 'CategoryManagement',
@@ -56,127 +57,14 @@ export default {
     return {
       visible: '',
       actionType: 'add',
+      loading: false,
       expandArr: [],
       cascaderProps: {
         value: 'menuId',
         label: 'title',
         children: 'topNavSubMenus'
       },
-      options: [
-    {
-      "menuId": 10,
-      "pid": 0,
-      "title": "首页",
-      "menuType": "item",
-      "link": null,
-      "openMode": null,
-      "weight": 500,
-      "tag": null,
-      "topNavSubMenus": null
-    },
-    {
-      "menuId": 11,
-      "pid": 0,
-      "title": "云产品",
-      "menuType": "directory",
-      "link": null,
-      "openMode": null,
-      "weight": 400,
-      "tag": null,
-      "topNavSubMenus": [
-        {
-          "menuId": 110,
-          "pid": 11,
-          "title": "计算",
-          "menuType": "directory",
-          "link": null,
-          "openMode": null,
-          "weight": 500,
-          "tag": null,
-          "topNavSubMenus": [
-            {
-              "menuId": 1101,
-              "pid": 110,
-              "title": "云服务器",
-              "menuType": "item",
-              "link": null,
-              "openMode": null,
-              "weight": 500,
-              "tag": null,
-              "topNavSubMenus": null
-            },
-            {
-              "menuId": 1102,
-              "pid": 110,
-              "title": "容器服务",
-              "menuType": "item",
-              "link": null,
-              "openMode": null,
-              "weight": 400,
-              "tag": null,
-              "topNavSubMenus": null
-            }
-          ]
-        },
-        {
-          "menuId": 111,
-          "pid": 11,
-          "title": "存储",
-          "menuType": "directory",
-          "link": null,
-          "openMode": null,
-          "weight": 400,
-          "tag": null,
-          "topNavSubMenus": [
-            {
-              "menuId": 1111,
-              "pid": 111,
-              "title": "云硬盘",
-              "menuType": "item",
-              "link": null,
-              "openMode": null,
-              "weight": 500,
-              "tag": null,
-              "topNavSubMenus": null
-            },
-            {
-              "menuId": 1112,
-              "pid": 111,
-              "title": "对象存储",
-              "menuType": "item",
-              "link": null,
-              "openMode": null,
-              "weight": 400,
-              "tag": null,
-              "topNavSubMenus": null
-            }
-          ]
-        },
-        {
-          "menuId": 112,
-          "pid": 11,
-          "title": "网络",
-          "menuType": "directory",
-          "link": null,
-          "openMode": null,
-          "weight": 300,
-          "tag": null,
-          "topNavSubMenus": null
-        }
-      ]
-    },
-    {
-      "menuId": 12,
-      "pid": 0,
-      "title": "解决方案",
-      "menuType": "directory",
-      "link": null,
-      "openMode": null,
-      "weight": 300,
-      "tag": null,
-      "topNavSubMenus": null
-    }
-  ]
+      topNavMenu: []
     }
   },
   computed: {
@@ -191,6 +79,7 @@ export default {
     document.onclick = () => {
       this.visible = ''
     }
+    this.queryTopNavMenus()
   },
   beforeDestroy() {
     document.onclick = null
@@ -218,6 +107,23 @@ export default {
         return
       }
       this.visible = node.label
+    },
+    queryTopNavMenus() {
+      this.loading = true
+      queryTopNavMenus()
+        .then(res => {
+          this.loading = false
+          if(res.status === 200 && res.data.responseHeader.isSuccess) {
+            this.topNavMenu = res.data.result
+          } else {
+            this.topNavMenu = []
+          }
+          console.log(res)
+        })
+        .catch(err => {
+          this.loading = false
+          this.topNavMenu = []
+        })
     }
   }
 }
