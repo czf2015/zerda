@@ -200,6 +200,7 @@ export default {
     background-image: url(/svg/add.svg);
     background-size: cover;
     background-repeat: no-repeat;
+    transition: 200ms;
     &.active {
       transform: rotate(45deg);
     }
