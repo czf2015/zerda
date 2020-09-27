@@ -14,8 +14,8 @@
           <el-form-item prop="type">
             <span slot="label">类型</span>
               <el-select v-model="formData.type" placeholder="请选择类型">
-                <el-option label="菜单组" value="1" />
-                <el-option label="菜单链接" value="2" />
+                <el-option label="菜单组" value="directory" />
+                <el-option label="菜单链接" value="item" />
               </el-select>
           </el-form-item>
           <el-form-item prop="link">
@@ -25,15 +25,15 @@
           <el-form-item prop="openMode">
             <span slot="label">链接打开方式</span>
               <el-select v-model="formData.openMode" placeholder="请选择链接打开方式">
-                <el-option label="当前页跳转" value="1" />
-                <el-option label="新窗口打开" value="2" />
+                <el-option label="当前页跳转" value="C" />
+                <el-option label="新窗口打开" value="T" />
               </el-select>
           </el-form-item>
           <el-form-item prop="tag">
             <span slot="label">标签</span>
               <el-select v-model="formData.tag" placeholder="请选择标签">
-                <el-option label="无" value="1" />
-                <el-option label="新品" value="2" />
+                <el-option label="无" value="none" />
+                <el-option label="新品" value="new" />
               </el-select>
           </el-form-item>
           <el-form-item prop="weight">
@@ -49,15 +49,16 @@
 <script>
 import { mapGetters } from 'vuex'
 import newDialog from '@/pages/document/components/newDialog'
+import { addMenuItem } from '@/api/skypegmwcn'
 
 export default {
   name: 'CategoryDialog',
   components: { newDialog },
   props: {
-    // actionType: {
-    //   type: String,
-    //   default: 'add'
-    // }
+    queryTopNavMenus: {
+      type: Function,
+      default: () => {}
+    }
   },
   data() {
     var checkAge = (rule, value, callback) => {
@@ -124,15 +125,6 @@ export default {
           { validator: checkAge, trigger: 'blur' }
         ]
       },
-      options: [
-        {
-          value: '选项1',
-          label: '菜单链接'
-        }, {
-          value: '选项2',
-          label: '菜单链接'
-        }
-      ],
     }
   },
   computed: {
@@ -161,6 +153,15 @@ export default {
     },
     handeleConfirm() {
       this.show = false
+    },
+    addMenuItem(data) {
+      addMenuItem(data)
+        .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
     }
   }
 }
