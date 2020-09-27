@@ -94,12 +94,5 @@ export default {
       console.log(formData);
     },
   },
-
-  mounted() {
-    document.body.ondrop = (ev) => {
-      ev.preventDefault()
-      ev.stopPropagation()
-    }
-  }
 };
 </script>

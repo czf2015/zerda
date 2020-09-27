@@ -17,11 +17,19 @@ import AppAside from "@/layouts/partials/AppAside";
 
 export default {
   name: "App",
+  
   components: {
     AppHeader,
     AppFooter,
     AppAside,
   },
+    
+  mounted() {
+    document.body.ondrop = (ev) => {
+      ev.preventDefault()
+      ev.stopPropagation()
+    }
+  }
 };
 </script>
 
