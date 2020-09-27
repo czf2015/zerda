@@ -11,16 +11,22 @@
 <script>
 import { mapGetters } from 'vuex'
 import newDialog from '@/pages/document/components/newDialog'
+import { delMenuItem } from '@/api/skypegmwcn'
 
 export default {
   name: 'CategoryRemove',
   components: { newDialog },
   props: {
+    queryTopNavMenus: {
+      type: Function,
+      default: () => {}
+    }
   },
   data() {
     return {
       show: false,
-      title: '删除导航项'
+      title: '删除导航项',
+      menuId: ''
     }
   },
   computed: {
@@ -29,15 +35,24 @@ export default {
     ])
   },
   methods: {
-    showDialog(rawData) {
-      console.log(rawData)
+    showDialog(menuData) {
+      this.menuId = menuData.data.menuId
       this.show = true
     },
     handleCancel() {
       this.show = false
     },
-    handeleConfirm() {
-      // this.show = false
+    handeleConfirm(cb) {
+      delMenuItem({menuId: this.menuId})
+      .then(res => {
+        this.queryTopNavMenus()
+        this.show = false
+        cb()
+      })
+      .catch(err => {
+        this.show = false
+        cb()
+      })
     }
   }
 }

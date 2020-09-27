@@ -40,7 +40,7 @@
     </el-card>
 
     <NavigateDialog ref="NavigateDialog" :queryTopNavMenus="queryTopNavMenus"/>
-    <NavigateRemove ref="NavigateRemove" />
+    <NavigateRemove ref="NavigateRemove" :queryTopNavMenus="queryTopNavMenus"/>
   </div>
 </template>
 
@@ -56,7 +56,6 @@ export default {
   data() {
     return {
       visible: '',
-      actionType: 'add',
       loading: false,
       expandArr: [],
       cascaderProps: {
@@ -88,13 +87,13 @@ export default {
     handleExpandChange(expandArr) {
       this.expandArr = expandArr
     },
-    handleadd(index) {
-      this.actionType = 'add'
-      this.$refs['NavigateDialog'].showDialog(this.actionType, { expandArr: this.expandArr, index })
+    handleadd(menuItemLevel) {
+      // this.actionType = 'add'
+      this.$refs['NavigateDialog'].showDialog('addMenuItem', { expandArr: this.expandArr, menuItemLevel })
     },
     handleEdit(node) {
-      this.actionType = 'edit'
-      this.$refs['NavigateDialog'].showDialog(this.actionType, node)
+      // this.actionType = 'edit'
+      this.$refs['NavigateDialog'].showDialog('modifyMenuItem', node)
       this.visible = ''
     },
     handleRemove(node) {
@@ -121,6 +120,7 @@ export default {
           console.log(res)
         })
         .catch(err => {
+          console.log(err)
           this.loading = false
           this.topNavMenu = []
         })
