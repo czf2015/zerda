@@ -4,12 +4,13 @@ module.exports = {
     lintOnSave: false, //是否开启eslint
     devServer: {
         open: true, //是否自动弹出浏览器页面
-        host: "localhost", //表示启动的时候使用的域名，默认可以不写，则是使用localhost和本机IP
-        port: '8081', // 设置端口号
+        // host: "localhost", //表示启动的时候使用的域名，默认可以不写，则是使用localhost和本机IP
+        // port: '8081', // 设置端口号
         https: false,  //是否使用https协议
         hotOnly: false, //是否开启热更新
         proxy: {
             '/api': {
+                // target: 'http://localhost:3000/api/page', // API服务器的地址
                 target: 'http://10.100.51.208:8081/official-console/', //API服务器的地址
                 ws: true, //代理websockets
                 changeOrigin: true, // 是否跨域，虚拟的站点需要更管origin
@@ -20,9 +21,9 @@ module.exports = {
                     // '^/api': '',
                 }
             },
-            '/data': {
-                target: 'http://yd.abc.top'
-            }
+            // '/data': {
+            //     target: 'http://yd.abc.top'
+            // }
         },
     }
 }
