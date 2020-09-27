@@ -70,7 +70,7 @@ export default {
   data() {
     return {
       store: this.initial,
-      activeTab: 0,
+      activeTab: '0',
       closable: false,
       canTabLeave: true,
     };
@@ -111,9 +111,10 @@ export default {
       const tabs = this.store.content;
       switch (action) {
         case "add":
-          this.activeTab = tabs.length;
+          this.activeTab = `${tabs.length}`;
           tabs.push({
-            category: `tab ${this.activeTab}`,
+            category: `tab ${tabs.length + 1}`,
+            children: []
           });
           break;
         case "remove":
