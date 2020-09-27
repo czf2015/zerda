@@ -21,9 +21,10 @@ module.exports = {
                     // '^/api': '',
                 }
             },
-            // '/data': {
-            //     target: 'http://yd.abc.top'
-            // }
+            '/data': {
+                target: '/data',
+                '^/data': '',
+            }
         },
     }
 }
