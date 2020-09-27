@@ -1,17 +1,35 @@
 import service from '@/utils/request'
 
+const baseUrl = '/api'
+
 export const queryTopNavMenus = (data) => {
-  return service.get('/topNav/queryMenus', data)
+  return service({
+    url: baseUrl + '/topNav/queryMenus',
+    method: 'GET',
+    data
+  })
 }
 
 export const addMenuItem = (data) => {
-  return service.put('/topNav/addMenuItem', data)
+  return service({
+    url: baseUrl + '/topNav/addMenuItem',
+    method: 'POST',
+    data
+  })
 }
 
 export const modifyMenuItem = (data) => {
-  return service.post('/topNav/modifyMenuItem', data)
+  return service({
+    url: baseUrl + '/topNav/modifyMenuItem',
+    method: 'POST',
+    data
+  })
 }
 
-export const delMenuItem = (data) => {
-  return service.post('/topNav/delMenuItem', data)
+export const delMenuItem = (params) => {
+  return service({
+    url: baseUrl + '/topNav/delMenuItem',
+    method: 'PUT',
+    params
+  })
 }

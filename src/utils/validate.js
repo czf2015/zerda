@@ -52,3 +52,19 @@ export const validate = ({ value, validation, required }) => {
             return { valid: true, message: '' }
     }
 }
+
+//链接校验
+const strRegex = "^((https|http|ftp|rtsp|mms)?://)"  
+ 5        + "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" //ftp的user@  
+ 6        + "(([0-9]{1,3}\.){3}[0-9]{1,3}" // IP形式的URL- 199.194.52.184  
+ 7        + "|" // 允许IP和DOMAIN（域名） 
+ 8        + "([0-9a-z_!~*'()-]+\.)*" // 域名- www.  
+ 9        + "([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\." // 二级域名  
+10        + "[a-z]{2,6})" // first level domain- .com or .museum  
+11        + "(:[0-9]{1,4})?" // 端口- :80  
+12        + "((/?)|" // a slash isn't required if there is no file name  
+13        + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$"; 
+export const urlValidate = new RegExp(strRegex);
+
+//数字校验
+export const numberValidate = /^[0-9]*$/
