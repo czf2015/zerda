@@ -17,7 +17,7 @@ import AppAside from "@/layouts/partials/AppAside";
 
 export default {
   name: "App",
-  
+
   components: {
     AppHeader,
     AppFooter,
@@ -25,6 +25,7 @@ export default {
   },
     
   mounted() {
+    // 解决火狐浏览器拖拽默认打开新的tab页问题
     document.body.ondrop = (ev) => {
       ev.preventDefault()
       ev.stopPropagation()

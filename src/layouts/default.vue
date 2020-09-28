@@ -85,17 +85,17 @@ export default {
       bars: [
         {
           link: "wwww.baidu.com",
-          // icon: 'https://dss1.bdstatic.com/6OF1bjeh1BF3odCf/it/u=3997521572,425720479&fm=74&app=80&f=JPEG&size=f121,90?sec=1880279984&t=24d78aa497d23ca09084ff40ac52bde0',
+          icon: '/svg/save.svg',
           text: "保存",
         },
         {
           link: "wwww.baidu.com",
-          // icon: 'https://dss1.bdstatic.com/6OF1bjeh1BF3odCf/it/u=3997521572,425720479&fm=74&app=80&f=JPEG&size=f121,90?sec=1880279984&t=24d78aa497d23ca09084ff40ac52bde0',
+          icon: '/svg/view.svg',
           text: "预览",
         },
         {
           link: "wwww.baidu.com",
-          // icon: 'https://dss1.bdstatic.com/6OF1bjeh1BF3odCf/it/u=3997521572,425720479&fm=74&app=80&f=JPEG&size=f121,90?sec=1880279984&t=24d78aa497d23ca09084ff40ac52bde0',
+          icon: '/svg/publish.svg',
           text: "发布",
         },
       ],
@@ -196,9 +196,11 @@ export default {
     line-height: 40px;
     text-align: center;
     color: #fff;
+    background-color: #409eff;
     border-radius: 50%;
-    background-image: url(/svg/add.svg);
-    background-size: cover;
+    background-image: url(/svg/conf.svg);
+    background-size: 60% 60%;
+    background-position: 50% 50%;
     background-repeat: no-repeat;
     transition: 200ms;
     &.active {

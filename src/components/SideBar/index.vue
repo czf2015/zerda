@@ -36,29 +36,31 @@ export default {
 .sidebar {
   margin: 0;
   padding: 0;
-  border-radius: 8px;
+  border-radius: 4px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5);
+  background: #fff;
   cursor: pointer;
   > .sidebar-item {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 4px 2px;
     width: 36px;
     min-height: 36px;
     font-weight: bold;
-    color: #444950;
-    background: #fff;
+    // color: #444950;
+    color: #409eff;
     border-bottom: solid 1px #ccc;
-    &:first-child {
-      color: #409EFF;
-    }
-    &:nth-child(2) {
-      color: green;
-    }
-    &:nth-child(3) {
-      color: red;
-    }
+    // &:first-child {
+    //   color: #409eff;
+    // }
+    // &:nth-child(2) {
+    //   color: green;
+    // }
+    // &:nth-child(3) {
+    //   color: red;
+    // }
     &:hover {
       background: #dedede;
     }
