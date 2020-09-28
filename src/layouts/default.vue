@@ -48,7 +48,7 @@ import Container from "@/components/TableForm/Container";
 import Panel from "@/components/TableForm/Panel";
 import Affix from "@/components/Affix";
 import SideBar from "@/components/SideBar";
-import SkinSelect from "@/components/Select";
+import SkinSelect from "@/components/SkinSelect";
 import { isDev } from '@/config/env'
 import request from '@/utils/request'
 
@@ -193,7 +193,7 @@ export default {
     display: inline-block;
     width: 24px;
     height: 24px;
-    line-height: 40px;
+    // line-height: 40px;
     text-align: center;
     color: #fff;
     background-color: #409eff;

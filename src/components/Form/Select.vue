@@ -42,6 +42,7 @@ export default {
     return {
       selected: this.value || (this.multiple ? ["请选择"] : "请选择"),
       valid: this.validation.valid || true,
+      message: '',
     };
   },
   watch: {
