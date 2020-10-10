@@ -58,7 +58,7 @@ export const convertTableFormData = (themes) => {
                 label: '删除'
             }
         ],
-        transform: 'translate(-80%, -80%)'
+        transform: 'translate(-80%, -180%)'
     }
 }
 
