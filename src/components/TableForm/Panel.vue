@@ -20,6 +20,7 @@
       <el-tab-pane
         v-for="({ category, formData, tableData }, idx) in panelDatas"
         :key="idx"
+        :name="String(idx)"
         :label="category"
       >
         <Compose
@@ -118,17 +119,15 @@ export default {
           });
           break;
         case "remove":
-          debugger
-          console.log(targetName);
           if (confirm("确定删除该栏？")) {
-            if (this.activeTab === targetName) {
+            if (this.activeTab == targetName) {
               if (targetName < tabs.length - 1) {
-                this.activeTab = targetName + 1;
+                this.activeTab = targetName;
               } else {
-                this.activeTab = targetName - 1;
+                this.activeTab = `${targetName - 1}`;
               }
             }
-            this.store.content.splice(targetName, 1);
+            tabs.splice(Number(targetName), 1);
           }
           break;
         default:
