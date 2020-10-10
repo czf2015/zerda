@@ -74,3 +74,7 @@ export const memoizer = (memo, formula) => {
     }
     return recur
 }
+
+export function base64(s) {
+    return window.btoa(unescape(encodeURIComponent(s)))
+}
