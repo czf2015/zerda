@@ -118,6 +118,7 @@ export default {
           });
           break;
         case "remove":
+          debugger
           console.log(targetName);
           if (confirm("确定删除该栏？")) {
             if (this.activeTab === targetName) {
@@ -127,7 +128,7 @@ export default {
                 this.activeTab = targetName - 1;
               }
             }
-            this.store.splice(targetName, 1);
+            this.store.content.splice(targetName, 1);
           }
           break;
         default:
