@@ -2,7 +2,7 @@
   <div class="compose">
     <CustomForm :datasource="formData" :auto="auto" @change="handleFormChange" padding="0" />
     <TableForm
-      style="margin: 20px 20px 20px 10px;"
+      style="margin-top: 20px;"
       v-bind="tableData"
       @edit="handleTableEdit"
       @save="handleTableSave"
@@ -71,3 +71,10 @@ export default {
   },
 };
 </script>
+
+<style lang="less" scoped>
+.compose {
+  margin-top: -15px;
+  padding: 0 10px 10px 0;
+}
+</style>
