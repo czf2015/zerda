@@ -7,6 +7,7 @@ export const MONTH = DAY * 30
 export const YEAR = DAY * 365
 
 export const CLICK_INTERVAL = 200 // 点击间隔
+
 export const REQUEST_TIMEOUT = 300 // 请求时长限制
 export const LOADING_TIMEOUT = SECOND * 3 // 加载时长限制
 export const DOWNLOAD_TIMEOUT = MINUTE * 1 // 下载时长限制
