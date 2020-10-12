@@ -321,6 +321,8 @@ export default {
 
     Dnd: {},
 
-    Loading: {}
+    Loading: {},
+
+    Search: {},
 
 }

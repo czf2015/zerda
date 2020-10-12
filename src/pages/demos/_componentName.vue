@@ -47,6 +47,7 @@ export default {
     Dnd: () => import("@/components/Dnd"),
     Parser: () => import("@/components/Parser"),
     Loading: () => import("@/components/Loading/Ripple"),
+    Search: () => import('@/components/Form/Search')
     // toTest
     // 方法
     // Message: () => import("@/components/Message"),

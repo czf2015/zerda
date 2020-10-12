@@ -1,4 +1,4 @@
-input {
+form input {
   padding: 0 8px;
   min-width: 480px;
   line-height: 36px;
@@ -6,24 +6,24 @@ input {
   border-radius: 5px;
 }
 
-input:focus {
+form input:focus {
   border: 1px solid #409EFF;
   outline: none;
 }
 
-textarea {
+form textarea {
   width: 480px;
   min-height: 160px;
   border: 1px solid #DCDFE6;
   border-radius: 5px;
 }
 
-textarea:focus {
+form textarea:focus {
   border: 1px solid #409EFF;
   outline: none;
 }
 
-input[type="submit"] {
+form input[type="submit"] {
   margin-top: 8px;
   margin-left: 8px;
   min-width: 80px;
@@ -33,7 +33,7 @@ input[type="submit"] {
   border: none;
 }
 
-select {
+form select {
   min-width: 160px;
   padding: 0 8px;
   height: 36px;
@@ -41,7 +41,7 @@ select {
   border-radius: 5px;
 }
 
-select:focus {
+form select:focus {
   border: 1px solid #409EFF;
   outline: none;
 }
