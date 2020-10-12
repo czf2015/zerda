@@ -141,7 +141,7 @@ export default {
       return this.canTabLeave
     },
     handleFormChange(formData) {
-      this.formData = formData;
+      Object.assign(this.store, formData)
     },
     handleTitleChange(val) {
       this.store.title = val;

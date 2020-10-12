@@ -91,7 +91,8 @@ export default {
       this.store.content.splice(index, 2, this.store.content[index + 1], this.store.content[index])
     },
     handleFormChange(formData) {
-      console.log(formData);
+      console.log(JSON.stringify(formData));
+      Object.assign(this.store, formData)
     },
   },
 };

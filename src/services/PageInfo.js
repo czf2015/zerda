@@ -3,13 +3,28 @@ import request from '@/utils/request'
 
 export class PageInfo {
     static async query(page) {
-        const api = isDev ? `/data/${page}/index.json` : `/api?name=${page}`
-        return await request(api).then(({ data }) => data)
+        const api = isDev ? `/data/${page}/index.json` : `/api/page?name=${page}`
+        return request(api)
+        // return await request({
+        //     method: 'get',
+        //     url: '/api/page',
+        //     params: {
+        //         name: page
+        //     }
+        // })
     }
 
     static async create(page) { }
 
-    static async update(page) { }
+    static async update(url, data) {
+        return await request({
+            method: 'put',
+            url,
+            data
+        })
+     }
 
-    static async delete(page) { }
+    static async delete(page) { 
+        console.log(page)
+    }
 }

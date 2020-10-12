@@ -6,7 +6,6 @@
       tag="div"
       class="item-container"
       :list="list"
-      @input="emitter"
       group="targets"
     >
       <transition-group
@@ -51,7 +50,7 @@
       </div>
     </Affix>
     <Affix :pos="{ bottom: '60px', right: '20px' }">
-      <SideBar :list="bars" />
+      <SideBar :list="bars" @click="handleOperate" />
     </Affix>
   </main>
 </template>
@@ -101,31 +100,36 @@ export default {
           link: "wwww.baidu.com",
           icon: "/svg/save.svg",
           text: "保存",
+          operate: "save",
         },
         {
           link: "wwww.baidu.com",
           icon: "/svg/view.svg",
           text: "预览",
+          operate: "preview",
         },
         {
           link: "wwww.baidu.com",
           icon: "/svg/publish.svg",
           text: "发布",
+          operate: "publish",
         },
       ],
       show: false,
+      rawData: null,
     };
   },
   methods: {
-    emitter(value) {
-      this.$emit("input", value);
-    },
+    // emitter(value) {
+    //   this.$emit("input", value);
+    // },
     fetchData(page) {
       this.loading = true;
       // Todo
-      PageInfo.query(page).then((data) => {
-        this.list = data;
-        this.dragList = JSON.parse(JSON.stringify(data));
+      PageInfo.query(page).then((raw) => {
+        this.rawData = raw
+        this.list = raw.data;
+        this.dragList = JSON.parse(JSON.stringify(raw.data));
         this.loading = false;
       });
     },
@@ -161,6 +165,27 @@ export default {
         ...this.dragList[idx],
         id: `${Math.max(...ids) + 1}`,
       };
+    },
+    handleOperate(operate) {
+      // console.log(this.list);
+      switch (operate) {
+        case "save":
+          const update = { ...this.rawData, data: this.list }
+          console.log(update)
+          PageInfo.update('/api/page', {
+            condition: {
+              name: this.$route.name
+            },
+            update
+          })
+          break;
+        case "preview":
+          break;
+        case "publish":
+          break;
+        default:
+          break;
+      }
     },
   },
   mounted() {

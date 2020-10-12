@@ -1,6 +1,6 @@
 <template>
   <ul class="sidebar">
-    <li class="sidebar-item" v-for="(item, idx) in list" :key="idx" @click="handleClick(item)">
+    <li class="sidebar-item" v-for="(item, idx) in list" :key="idx" @click="handleClick(item.operate)">
       <Icon v-if="item.icon" :src="item.icon" width="24px" height="24px" />
       <span class="desc">{{ item.text }}</span>
     </li>
@@ -24,8 +24,8 @@ export default {
   },
 
   methods: {
-    handleClick(item) {
-      this.$emit("click", item);
+    handleClick(operate) {
+      this.$emit("click", operate);
     },
   },
 };
