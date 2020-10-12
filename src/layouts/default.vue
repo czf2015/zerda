@@ -64,7 +64,7 @@ import Panel from "@/components/TableForm/Panel";
 import Affix from "@/components/Affix";
 import SideBar from "@/components/SideBar";
 import SkinSelect from "@/components/SkinSelect";
-import { getPageInfo } from "@/services";
+import { PageInfo } from "@/services";
 
 export default {
   components: {
@@ -123,7 +123,7 @@ export default {
     fetchData(page) {
       this.loading = true;
       // Todo
-      getPageInfo(page).then((data) => {
+      PageInfo.query(page).then((data) => {
         this.list = data;
         this.dragList = JSON.parse(JSON.stringify(data));
         this.loading = false;
