@@ -10,8 +10,8 @@ module.exports = {
         hotOnly: false, //是否开启热更新
         proxy: {
             '/api': {
-                // target: 'http://localhost:3000/api', // API服务器的地址
-                target: 'http://39.104.75.222:8081/official-console/', //API服务器的地址
+                target: 'http://localhost:3000/api', // API服务器的地址
+                // target: 'http://39.104.75.222:8081/official-console/', //API服务器的地址
                 // target: 'http://10.100.51.208:8081/official-console/', //API服务器的地址
                 ws: true, //代理websockets
                 changeOrigin: true, // 是否跨域，虚拟的站点需要更管origin

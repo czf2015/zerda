@@ -28,8 +28,9 @@ export const tableToExcel = (tableData, worksheet = 'sheet1') => {
         const tds = cells.map(cell => `<td>${cell}</td>`).join('')
         return `<tr>${tds}</tr>`
     }).join('')
-    const template = (
-`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"
+
+    const template = `
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"
     xmlns="http://www.w3.org/TR/REC-html40">
 <head>
     <!--[if gte mso 9]>
@@ -51,8 +52,9 @@ export const tableToExcel = (tableData, worksheet = 'sheet1') => {
 <body>
     <table>${tableContent}</table>
 </body>
-</html>`
-    )
+</html>
+`
+
     const uri = 'data:application/vnd.ms-excel;base64,';
     window.location.href = uri + base64(template)
 }

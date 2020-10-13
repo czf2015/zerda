@@ -1,4 +1,4 @@
-const { generate, convert, revert } = require('../utils/index.js')
+const { generate, convert, revert } = require('@/utils/tree.js')
 
 
 export default class Tree {
