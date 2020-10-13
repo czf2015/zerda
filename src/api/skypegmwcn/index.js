@@ -26,10 +26,10 @@ export const modifyMenuItem = (data) => {
   })
 }
 
-export const delMenuItem = (params) => {
+export const delMenuItem = (data) => {
   return service({
     url: baseUrl + '/topNav/delMenuItem',
-    method: 'PUT',
-    params
+    method: 'POST',
+    data
   })
 }
