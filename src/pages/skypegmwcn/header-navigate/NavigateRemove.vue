@@ -11,7 +11,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import newDialog from '@/pages/document/components/newDialog'
-import { delMenuItem } from '@/api/skypegmwcn'
+import { TopNav } from '@/services'
 
 export default {
   name: 'CategoryRemove',
@@ -43,7 +43,7 @@ export default {
       this.show = false
     },
     handeleConfirm(cb) {
-      delMenuItem({menuId: this.menuId})
+      TopNav.delete({menuId: this.menuId})
       .then(res => {
         this.queryTopNavMenus()
         this.show = false

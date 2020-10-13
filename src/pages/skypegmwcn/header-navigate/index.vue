@@ -48,7 +48,7 @@
 import { mapGetters } from 'vuex'
 import NavigateDialog from './NavigateDialog'
 import NavigateRemove from './NavigateRemove'
-import { queryTopNavMenus } from '@/api/skypegmwcn'
+import { TopNav } from '@/services'
 
 export default {
   name: 'CategoryManagement',
@@ -109,7 +109,7 @@ export default {
     },
     queryTopNavMenus() {
       this.loading = true
-      queryTopNavMenus()
+      TopNav.query()
         .then(res => {
           this.loading = false
           if(res.responseHeader.isSuccess) {

@@ -30,56 +30,58 @@
 import { mapGetters } from 'vuex'
 import ServiceConfig from './ServiceConfig'
 import NavARecConfig from './NavARecConfig'
+import mock from './mock'
+import { FooterInfo } from '@/services'
 
 export default {
   name: 'CategoryManagement',
   components: { ServiceConfig, NavARecConfig },
   data() {
     return {
-      currentPage: 1,
+      // currentPage: 1,
       activeName: "first",
-      tableData: [
-        {
-          date: '2016-05-02',
-          categoryName: '王小虎',
-          categoryNameEn: 'wangxiaohu',
-          weight: '100'
-        }, {
-          date: '2016-05-04',
-          categoryName: '王小虎',
-          categoryNameEn: 'wangxiaohu',
-          weight: '100'
-        }, {
-          date: '2016-05-01',
-          categoryName: '王小虎',
-          categoryNameEn: 'wangxiaohu',
-          weight: '100'
-        }, {
-          date: '2016-05-03',
-          categoryName: '王小虎',
-          categoryNameEn: 'wangxiaohu',
-          weight: '100'
-        }
-      ],
-      options: [
-        {
-          value: '选项1',
-          label: '黄金糕'
-        }, {
-          value: '选项2',
-          label: '双皮奶'
-        }, {
-          value: '选项3',
-          label: '蚵仔煎'
-        }, {
-          value: '选项4',
-          label: '龙须面'
-        }, {
-          value: '选项5',
-          label: '北京烤鸭'
-        }
-      ],
-      value: ''
+      // tableData: [
+      //   {
+      //     date: '2016-05-02',
+      //     categoryName: '王小虎',
+      //     categoryNameEn: 'wangxiaohu',
+      //     weight: '100'
+      //   }, {
+      //     date: '2016-05-04',
+      //     categoryName: '王小虎',
+      //     categoryNameEn: 'wangxiaohu',
+      //     weight: '100'
+      //   }, {
+      //     date: '2016-05-01',
+      //     categoryName: '王小虎',
+      //     categoryNameEn: 'wangxiaohu',
+      //     weight: '100'
+      //   }, {
+      //     date: '2016-05-03',
+      //     categoryName: '王小虎',
+      //     categoryNameEn: 'wangxiaohu',
+      //     weight: '100'
+      //   }
+      // ],
+      // options: [
+      //   {
+      //     value: '选项1',
+      //     label: '黄金糕'
+      //   }, {
+      //     value: '选项2',
+      //     label: '双皮奶'
+      //   }, {
+      //     value: '选项3',
+      //     label: '蚵仔煎'
+      //   }, {
+      //     value: '选项4',
+      //     label: '龙须面'
+      //   }, {
+      //     value: '选项5',
+      //     label: '北京烤鸭'
+      //   }
+      // ],
+      // value: ''
     }
   },
   computed: {
@@ -94,6 +96,23 @@ export default {
     handleRemove(rowData) {
       this.$refs['CategoryRemove'].showDialog(rowData)
     }
+  },
+  mounted() {
+    // FooterInfo.query().then(res => {
+    //   console.log('-----')
+    //   console.log(JSON.stringify(res))
+    // })
+
+    FooterInfo.create({
+      id: '',
+      content: JSON.stringify(mock)
+    }).then(res => {
+      console.log(res)
+       FooterInfo.query().then(res => {
+        console.log('-----')
+        console.log(JSON.stringify(res))
+      })
+    })
   }
 }
 </script>

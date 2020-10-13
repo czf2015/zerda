@@ -49,7 +49,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import newDialog from '@/pages/document/components/newDialog'
-import { addMenuItem, modifyMenuItem } from '@/api/skypegmwcn'
+import { TopNav } from '@/services'
 import { urlValidate, numberValidate } from '@/utils/validate'
 
 export default {
@@ -167,7 +167,7 @@ export default {
         });
     },
     addMenuItem(data, cb) {
-      addMenuItem(data)
+      TopNav.create(data)
         .then(res => {
           this.handleCancel()
           this.queryTopNavMenus()
@@ -178,7 +178,7 @@ export default {
         })
     },
     modifyMenuItem(data, cb) {
-      modifyMenuItem(data)
+      TopNav.update(data)
         .then(res => {
         this.handleCancel()
         this.queryTopNavMenus()
