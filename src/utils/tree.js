@@ -1,3 +1,5 @@
+import { deepCopy } from './object.js'
+
 export const traverse = (tree/* { node, children } */, handle) => {
     const { node, children = [] } = tree
     handle(node)
@@ -20,9 +22,6 @@ export const traverse = (tree/* { node, children } */, handle) => {
 
     traverse(tree, console.log)
 */
-
-const { deepCopy } = require('./object.js')
-
 
 export function generate(levels) {
     const _levels = deepCopy(levels)
