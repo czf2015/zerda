@@ -38,7 +38,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import newDialog from '@/pages/document/components/newDialog'
+import newDialog from '@/components/newDialog'
 
 export default {
   name: 'CategoryDialog',

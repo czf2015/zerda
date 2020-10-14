@@ -10,7 +10,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import newDialog from '@/pages/document/components/newDialog'
+import newDialog from '@/components/newDialog'
 import { TopNav } from '@/services'
 
 export default {
