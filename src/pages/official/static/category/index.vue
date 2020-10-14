@@ -219,7 +219,7 @@ export default {
       this.visible = node.label
     },
     goTo(data) {
-      this.$router.push({ name: 'StaticPageContent', params: { pageId:  data.id || 0}});
+      this.$router.push({ name: 'staticContent', params: { pageId:  data.id || 0}});
     },
   }
 }

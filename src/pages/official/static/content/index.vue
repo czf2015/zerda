@@ -242,7 +242,7 @@ export default {
     goToNewPage(idList) {
       if(this.pageId === idList[1]) return;
       this.pageId = idList[1]
-      this.$router.push({ path: '/staticpage/staticpage-content/' + idList[1]});
+      this.$router.push({ path: '/official/static/content/' + idList[1]});
     },
     getPageData() {
       console.log(this.pageId)

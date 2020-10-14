@@ -2,7 +2,7 @@
   <div>
     <new-dialog :show-dialog="show" width="30%" :title="propData.title" @cancel="handleCancel" @confirm="handeleConfirm">
       <div slot="body" class="dialog-container">
-        <i class="el-icon-question" />{{propData.content}}？
+        <i class="el-icon-question" />{{propData.content}}
       </div>
     </new-dialog>
   </div>
@@ -10,7 +10,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import newDialog from '@/pages/skypegmwcn/components/newDialog'
+import newDialog from '@/pages/official/components/newDialog'
 
 export default {
   name: 'RemoveDialog',

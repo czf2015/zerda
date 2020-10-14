@@ -94,7 +94,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import newDialog from '@/pages/skypegmwcn/components/newDialog'
+import newDialog from '@/pages/official/components/newDialog'
 
 export default {
   name: 'NavARecDialog',

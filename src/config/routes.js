@@ -1,145 +1,151 @@
 const MainContainer = () => import('@/components/MainContainer')
+
+const loadOfficialView = (path) => () => import(`@/pages/official/${path}`)
+const loadDocumentView = (path) => () => import(`@/pages/document/${path}`)
+
+
 export default {
-    mode: 'history',
-    base: '',// process.env.BASE_URL,
-    routes: [
+  mode: 'history',
+  base: '',// process.env.BASE_URL,
+  routes: [
+    {
+      path: '',
+      component: MainContainer,
+      redirect: '/official',
+      name: 'official',
+      meta: {
+        title: '官网内容运营'
+        // icon: 'nested'
+      },
+    },
+    {
+      path: '/demos/:componentName',
+      name: 'demos-component',
+      component: () => import('@/pages/demos/_componentName'),
+      meta: {
+        requiresAuth: false,
+      },
+    },
+    {
+      path: '/review',
+      name: 'review',
+      component: () => import('@/pages/review'),
+      meta: {
+        requiresAuth: false,
+      },
+    },
+    {
+      path: '/document',
+      name: 'Document',
+      component: MainContainer,
+      redirect: '/document/category-management',
+      meta: {
+        title: '文档',
+        requiresAuth: false,
+        // icon: 'nested'
+      },
+      children: [
         {
-            path: '/demos/:componentName',
-            name: 'demos-component',
-            component: () => import('@/pages/demos/_componentName'),
-            meta: {
-                requiresAuth: false,
-            },
+          path: 'category-management',
+          name: 'CategoryManagement',
+          component: loadDocumentView('category-management'),
+          meta: { title: '类别管理' }
         },
         {
-            path: '/header',
-            name: 'header',
-            component: () => import('@/pages/header'),
-            meta: {
-                requiresAuth: false,
-            },
+          path: 'product-management',
+          name: 'ProductManagement',
+          component: loadDocumentView('product-management'),
+          meta: { title: '产品管理' }
         },
         {
-            path: '/footer',
-            name: 'footer',
-            component: () => import('@/pages/footer'),
-            meta: {
-                requiresAuth: false,
-            },
+          path: 'document-editing',
+          name: 'DocumentEditing',
+          component: loadDocumentView('document-editing'),
+          meta: { title: '文档编辑' }
         },
         {
-            path: '',
-            name: 'homePage',
-            component: () => import('@/pages/home'),
-            meta: {
-                requiresAuth: false,
-            },
+          path: 'document-review',
+          name: 'DocumentReview',
+          component: loadDocumentView('document-review'),
+          meta: { title: '文档编辑' }
+        }
+      ]
+    },
+    {
+      path: '/official',
+      component: MainContainer,
+      redirect: '/official',
+      name: 'official',
+      meta: {
+        title: '官网内容运营'
+        // icon: 'nested'
+      },
+      children: [
+        {
+          path: 'header-navigate',
+          name: 'HeaderNavigate',
+          component: loadOfficialView('header-navigate'),
+          meta: { title: '官网头部导航管理' }
         },
         {
-            path: '/categories',
-            name: 'categories',
-            component: () => import('@/pages/categories'),
-            meta: {
-                requiresAuth: false,
-            },
+          path: 'footer-navigate',
+          name: 'FooterNavigate',
+          component: loadOfficialView('footer-navigate'),
+          meta: { title: '官网底部导航管理' }
         },
         {
-            path: '/review',
-            name: 'review',
-            component: () => import('@/pages/review'),
-            meta: {
-                requiresAuth: false,
-            },
-        },
-        {
-            path: '/staticpage',
-            name: 'StaticPage',
-            component: MainContainer,
-            redirect: '/staticpage/staticpage-category',
-            meta: {
-                requiresAuth: false,
-            },
-            children: [
-              {
-                path: 'staticpage-category',
-                component: () => import('@/pages/staticpage/staticpage-category'),
-                name: 'StaticPageContentCategory',
-                meta: { title: '静态页面类别管理' }
-              },
-              {
-                path: 'staticpage-content/:pageId',
-                component: () => import('@/pages/staticpage/staticpage-content'),
-                name: 'StaticPageContent',
-                meta: { title: '静态页面内容管理' }
-              },
-            ]
-        },
-        {
-            path: '/document',
-            component: MainContainer,
-            redirect: '/document/category-management',
-            name: 'Document',
-            meta: {
-              title: '文档',
-              requiresAuth: false,
-              // icon: 'nested'
-            },
-            children: [
-              {
-                path: 'category-management',
-                component: () => import('@/pages/document/category-management'),
-                name: 'CategoryManagement',
-                meta: { title: '类别管理' }
-              },
-              {
-                path: 'product-management',
-                component: () => import('@/pages/document/product-management'),
-                name: 'ProductManagement',
-                meta: { title: '产品管理' }
-              },
-              {
-                path: 'document-editing',
-                component: () => import('@/pages/document/document-editing'),
-                name: 'DocumentEditing',
-                meta: { title: '文档编辑' }
-              },
-              {
-                path: 'document-review',
-                component: () => import('@/pages/document/document-review'),
-                name: 'DocumentReview',
-                meta: { title: '文档编辑' }
-              }
-            ]
-        },
-        {
-            path: '/skypegmwcn',
-            component: MainContainer,
-            redirect: '/skypegmwcn/header-navigate',
-            name: 'Skypegmwcn',
-            meta: {
-              title: '官网内容运营'
-              // icon: 'nested'
-            },
-            children: [
-              {
-                path: 'header-navigate',
-                component: () => import('@/pages/skypegmwcn/header-navigate/index'),
-                name: 'HeaderNavigate',
-                meta: { title: '官网头部导航管理' }
-              },
-              {
-                path: 'footer-navigate',
-                component: () => import('@/pages/skypegmwcn/footer-navigate/index'),
-                name: 'FooterNavigate',
-                meta: { title: '官网底部导航管理' }
-              },
-              {
-                path: 'home-page',
-                component: () => import('@/pages/skypegmwcn/home-page/index'),
-                name: 'HomePage',
-                meta: { title: '官网首页内容管理' }
-              }
-            ]
+          path: '',
+          name: 'homePage',
+          component: loadOfficialView('home'),
+          meta: {
+            title: '官网首页内容管理',
+            requiresAuth: false,
           },
-    ],
+        },
+        {
+          path: 'dynamic',
+          name: 'dynamic',
+          component: MainContainer,
+          redirect: '/official/dynamic/category',
+          children: [
+            {
+              path: 'category',
+              name: 'dynamicCategory',
+              component: loadOfficialView('dynamic/category'),
+              meta: {
+                title: '官网动态页面类别管理',
+                requiresAuth: false,
+              },
+            },
+            {
+              path: 'content/:pageId',
+              name: 'dynamic',
+              component: loadOfficialView('dynamic'),
+              meta: { title: '官网动态页面内容管理' }
+            },
+          ]
+        },
+        {
+          path: 'static',
+          name: 'static',
+          component: MainContainer,
+          redirect: '/official/static/category',
+          children: [
+            {
+              path: 'category',
+              name: 'staticCategory',
+              component: loadOfficialView('static/category'),
+              meta: { title: '官网静态页面类别管理' }
+            },
+            {
+              path: 'content/:pageId',
+              name: 'staticContent',
+              component: loadOfficialView('static/content'),
+              meta: { title: '官网静态页面内容管理' }
+            },
+          ]
+        },
+      ]
+    },
+  ],
 }
