@@ -103,7 +103,7 @@ export default {
     //   console.log(JSON.stringify(res))
     // })
 
-    FooterInfo.create({
+    FooterInfo.update({
       id: '',
       content: JSON.stringify(mock)
     }).then(res => {
