@@ -21,7 +21,7 @@
               align="left"
             />
             <el-table-column
-              prop="mark"
+              prop="slug"
               label="标识"
               width="180"
               align="left"
@@ -43,7 +43,7 @@
         align="left"
       />
       <el-table-column
-        prop="mark"
+        prop="slug"
         label="标识"
         width="180"
         align="left"
@@ -97,45 +97,16 @@ export default {
     acitveName: {
       type: String,
       default: 'nav'
+    },
+    list: {
+      type: Array,
+      // required: true
+      default: () => []
     }
   },
   data() {
     return {
-      tableData: [
-        {
-          id: 1,
-          title: '123',
-          mark: '王小虎',
-          children: [
-            {
-              id: 1-1,
-              title: '234',
-              mark: '王小虎',
-              link: '100',
-            },
-          ]
-        },
-        {
-          id: 2,
-          title: '234',
-          mark: '王小虎',
-        },
-        {
-          id: 3,
-          title: '345',
-          mark: '王小虎',
-        },
-        {
-          id: 4,
-          title: '456',
-          mark: '王小虎',
-        },
-        {
-          id: 5,
-          title: '567',
-          mark: '王小虎',
-        },
-      ],
+      tableData: this.list,
       componentId: Date.now(),
       ifMoving: false
     }

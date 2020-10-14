@@ -8,9 +8,9 @@
               <span slot="label">标题</span>
               <el-input v-model="formData.title" type="text" autocomplete="off" />
             </el-form-item>
-            <el-form-item prop="mark">
+            <el-form-item prop="slug">
               <span slot="label">标识</span>
-              <el-input v-model="formData.mark" type="text" autocomplete="off" />
+              <el-input v-model="formData.slug" type="text" autocomplete="off" />
             </el-form-item>
           </el-form>
         </div>
@@ -25,7 +25,7 @@
               width="180"
             />
             <el-table-column
-              prop="mark"
+              prop="slug"
               label="标识"
               width="180"
             />
@@ -73,9 +73,9 @@
               <span slot="label">标题</span>
               <el-input v-model="childrenForm.title" type="text" autocomplete="off" />
             </el-form-item>
-            <el-form-item prop="mark">
+            <el-form-item prop="slug">
               <span slot="label">标识</span>
-              <el-input v-model="childrenForm.mark" type="text" autocomplete="off" />
+              <el-input v-model="childrenForm.slug" type="text" autocomplete="off" />
             </el-form-item>
             <el-form-item prop="link">
               <span slot="label">链接</span>
@@ -112,19 +112,19 @@ export default {
       showChildernForm: false,
       formData: {
         title: '',
-        mark: '',
+        slug: '',
         children: []
       },
       childrenForm: {
         title: '',
-        mark: '',
+        slug: '',
         link: ''
       },
       rules: {
         title: [
           { required: true, message: '请输入标题', trigger: 'blur' }
         ],
-        mark: [
+        slug: [
           { required: true, message: '请输入标识', trigger: 'blur' }
         ],
         link: [
@@ -165,7 +165,7 @@ export default {
       this.showChildernForm = true
       this.childrenForm = {
         title: '',
-        mark: '',
+        slug: '',
         link: ''
       }
     },
@@ -201,12 +201,12 @@ export default {
       this.show = this.showChildernForm = false
       this.formData = {
         title: '',
-        mark: '',
+        slug: '',
         children: []
       }
       this.childrenForm = {
         title: '',
-        mark: '',
+        slug: '',
         link: ''
       }
       this.$refs['ruleForm'].resetFields()
@@ -236,7 +236,7 @@ export default {
             this.formData.children.push({...this.childrenForm})
             this.childrenForm = {
               title: '',
-              mark: '',
+              slug: '',
               link: ''
             }
             this.showChildernForm = false

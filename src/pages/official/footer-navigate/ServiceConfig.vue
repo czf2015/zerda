@@ -71,36 +71,15 @@ export default {
     //   type: String,
     //   default: 'add'
     // }
+    list: {
+      type: Array,
+      // required: true
+      default: () => []
+    }
   },
   data() {
     return {
-      tableData: [
-        {
-          title: '123',
-          imgLink: '100',
-          link: '王小虎',
-        },
-        {
-          title: '234',
-          imgLink: '100',
-          link: '王小虎',
-        },
-        {
-          title: '345',
-          imgLink: '100',
-          link: '王小虎',
-        },
-        {
-          title: '456',
-          imgLink: '100',
-          link: '王小虎',
-        },
-        {
-          title: '567',
-          imgLink: '100',
-          link: '王小虎',
-        },
-      ],
+      tableData: this.list,
       componentId: Date.now(),
       actionType: 'add',
       selectIndex: ''
