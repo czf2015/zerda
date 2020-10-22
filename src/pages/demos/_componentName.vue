@@ -13,12 +13,13 @@ import mock from "@/mock";
 
 export default {
   components: {
+    Excel: () => import("@/components/Excel"),
     Timer: () => import("@/components/Timer"),
     CustomMask: () => import("@/components/Mask"),
     CustomForm: () => import("@/components/Form"),
     CustomTable: () => import("@/components/Table"),
     TableForm: () => import("@/components/TableForm"),
-    Menu: () => import("@/components/Menu"),
+    Menu: () => import("@/components/Menu/CustomMenu"),
     Upload: () => import("@/components/Upload"),
     Rate: () => import("@/components/Rate"),
     Card: () => import("@/components/Card"),

@@ -1,12 +1,12 @@
-export const themes = [
-    "默认皮肤",
-    "浅色皮肤",
-    "深色皮肤",
-    "喜庆皮肤",
-    "悲恸皮肤",
-]
+// export const themes = [
+//     "默认皮肤",
+//     "浅色皮肤",
+//     "深色皮肤",
+//     "喜庆皮肤",
+//     "悲恸皮肤",
+// ]
 
-export const convertSelectOptions = (themes) => themes.map((theme) => {
+export const convertSelectOptions = (list) => list.map(({theme}) => {
     return {
         label: theme,
         value: theme,
@@ -14,7 +14,7 @@ export const convertSelectOptions = (themes) => themes.map((theme) => {
 });
 
 
-export const convertTableFormData = (themes) => {
+export const convertTableFormData = (list) => {
     return {
         columns: [
             {
@@ -31,10 +31,24 @@ export const convertTableFormData = (themes) => {
                 },
             },
             {
+                field: 'slug',
+                label: '英文标识',
+                required: false,
+                validation: {
+                    type: 'text',
+                    valid: true,
+                    message: '',
+                    minLength: 2,
+                    maxLength: 10,
+                    trigger: "input"
+                },
+            },
+            {
                 field: 'template',
                 label: '数据模板',
                 required: false,
-                options: themes,
+                options: list.map(item => item.theme),
+                width: '0',
                 validation: {
                     type: 'select',
                     valid: true,
@@ -45,9 +59,12 @@ export const convertTableFormData = (themes) => {
                 },
             },
         ],
-        datasource: themes.map((theme) => {
-            return { theme, template: theme };
+        datasource: list.map(({ theme, slug }) => {
+            return { theme, slug, template: theme };
         }),
+        filter(item) {
+            return item.field !== 'template'
+        },
         operations: [
             {
                 field: 'edit',

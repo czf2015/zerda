@@ -167,7 +167,7 @@ export default {
         });
     },
     addMenuItem(data, cb) {
-      TopNav.create(data)
+      TopNav.add(data)
         .then(res => {
           this.handleCancel()
           this.queryTopNavMenus()

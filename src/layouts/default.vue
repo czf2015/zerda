@@ -1,6 +1,13 @@
 <template>
   <main class="main" v-show="!loading" :style="{ margin }">
-    <SkinSelect class="top-right" />
+    <SkinSelect
+      class="top-right"
+      :list="skins"
+      @save="handleSkinModify"
+      @append="handleSkinAppend"
+      @del="handleSkinDel"
+      @change="handleSkinChange"
+    />
     <draggable
       v-bind="dragOptions"
       tag="div"
@@ -63,7 +70,7 @@ import Panel from "@/components/TableForm/Panel";
 import Affix from "@/components/Affix";
 import SideBar from "@/components/SideBar";
 import SkinSelect from "@/components/SkinSelect";
-import { PageInfo } from "@/services";
+import { PageInfo, HomePage } from "@/services";
 
 export default {
   components: {
@@ -97,19 +104,19 @@ export default {
       dragList: [],
       bars: [
         {
-          link: "wwww.baidu.com",
+          // link: "wwww.baidu.com",
           icon: "/svg/save.svg",
           text: "保存",
           operate: "save",
         },
         {
-          link: "wwww.baidu.com",
+          // link: "wwww.baidu.com",
           icon: "/svg/view.svg",
           text: "预览",
           operate: "preview",
         },
         {
-          link: "wwww.baidu.com",
+          // link: "wwww.baidu.com",
           icon: "/svg/publish.svg",
           text: "发布",
           operate: "publish",
@@ -117,21 +124,42 @@ export default {
       ],
       show: false,
       rawData: null,
+      infoId: "",
+      skins: [],
     };
   },
   methods: {
-    // emitter(value) {
-    //   this.$emit("input", value);
-    // },
-    fetchData(page) {
+    fetchData(infoId) {
       this.loading = true;
-      // Todo
-      PageInfo.query(page).then((raw) => {
-        this.rawData = raw
-        this.list = raw.data;
-        this.dragList = JSON.parse(JSON.stringify(raw.data));
-        this.loading = false;
-      });
+      if (infoId) {
+        this.list = [] // 解决异步数据渲染问题
+        HomePage.query(infoId).then((res) => {
+          this.loading = false;
+          const content = res.result.content || "{}";
+          this.rawData = JSON.parse(content);
+          this.list = JSON.parse(content).data || [];
+          this.dragList = JSON.parse(JSON.stringify(this.list));
+          // mock数据
+          // PageInfo.query('homePage').then((res) => {
+          //   HomePage.update({
+          //     infoId,
+          //     content: JSON.stringify(res),
+          //   });s
+          // });
+        });
+      } else {
+        HomePage.list().then((res) => {
+          this.infoId = res.result[0].infoId;
+          this.skins = res.result.map((item) => {
+            return {
+              id: item.infoId,
+              theme: item.plateName,
+              slug: item.plateKeywords,
+            };
+          });
+          this.fetchData(this.infoId);
+        });
+      }
     },
     handleUp(idx) {
       if (this.value) {
@@ -167,17 +195,13 @@ export default {
       };
     },
     handleOperate(operate) {
-      // console.log(this.list);
       switch (operate) {
         case "save":
-          const update = { ...this.rawData, data: this.list }
-          console.log(update)
-          PageInfo.update('/api/page', {
-            condition: {
-              name: this.$route.name
-            },
-            update
-          })
+          const data = { ...this.rawData, data: this.list };
+          HomePage.update({
+            infoId: this.infoId,
+            content: JSON.stringify(data),
+          });
           break;
         case "preview":
           break;
@@ -187,9 +211,59 @@ export default {
           break;
       }
     },
+    handleSkinModify(data) {
+      const { index, value } = data;
+      const id = this.skins[index].id
+      const slug = value.find((item) => item.field == "slug").value
+      const theme = value.find((item) => item.field == "theme").value
+      HomePage.adapt({
+        infoId: id,
+        plateKeywords: slug,
+        plateName: theme,
+      }).then((res) => {
+        this.skins.splice(index, 1, {
+          id,
+          slug,
+          theme,
+        });
+      });
+    },
+    handleSkinAppend(formData) {
+      const data = {
+        plateKeywords: formData.find((item) => item.field == "slug").value,
+        plateName: formData.find((item) => item.field == "theme").value,
+      }
+      const template = formData.find((item) => item.field == "template").value
+      if (template) {
+        const skin = this.skins.find(item => item.theme == template)
+        Object.assign(data, {
+          infoId: skin.id,
+          templateCreated: true,
+        })
+      }
+      HomePage.add(data).then((res) => {
+        this.skins = res.result.map((item) => {
+          return {
+            id: item.infoId,
+            theme: item.plateName,
+            slug: item.plateKeywords,
+          };
+        });
+      });
+    },
+    handleSkinDel(idx) {
+      const { id } = this.skins[idx];
+      HomePage.delete(id).then((res) => {
+        this.skins = this.skins.filter((item) => item.id !== id);
+      });
+    },
+    handleSkinChange(option) {
+      this.infoId = this.skins.find(item => item.theme == option).id
+      this.fetchData(this.infoId)
+    }
   },
   mounted() {
-    this.fetchData(this.$route.name);
+    this.fetchData(/* this.$route.name */);
   },
 };
 </script>

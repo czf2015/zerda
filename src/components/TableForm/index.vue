@@ -4,6 +4,7 @@
       :datasource="datasource"
       :columns="columns"
       :operations="operations"
+      :filter="filter"
       @check="handleTableCheck"
       @edit="handleTableEdit"
       @del="handleTableDel"
@@ -15,7 +16,7 @@
       <CustomForm
         class="dialog"
         :style="{ transform }"
-        :datasource="formData"
+        :datasource="state == 'appending' ? formData : formData.filter(filter)"
         :legend="legend"
         :width="width"
         @save="handleFormSave"
@@ -52,6 +53,10 @@ export default {
     },
     transform: {
       type: String
+    },
+    filter: {
+      type: Function,
+      default: () => true
     }
   },
   data() {
@@ -60,6 +65,7 @@ export default {
       legend: "请填写内容",
       formData: [],
       isRevised: false,
+      state: 'saved'
     };
   },
   methods: {
@@ -71,21 +77,26 @@ export default {
       this.openDialog = true;
       this.isRevised = true
       this.$emit('edit', index)
+      this.state = 'editing'
     },
     handleTableDel(index) {
       if (confirm("确定要删除吗？")) {
         this.$emit('del', index)
+        this.state = 'deleting'
       }
     },
     handleTableUp(index) {
       this.$emit('up', index)
+      this.state = 'sorting'
     },
     handleTableDown(index) {
       this.$emit('down', index)
+      this.state = 'sorting'
     },
     handleTableAppend() {
       this.formData = JSON.parse(JSON.stringify(this.columns))
       this.openDialog = true;
+      this.state = 'appending'
     },
     handleFormSave(formData) {
       this.openDialog = false;
@@ -95,6 +106,7 @@ export default {
       } else {
         this.$emit("append", formData)
       }
+      this.state = 'saved'
     },
     handleFormCancel() {
       this.openDialog = false;

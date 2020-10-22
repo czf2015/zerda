@@ -1,7 +1,7 @@
 <template>
   <div is="template">
     <el-table-column
-      v-for="({ fixed, field, label, validation, width, children }) in columns"
+      v-for="({ fixed, field, label, validation, width, children }) in columns.filter(filter)"
       :fixed="fixed"
       :prop="field"
       :label="label"
@@ -27,6 +27,10 @@ export default {
       type: Array,
       required: true,
     },
+    filter: {
+      type: Function,
+      default: () => true
+    }
   },
 };
 </script>

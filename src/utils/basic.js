@@ -59,11 +59,7 @@ export const mixin = (...mixins) => {
 */
 
 
-Function.prototype.curry = function (...args) {
-    return (..._args) => {
-        return this.apply(null, args.concat(_args))
-    }
-}
+export const curry = (fn, ...predeterParams) => (...undeterParams) => fn(...predeterParams, ...undeterParams)
 
 export const memoizer = (memo, formula) => {
     const recur = (n) => {

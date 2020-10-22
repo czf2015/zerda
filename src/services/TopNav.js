@@ -10,7 +10,7 @@ export class TopNav {
         })
     }
 
-    static async create(data) { 
+    static async add(data) { 
         return await request({
             method: 'post',
             url: `${baseURL}/addMenuItem`,

@@ -38,6 +38,7 @@ export default {
 <style>
 @import "/css/form.css";
 @import "/css/element.css";
+@import "/css/reset.css";
 
 html {
   font-size: 100px;

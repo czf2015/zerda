@@ -1,22 +1,28 @@
-export const pick = (obj, ...keys) => {
+// export const pick = (obj, ...keys) => {
+//     const ret = {}
+//     keys.forEach(key => {
+//         ret[key] = obj[key]
+//     })
+//     return ret
+// }
+export const pick = (obj, ...strs) => {
     const ret = {}
-    keys.forEach(key => {
-        ret[key] = obj[key]
-    })
-    return ret
-}
-/*test
-    const obj = {
-        a: 1,
-        b: 2,
-        c: 3,
-        c: {
-            a: 1
+    for (let i = 0; i < strs.length; i++) {
+        const str = strs[i]
+        const keys = str.split('.')
+        let src = obj
+        let dst = ret
+        for (let j = 0; j < keys.length; j++) {
+            const key = keys[j]
+            dst[key] = src[key]
+            src = src[key]
+            dst = dst[key]
         }
     }
-
-    pick(obj, 'c', 'a')
-*/
+    return ret
+}
+// const obj = { a: { b: { c: 1 } }, e: { f: 2} }
+// console.log(pick(obj, 'a.b.c', 'e.f'))
 
 export function convert(raw, fields, transform) {
     const list = {}

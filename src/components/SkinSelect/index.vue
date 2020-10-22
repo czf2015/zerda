@@ -1,7 +1,12 @@
 <template>
   <div class="skin-select">
     <el-select v-model="currentTheme" filterable placeholder="请选择">
-      <el-option v-for="({ label, value }) in options" :key="value" :label="label" :value="value" />
+      <el-option
+        v-for="{ label, value } in options"
+        :key="value"
+        :label="label"
+        :value="value"
+      />
     </el-select>
     <el-button type="primary" @click="openDialog = true">编辑</el-button>
 
@@ -23,7 +28,8 @@
 
 <script>
 import TableForm from "@/components/TableForm";
-import { themes, convertSelectOptions, convertTableFormData } from "./helpers";
+import { convertSelectOptions, convertTableFormData } from "./helpers";
+import { HomePage } from "@/services";
 
 export default {
   components: {
@@ -31,9 +37,10 @@ export default {
   },
 
   props: {
-    themes: {
+    list: {
       type: Array,
-      default: () => themes,
+      // default: () => themes,
+      required: true
     },
     selected: {
       type: String,
@@ -42,7 +49,7 @@ export default {
 
   data() {
     return {
-      currentTheme: this.selected || this.themes[0],
+      currentTheme: this.selected || (this.list[0] ? this.list[0].theme : ''),
       openDialog: false,
       editIndex: -1,
     };
@@ -50,10 +57,10 @@ export default {
 
   computed: {
     options() {
-      return convertSelectOptions(this.themes);
+      return convertSelectOptions(this.list);
     },
     tableData() {
-      return convertTableFormData(this.themes);
+      return convertTableFormData(this.list);
     },
   },
 
@@ -68,13 +75,19 @@ export default {
       });
     },
     handleTableAppend(formData) {
-      console.log(formData)
+      console.log(formData);
       this.$emit("append", formData);
     },
     handleTableDelete(index) {
       this.$emit("del", index);
     },
   },
+  
+  watch: {
+    currentTheme() {
+      this.$emit('change', this.currentTheme)
+    }
+  }
 };
 </script>
 

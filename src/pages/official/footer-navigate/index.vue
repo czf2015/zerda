@@ -54,6 +54,7 @@ export default {
     FooterInfo.query().then((res) => {
       this.result = res.result;
       this.content = JSON.parse(res.result.content);
+      // FooterInfo.update(res.result)
     });
   },
 };
