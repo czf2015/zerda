@@ -116,7 +116,7 @@ export default {
     append(data) {
       const newChild = {
         id: new Date().getTime(),
-        label: "testtest",
+        label: prompt(`菜单项:`) || 'new',
         children: [],
       };
       if (!data.children) {
@@ -129,14 +129,16 @@ export default {
       const parent = node.parent;
       const children = parent.data.children || parent.data;
       const index = children.findIndex((d) => d.id === data.id);
-      data.label = prompt(`节点名称:`) || data.label
+      data.label = prompt(`菜单项:`) || data.label;
       children.splice(index, 1, data);
     },
     remove(node, data) {
-      const parent = node.parent;
-      const children = parent.data.children || parent.data;
-      const index = children.findIndex((d) => d.id === data.id);
-      children.splice(index, 1);
+      if (confirm(`确认删除菜单项  "${data.label}"`)) {
+        const parent = node.parent;
+        const children = parent.data.children || parent.data;
+        const index = children.findIndex((d) => d.id === data.id);
+        children.splice(index, 1);
+      }
     },
     handleCheck() {
       console.log("check");
@@ -149,14 +151,8 @@ export default {
             <el-button
               size="mini"
               type="text"
-              on-click={() => this.modify(node, data)}
-            >
-              修改
-            </el-button>
-            <el-button
-              size="mini"
-              type="text"
               on-click={() => this.append(data)}
+              style="color: green"
             >
               增添
             </el-button>
@@ -164,8 +160,16 @@ export default {
               size="mini"
               type="text"
               on-click={() => this.remove(node, data)}
+              style="color: red"
             >
               删除
+            </el-button>
+            <el-button
+              size="mini"
+              type="text"
+              on-click={() => this.modify(node, data)}
+            >
+              修改
             </el-button>
           </span>
         </span>

@@ -9,11 +9,11 @@
   min-width: 190px;
 }
 
-.custom-tree-node .tree-node-operate {
+.el-tree-node__content .tree-node-operate {
   margin-left: 2em;
   display: none;
 }
 
-.custom-tree-node:hover .tree-node-operate {
+.el-tree-node__content:hover .tree-node-operate {
   display: inline-block;
 }
