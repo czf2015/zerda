@@ -8,3 +8,12 @@
 .el-select .el-input__inner {
   min-width: 190px;
 }
+
+.custom-tree-node .tree-node-operate {
+  margin-left: 2em;
+  display: none;
+}
+
+.custom-tree-node:hover .tree-node-operate {
+  display: inline-block;
+}

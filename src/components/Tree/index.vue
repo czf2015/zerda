@@ -1,6 +1,10 @@
 <template>
   <div class="tree">
-    <el-input v-if="filter" placeholder="输入关键字进行过滤" v-model="filterText" />
+    <el-input
+      v-if="filter"
+      placeholder="输入关键字进行过滤"
+      v-model="filterText"
+    />
     <el-tree
       :node-key="nodeKey"
       ref="tree"
@@ -58,14 +62,14 @@ export default {
     },
     indent: {
       type: Number,
-      default: 16
+      default: 16,
     },
     lazy: {
       type: Boolean,
     },
     highlight: {
       type: Boolean,
-      default: true
+      default: true,
     },
     expand: {
       type: Boolean,
@@ -88,7 +92,6 @@ export default {
     },
     handleDragOver(draggingNode, dropNode, ev) {
       console.log("tree drag over: ", dropNode.label);
-
     },
     handleDragEnd(draggingNode, dropNode, dropType, ev) {
       console.log("tree drag end: ", dropNode && dropNode.label, dropType);
@@ -111,11 +114,23 @@ export default {
       return data.label.indexOf(value) !== -1;
     },
     append(data) {
-      const newChild = { id:  new Date().getTime(), label: "testtest", children: [] };
+      const newChild = {
+        id: new Date().getTime(),
+        label: "testtest",
+        children: [],
+      };
       if (!data.children) {
         this.$set(data, "children", []);
       }
       data.children.push(newChild);
+    },
+    modify(node, data) {
+      // console.log(data)
+      const parent = node.parent;
+      const children = parent.data.children || parent.data;
+      const index = children.findIndex((d) => d.id === data.id);
+      data.label = prompt(`节点名称:`) || data.label
+      children.splice(index, 1, data);
     },
     remove(node, data) {
       const parent = node.parent;
@@ -124,13 +139,20 @@ export default {
       children.splice(index, 1);
     },
     handleCheck() {
-      console.log('check')
+      console.log("check");
     },
     renderContent(h, { node, data, store }) {
       return (
         <span class="custom-tree-node">
           <span>{node.label}</span>
-          <span>
+          <span class="tree-node-operate">
+            <el-button
+              size="mini"
+              type="text"
+              on-click={() => this.modify(node, data)}
+            >
+              修改
+            </el-button>
             <el-button
               size="mini"
               type="text"
@@ -157,3 +179,7 @@ export default {
   },
 };
 </script>
+
+
+<style lang="less" scoped>
+</style>
