@@ -5,9 +5,8 @@
       <i class="icon_down" @click="$emit('down')" v-show="moveable != 'up'" />
       <i class="icon_close" @click="$emit('del')" />
     </span>
-    <h3 class="title" @mouseover="editable = true" @mouseleave="editable = false">
-      <input type="text" v-if="editable" :value="title" @change="handleChange" maxlength="10" />
-      <span v-else>{{title}}</span>
+    <h3 class="title">
+      <input type="text" :value="title" @change="handleChange" maxlength="10" />
     </h3>
     <slot />
   </div>
@@ -29,7 +28,6 @@ export default {
   },
   data() {
     return {
-      editable: false,
       hover: false,
     };
   },
@@ -81,8 +79,17 @@ export default {
     padding-left: 10px;
     font-size: 24px;
     line-height: 48px;
-    font-weight: bold;
     border-left: 4px solid green;
+    &>input {
+      line-height: 36px;
+      padding: 5px 5px;
+      font-weight: bold;
+      border: 0;
+      &:focus {
+        border: 1px solid #409EFF;
+        border-radius: 5px;
+      }
+    }
   }
 
   > .desc {
