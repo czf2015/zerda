@@ -165,7 +165,11 @@ export default {
       return `el-icon-${type}-add`;
     },
   },
-  //   unmounted() {}
+  mounted() {
+    document.querySelector(".cascader-wrapper").oncontextmenu = (e) => {
+      e.preventDefault();
+    };
+  },
 };
 </script>
 

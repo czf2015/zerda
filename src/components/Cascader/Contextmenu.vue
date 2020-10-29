@@ -32,11 +32,11 @@ export default {
       this.$emit('context', value);
     },
   },
-  mounted() {
-    document.oncontextmenu = (e) => {
-      e.preventDefault();
-    };
-  },
+//   mounted() {
+//     document.oncontextmenu = (e) => {
+//       e.preventDefault();
+//     };
+//   },
 };
 </script>
 
