@@ -3,13 +3,13 @@
     <new-dialog :show-dialog="show" width="30%" :title="title" @cancel="handleCancel" @confirm="handeleConfirm">
       <div slot="body" class="dialog-container">
         <el-form ref="ruleForm" :model="formData" status-icon :rules="rules" label-width="100px" class="demo-ruleForm" size="mini">
-          <el-form-item prop="catgoryName">
+          <el-form-item prop="categoryName">
             <span slot="label">类别名称</span>
-            <el-input v-model="formData.catgoryName" type="text" autocomplete="off" />
+            <el-input v-model="formData.categoryName" type="text" autocomplete="off" />
           </el-form-item>
-          <el-form-item prop="catgoryMark">
+          <el-form-item prop="categoryMark">
             <span slot="label">类别标识</span>
-            <el-input v-model="formData.catgoryMark" type="text" autocomplete="off" />
+            <el-input v-model="formData.categoryMark" type="text" autocomplete="off" />
           </el-form-item>
         </el-form>
       </div>
@@ -25,27 +25,31 @@ export default {
   name: 'ServiceDialog',
   components: { newDialog },
   props: {
-    handelTableData: {
+    handleTableData: {
       type: Function,
       default: () => {}
+    },
+    actionType: {
+      type: String,
+      required: true
     }
   },
   data() {
     return {
       show: false,
       formData: {
-        catgoryName: '',
-        catgoryMark: '',
+        categoryName: '',
+        categoryMark: '',
       },
       rules: {
-        catgoryName: [
+        categoryName: [
           { required: true, message: '请输入类别名称', trigger: 'blur' }
         ],
-        catgoryMark: [
+        categoryMark: [
           { required: true, message: '请输入类别标识', trigger: 'blur' }
         ],
       },
-      actionType: 'add'
+      // actionType: 'add'
     }
   },
   // mounted() {
@@ -87,7 +91,7 @@ export default {
     handeleConfirm(cb) {
       this.$refs['ruleForm'].validate((valid) => {
           if (valid) {
-            this.handelTableData(this.actionType, this.formData)
+            this.handleTableData(/* this.actionType,  */this.formData)
             .then((res) => {
               cb && cb()
               this.show = false

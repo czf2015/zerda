@@ -29,7 +29,7 @@ export default {
   name: 'ServiceDialog',
   components: { newDialog },
   props: {
-    handelTableData: {
+    handleTableData: {
       type: Function,
       default: () => {}
     }
@@ -95,7 +95,7 @@ export default {
     handeleConfirm(cb) {
       this.$refs['ruleForm'].validate((valid) => {
           if (valid) {
-            this.handelTableData(this.actionType, this.formData)
+            this.handleTableData(this.actionType, this.formData)
             .then((res) => {
               cb && cb()
               this.show = false

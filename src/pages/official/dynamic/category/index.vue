@@ -54,8 +54,8 @@
       
     </el-card>
 
-    <CategoryDialog ref="CategoryDialog" />    
-    <PageDialog ref="PageDialog" :catgoryList="options"/>
+    <CategoryDialog ref="CategoryDialog" :handleTableData="handleCategory" :actionType="actionType" />    
+    <PageDialog ref="PageDialog" :categoryList="options" :handleTableData="handlePage" :actionType="actionType" />
 
     <RemoveDialog ref="RemoveDialog" :propData="propData"/>
   </div>
@@ -66,6 +66,7 @@ import { mapGetters } from 'vuex'
 import CategoryDialog from './CategoryDialog'
 import PageDialog from './PageDialog'
 import RemoveDialog from './RemoveDialog'
+import { DynamicCategory, DynamicPage } from '@/services'
 
 export default {
   name: 'StaticPageContentCategory',
@@ -162,6 +163,7 @@ export default {
     document.onclick = () => {
       this.visible = ''
     }
+    this.fetchData()
   },
   beforeDestroy() {
     document.onclick = null
@@ -220,6 +222,42 @@ export default {
     },
     goTo(data) {
       this.$router.push({ name: 'dynamic', params: { pageId:  data.id || 0}});
+    },
+    fetchData() {
+      DynamicCategory.query().then(res => {
+        // 
+      })
+    },
+    handleCategory(/* actionType,  */formData) {
+      console.log("pages/official/dynamic/category/index.vue::handleCategory:")
+      console.log(formData)
+      // return new Promise((resolve, reject) => resolve())
+      switch (this.actionType) {
+        case 'add':
+          return DynamicCategory.add({
+              "title": formData.categoryName,
+              "keywords": formData.categoryMark,
+              categoryType: 4
+          })
+          default:
+            break
+      }
+    },
+    handlePage(/* actionType,  */formData) {
+      console.log("pages/official/dynamic/page/index.vue::handlePage:")
+      console.log(formData)
+      // return new Promise((resolve, reject) => resolve())
+      switch (this.actionType) {
+        case 'add':
+          return DynamicPage.add({
+              "title": formData.productName,
+              "keywords": formData.productMark,
+              pid: formData.category,
+              categoryType: 4
+          })
+          default:
+            break
+      }
     },
   }
 }

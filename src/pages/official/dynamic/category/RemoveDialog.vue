@@ -1,6 +1,6 @@
 <template>
   <div>
-    <new-dialog :show-dialog="show" width="30%" :title="propData.title" @cancel="handleCancel" @confirm="handeleConfirm">
+    <new-dialog :show-dialog="show" width="30%" :title="propData.title" @cancel="handleCancel" @confirm="handleConfirm">
       <div slot="body" class="dialog-container">
         <i class="el-icon-question" />{{propData.content}}
       </div>
@@ -48,7 +48,7 @@ export default {
     handleCancel() {
       this.show = false
     },
-    handeleConfirm(cb) {
+    handleConfirm(cb) {
       this.removeConfirm('remove')
         .then((res) => {
           cb && cb()

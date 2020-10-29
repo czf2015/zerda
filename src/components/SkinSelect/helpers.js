@@ -55,7 +55,7 @@ export const convertTableFormData = (list) => {
                     message: '',
                     minLength: 2,
                     maxLength: 10,
-                    trigger: "input"
+                    trigger: "change"
                 },
             },
         ],

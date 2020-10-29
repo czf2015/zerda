@@ -1,6 +1,6 @@
 <template>
   <div>
-    <new-dialog :show-dialog="show" width="40%" :title="title" @cancel="handleCancel" @confirm="handeleConfirm">
+    <new-dialog :show-dialog="show" width="40%" :title="title" @cancel="handleCancel" @confirm="handleConfirm">
       <div slot="body" class="dialog-container">
         <el-alert
           title="【产品标识】与最终生成的url有关，磐石存量的页面，请延用相同的标识"
@@ -11,11 +11,11 @@
           v-if="this.actionType === 'add'"
         />
         <el-form ref="ruleForm" :model="formData" status-icon :rules="rules" label-width="100px" class="demo-ruleForm" size="mini">
-          <el-form-item prop="catgory">
+          <el-form-item prop="category">
             <span slot="label">所属分类</span>
-            <el-select v-model="formData.catgory" placeholder="请选择">
+            <el-select v-model="formData.category" placeholder="请选择">
               <el-option
-                v-for="item in catgoryList"
+                v-for="item in categoryList"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value"
@@ -44,25 +44,29 @@ export default {
   name: 'ServiceDialog',
   components: { newDialog },
   props: {
-    handelTableData: {
+    handleTableData: {
       type: Function,
       default: () => {}
     },
-    catgoryList: {
+    categoryList: {
       type: Array,
       default: () => []
+    },
+    actionType: {
+      type: String,
+      required: true
     }
   },
   data() {
     return {
       show: false,
       formData: {
-        catgory: '',
+        category: '',
         productName: '',
         productMark: '',
       },
       rules: {
-        catgory: [
+        category: [
           { required: true, message: '请选择所属分类', trigger: 'blur' }
         ],
         productName: [
@@ -72,7 +76,7 @@ export default {
           { required: true, message: '请输入产品标识', trigger: 'blur' }
         ],
       },
-      actionType: 'add'
+      // actionType: 'add'
     }
   },
   // mounted() {
@@ -106,15 +110,18 @@ export default {
     handleCancel() {
       this.show = false
       this.formData = {
-        title: '',
-        imgLink: '',
-        link: '',
+        // title: '',
+        // imgLink: '',
+        // link: '',
+        productName: '',
+        productMark: '',
+        category: ''
       }
     },
-    handeleConfirm(cb) {
+    handleConfirm(cb) {
       this.$refs['ruleForm'].validate((valid) => {
           if (valid) {
-            this.handelTableData(this.actionType, this.formData)
+            this.handleTableData(/* this.actionType,  */this.formData)
             .then((res) => {
               cb && cb()
               this.show = false
