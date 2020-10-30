@@ -1,6 +1,6 @@
 <template>
   <div class="input-number">
-    <input type="number" v-model.number="inputNumber" />
+    <input type="number" v-model.number="inputNumber" :min="validation.min" :max="validation.max" />
     <p :class="valid ? 'none' : 'warning'">{{message}}</p>
   </div>
 </template>

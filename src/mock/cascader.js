@@ -1,9 +1,11 @@
 export const options = [{
   value: 'zhinan',
+  id: '1',
   label: '指南',
   children: [{
     value: 'shejiyuanze',
     label: '设计原则',
+    id: '1-1',
     children: [{
       value: 'yizhi',
       label: '一致'
