@@ -3,12 +3,12 @@ import request from '@/utils/request'
 const baseURL = '/api/staticContent'
 // infoId 更新主键
 export class StaticPage {
-    static async query(pageId) {
+    static async query(categoryId) {
         return await request({
             method: 'get',
             url: `${baseURL}/getPage`,
             params: {
-                pageId
+                categoryId
             }
         })
     }
@@ -43,12 +43,12 @@ export class StaticPage {
         })
     }
 
-    static async delete(pageId) {
+    static async delete(categoryId) {
         return await request({
             method: 'delete',
             url: `${baseURL}/deletePage`,
             params: {
-                pageId
+                categoryId
             }
         })
     }
