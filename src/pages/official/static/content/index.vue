@@ -8,258 +8,314 @@
           :options="options"
           size="mini"
           @change="goToNewPage"
-          filterable>
+          filterable
+        >
           <p slot="reference" slot-scope="{ node }" style="display: block">
-            {{node.label}}
+            {{ node.label }}
           </p>
         </el-cascader>
         <!-- </h3> -->
       </div>
-      <el-container style="backgroundColor: #fafafa">
-      <!-- <el-aside width="200px" style="padding: 20px 10px 20px 20px; display: none">
-        <el-card shadow="hover">
-          <div slot="header" class="card-header">
-          </div>
-          <div class="card-body-left">
-            <draggable v-model="modelData" :options="{group:{name: 'staticPage',pull:'clone'},sort: true}" animation="300" @end="originTEdit">
-              <transition-group>
-            <div v-for="(componentData, index) in modelData" :key="componentData.componentId + index">{{componentData.title}}</div>
-              </transition-group>
-            </draggable>
-          </div>
-        </el-card>
-      </el-aside> -->
-
+      <el-container style="backgroundcolor: #fafafa">
         <el-main>
-          <!-- <draggable v-model="contentData" group="staticPage" animation="300" @end="editTOrigin" @start="onMove">
-            <transition-group> -->
-              <div class="component-container" v-for="(componentData, index) in contentData" :key="componentData.componentId + index">
-                <component 
-                  :componentData="componentData"
-                  :index="index"
-                  :is="componentData.componentId"
-                  :upDateContentData="upDateContentData"
-                />
-              </div>
-            <!-- </transition-group>
-          </draggable> -->
+          <div
+            class="component-container"
+            v-for="(componentData, index) in contentData"
+            :key="componentData.componentId + index"
+          >
+            <component
+              :componentData="componentData"
+              :index="index"
+              :is="componentData.componentId"
+              :upDateContentData="upDateContentData"
+            />
+          </div>
         </el-main>
       </el-container>
     </el-card>
-    <!-- <div class="model-container">
-      <p @click="showModel = !showModel">
-        <i class="el-icon-star-on"/>
-      </p>
-      <div :class="showModel ? 'showModel' : ''">
-        <draggable v-model="modelData" :options="{group:{name: 'staticPage',pull:'clone'},sort: true}" animation="300" @end="originTEdit">
-          <transition-group>
-            <div class="model" v-for="(componentData, index) in modelData" :key="componentData.componentId + index">{{componentData.title}}</div>
-          </transition-group>
-        </draggable>
-      </div>
-    </div> -->
+    <Affix :pos="{ bottom: '60px', right: '20px' }">
+      <SideBar :list="bars" @click="handleOperate" />
+    </Affix>
   </div>
 </template>
 
 <script>
 // import draggable from 'vuedraggable'
-import { mapGetters } from 'vuex'
-import BcsicInfo from './BcsicInfo'
-import Banner from './Banner'
-import HTML from './HTML'
-
+import { mapGetters } from "vuex";
+import BcsicInfo from "./BcsicInfo";
+import Banner from "./Banner";
+import HTML from "./HTML";
+import Affix from "@/components/Affix";
+import SideBar from "@/components/SideBar";
+import { StaticPage } from "@/services";
 
 export default {
-  name: 'StaticPageContent',
-  components: { BcsicInfo, Banner, HTML },
+  name: "StaticPageContent",
+
+  components: { BcsicInfo, Banner, HTML, Affix, SideBar },
+
   data() {
     return {
       moveId: -1,
       contentData: [
         {
-          componentId: 'BcsicInfo',
-          title: '页面元信息',
-          pageTitle: '',
-          SEOKeyWords: '',
-          SEOKeyDescription: '',
-          definitionCSS: '',
-          definitionJS: '',
+          componentId: "BcsicInfo",
+          title: "页面元信息",
+          pageTitle: "",
+          SEOKeyWords: "",
+          SEOKeyDescription: "",
+          definitionCSS: "",
+          definitionJS: "",
         },
         {
-          componentId: 'Banner',
-          title: 'Banner',
+          componentId: "Banner",
+          title: "Banner",
           buttonList: [
             {
-              buttonName: '123',
-              buttonLink: '123',
-              buttonType: '111'
+              buttonName: "123",
+              buttonLink: "123",
+              buttonType: "111",
             },
-          ]
+          ],
         },
         {
-          componentId: 'HTML',
-          title: 'HTML内容'
-        }
+          componentId: "HTML",
+          title: "HTML内容",
+        },
       ],
       modelData: [
         {
-          componentId: 'BcsicInfo',
-          title: '页面元信息'
+          componentId: "BcsicInfo",
+          title: "页面元信息",
         },
         {
-          componentId: 'Banner',
-          title: 'Banner'
+          componentId: "Banner",
+          title: "Banner",
         },
         {
-          componentId: 'HTML',
-          title: 'HTML内容'
-        }
+          componentId: "HTML",
+          title: "HTML内容",
+        },
       ],
-       options: [{
-          value: 'zhinan',
-          label: '指南',
-          type: 'node',
-          children: [{
-            value: 'shejiyuanze',
-            label: '设计原则',
-            type: 'leaf',
-            status: 'on'
-          }, {
-            value: 'daohang',
-            label: '导航',
-            type: 'leaf',
-            status: 'off'
-          }]
-        }, {
-          value: 'zujian',
-          label: '组件',
-          children: [{
-            value: 'basic',
-            label: 'Basic',
-            type: 'leaf',
-            status: 'on'
-          }, {
-            value: 'form',
-            label: 'Form',
-            type: 'leaf',
-            status: 'off'
-          }, {
-            value: 'data',
-            label: 'Data',
-            type: 'leaf',
-            status: 'on'
-          }, {
-            value: 'notice',
-            label: 'Notice',
-            type: 'leaf',
-            status: 'on'
-          }, {
-            value: 'navigation',
-            label: 'Navigation',
-            type: 'leaf',
-            status: 'on'
-          }, {
-            value: 'others',
-            label: 'Others',
-            type: 'leaf',
-            status: 'on'
-          }]
-        }, {
-          value: 'ziyuan',
-          label: '资源',
-          children: [{
-            value: 'axure',
-            label: 'Axure Components',
-            type: 'leaf',
-            status: 'on'
-          }, {
-            value: 'sketch',
-            label: 'Sketch Templates',
-            type: 'leaf',
-            status: 'off'
-          }, {
-            value: 'jiaohu',
-            label: '组件交互文档',
-            type: 'leaf',
-            status: 'on'
-          }]
-        }], 
+      options: [
+        {
+          value: "zhinan",
+          label: "指南",
+          type: "node",
+          children: [
+            {
+              value: "shejiyuanze",
+              label: "设计原则",
+              type: "leaf",
+              status: "on",
+            },
+            {
+              value: "daohang",
+              label: "导航",
+              type: "leaf",
+              status: "off",
+            },
+          ],
+        },
+        {
+          value: "zujian",
+          label: "组件",
+          children: [
+            {
+              value: "basic",
+              label: "Basic",
+              type: "leaf",
+              status: "on",
+            },
+            {
+              value: "form",
+              label: "Form",
+              type: "leaf",
+              status: "off",
+            },
+            {
+              value: "data",
+              label: "Data",
+              type: "leaf",
+              status: "on",
+            },
+            {
+              value: "notice",
+              label: "Notice",
+              type: "leaf",
+              status: "on",
+            },
+            {
+              value: "navigation",
+              label: "Navigation",
+              type: "leaf",
+              status: "on",
+            },
+            {
+              value: "others",
+              label: "Others",
+              type: "leaf",
+              status: "on",
+            },
+          ],
+        },
+        {
+          value: "ziyuan",
+          label: "资源",
+          children: [
+            {
+              value: "axure",
+              label: "Axure Components",
+              type: "leaf",
+              status: "on",
+            },
+            {
+              value: "sketch",
+              label: "Sketch Templates",
+              type: "leaf",
+              status: "off",
+            },
+            {
+              value: "jiaohu",
+              label: "组件交互文档",
+              type: "leaf",
+              status: "on",
+            },
+          ],
+        },
+      ],
       showModel: false,
-      pageId: ''
-    }
+      pageId: "",
+      bars: [
+        {
+          // link: "wwww.baidu.com",
+          icon: "/svg/save.svg",
+          text: "保存",
+          operate: "save",
+        },
+        {
+          // link: "wwww.baidu.com",
+          icon: "/svg/view.svg",
+          text: "预览",
+          operate: "preview",
+        },
+        {
+          // link: "wwww.baidu.com",
+          icon: "/svg/publish.svg",
+          text: "发布",
+          operate: "publish",
+        },
+      ],
+      loading: true,
+    };
   },
+
   computed: {
-    ...mapGetters([
-      'name'
-    ])
+    ...mapGetters(["name"]),
+    categoryId() {
+      return this.$route.params.categoryId;
+    },
   },
-  mounted() {
-    this.pageId = this.$route.params.pageId
-    if(this.pageId) {
-      this.getPageData()
-    }
-    console.log(this.$route.params)
-  },
-  beforeDestroy() {
-  },
+
   methods: {
     handleExpandChange(expandArr) {
-      this.expandArr = expandArr
+      this.expandArr = expandArr;
     },
     originTEdit(e) {
-      return
+      return;
     },
     editTOrigin(e) {
-      const that = this
+      const that = this;
       const items = this.modelData.filter((m) => {
-        return m.componentId === that.moveId
-      })
+        return m.componentId === that.moveId;
+      });
       // //如果编辑到模板
-      if(items.length<2) return;
-      this.modelData.splice(e.newDraggableIndex, 1)
+      if (items.length < 2) return;
+      this.modelData.splice(e.newDraggableIndex, 1);
     },
-    onMove(e,originalEvent) {
-      console.log(e.oldDraggableIndex)
-      this.moveId=this.contentData[e.oldDraggableIndex].componentId;
+    onMove(e, originalEvent) {
+      console.log(e.oldDraggableIndex);
+      this.moveId = this.contentData[e.oldDraggableIndex].componentId;
     },
     upDateContentData(dataType, newData) {
-      let index = -1
-      switch(dataType) {
-        case 'BcsicInfo':
-          index = 0
-          break
-        case 'Banner':
-          index = 1
-          break
-        case 'HTML':
-          index = 2
-          break
-        default :
-          return
+      let index = -1;
+      switch (dataType) {
+        case "BcsicInfo":
+          index = 0;
+          break;
+        case "Banner":
+          index = 1;
+          break;
+        case "HTML":
+          index = 2;
+          break;
+        default:
+          return;
       }
-      this.contentData.splice(index, 1, newData)
+      this.contentData.splice(index, 1, newData);
     },
     goToNewPage(idList) {
-      if(this.pageId === idList[1]) return;
-      this.pageId = idList[1]
-      this.$router.push({ path: '/official/static/content/' + idList[1]});
+      if (this.pageId === idList[1]) return;
+      this.pageId = idList[1];
+      this.$router.push({ path: "/official/static/content/" + idList[1] });
     },
     getPageData() {
-      console.log(this.pageId)
-    }
-  }
-}
+      console.log(this.pageId);
+    },
+    fetchData(categoryId = "1322091185514217474") {
+      this.loading = true;
+      StaticPage.query(categoryId).then((res) => {
+        if (res.result.pageId) {
+          this.loading = false;
+          this.pageId = res.result.pageId;
+          const content = res.result.content || "{}";
+          this.rawData = JSON.parse(content);
+          // this.list = JSON.parse(content).data || [];
+          // this.dragList = JSON.parse(JSON.stringify(this.list));
+        }
+      });
+    },
+    handleOperate(operate) {
+      switch (operate) {
+        case "save":
+          const data = { ...this.rawData, data: this.list };
+          StaticPage.update({
+            pageId: this.pageId,
+            content: JSON.stringify(data),
+          });
+          break;
+        case "preview":
+          break;
+        case "publish":
+          break;
+        default:
+          break;
+      }
+    },
+  },
+
+  mounted() {
+    // this.pageId = this.$route.params.pageId;
+    // if (this.pageId) {
+    //   this.getPageData();
+    // }
+    // console.log(this.$route.params);
+    this.fetchData(this.categoryId);
+  },
+
+  beforeDestroy() {},
+};
 </script>
 
 <style lang="less" scoped>
-.staticpage-content{
-  /deep/ .el-card{
-    input{
-      min-width: 120px; 
+.staticpage-content {
+  /deep/ .el-card {
+    input {
+      min-width: 120px;
     }
   }
 }
-.model-container{
+.model-container {
   display: none;
   position: fixed;
   top: 100px;
@@ -268,7 +324,7 @@ export default {
   height: 50px;
   background-color: #fff;
   cursor: pointer;
-  >p{
+  > p {
     width: 30px;
     height: 30px;
     margin: auto;
@@ -284,7 +340,7 @@ export default {
     font-size: 30px;
     color: #fff;
   }
-  >div{
+  > div {
     position: absolute;
     width: 150px;
     height: auto;
@@ -293,27 +349,27 @@ export default {
     padding: 20px;
     line-height: 20px;
     background-color: #fff;
-    border: 1px solid #EBEEF5;
+    border: 1px solid #ebeef5;
     box-sizing: border-box;
     transform: translateX(0);
     transition: 1s all;
-    .model{
+    .model {
       text-align: center;
       height: 35px;
       line-height: 35px;
-      border: 1px solid #EBEEF5;
+      border: 1px solid #ebeef5;
       margin-bottom: 20px;
-      &:last-child{
+      &:last-child {
         margin-bottom: 0;
       }
     }
   }
-  .showModel{
+  .showModel {
     transform: translateX(-150px);
     // transition: 1s all;
   }
 }
-.component-container{
+.component-container {
   margin-bottom: 20px;
 }
 </style>

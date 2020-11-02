@@ -135,14 +135,6 @@ export default {
           this.rawData = JSON.parse(content);
           this.list = JSON.parse(content).data || [];
           this.dragList = JSON.parse(JSON.stringify(this.list));
-        } else {
-        //   DynamicPage.add({
-        //     categoryId,
-        //     content: "",
-        //   }).then((res) => {
-        //     //
-        //     this.loading = false
-        //   });
         }
       });
     },
@@ -198,7 +190,6 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$route.params.categoryId)
     this.fetchData(this.categoryId);
   },
 };
