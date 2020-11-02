@@ -15,7 +15,7 @@ export class DynamicPage {
 
     /* 参数:
     {
-        "categoryId": "string",
+        // "categoryId": "string",
         "content": "string",
         "pageId": "string"
     }
@@ -32,7 +32,7 @@ export class DynamicPage {
     {
         "categoryId": "string",
         "content": "string",
-        "pageId": "string"
+        // "pageId": "string"
     }
      */ 
     static async add(data) {

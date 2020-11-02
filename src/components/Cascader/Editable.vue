@@ -177,15 +177,11 @@ export default {
       formData.forEach(({ field, value }) => {
         data[field] = value;
       });
-      debugger
       if (this.isRevised) {
         Object.assign(this.node.data, data);
         this.$emit("update", this.node.data);
         this.isRevised = false;
       } else {
-        console.log("adddddd");
-        console.log(this.expand);
-        console.log(this.level);
         const pid = this.level > 0 ? this.expand[this.level - 1] : '0'
         this.$emit("add", { pid, ...data });
       }

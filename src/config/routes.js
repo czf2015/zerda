@@ -118,7 +118,7 @@ export default {
               },
             },
             {
-              path: 'content/:pageId',
+              path: 'content/:categoryId',
               name: 'dynamic',
               component: loadOfficialView('dynamic'),
               meta: { title: '官网动态页面内容管理' }
@@ -138,7 +138,7 @@ export default {
               meta: { title: '官网静态页面类别管理' }
             },
             {
-              path: 'content/:pageId',
+              path: 'content/:categoryId',
               name: 'staticContent',
               component: loadOfficialView('static/content'),
               meta: { title: '官网静态页面内容管理' }

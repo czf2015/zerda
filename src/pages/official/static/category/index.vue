@@ -13,7 +13,7 @@
 <script>
 import CategoryManage from "@/components/Cascader/Editable";
 import { options } from "@/mock/cascader";
-import { StaticCategory } from "@/services";
+import { StaticCategory, StaticPage } from "@/services";
 import { convert, columns } from "./helpers";
 
 export default {
@@ -34,16 +34,28 @@ export default {
       });
     },
     handleDelete(node) {
-      StaticCategory.delete(node.data.categoryId).then(() => {
+      const { categoryId, categoryType } = node.data
+      StaticCategory.delete(categoryId).then(() => {
         this.loadData();
+        if (categoryType == 'item' || categoryType == '菜单链接') {
+          StaticPage.delete(categoryId).catch(err => {
+            alert(err)
+          })
+        }
       });
     },
     handleAdd(data) {
+      const { categoryType } = data
       Object.assign(data, {
-        categoryType: data.categoryType == "菜单组" ? "directory" : "item",
+        categoryType: categoryType == "菜单组" ? "directory" : "item",
       });
-      StaticCategory.add(data).then(() => {
+      StaticCategory.add(data).then(({ categoryId }) => {
         this.loadData();
+        if (data.categoryType == 'item' || categoryType == '菜单链接') {
+          StaticPage.add({ categoryId, content: '' }).catch(err => {
+            alert(err)
+          })
+        }
       });
     },
     handleUpdate({ categoryId, categoryKeywords, categoryName, categoryType, pid }) {
@@ -52,9 +64,8 @@ export default {
             this.loadData()
         })
     },
-    goTo(link) {
-      console.log(link);
-      this.$router.push("/official/static/content/1");
+    goTo(categoryIds) {
+      this.$router.push(`/official/static/content/${categoryIds.pop()}`);
     },
   },
   mounted() {

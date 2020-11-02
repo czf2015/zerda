@@ -13,7 +13,7 @@
 <script>
 import CategoryManage from "@/components/Cascader/Editable";
 import { options } from "@/mock/cascader";
-import { DynamicCategory } from "@/services";
+import { DynamicCategory, DynamicPage } from "@/services";
 import { convert, columns } from "./helpers";
 
 export default {
@@ -34,16 +34,29 @@ export default {
       });
     },
     handleDelete(node) {
-      DynamicCategory.delete(node.data.categoryId).then(() => {
+      const { categoryId, categoryType } = node.data
+      console.log(node.data)
+      DynamicCategory.delete(categoryId).then(() => {
         this.loadData();
+        if (categoryType == 'item' || categoryType == '菜单链接') {
+          DynamicPage.delete(categoryId).catch(err => {
+            alert(err)
+          })
+        }
       });
     },
     handleAdd(data) {
+      const { categoryType } = data
       Object.assign(data, {
-        categoryType: data.categoryType == "菜单组" ? "directory" : "item",
+        categoryType: categoryType == "菜单组" ? "directory" : "item",
       });
-      DynamicCategory.add(data).then(() => {
+      DynamicCategory.add(data).then(({ categoryId }) => {
         this.loadData();
+        if (data.categoryType == 'item' || categoryType == '菜单链接') {
+          DynamicPage.add({ categoryId, content: '' }).catch(err => {
+            alert(err)
+          })
+        }
       });
     },
     handleUpdate({ categoryId, categoryKeywords, categoryName, categoryType, pid }) {
@@ -52,9 +65,8 @@ export default {
             this.loadData()
         })
     },
-    goTo(link) {
-      console.log(link);
-      this.$router.push("/official/dynamic/content/1");
+    goTo(categoryIds) {
+      this.$router.push(`/official/dynamic/content/${categoryIds.pop()}`);
     },
   },
   mounted() {
