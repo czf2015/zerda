@@ -2,7 +2,6 @@
   <div class="staticpage-content">
     <el-card>
       <div slot="header">
-        <!-- <h3> -->
         <el-cascader
           placeholder="请选择或搜素要编辑的页面"
           :options="options"
@@ -14,7 +13,6 @@
             {{ node.label }}
           </p>
         </el-cascader>
-        <!-- </h3> -->
       </div>
       <el-container style="backgroundcolor: #fafafa">
         <el-main>
@@ -27,7 +25,7 @@
               :componentData="componentData"
               :index="index"
               :is="componentData.componentId"
-              :upDateContentData="upDateContentData"
+              :updateContentData="updateContentData"
             />
           </div>
         </el-main>
@@ -40,9 +38,8 @@
 </template>
 
 <script>
-// import draggable from 'vuedraggable'
 import { mapGetters } from "vuex";
-import BcsicInfo from "./BcsicInfo";
+import BasicInfo from "./BasicInfo";
 import Banner from "./Banner";
 import HTML from "./HTML";
 import Affix from "@/components/Affix";
@@ -52,14 +49,14 @@ import { StaticPage } from "@/services";
 export default {
   name: "StaticPageContent",
 
-  components: { BcsicInfo, Banner, HTML, Affix, SideBar },
+  components: { BasicInfo, Banner, HTML, Affix, SideBar },
 
   data() {
     return {
       moveId: -1,
       contentData: [
         {
-          componentId: "BcsicInfo",
+          componentId: "BasicInfo",
           title: "页面元信息",
           pageTitle: "",
           SEOKeyWords: "",
@@ -85,7 +82,7 @@ export default {
       ],
       modelData: [
         {
-          componentId: "BcsicInfo",
+          componentId: "BasicInfo",
           title: "页面元信息",
         },
         {
@@ -237,10 +234,10 @@ export default {
       console.log(e.oldDraggableIndex);
       this.moveId = this.contentData[e.oldDraggableIndex].componentId;
     },
-    upDateContentData(dataType, newData) {
+    updateContentData(dataType, newData) {
       let index = -1;
       switch (dataType) {
-        case "BcsicInfo":
+        case "BasicInfo":
           index = 0;
           break;
         case "Banner":
@@ -252,7 +249,9 @@ export default {
         default:
           return;
       }
+      // console.log(newData);
       this.contentData.splice(index, 1, newData);
+    console.log(this.contentData)
     },
     goToNewPage(idList) {
       if (this.pageId === idList[1]) return;

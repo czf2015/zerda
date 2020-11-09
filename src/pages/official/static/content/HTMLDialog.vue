@@ -22,10 +22,10 @@ import { mapGetters } from 'vuex'
 import newDialog from '@/components/newDialog'
 
 export default {
-  name: 'BcsicInfoDialog',
+  name: 'BasicInfoDialog',
   components: { newDialog },
   props: {
-    upDateContentData: {
+    updateContentData: {
       type: Function,
       default: () => {}
     }
@@ -70,7 +70,7 @@ export default {
     },
     handeleConfirm(cb) {
       this.show = false
-      this.upDateContentData('BcsicInfo', this.formData)
+      this.updateContentData('BasicInfo', this.formData)
       cb && cb()
     }
   }

@@ -122,7 +122,7 @@ export default {
   name: 'BannerDialog',
   components: { newDialog },
   props: {
-    upDateContentData: {
+    updateContentData: {
       type: Function,
       default: () => {}
     }
@@ -196,7 +196,8 @@ export default {
           { validator: checkAge, trigger: 'blur' }
         ]
       },
-      editIndex: -1
+      editIndex: -1,
+      fileList: [],
     }
   },
   computed: {
@@ -224,7 +225,7 @@ export default {
     },
     handeleConfirm(cb) {
       this.show = false
-      this.upDateContentData('Banner', this.formData)
+      this.updateContentData('Banner', this.formData)
       cb && cb()
     },
     handleButtonAdd() {

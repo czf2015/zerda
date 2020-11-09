@@ -49,7 +49,7 @@
         </div>
       </el-card>
     </div>
-    <BannerDialog ref="BannerDialog" :upDateContentData="upDateContentData"/>
+    <BannerDialog ref="BannerDialog" :updateContentData="updateContentData"/>
   </div>
 </template>
 
@@ -58,7 +58,7 @@ import { mapGetters } from 'vuex'
 import BannerDialog from './BannerDialog'
 
 export default {
-  name: 'BcsicInfo',
+  name: 'BasicInfo',
   components: { BannerDialog },
   props: {
     componentData: {
@@ -71,7 +71,7 @@ export default {
         }
       }
     },
-    upDateContentData: {
+    updateContentData: {
       type: Function,
       default: () => {}
     }

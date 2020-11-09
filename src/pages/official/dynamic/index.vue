@@ -1,5 +1,6 @@
 <template>
-  <main class="main" v-show="!loading" :style="{ margin }">
+  <main class="main" v-if="!loading" :style="{ margin }">
+    <MetaInfo :meta="meta" @change="handleMetaChange" />
     <draggable
       v-bind="dragOptions"
       tag="div"
@@ -62,6 +63,8 @@ import Panel from "@/components/TableForm/Panel";
 import Affix from "@/components/Affix";
 import SideBar from "@/components/SideBar";
 import { DynamicPage } from "@/services";
+import MetaInfo from "@/components/MetaInfo";
+import dragList from './dragList'
 
 export default {
   components: {
@@ -70,6 +73,7 @@ export default {
     Panel,
     Affix,
     SideBar,
+    MetaInfo,
   },
 
   props: {
@@ -115,26 +119,29 @@ export default {
       show: false,
       rawData: null,
       pageId: "",
+      meta: {}
     };
   },
 
   computed: {
     categoryId() {
-      return this.$route.params.categoryId
-    }
+      return this.$route.params.categoryId;
+    },
   },
-  
+
   methods: {
     fetchData(categoryId = "1322091185514217474") {
-      this.loading = true
+      this.loading = true;
       DynamicPage.query(categoryId).then((res) => {
         if (res.result.pageId) {
           this.loading = false;
-          this.pageId = res.result.pageId
+          this.pageId = res.result.pageId;
           const content = res.result.content || "{}";
           this.rawData = JSON.parse(content);
-          this.list = JSON.parse(content).data || [];
-          this.dragList = JSON.parse(JSON.stringify(this.list));
+          const { data = [], ...meta } = JSON.parse(content);
+          this.meta = meta;
+          this.list = data;
+          this.dragList = dragList;
         }
       });
     },
@@ -174,9 +181,9 @@ export default {
     handleOperate(operate) {
       switch (operate) {
         case "save":
-          const data = { ...this.rawData, data: this.list };
+          const data = { ...this.meta, data: this.list };
           DynamicPage.update({
-            pageId:	this.pageId,
+            pageId: this.pageId,
             content: JSON.stringify(data),
           });
           break;
@@ -187,6 +194,10 @@ export default {
         default:
           break;
       }
+    },
+    handleMetaChange(meta) {
+      // console.log(formData)
+      this.meta = meta;
     },
   },
   mounted() {

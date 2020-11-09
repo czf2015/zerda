@@ -15,7 +15,7 @@
         </div>
       </el-card>
     </div>
-    <HTMLDialog ref="HTMLDialog" :upDateContentData="upDateContentData"/>
+    <HTMLDialog ref="HTMLDialog" :updateContentData="updateContentData"/>
   </div>
 </template>
 
@@ -37,7 +37,7 @@ export default {
       type: Number,
       default: -1
     },
-    upDateContentData: {
+    updateContentData: {
       type: Function,
       default: () => {}
     }

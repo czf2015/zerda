@@ -1,5 +1,5 @@
 <template>
-  <div id="main-container">
+  <div class="main-container">
     <router-view />
   </div>
   
@@ -8,7 +8,7 @@
 <script>
 </script>
 <style scoped>
-#main-container {
+.main-container {
   min-height: 85vh;
   min-width: 1000px;
 }

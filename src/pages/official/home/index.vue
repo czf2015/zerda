@@ -1,5 +1,5 @@
 <template>
-  <main class="main" v-show="!loading" :style="{ margin }">
+  <main class="main" v-if="!loading" :style="{ margin }">
     <SkinSelect
       class="top-right"
       :list="skins"
@@ -8,6 +8,7 @@
       @del="handleSkinDel"
       @change="handleSkinChange"
     />
+    <MetaInfo :meta="meta" @change="handleMetaChange" />
     <draggable
       v-bind="dragOptions"
       tag="div"
@@ -71,6 +72,8 @@ import Affix from "@/components/Affix";
 import SideBar from "@/components/SideBar";
 import SkinSelect from "@/components/SkinSelect";
 import { PageInfo, HomePage } from "@/services";
+import MetaInfo from "@/components/MetaInfo";
+import dragList from './dragList'
 
 export default {
   components: {
@@ -80,6 +83,7 @@ export default {
     Affix,
     SkinSelect,
     SideBar,
+    MetaInfo,
   },
 
   props: {
@@ -126,19 +130,25 @@ export default {
       rawData: null,
       infoId: "",
       skins: [],
+      meta: {},
     };
   },
   methods: {
     fetchData(infoId) {
       this.loading = true;
       if (infoId) {
-        this.list = [] // 解决异步数据渲染问题
+        this.list = []; // 解决异步数据渲染问题
         HomePage.query(infoId).then((res) => {
           this.loading = false;
           const content = res.result.content || "{}";
           this.rawData = JSON.parse(content);
-          this.list = JSON.parse(content).data || [];
-          this.dragList = JSON.parse(JSON.stringify(this.list));
+          const { data = [], ...meta } = JSON.parse(content);
+          this.meta = meta;
+          Object.assign(this.meta, meta)
+          console.log('fetchData:meta::')
+          console.log(JSON.stringify(meta))
+          this.list = data;
+          this.dragList = dragList;
           // mock数据
           // PageInfo.query('homePage').then((res) => {
           //   HomePage.update({
@@ -197,7 +207,7 @@ export default {
     handleOperate(operate) {
       switch (operate) {
         case "save":
-          const data = { ...this.rawData, data: this.list };
+          const data = { ...this.meta, data: this.list };
           HomePage.update({
             infoId: this.infoId,
             content: JSON.stringify(data),
@@ -213,9 +223,9 @@ export default {
     },
     handleSkinModify(data) {
       const { index, value } = data;
-      const id = this.skins[index].id
-      const slug = value.find((item) => item.field == "slug").value
-      const theme = value.find((item) => item.field == "theme").value
+      const id = this.skins[index].id;
+      const slug = value.find((item) => item.field == "slug").value;
+      const theme = value.find((item) => item.field == "theme").value;
       HomePage.adapt({
         infoId: id,
         plateKeywords: slug,
@@ -232,14 +242,14 @@ export default {
       const data = {
         plateKeywords: formData.find((item) => item.field == "slug").value,
         plateName: formData.find((item) => item.field == "theme").value,
-      }
-      const template = formData.find((item) => item.field == "template").value
+      };
+      const template = formData.find((item) => item.field == "template").value;
       if (template) {
-        const skin = this.skins.find(item => item.theme == template)
+        const skin = this.skins.find((item) => item.theme == template);
         Object.assign(data, {
           infoId: skin.id,
           templateCreated: true,
-        })
+        });
       }
       HomePage.add(data).then((res) => {
         this.skins = res.result.map((item) => {
@@ -258,9 +268,14 @@ export default {
       });
     },
     handleSkinChange(option) {
-      this.infoId = this.skins.find(item => item.theme == option).id
-      this.fetchData(this.infoId)
-    }
+      this.infoId = this.skins.find((item) => item.theme == option).id;
+      this.fetchData(this.infoId);
+    },
+    handleMetaChange(meta) {
+      console.log('----------handleMetaChange-------')
+      console.log(meta)
+      Object.assign(this.meta, meta)
+    },
   },
   mounted() {
     this.fetchData(/* this.$route.name */);
