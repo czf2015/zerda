@@ -65,7 +65,8 @@ export default {
         })
     },
     goTo(categoryIds) {
-      this.$router.push(`/official/static/content/${categoryIds.pop()}`);
+      const categoryId = categoryIds.slice(-1)[0]
+      this.$router.push(`/official/static/content/${categoryId}`);
     },
   },
   mounted() {

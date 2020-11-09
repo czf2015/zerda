@@ -1,6 +1,6 @@
 <template>
   <main class="main" v-if="!loading" :style="{ margin }">
-    <Cascader class="top-left" :options="options" />
+    <Cascader class="top-left" :options="options" @change="goTo" />
     <MetaInfo :meta="meta" @change="handleMetaChange" />
     <draggable
       v-bind="dragOptions"
@@ -134,6 +134,12 @@ export default {
     },
   },
 
+  watch: {
+    categoryId() {
+      this.fetchData(this.categoryId);
+    },
+  },
+
   methods: {
     fetchData(categoryId = "1322091185514217474") {
       this.loading = true;
@@ -204,12 +210,17 @@ export default {
       // console.log(formData)
       this.meta = meta;
     },
+    goTo(categoryIds = []) {
+      const categoryId = categoryIds.slice(-1)[0];
+      if (categoryId && categoryId !== this.categoryId) {
+        location.href = `/official/dynamic/content/${categoryId}`;
+      }
+    },
   },
   mounted() {
     this.fetchData(this.categoryId);
     DynamicCategory.query().then((res) => {
       this.options = convert(res.result);
-      console.log(this.options);
     });
   },
 };

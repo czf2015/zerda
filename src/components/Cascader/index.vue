@@ -4,6 +4,7 @@
     :options="options"
     :filterable="filterable"
     :clearable="clearable"
+    @change="handleChange"
   />
 </template>
 
@@ -16,10 +17,17 @@ export default {
     },
     filterable: {
       type: Boolean,
+      default: true,
     },
     clearable: {
       type: Boolean,
-      default: true
+      default: true,
+    },
+  },
+
+  methods: {
+    handleChange(value) {
+      this.$emit("change", value);
     },
   },
 };

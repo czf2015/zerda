@@ -66,7 +66,8 @@ export default {
         })
     },
     goTo(categoryIds) {
-      this.$router.push(`/official/dynamic/content/${categoryIds.pop()}`);
+      const categoryId = categoryIds.slice(-1)[0]
+      this.$router.push(`/official/dynamic/content/${categoryId}`);
     },
   },
   mounted() {
