@@ -19,6 +19,9 @@
         </el-tabs>
       </div>
     </el-card>
+    <Affix :pos="{ bottom: '60px', right: '20px' }">
+      <SideBar :list="bars" @click="handleOperate" />
+    </Affix>
   </div>
 </template>
 
@@ -27,16 +30,38 @@ import { mapGetters } from "vuex";
 import ServiceConfig from "./ServiceConfig";
 import NavARecConfig from "./NavARecConfig";
 import { FooterInfo } from "@/services";
+import Affix from "@/components/Affix";
+import SideBar from "@/components/SideBar";
 
 export default {
   name: "CategoryManagement",
-  components: { ServiceConfig, NavARecConfig },
+  components: { ServiceConfig, NavARecConfig, Affix, SideBar },
   data() {
     return {
       // currentPage: 1,
       activeName: "first",
       result: null,
       content: null,
+      bars: [
+        {
+          // link: "wwww.baidu.com",
+          icon: "/svg/save.svg",
+          text: "保存",
+          operate: "save",
+        },
+        {
+          // link: "wwww.baidu.com",
+          icon: "/svg/view.svg",
+          text: "预览",
+          operate: "preview",
+        },
+        {
+          // link: "wwww.baidu.com",
+          icon: "/svg/publish.svg",
+          text: "发布",
+          operate: "publish",
+        },
+      ],
     };
   },
   computed: {
@@ -48,6 +73,25 @@ export default {
     },
     handleRemove(rowData) {
       // this.$refs["CategoryRemove"].showDialog(rowData);
+    },
+    handleOperate(operate) {
+      switch (operate) {
+        case "save":
+          // ToDo:
+          alert('save')
+          // const data = { ...this.meta, data: this.list };
+          // DynamicPage.update({
+          //   pageId: this.pageId,
+          //   content: JSON.stringify(data),
+          // });
+          break;
+        case "preview":
+          break;
+        case "publish":
+          break;
+        default:
+          break;
+      }
     },
   },
   mounted() {

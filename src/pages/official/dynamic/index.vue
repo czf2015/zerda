@@ -207,7 +207,6 @@ export default {
       }
     },
     handleMetaChange(meta) {
-      // console.log(formData)
       this.meta = meta;
     },
     goTo(categoryIds = []) {
