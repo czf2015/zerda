@@ -1,6 +1,6 @@
 <template>
   <el-cascader
-    placeholder="试试搜索：指南"
+    placeholder="试试搜索"
     :options="options"
     :filterable="filterable"
     :clearable="clearable"
@@ -19,6 +19,7 @@ export default {
     },
     clearable: {
       type: Boolean,
+      default: true
     },
   },
 };

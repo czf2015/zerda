@@ -140,7 +140,7 @@ export default {
             {
               path: 'content/:categoryId',
               name: 'staticContent',
-              component: loadOfficialView('static/content'),
+              component: loadOfficialView('static'),
               meta: { title: '官网静态页面内容管理' }
             },
           ]

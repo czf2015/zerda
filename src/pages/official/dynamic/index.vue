@@ -1,5 +1,6 @@
 <template>
   <main class="main" v-if="!loading" :style="{ margin }">
+    <Cascader class="top-left" :options="options" />
     <MetaInfo :meta="meta" @change="handleMetaChange" />
     <draggable
       v-bind="dragOptions"
@@ -62,9 +63,11 @@ import Container from "@/components/TableForm/Container";
 import Panel from "@/components/TableForm/Panel";
 import Affix from "@/components/Affix";
 import SideBar from "@/components/SideBar";
-import { DynamicPage } from "@/services";
+import { DynamicPage, DynamicCategory } from "@/services";
 import MetaInfo from "@/components/MetaInfo";
-import dragList from './dragList'
+import dragList from "./dragList";
+import Cascader from "@/components/Cascader";
+import { convert } from "./category/helpers";
 
 export default {
   components: {
@@ -74,6 +77,7 @@ export default {
     Affix,
     SideBar,
     MetaInfo,
+    Cascader,
   },
 
   props: {
@@ -119,7 +123,8 @@ export default {
       show: false,
       rawData: null,
       pageId: "",
-      meta: {}
+      meta: {},
+      options: [],
     };
   },
 
@@ -202,6 +207,10 @@ export default {
   },
   mounted() {
     this.fetchData(this.categoryId);
+    DynamicCategory.query().then((res) => {
+      this.options = convert(res.result);
+      console.log(this.options);
+    });
   },
 };
 </script>
@@ -211,10 +220,10 @@ export default {
   // width: 84%;
   position: relative;
   min-height: 85vh;
-  .top-right {
+  .top-left {
     position: absolute;
     top: -100px;
-    right: 40px;
+    left: 40px;
   }
   .flip-list-move {
     transition: transform 0.5s;

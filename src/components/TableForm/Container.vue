@@ -54,19 +54,23 @@ export default {
   computed: {
     formData() {
       const form = this.store.extra.filter(
-        (item) => item.field !== "title" && item.field !== "content"
+        (item) => item.field !== "title" && item.mode !== "multiple"
       );
       return form.map((item) => {
         return { ...item, value: this.store[item.field] };
       });
     },
     tableData() {
-      const table = this.store.extra.find((item) => item.field == "content");
-      return {
-        datasource: this.store.content,
-        columns: table.children,
-        operations: table.operations,
-      };
+      const table = this.store.extra.find((item) => item.mode == "multiple");
+      if (table) {
+        return {
+          datasource: this.store[table.field],
+          columns: table.children,
+          operations: table.operations,
+        };
+      } else {
+        return undefined
+      }
     },
   },
 

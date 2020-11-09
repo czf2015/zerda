@@ -1,8 +1,13 @@
 <template>
   <div class="compose">
-    <CustomForm v-bind="{ datasource: formData, auto }"  @change="handleFormChange" padding="0" />
+    <CustomForm
+      v-bind="{ datasource: formData, auto }"
+      @change="handleFormChange"
+      padding="0"
+    />
     <TableForm
-      style="margin-top: 20px;"
+      v-if="tableData"
+      style="margin-top: 20px"
       v-bind="tableData"
       @edit="handleTableEdit"
       @save="handleTableSave"
@@ -45,10 +50,10 @@ export default {
   },
   methods: {
     handleFormChange(formData) {
-      const msg = {}
+      const msg = {};
       formData.forEach(({ field, value }) => {
-        msg[field] = value
-      })
+        msg[field] = value;
+      });
       this.$emit("change", msg);
     },
     handleTableEdit(idx) {
