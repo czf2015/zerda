@@ -26,6 +26,10 @@ export default {
         props: tableProps,
     },
 
+    TableTree: {
+        props: tableProps,
+    },
+
     Menu: {
         props: menuProps,
     },

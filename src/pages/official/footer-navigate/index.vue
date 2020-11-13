@@ -1,126 +1,108 @@
 <template>
-  <div class="footer-management">
-    <el-card shadow="hover" class="header-management-header">
-      <div slot="header" class="clearfix">
-        <span>底部导航配置</span>
-      </div>
-
-      <div id="cascaderContainer">
-        <el-tabs v-model="activeName" @tab-click="handleClick">
-          <el-tab-pane label="服务配置" name="first">
-            <ServiceConfig :list="content.service" />
-          </el-tab-pane>
-          <el-tab-pane label="导航配置" name="second">
-            <NavARecConfig :list="content.navigator" />
-          </el-tab-pane>
-          <el-tab-pane label="推荐配置" name="third">
-            <NavARecConfig :list="content.recommend" />
-          </el-tab-pane>
-        </el-tabs>
-      </div>
-    </el-card>
-    <Affix :pos="{ bottom: '60px', right: '20px' }">
-      <SideBar :list="bars" @click="handleOperate" />
-    </Affix>
-  </div>
+  <el-tabs
+    :type="cardType"
+    style="margin: 20px 20px 0 20px"
+    v-model="activeTab"
+    :before-leave="handleTabLeave"
+    editable
+    @edit="handleTabsEdit"
+  >
+    <el-tab-pane
+      v-for="({ category, tableData }, idx) in panelDatas"
+      :key="idx"
+      :name="String(idx)"
+      :label="category"
+    >
+      <TableTree :tableData="tableData" />
+    </el-tab-pane>
+  </el-tabs>
 </template>
 
+
 <script>
-import { mapGetters } from "vuex";
-import ServiceConfig from "./ServiceConfig";
-import NavARecConfig from "./NavARecConfig";
-import { FooterInfo } from "@/services";
-import Affix from "@/components/Affix";
-import SideBar from "@/components/SideBar";
+import TableTree from "@/components/Table/TableTree";
+import { tableData } from "@/components/Table/mock";
 
 export default {
-  name: "CategoryManagement",
-  components: { ServiceConfig, NavARecConfig, Affix, SideBar },
+  components: {
+    TableTree,
+  },
+
+  props: {
+    cardType: {
+      type: String,
+      default: "card",
+    },
+  },
+
   data() {
     return {
-      // currentPage: 1,
-      activeName: "first",
-      result: null,
-      content: null,
-      bars: [
-        {
-          // link: "wwww.baidu.com",
-          icon: "/svg/save.svg",
-          text: "保存",
-          operate: "save",
-        },
-        {
-          // link: "wwww.baidu.com",
-          icon: "/svg/view.svg",
-          text: "预览",
-          operate: "preview",
-        },
-        {
-          // link: "wwww.baidu.com",
-          icon: "/svg/publish.svg",
-          text: "发布",
-          operate: "publish",
-        },
-      ],
+      store: [], //this.initial,
+      activeTab: "0",
+      closable: false,
+      canTabLeave: true,
     };
   },
+
   computed: {
-    ...mapGetters(["name"]),
+    panelDatas() {
+      return ["服务配置", "导航配置", "推荐配置"].map((category) => {
+        return {
+          category,
+          tableData: JSON.parse(JSON.stringify(tableData)),
+        };
+      });
+    },
   },
+
   methods: {
-    handleClick(actionType, rowData) {
-      // this.$refs['CategoryDialog'].showDialog(actionType, rowData)
-    },
-    handleRemove(rowData) {
-      // this.$refs["CategoryRemove"].showDialog(rowData);
-    },
-    handleOperate(operate) {
-      switch (operate) {
-        case "save":
-          // ToDo:
-          alert('save')
-          // const data = { ...this.meta, data: this.list };
-          // DynamicPage.update({
-          //   pageId: this.pageId,
-          //   content: JSON.stringify(data),
-          // });
+    handleTabsEdit(targetName, action) {
+      const tabs = this.store.content;
+      switch (action) {
+        case "add":
+          this.activeTab = `${tabs.length}`;
+          tabs.push({
+            category: `tab ${tabs.length + 1}`,
+            children: [],
+          });
           break;
-        case "preview":
-          break;
-        case "publish":
+        case "remove":
+          if (confirm("确定删除该栏？")) {
+            if (this.activeTab == targetName) {
+              if (targetName < tabs.length - 1) {
+                this.activeTab = targetName;
+              } else {
+                this.activeTab = `${targetName - 1}`;
+              }
+            }
+            tabs.splice(Number(targetName), 1);
+          }
           break;
         default:
           break;
       }
     },
-  },
-  mounted() {
-    FooterInfo.query().then((res) => {
-      this.result = res.result;
-      this.content = JSON.parse(res.result.content);
-      // FooterInfo.update(res.result)
-    });
+    handleTabLeave() {
+      if (!this.canTabLeave) {
+        alert("当前填写内容不符合格式要求，请您进行修改!");
+      }
+      return this.canTabLeave;
+    },
+    handlePanelFormChange(formData) {
+      const panelData = this.store.content[this.activeTab];
+      formData.forEach(({ field, value }) => {
+        panelData[field] = value;
+      });
+      this.canTabLeave = formData.every(({ validation }) => validation.valid);
+    },
+    handlePanelTableUp(index) {
+      const panelTable = this.store.content[this.activeTab].children;
+      panelTable.splice(index - 1, 2, panelTable[index], panelTable[index - 1]);
+    },
+    handlePanelTableDown(index) {
+      const panelTable = this.store.content[this.activeTab].children;
+      panelTable.splice(index, 2, panelTable[index + 1], panelTable[index]);
+    },
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.footer-management {
-  padding: 15px;
-  &-header {
-    margin-bottom: 30px;
-    .el-select {
-      margin-right: 20px;
-    }
-  }
-  &-body {
-    a {
-      color: #66b1ff;
-    }
-    .pagination-container {
-      text-align: right;
-      margin: 20px 0;
-    }
-  }
-}
-</style>

@@ -19,6 +19,7 @@ export default {
     CustomForm: () => import("@/components/Form"),
     CustomTable: () => import("@/components/Table"),
     TableForm: () => import("@/components/TableForm"),
+    TableTree: () => import("@/components/Table/TableTree"),
     Menu: () => import("@/components/Menu/CustomMenu"),
     Upload: () => import("@/components/Upload"),
     Rate: () => import("@/components/Rate"),

@@ -148,21 +148,21 @@ export const datasource = [{
 
 export const operations = [
     {
-        field: 'check',
-        label: '查看'
-    },
-    {
         field: 'edit',
         label: '编辑'
     },
     {
-        field: 'add',
-        label: '添加'
-    },
-    {
         field: 'del',
         label: '删除'
-    }
+    },
+    {
+        field: 'up',
+        label: '上移'
+    },
+    {
+        field: 'down',
+        label: '下移'
+    },
 ]
 
 export const convertFormData = (columns, rowData) => {
