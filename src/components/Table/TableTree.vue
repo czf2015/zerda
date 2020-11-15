@@ -10,7 +10,7 @@
     </div>
     <el-table
       class="table"
-      :data="store"
+      :data="tableData"
       :border="border"
       :indent="indent"
       :lazy="lazy"
@@ -25,7 +25,9 @@
             :border="border"
             :indent="indent"
             :lazy="lazy"
+            :index="props.$index"
             :operations="operations"
+            @update="handleUpdate"
           />
         </template>
       </el-table-column>
@@ -102,6 +104,9 @@ export default {
       type: Array,
       default: () => operations,
     },
+    index: {
+      type: Number,
+    }
   },
 
   data() {
@@ -110,6 +115,7 @@ export default {
       openDialog: false,
       currIndex: -1,
       store: this.tableData,
+      isRevised: false,
     };
   },
 
@@ -154,17 +160,25 @@ export default {
       });
       this.$emit("save", msg);
       console.log({ formData, msg })
-      // this.store[this.currIndex] = msg
-      const item = this.store[this.currIndex]
-      Object.assign(item, msg)
-      this.store.splice(this.currIndex, 1, item)
+      if (this.isRevised) {
+        const item = this.store[this.currIndex]
+        Object.assign(item, msg)
+        this.store.splice(this.currIndex, 1, item)
+        this.isRevised = false
+      } else {
+        if (this.canExpand) {
+          Object.assign(msg, { children: [] })
+        }
+        this.store.push(msg)
+      }
       this.openDialog = false;
+      this.$emit('update', this.index, this.store)
     },
     handleFormCancel(formData) {
+      this.isRevised = false
       this.openDialog = false;
     },
     operate(operation, index) {
-      //   this.$emit(operation.field, index);
       switch (operation.field) {
         case "edit":
           this.currIndex = index
@@ -172,15 +186,13 @@ export default {
             this.tableColumns,
             this.store[index]
           );
-          console.log(index)
-          console.log(this.store)
+          this.isRevised = true
           this.openDialog = true;
-          break;
+          return
         case "del":
           this.store.splice(index, 1);
           break;
         case "up":
-          // const item = this.store[index]
           this.store.splice(
             index - 1,
             2,
@@ -199,7 +211,7 @@ export default {
         default:
           break;
       }
-      //
+      this.$emit('update', this.index, this.store)
     },
     append() {
       this.formData = convertToFormData(this.tableColumns);
@@ -212,6 +224,15 @@ export default {
         (field == "down" && index == this.store.length - 1)
       );
     },
+    handleUpdate(index, store) {
+      console.log('handleUpdate')
+      console.log(index)
+      console.log(store)
+      if (typeof index !== 'undefined') {
+        Object(this.store[index], { children: store })
+        this.$emit('update', this.store)
+      }
+    }
   },
 };
 </script>

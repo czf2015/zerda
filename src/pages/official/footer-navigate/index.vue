@@ -1,108 +1,92 @@
 <template>
-  <el-tabs
-    :type="cardType"
-    style="margin: 20px 20px 0 20px"
-    v-model="activeTab"
-    :before-leave="handleTabLeave"
-    editable
-    @edit="handleTabsEdit"
-  >
-    <el-tab-pane
-      v-for="({ category, tableData }, idx) in panelDatas"
-      :key="idx"
-      :name="String(idx)"
-      :label="category"
-    >
-      <TableTree :tableData="tableData" />
-    </el-tab-pane>
-  </el-tabs>
+  <main class="main" v-if="!loading">
+    <TabTree ref="navigate" :panelDatas="panelDatas" @update="handleUpdate" />
+    <Affix :pos="{ bottom: '60px', right: '20px' }">
+      <SideBar :list="bars" @click="handleOperate" />
+    </Affix>
+  </main>
 </template>
 
 
 <script>
-import TableTree from "@/components/Table/TableTree";
+import TabTree from "@/components/TabTree";
+import Affix from "@/components/Affix";
+import SideBar from "@/components/SideBar";
+import { FooterInfo } from "@/services";
 import { tableData } from "@/components/Table/mock";
 
 export default {
-  components: {
-    TableTree,
-  },
+  name: "FooterNavigate",
 
-  props: {
-    cardType: {
-      type: String,
-      default: "card",
-    },
+  components: {
+    TabTree,
+    Affix,
+    SideBar,
   },
 
   data() {
     return {
-      store: [], //this.initial,
-      activeTab: "0",
-      closable: false,
-      canTabLeave: true,
+      loading: true,
+      bars: [
+        {
+          // link: "wwww.baidu.com",
+          icon: "/svg/save.svg",
+          text: "保存",
+          operate: "save",
+        },
+        {
+          // link: "wwww.baidu.com",
+          icon: "/svg/view.svg",
+          text: "预览",
+          operate: "preview",
+        },
+        {
+          // link: "wwww.baidu.com",
+          icon: "/svg/publish.svg",
+          text: "发布",
+          operate: "publish",
+        },
+      ],
+      // panelDatas: ["服务配置", "导航配置", "推荐配置"].map((category) => {
+      //   return {
+      //     category,
+      //     tableData: JSON.parse(JSON.stringify(tableData)),
+      //   };
+      // }),
+      panelDatas: [],
     };
   },
 
-  computed: {
-    panelDatas() {
-      return ["服务配置", "导航配置", "推荐配置"].map((category) => {
-        return {
-          category,
-          tableData: JSON.parse(JSON.stringify(tableData)),
-        };
-      });
-    },
-  },
-
   methods: {
-    handleTabsEdit(targetName, action) {
-      const tabs = this.store.content;
-      switch (action) {
-        case "add":
-          this.activeTab = `${tabs.length}`;
-          tabs.push({
-            category: `tab ${tabs.length + 1}`,
-            children: [],
+    handleOperate(operate) {
+      switch (operate) {
+        case "save":
+          FooterInfo.update({
+            id: "1",
+            content: JSON.stringify(this.panelDatas),
           });
           break;
-        case "remove":
-          if (confirm("确定删除该栏？")) {
-            if (this.activeTab == targetName) {
-              if (targetName < tabs.length - 1) {
-                this.activeTab = targetName;
-              } else {
-                this.activeTab = `${targetName - 1}`;
-              }
-            }
-            tabs.splice(Number(targetName), 1);
-          }
+        case "preview":
+          break;
+        case "publish":
           break;
         default:
           break;
       }
     },
-    handleTabLeave() {
-      if (!this.canTabLeave) {
-        alert("当前填写内容不符合格式要求，请您进行修改!");
-      }
-      return this.canTabLeave;
+    handleUpdate(idx, store) {
+      this.panelDatas.splice(idx, store);
     },
-    handlePanelFormChange(formData) {
-      const panelData = this.store.content[this.activeTab];
-      formData.forEach(({ field, value }) => {
-        panelData[field] = value;
-      });
-      this.canTabLeave = formData.every(({ validation }) => validation.valid);
-    },
-    handlePanelTableUp(index) {
-      const panelTable = this.store.content[this.activeTab].children;
-      panelTable.splice(index - 1, 2, panelTable[index], panelTable[index - 1]);
-    },
-    handlePanelTableDown(index) {
-      const panelTable = this.store.content[this.activeTab].children;
-      panelTable.splice(index, 2, panelTable[index + 1], panelTable[index]);
-    },
+  },
+
+  mounted() {
+    FooterInfo.query().then((res) => {
+      this.loading = false;
+      const {
+        result: { content },
+      } = res;
+      this.panelDatas = JSON.parse(content);
+    });
   },
 };
 </script>
