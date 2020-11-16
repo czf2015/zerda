@@ -146,6 +146,7 @@ export default {
     renderContent(h, { node, data, store }) {
       return (
         <span class="custom-tree-node">
+        <i class={node.isLeaf ? 'el-icon-document' : 'el-icon-folder-opened'} style="marginRight: 5px" />
           <span>{node.label}</span>
           <span class="tree-node-operate">
             <el-button
@@ -186,4 +187,7 @@ export default {
 
 
 <style lang="less" scoped>
+/deep/ .tree {
+
+}
 </style>
