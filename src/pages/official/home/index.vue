@@ -71,7 +71,7 @@ import Panel from "@/components/TableForm/Panel";
 import Affix from "@/components/Affix";
 import SideBar from "@/components/SideBar";
 import SkinSelect from "@/components/SkinSelect";
-import { PageInfo, HomePage } from "@/services";
+import { /* PageInfo,  */HomePage } from "@/services";
 import MetaInfo from "@/components/MetaInfo";
 import dragList from './dragList'
 

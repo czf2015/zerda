@@ -54,6 +54,7 @@ export default {
       //   };
       // }),
       panelDatas: [],
+      id: '',
     };
   },
 
@@ -62,7 +63,7 @@ export default {
       switch (operate) {
         case "save":
           FooterInfo.update({
-            id: "1",
+            id: this.id,
             content: JSON.stringify(this.panelDatas),
           });
           break;
@@ -83,8 +84,9 @@ export default {
     FooterInfo.query().then((res) => {
       this.loading = false;
       const {
-        result: { content },
+        result: { id, content },
       } = res;
+      this.id = id
       this.panelDatas = JSON.parse(content);
     });
   },
