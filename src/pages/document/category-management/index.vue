@@ -201,15 +201,18 @@ export default {
   },
   mounted() {
     this.fetchData(this.categoryId);
-    HomePage.list().then((res) => {
-      this.skins = res.result.map((item) => {
-        return {
-          id: item.infoId,
-          theme: item.plateName,
-          slug: item.plateKeywords,
-        };
-      });
-    });
+    this.skins = [
+      {
+        id: 0,
+        theme: "租户端",
+        slug: "ower",
+      },
+      {
+        id: 1,
+        theme: "用户端",
+        slug: "user",
+      },
+    ];
   },
 };
 </script>

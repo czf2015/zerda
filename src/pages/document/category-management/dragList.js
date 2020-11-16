@@ -7,12 +7,26 @@ export default [
         "title": "类别管理",
         "content": [
             {
-                "icon_url": "https://imagecachexxfb.yun.ccb.com/raw/cba6793909136cf277c94951b5b73d27.png",
+                "icon_url": "https://imagecachexxfb.yun.ccb.com/raw/43fef249aa274bba4b4796af88dfcdf4.png",
+                "cn_name": "计算",
+                "en_name": "compute",
+                "weight": 1,
+                "forward": "https://yun.ccb.com/product/productcos"
+            },
+            {
+                "icon_url": "https://imagecachexxfb.yun.ccb.com/raw/52d223f29abd710fb277a943b96f44ab.png",
+                "cn_name": "网络",
+                "en_name": "network",
+                "weight": 1,
+                "forward": "https://yun.ccb.com/product/productcos"
+            },
+            {
+                "icon_url": "https://imagecachexxfb.yun.ccb.com/raw/c6a19220b5132c63a843f8f394830267.png",
                 "cn_name": "对象存储",
                 "en_name": "storage",
                 "weight": 1,
                 "forward": "https://yun.ccb.com/product/productcos"
-            }
+            },
         ],
         "extra": [
             {
