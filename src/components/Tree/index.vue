@@ -34,13 +34,13 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+import { tree } from "@/mock/tree";
+
 export default {
   // Todo: 控制可拖拽区域
+  name: "Tree",
   props: {
-    tree: {
-      // type: Object | Array,
-      required: true,
-    },
     nodeKey: {
       type: String,
       required: true,
@@ -74,10 +74,15 @@ export default {
     expand: {
       type: Boolean,
     },
+    tree: {
+      type: Array,
+      default: () => tree,
+    },
   },
   data() {
     return {
       filterText: "",
+      currIdx: -1,
     };
   },
   methods: {
@@ -100,7 +105,7 @@ export default {
       console.log("tree drop: ", dropNode.label, dropType);
     },
     allowDrop(draggingNode, dropNode, type) {
-      if (dropNode.data.label === "二级 3-1") {
+      if (dropNode.data.label === "二级 2-1") {
         return type !== "inner";
       } else {
         return true;
@@ -114,31 +119,80 @@ export default {
       return data.label.indexOf(value) !== -1;
     },
     append(data) {
-      const newChild = {
-        id: new Date().getTime(),
-        label: prompt(`菜单项:`) || 'new',
-        children: [],
-      };
-      if (!data.children) {
-        this.$set(data, "children", []);
-      }
-      data.children.push(newChild);
+      this.$prompt("添加子菜单：", `父级——${data.label}`, {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        inputPattern: /^\S{1,20}$/,
+        inputErrorMessage: "格式不正确",
+      })
+        .then(({ value }) => {
+          if (!data.children) {
+            this.$set(data, "children", []);
+          }
+          data.children.push({
+            id: new Date().getTime(),
+            label: value || "new",
+            children: [],
+          });
+          this.$message({
+            type: "success",
+            message: "添加成功",
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "取消输入",
+          });
+        });
     },
     modify(node, data) {
-      // console.log(data)
       const parent = node.parent;
       const children = parent.data.children || parent.data;
       const index = children.findIndex((d) => d.id === data.id);
-      data.label = prompt(`菜单项:`) || data.label;
-      children.splice(index, 1, data);
+      this.$prompt("修改为：", `菜单——${data.label}`, {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        inputPattern: /^\S{1,20}$/,
+        inputErrorMessage: "格式不正确",
+      })
+        .then(({ value }) => {
+          data.label = value;
+          children.splice(index, 1, data);
+          this.$message({
+            type: "success",
+            message: "修改成功",
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "取消输入",
+          });
+        });
     },
     remove(node, data) {
-      if (confirm(`确认删除菜单项  "${data.label}"`)) {
-        const parent = node.parent;
-        const children = parent.data.children || parent.data;
-        const index = children.findIndex((d) => d.id === data.id);
-        children.splice(index, 1);
-      }
+      this.$confirm(`菜单项——${data.label}`, "是否删除？", {
+        distinguishCancelAndClose: true,
+        confirmButtonText: "确认",
+        cancelButtonText: "取消",
+      })
+        .then(() => {
+          const parent = node.parent;
+          const children = parent.data.children || parent.data;
+          const index = children.findIndex((d) => d.id === data.id);
+          children.splice(index, 1);
+          this.$message({
+            type: "info",
+            message: "删除成功",
+          });
+        })
+        .catch((action) => {
+          this.$message({
+            type: "info",
+            message: action === "cancel" ? "取消删除" : "关闭窗口",
+          });
+        });
     },
     handleCheck() {
       console.log("check");
@@ -146,7 +200,10 @@ export default {
     renderContent(h, { node, data, store }) {
       return (
         <span class="custom-tree-node">
-        <i class={node.isLeaf ? 'el-icon-document' : 'el-icon-folder-opened'} style="marginRight: 5px" />
+          <i
+            class={node.isLeaf ? "el-icon-document" : "el-icon-folder-opened"}
+            style="marginRight: 5px"
+          />
           <span>{node.label}</span>
           <span class="tree-node-operate">
             <el-button
@@ -187,7 +244,26 @@ export default {
 
 
 <style lang="less" scoped>
-/deep/ .tree {
-
+.tree {
+  position: relative;
+  .mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.5);
+    .dialog {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin: 0 auto;
+      min-width: 720px;
+      max-width: 960px;
+      background-color: #fff;
+    }
+  }
 }
 </style>
