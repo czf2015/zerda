@@ -78,6 +78,64 @@ export const tableColumns = [
     },
 ]
 
+
+export const tableColumns_1 = [
+    {
+        field: 'title',
+        label: '标题',
+        mode: 'single',
+        required: true,
+        validation: {
+            type: 'text',
+            minLength: 0,
+            maxLength: 20,
+            valid: true,
+            message: '',
+            trigger: "input"
+        }
+    },
+    {
+        field: 'slug',
+        label: '标识',
+        mode: 'single',
+        required: true,
+        validation: {
+            type: 'text',
+            minLength: 0,
+            maxLength: 20,
+            valid: true,
+            message: '',
+            trigger: "input"
+        }
+    },
+    {
+        field: 'link',
+        label: '链接',
+        mode: 'single',
+        required: true,
+        validation: {
+            type: 'link',
+            pattern: /.*/,
+            valid: true,
+            message: '',
+            trigger: "input"
+        }
+    },
+    {
+        field: 'icon_link',
+        label: '图片链接',
+        mode: 'single',
+        required: true,
+        validation: {
+            type: 'link',
+            pattern: /.*/,
+            valid: true,
+            message: '',
+            trigger: "input"
+        }
+    },
+]   
+
 export const tableData = [
     {
         id: 1,

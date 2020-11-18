@@ -20,6 +20,8 @@
       @node-drag-end="handleDragEnd"
       @node-drop="handleDrop"
       @check="handleCheck"
+      @node-click="handleNodeClick"
+      @node-contextmenu="handleNodeContextmenu"
       :allow-drop="allowDrop"
       :allow-drag="allowDrag"
       :filter-node-method="filterNode"
@@ -103,6 +105,12 @@ export default {
     },
     handleDrop(draggingNode, dropNode, dropType, ev) {
       console.log("tree drop: ", dropNode.label, dropType);
+    },
+    handleNodeClick(data, node, self)  {
+      console.log({ data, node, self })
+    },
+    handleNodeContextmenu(event, data, node, self) {
+      console.log({event, data, node, self})
     },
     allowDrop(draggingNode, dropNode, type) {
       if (dropNode.data.label === "二级 2-1") {

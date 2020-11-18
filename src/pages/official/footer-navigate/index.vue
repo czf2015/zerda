@@ -13,7 +13,7 @@ import TabTree from "@/components/TabTree";
 import Affix from "@/components/Affix";
 import SideBar from "@/components/SideBar";
 import { FooterInfo } from "@/services";
-import { tableData } from "@/components/Table/mock";
+import { tableColumns, tableColumns_1 } from "@/components/Table/mock";
 
 export default {
   name: "FooterNavigate",
@@ -87,7 +87,12 @@ export default {
         result: { id, content },
       } = res;
       this.id = id
-      this.panelDatas = JSON.parse(content);
+      this.panelDatas = JSON.parse(content).map(item => {
+        return {
+          ...item,
+          columns: item.category == '服务配置' ? tableColumns_1 : tableColumns,
+        }
+      });
     });
   },
 };

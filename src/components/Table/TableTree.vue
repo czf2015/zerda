@@ -17,7 +17,7 @@
       :load="load"
     >
       <!-- 层级展开 -->
-      <el-table-column type="expand" v-if="canExpand">
+      <el-table-column type="expand" v-if="hasChildren && canExpand">
         <template slot-scope="props">
           <TableTree
             :tableData="props.row.children"
@@ -106,6 +106,10 @@ export default {
     },
     index: {
       type: Number,
+    },
+    hasChildren: {
+      type: Boolean,
+      default: true
     }
   },
 

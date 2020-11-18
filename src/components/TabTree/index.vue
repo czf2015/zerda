@@ -8,12 +8,18 @@
     @edit="handleTabsEdit"
   >
     <el-tab-pane
-      v-for="({ category, tableData }, idx) in panelDatas"
+      v-for="({ category, tableData, columns, hasChildren }, idx) in panelDatas"
       :key="idx"
       :name="String(idx)"
       :label="category"
     >
-      <TableTree :tableData="tableData" @update="handleUpdate" :index="idx" />
+      <TableTree
+        :tableData="tableData"
+        :hasChildren="hasChildren"
+        @update="handleUpdate"
+        :tableColumns="columns"
+        :index="idx"
+      />
     </el-tab-pane>
   </el-tabs>
 </template>
@@ -34,8 +40,8 @@ export default {
     },
     panelDatas: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
 
   data() {
@@ -108,10 +114,10 @@ export default {
     },
     handleUpdate(idx, store) {
       // this.tableData = store
-      console.log('9999999999')
+      console.log("9999999999");
       // console.log(this.tableData)
-      this.$emit('update', idx, store)
-    }
+      this.$emit("update", idx, store);
+    },
   },
 };
 </script>
