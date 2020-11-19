@@ -1,20 +1,12 @@
 form input,
 form select {
-  /* padding: 0 8px; */
   min-width: 480px;
+  padding: 0 5px;
   height: 36px;
   line-height: 36px;
-  padding: 0 5px;
   border: 1px solid transparent;
-  border: 1px solid #DCDFE6;
   border-radius: 5px;
-}
-
-form input:hover,
-form select:hover,
-form input:focus,
-form select:focus {
-  border: 1px solid #409EFF;
+  background: #DCDFE633;
   outline: none;
 }
 
@@ -24,14 +16,23 @@ form textarea {
   padding: 5px;
   line-height: 1.2;
   letter-spacing: .05em;
-  border: 1px solid #DCDFE6;
+  border: 1px solid transparent;
   border-radius: 5px;
+  background: #DCDFE633;
+  outline: none;
 }
 
-form textarea:focus,
+form input:hover,
+form select:hover,
 form textarea:hover {
+  border: 1px solid #DCDFE6;
+  background: transparent;
+}
+form input:focus,
+form select:focus,
+form textarea:focus {
   border: 1px solid #409EFF;
-  outline: none;
+  background: transparent;
 }
 
 form input[type="submit"] {
