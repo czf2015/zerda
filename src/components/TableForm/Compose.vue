@@ -83,7 +83,7 @@ export default {
 
 <style lang="less" scoped>
 .compose {
-  margin-top: -15px;
+  // margin-top: -15px;
   padding: 0 10px 10px 0;
 }
 </style>

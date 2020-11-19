@@ -57,6 +57,11 @@ export default {
 <style lang="less" scoped>
 .textarea {
   position: relative;
+  &:input {
+    padding: 10px;
+  }
+  // display: block;
+  // padding: 10px;
   .none {
     display: none;
   }

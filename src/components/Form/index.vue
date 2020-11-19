@@ -168,9 +168,9 @@ form {
     > .form-item {
       display: flex;
       align-items: center;
-      margin-top: 20px;
+      margin-top: 5px;
       > label {
-        margin: 10px 10px;
+        margin: 0px 10px;
         min-width: 100px;
         text-align: right;
         font-weight: bold;
