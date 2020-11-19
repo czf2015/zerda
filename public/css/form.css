@@ -25,6 +25,9 @@ form select:focus {
 form textarea {
   width: 480px;
   min-height: 160px;
+  padding: 5px;
+  line-height: 1.5;
+  letter-spacing: .05em;
   border: 1px solid #DCDFE6;
   border-radius: 5px;
 }
