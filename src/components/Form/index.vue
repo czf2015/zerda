@@ -168,7 +168,7 @@ form {
     > .form-item {
       display: flex;
       align-items: center;
-      margin-top: 5px;
+      margin-top: 10px;
       > label {
         margin: 0px 10px;
         min-width: 100px;

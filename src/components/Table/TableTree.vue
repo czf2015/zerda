@@ -262,6 +262,7 @@ export default {
       min-width: 720px;
       max-width: 960px;
       background-color: #fff;
+      border-radius: 5px;
     }
   }
   .table {

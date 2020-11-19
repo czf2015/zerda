@@ -109,6 +109,7 @@ export default {
     margin-left: 8%;
     padding: 60px;
     width: 70%;
+    border-radius: 5px;
     background-color: #fff;
     > .close-icon {
       position: absolute;

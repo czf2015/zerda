@@ -1,6 +1,6 @@
 <template>
   <div class="input-text">
-    <input type="text" :value="inputText" @[validation.trigger]="handleTrigger" />
+    <input type="text" placeholder="未设置" :value="inputText" @[validation.trigger]="handleTrigger" />
     <p :class="valid ? 'none' : 'warning'">{{message}}</p>
   </div>
 </template>

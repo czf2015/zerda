@@ -261,7 +261,9 @@ export default {
     margin-left: 8%;
     padding: 20px;
     width: 640px;
+    border-radius: 5px;
     background-color: #fff;
+    border-radius: 5px;
     > .close-icon {
       position: absolute;
       top: -12px;
