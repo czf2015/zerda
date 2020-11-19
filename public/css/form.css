@@ -4,18 +4,12 @@ form select {
   min-width: 480px;
   height: 36px;
   line-height: 36px;
-  /* border: 1px solid #DCDFE6; */
   border: none;
   border-radius: 5px;
-  /* border: 1px solid transparent; */
 }
 
 form input:hover,
-form select:hover {
-  border: 1px solid #409EFF;
-  outline: none;
-}
-
+form select:hover,
 form input:focus,
 form select:focus {
   border: 1px solid #409EFF;

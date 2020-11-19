@@ -84,10 +84,11 @@ export default {
       line-height: 36px;
       padding: 5px 5px;
       font-weight: bold;
-      border: 0;
+      border: none;
+      border-radius: 5px;
+      &:hover,
       &:focus {
         border: 1px solid #409EFF;
-        border-radius: 5px;
       }
     }
   }
