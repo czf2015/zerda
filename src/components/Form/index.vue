@@ -171,7 +171,7 @@ form {
       margin-top: 20px;
       > label {
         margin: 10px 10px;
-        min-width: 80px;
+        min-width: 100px;
         text-align: right;
         font-weight: bold;
         color: #409eff;
