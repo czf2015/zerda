@@ -4,7 +4,9 @@ form select {
   min-width: 480px;
   height: 36px;
   line-height: 36px;
-  border: none;
+  padding: 0 5px;
+  border: 1px solid transparent;
+  /* border: 1px solid #DCDFE6; */
   border-radius: 5px;
 }
 
@@ -26,7 +28,8 @@ form textarea {
   border-radius: 5px;
 }
 
-form textarea:focus {
+form textarea:focus,
+form textarea:hover {
   border: 1px solid #409EFF;
   outline: none;
 }
