@@ -4,7 +4,7 @@
     style="margin: 20px 20px 0 20px"
     v-model="activeTab"
     :before-leave="handleTabLeave"
-    editable
+    :editable="editable"
     @edit="handleTabsEdit"
   >
     <el-tab-pane
@@ -42,6 +42,10 @@ export default {
       type: Array,
       required: true,
     },
+    editable: {
+      type: Boolean,
+      default: false
+    }
   },
 
   data() {
