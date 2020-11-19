@@ -167,11 +167,12 @@ form {
   content {
     > .form-item {
       display: flex;
-      align-items: center;
+      // align-items: center;
       margin-top: 10px;
       > label {
         margin: 0px 10px;
         min-width: 100px;
+        line-height: 36px;
         text-align: right;
         font-weight: bold;
         color: #409eff;

@@ -80,7 +80,7 @@ export default {
       font-weight: bold;
       border: none;
       &:disabled {
-        color: inherit;
+        // color: black;
         background: transparent;
       }
     }
