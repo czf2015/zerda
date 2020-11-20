@@ -1,6 +1,6 @@
 <template>
   <div class="textarea">
-    <textarea v-model="inputText" />
+    <textarea placeholder="未设置" v-model="inputText" />
     <p :class="valid ? 'none' : 'warning'">{{message}}</p>
   </div>
 </template>

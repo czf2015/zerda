@@ -1,6 +1,6 @@
 <template>
   <div class="input-image">
-    <input type="text" v-model="inputText" @blur="handleInput" />
+    <input type="text" placeholder="未设置" v-model="inputText" @blur="handleInput" />
     <el-upload
       class="upload"
       :action="uploadAPI"
