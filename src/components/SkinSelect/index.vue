@@ -8,20 +8,22 @@
         :value="value"
       />
     </el-select>
-    <el-button type="primary" @click="openDialog = true">编辑</el-button>
+    <template v-if="editable">
+      <el-button type="primary" @click="openDialog = true">编辑</el-button>
 
-    <div class="mask" v-if="openDialog">
-      <div class="dialog">
-        <i class="close-icon" @click="openDialog = false"></i>
-        <TableForm
-          v-bind="tableData"
-          @edit="handleTableEdit"
-          @save="handleTableSave"
-          @append="handleTableAppend"
-          @del="handleTableDelete"
-        />
+      <div class="mask" v-if="openDialog">
+        <div class="dialog">
+          <i class="close-icon" @click="openDialog = false"></i>
+          <TableForm
+            v-bind="tableData"
+            @edit="handleTableEdit"
+            @save="handleTableSave"
+            @append="handleTableAppend"
+            @del="handleTableDelete"
+          />
+        </div>
       </div>
-    </div>
+    </template>
   </div>
 </template>
 
@@ -45,6 +47,10 @@ export default {
     selected: {
       type: String,
     },
+    editable: {
+      type: Boolean,
+      default: true
+    }
   },
 
   data() {

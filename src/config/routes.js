@@ -46,9 +46,9 @@ export default {
       },
       children: [
         {
-          path: 'category-management',
-          name: 'CategoryManagement',
-          component: loadDocumentView('category-management'),
+          path: 'category',
+          name: 'DocumentCategory',
+          component: loadDocumentView('category'),
           meta: { title: '类别管理' }
         },
         {

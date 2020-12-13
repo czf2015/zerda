@@ -47,12 +47,12 @@
       </template>
       <el-menu-item-group>
         <el-menu-item
-          index="/document/category-management"
-          @click="goTo('/document/category-management')"
+          index="/document/category"
+          @click="goTo('/document/category')"
           >类别管理</el-menu-item
         >
         <el-menu-item
-          index="/document/product-managemen"
+          index="/document/product-management"
           @click="goTo('/document/product-management')"
           >产品管理</el-menu-item
         >

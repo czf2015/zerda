@@ -1,127 +1,121 @@
 import request from '@/utils/request'
 
-const baseURL = '/api/doc'
-// docId 更新主键
-export class DocumentEdit {
-    static async query(docId) {
-        return await request({
-            method: 'get',
-            url: `${baseURL}/getDoc`,
-            params: {
-                docId
-            }
-        })
-    }
+const baseURL = '/api'
 
-    /* 参数:
-    {
-        // "catalogId": "string",
-        "categoryName": "string",
-        // "children": [
-        //     null
-        // ],
-        // "committer": "string",
-        "content": "string",
-        // "createTime": "2020-11-16T06:05:14.139Z",
-        // "creator": "string",
-        "docId": "string",
-        "enKey": "string",
-        // "nodeType": "string",
-        // "optStatus": "string",
-        // "pid": "string",
-        "productName": "string",
-        // "status": "string",
-        "title": "string",
-        // "updateTime": "2020-11-16T06:05:14.139Z",
-        "weight": 0
-    }
-    */
-    static async update(data) {
-        return await request({
-            method: 'post',
-            url: `${baseURL}/updateDoc`,
-            data
-        })
-    }
-
-    /** 参数：
-    {
-        "categoryId": "string",
-        "content": "string",
-        // "pageId": "string"
-    }
-     */ 
-    static async add(data) {
-        return await request({
-            method: 'post',
-            url: `${baseURL}/addPage`,
-            data
-        })
-    }
-
-    static async delete(categoryId) {
-        return await request({
-            method: 'delete',
-            url: `${baseURL}/deletePage`,
-            params: {
-                categoryId
-            }
-        })
-    }
-}
-
-export class DynamicCategory {
-    static async query() {
-        return await request({
-            method: 'get',
-            url: `${baseURL}/queryCategorys`,
-        })
+export class Document {
+    static async queryCategory(data) {
+        if (typeof data == 'string') {
+            return await request({
+                method: 'get',
+                url: `${baseURL}/catalog/getCatalogOne`,
+                params: { catalogId: data }
+            })
+        } else {
+            // {"pageNum":1, "pageSize":2, "platform":"1"}  platform为平台类型   pageNum 第几页   pageSize 每页条数
+            return await request({
+                method: 'post',
+                url: `${baseURL}/catalog/listCatalogManage`,
+                data
+            })
+        }
     }
 
     /* {
-        "categoryId": "string",
-        "categoryType": "string",
-        "keywords": "string",
-        "pid": "string",
-        "subCategoryList": [
-            null
-        ],
-        "title": "string",
-        "weight": 0
+        "platform" : "1", 
+        "cnName" : "运维222",
+        "enName" : "Operation222",
+        "weight" : 150,
+        "iconUrl" : "D/local/Operation222"
     } */
-    static async update(data) {
+    static async updateCategory(data) {
         return await request({
             method: 'post',
-            url: `${baseURL}/modifyCategory`,
+            url: `${baseURL}/catalog/updateCatalog`,
             data
         })
     }
 
     /** {
-     "categoryId": "string",
-    "categoryType": "string",
-    "keywords": "string",
-    "pid": "string",
-    "subCategoryList": [
-        null
-    ],
-    "title": "string",
-    "weight": 0
-    } */ 
-    static async add(data) {
+        "platform" : "1", 
+        "cnName" : "运维222",
+        "enName" : "Operation222",
+        "weight" : 150,
+        "iconUrl" : "D/local/Operation222"
+    } */
+    static async addCategory(data) {
         return await request({
             method: 'post',
-            url: `${baseURL}/addCategory`,
+            url: `${baseURL}/catalog/addCatalog`,
             data
         })
     }
 
-    static async delete(categoryId) {
+    static async deleteCategory(id) {
         return await request({
             method: 'delete',
-            url: `${baseURL}/deleteCategory`,
+            url: `${baseURL}/catalog/delCatalog`,
             params: {
-                categoryId
+                catalogId: id
+            }
+        })
+    }
+
+    static async query(params) {
+        if ('docId' in params) {
+            // docId
+            return await request({
+                method: 'get',
+                url: `${baseURL}/doc/getDoc`,
+                params
+            })
+        } else {
+            // catalogId
+            return await request({
+                method: 'get',
+                url: `${baseURL}/doc/getDocAll`,
+                params
+            })
+        }
+    }
+
+    /** {
+        "docId": "55555",
+        "title": "nysql使用手册66",
+        "enKey": "nysql-guidance",
+        "weight": 147,
+        "content": "内容是。。。。。"    //菜单的情况下没有此项
+    } */
+    static async update(data) {
+        return await request({
+            method: 'post',
+            url: `${baseURL}/doc/updateDoc`,
+            data
+        })
+    }
+
+    /** {
+        "pid": "2222",     //根目录下pid为0
+        "catalogId": "4444",    //产品的catalogId
+        "title": "nysqleeee",    //标题
+        "enKey": "nysql-guidance666",
+        "weight": 160,    //权重
+        "content": "内容是；；；；；；；；；；；",    //新增菜单的情况下没有此项
+        "nodeType": "1"            0为菜单   1为文章
+    } */
+    static async add(data) {
+        return await request({
+            method: 'post',
+            url: `${baseURL}/doc/addDoc`,
+            data
+        })
+    }
+
+    static async delete(docId) {
+        return await request({
+            method: 'delete',
+            url: `${baseURL}/doc/deleteDoc`,
+            params: {
+                docId
             }
         })
     }

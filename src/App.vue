@@ -23,14 +23,14 @@ export default {
     AppFooter,
     AppAside,
   },
-    
+
   mounted() {
     // 解决火狐浏览器拖拽默认打开新的tab页问题
     document.body.ondrop = (ev) => {
-      ev.preventDefault()
-      ev.stopPropagation()
-    }
-  }
+      ev.preventDefault();
+      ev.stopPropagation();
+    };
+  },
 };
 </script>
 
@@ -66,5 +66,28 @@ body {
   width: 84%;
   height: 100vh;
   overflow-y: auto;
+}
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+  /* width: 0;
+  height: 8px; */
+}
+
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 4px; */
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  /* border-radius: 4px;
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5); */
+}
+
+::-webkit-scrollbar-thumb {
+  /* background: #0492f0de; */
 }
 </style>

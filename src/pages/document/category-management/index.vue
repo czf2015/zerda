@@ -1,231 +1,195 @@
 <template>
-  <main class="main" v-if="!loading" :style="{ margin }">
-    <SkinSelect
-      class="top-right"
-      :list="skins"
-      @save="handleSkinModify"
-      @append="handleSkinAppend"
-      @del="handleSkinDel"
-      @change="handleSkinChange"
-    />
-    <component
-      v-for="(data, idx) in list"
-      :key="data.id"
-      :is="data.type"
-      :initial="data"
-      @up="handleUp(idx)"
-      @down="handleDown(idx)"
-      @del="handleDel(idx)"
-      :moveable="moveable(idx)"
-    />
-    <Affix :pos="{ bottom: '60px', right: '20px' }">
-      <SideBar :list="bars" @click="handleOperate" />
-    </Affix>
-  </main>
+  <div id="test" class="category-management">
+    <!-- <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span>类别管理</span>
+        <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
+      </div>
+    </el-card> -->
+    <div>
+      <el-card shadow="hover" class="category-management-header">
+        <span>请选择：</span>
+        <el-select v-model="value" placeholder="请选择">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+        <el-button type="primary" @click="handleClick($event, 'add')">新增类别</el-button>
+        <!-- <button
+          @mousedown="handleClick($event, 'add')"
+        >
+          Click Me
+        </button> -->
+      </el-card>
+      <el-card shadow="hover" class="category-management-body">
+        <el-table
+          :data="tableData"
+          style="width: 100%"
+        >
+          <el-table-column
+            prop="date"
+            label="图标"
+            width="180"
+          >
+            <template>
+              <el-image
+                style="width: 50px; height: 50px"
+                :src="'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'"
+              />
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="weight"
+            label="权重"
+            width="180"
+          />
+          <el-table-column
+            prop="categoryName"
+            label="类别名称"
+            width="180"
+          />
+          <el-table-column
+            prop="categoryNameEn"
+            label="类别名称（英文）"
+            width="180"
+          />
+          <el-table-column
+            label="操作"
+          >
+            <template slot-scope="scope">
+              <a href="javascript:;" style="marginRight: 15px;" @click="handleClick('edit', scope.row)">编辑</a>
+              <a href="javascript:;" @click="handleRemove(scope.row)">删除</a>
+            </template>
+          </el-table-column>
+        </el-table>
+        <div class="pagination-container">
+          <el-pagination
+            layout="prev, pager, next, sizes, jumper"
+            :current-page="currentPage"
+            :page-sizes="[100, 200, 300, 400]"
+            :page-size="100"
+            :total="400"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+          />
+        </div>
+      </el-card>
+    </div>
+    <CategoryDialog ref="CategoryDialog" />
+    <CategoryRemove ref="CategoryRemove" />
+  </div>
 </template>
 
-
 <script>
-import Container from "@/components/TableForm/Container";
-import Panel from "@/components/TableForm/Panel";
-import SkinSelect from "@/components/SkinSelect";
-import Affix from "@/components/Affix";
-import SideBar from "@/components/SideBar";
-import { StaticPage /* , StaticCategory */, HomePage } from "@/services";
-import dragList from "./dragList";
+import { mapGetters } from 'vuex'
+import CategoryDialog from './CategoryDialog'
+import CategoryRemove from './CategoryRemove'
 
 export default {
-  components: {
-    Container,
-    Panel,
-    Affix,
-    SideBar,
-    SkinSelect,
-  },
-
-  props: {
-    margin: {
-      type: String,
-    },
-    top: {
-      type: String,
-    },
-  },
-
+  name: 'CategoryManagement',
+  components: { CategoryDialog, CategoryRemove },
   data() {
     return {
-      loading: true,
-      list: [],
-      bars: [
+      tableData: [
         {
-          // link: "wwww.baidu.com",
-          icon: "/svg/save.svg",
-          text: "保存",
-          operate: "save",
-        },
-        {
-          // link: "wwww.baidu.com",
-          icon: "/svg/view.svg",
-          text: "预览",
-          operate: "preview",
-        },
-        {
-          // link: "wwww.baidu.com",
-          icon: "/svg/publish.svg",
-          text: "发布",
-          operate: "publish",
-        },
+          date: '2016-05-02',
+          categoryName: '王小虎',
+          categoryNameEn: 'wangxiaohu',
+          weight: '100'
+        }, {
+          date: '2016-05-04',
+          categoryName: '王小虎',
+          categoryNameEn: 'wangxiaohu',
+          weight: '100'
+        }, {
+          date: '2016-05-01',
+          categoryName: '王小虎',
+          categoryNameEn: 'wangxiaohu',
+          weight: '100'
+        }, {
+          date: '2016-05-03',
+          categoryName: '王小虎',
+          categoryNameEn: 'wangxiaohu',
+          weight: '100'
+        }
       ],
-      show: false,
-      rawData: null,
-      pageId: "",
-      meta: {},
-      options: [],
-      skins: [],
-    };
+      options: [
+        {
+          value: '选项1',
+          label: '黄金糕'
+        }, {
+          value: '选项2',
+          label: '双皮奶'
+        }, {
+          value: '选项3',
+          label: '蚵仔煎'
+        }, {
+          value: '选项4',
+          label: '龙须面'
+        }, {
+          value: '选项5',
+          label: '北京烤鸭'
+        }
+      ],
+      value: '',
+      currentPage: 1
+    }
   },
-
   computed: {
-    categoryId() {
-      return this.$route.params.categoryId;
-    },
-  },
-
-  watch: {
-    categoryId() {
-      this.fetchData(this.categoryId);
-    },
-  },
-
-  methods: {
-    fetchData(categoryId = "1322091185514217474") {
-      this.loading = true;
-      StaticPage.query(categoryId).then((res) => {
-        if (res.result.pageId) {
-          this.loading = false;
-          this.pageId = res.result.pageId;
-          const content = res.result.content || "{}";
-          this.rawData = JSON.parse(content);
-          const { data = dragList, ...meta } = JSON.parse(content);
-          this.meta = meta;
-          // this.list = data;
-          this.list = dragList;
-        }
-      });
-    },
-    handleUp(idx) {
-      if (this.value) {
-        this.value.splice(idx - 1, 2, this.value[idx], this.value[idx - 1]);
-      } else {
-        this.list.splice(idx - 1, 2, this.list[idx], this.list[idx - 1]);
-      }
-    },
-    handleDown(idx) {
-      if (this.value) {
-        this.value.splice(idx, 2, this.value[idx + 1], this.value[idx]);
-      } else {
-        this.list.splice(idx, 2, this.list[idx + 1], this.list[idx]);
-      }
-    },
-    handleDel(idx) {
-      if (confirm("确定删除？")) {
-        if (this.value) {
-          this.value.splice(idx, 1);
-        } else {
-          this.list.splice(idx, 1);
-        }
-      }
-    },
-    moveable(idx) {
-      return idx == 0 ? "down" : idx == this.list.length - 1 ? "up" : "updown";
-    },
-    handleOperate(operate) {
-      switch (operate) {
-        case "save":
-          const data = { ...this.meta, data: this.list };
-          StaticPage.update({
-            pageId: this.pageId,
-            content: JSON.stringify(data),
-          });
-          break;
-        case "preview":
-          break;
-        case "publish":
-          break;
-        default:
-          break;
-      }
-    },
-    handleMetaChange(meta) {
-      this.meta = meta;
-    },
-    goTo(categoryIds = []) {
-      const categoryId = categoryIds.slice(-1)[0];
-      if (categoryId && categoryId !== this.categoryId) {
-        this.$router.push(`/official/static/content/${categoryId}`);
-      }
-    },
-    handleSkinAppend(formData) {
-      const data = {
-        plateKeywords: formData.find((item) => item.field == "slug").value,
-        plateName: formData.find((item) => item.field == "theme").value,
-      };
-      const template = formData.find((item) => item.field == "template").value;
-      if (template) {
-        const skin = this.skins.find((item) => item.theme == template);
-        Object.assign(data, {
-          infoId: skin.id,
-          templateCreated: true,
-        });
-      }
-      HomePage.add(data).then((res) => {
-        this.skins = res.result.map((item) => {
-          return {
-            id: item.infoId,
-            theme: item.plateName,
-            slug: item.plateKeywords,
-          };
-        });
-      });
-    },
-    handleSkinDel(idx) {
-      const { id } = this.skins[idx];
-      HomePage.delete(id).then((res) => {
-        this.skins = this.skins.filter((item) => item.id !== id);
-      });
-    },
-    handleSkinChange(option) {
-      this.infoId = this.skins.find((item) => item.theme == option).id;
-      this.fetchData(this.infoId);
-    },
+    ...mapGetters([
+      'name'
+    ])
   },
   mounted() {
-    this.fetchData(this.categoryId);
-    this.skins = [
-      {
-        id: 0,
-        theme: "租户端",
-        slug: "ower",
-      },
-      {
-        id: 1,
-        theme: "用户端",
-        slug: "user",
-      },
-    ];
+    // document.getElementById('test').oncontextmenu = function(e) {
+    //   return false
+    // }
   },
-};
-</script>
-
-<style lang="less" scoped>
-.main {
-  position: relative;
-  min-height: 85vh;
-  .top-right {
-    position: absolute;
-    top: -0px;
-    right: 30px;
-    z-index: 100000;
+  methods: {
+    handleClick(e, actionType, rowData) {
+      // console.log(e)
+      // document.getElementById('test').oncontextmenu = function(e) {
+      //   return true
+      // }
+      this.$refs['CategoryDialog'].showDialog(actionType, rowData)
+    },
+    handleRemove(rowData) {
+      this.$refs['CategoryRemove'].showDialog(rowData)
+    },
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`)
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`)
+    }
   }
 }
+</script>
+
+<style lang="scss" scoped>
+.category-management {
+  padding: 15px;
+  &-header {
+    margin-bottom: 30px;
+    .el-select{
+      margin-right: 20px;
+    }
+  }
+  &-body {
+    a{
+      color: #66b1ff;
+    }
+  }
+  .pagination-container{
+    text-align: right;
+    margin: 20px 0;
+  }
+}
+// ::v-deep .el-table th{
+//   background-color: #EBEEF5;
+//   color: #000
+// }
 </style>
