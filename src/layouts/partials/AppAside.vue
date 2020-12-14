@@ -52,8 +52,8 @@
           >类别管理</el-menu-item
         >
         <el-menu-item
-          index="/document/product-management"
-          @click="goTo('/document/product-management')"
+          index="/document/product"
+          @click="goTo('/document/product')"
           >产品管理</el-menu-item
         >
         <el-menu-item

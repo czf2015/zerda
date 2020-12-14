@@ -60,6 +60,68 @@ export class Document {
         })
     }
 
+    static async queryProduct(data) {
+        if (typeof data == 'string') {
+            return await request({
+                method: 'get',
+                url: `${baseURL}/product/getProduct`,
+                params: {
+                    catalogId: data
+                }
+            })
+        } else {
+            // {"pid":"1319561663770263553", "pageNum":1, "pageSize":2}
+            return await request({
+                method: 'post',
+                url: `${baseURL}/product/listProduct`,
+                data
+            })
+        }
+    }
+
+    /* {
+        "catalogId": "1322070065243226113",
+        "pid": "4444444444",
+        "cnName": "运维下转入别的类别8884",
+        "enName": "Operation88",
+        "weight": 110,
+        "forward": "http://77888877"
+    } */
+
+    static async updateProduct(data) {
+        return await request({
+            method: 'post',
+            url: `${baseURL}/product/updateProduct`,
+            data
+        })
+    }
+
+    /* {
+        "platform" : "2",
+        "pid":"1319561663770263553",      //类别的catalogId
+        "cnName" : "运维下的999",
+        "enName" : "Operation999",
+        "weight" : 122,
+        "forward" : "http://99999"  
+    } */
+    static async addProduct(data) {
+        return await request({
+            method: 'post',
+            url: `${baseURL}/product/addProduct`,
+            data
+        })
+    }
+
+    static async deleteProduct(id) {
+        return await request({
+            method: 'delete',
+            url: `${baseURL}/product/deleteProduct`,
+            params: {
+                catalogId: id
+            }
+        })
+    }
+
     static async query(params) {
         if ('docId' in params) {
             // docId

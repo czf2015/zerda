@@ -11,6 +11,7 @@
       @up="handleTableUp"
       @down="handleTableDown"
       @append="handleTableAppend"
+      :hasAppendRow="hasAppendRow"
     />
     <div class="mask" v-if="openDialog">
       <CustomForm
@@ -57,6 +58,10 @@ export default {
     filter: {
       type: Function,
       default: () => true
+    },
+    hasAppendRow: {
+      type: Boolean,
+      default: true,
     }
   },
   data() {

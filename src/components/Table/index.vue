@@ -23,7 +23,7 @@
       </template>
     </el-table-column>
     <template slot="append">
-      <div class="append-row" @click="append">+</div>
+      <div class="append-row" @click="append" :style="{ display: hasAppendRow ? undefined : 'none' }">+</div>
     </template>
   </el-table>
 </template>
@@ -57,6 +57,10 @@ export default {
     filter: {
       type: Function,
       default: () => true
+    },
+    hasAppendRow: {
+      type: Boolean,
+      default: true,
     }
   },
   methods: {

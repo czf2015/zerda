@@ -12,7 +12,7 @@ export default {
       path: '',
       component: MainContainer,
       redirect: '/official',
-      name: 'official',
+      name: 'Official',
       meta: {
         title: '官网内容运营'
         // icon: 'nested'
@@ -20,7 +20,7 @@ export default {
     },
     {
       path: '/demos/:componentName',
-      name: 'demos-component',
+      name: 'DemosComponent',
       component: () => import('@/pages/demos/_componentName'),
       meta: {
         requiresAuth: false,
@@ -28,7 +28,7 @@ export default {
     },
     {
       path: '/review',
-      name: 'review',
+      name: 'Review',
       component: () => import('@/pages/review'),
       meta: {
         requiresAuth: false,
@@ -38,7 +38,7 @@ export default {
       path: '/document',
       name: 'Document',
       component: MainContainer,
-      redirect: '/document/category-management',
+      redirect: '/document/category',
       meta: {
         title: '文档',
         requiresAuth: false,
@@ -52,9 +52,9 @@ export default {
           meta: { title: '类别管理' }
         },
         {
-          path: 'product-management',
-          name: 'ProductManagement',
-          component: loadDocumentView('product-management'),
+          path: 'product',
+          name: 'DocumentProduct',
+          component: loadDocumentView('product'),
           meta: { title: '产品管理' }
         },
         {
