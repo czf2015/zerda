@@ -338,15 +338,15 @@ export default [
                                     "trigger": "blur"
                                 }
                             },
-                            {
-                                "field": "hover",
-                                "label": "hover状态",
-                                "required": true,
-                                "validation": {
-                                    "type": "boolean",
-                                    "trigger": "blur"
-                                }
-                            }
+                            // {
+                            //     "field": "hover",
+                            //     "label": "hover状态",
+                            //     "required": true,
+                            //     "validation": {
+                            //         "type": "boolean",
+                            //         "trigger": "blur"
+                            //     }
+                            // }
                         ],
                         "operations": [
                             {
@@ -590,5 +590,294 @@ export default [
                 ]
             }
         ]
-    }
+    },
+    {
+        "id": "5",
+        "type": "Panel",
+        "usage": "Framework",
+        "effect": "/images/home/solutions.png",
+        "title": "方案架构",
+        "desc": "",
+        "content": [
+          {
+            "category": "小型网站",
+            "title": "小型网站",
+            "iconUrl": "//imagecachexxfb.yun.ccb.com/static/solution/solution_tabsarchitecture10.png",
+            "scene_title": "",
+            "scene_desc": "",
+            "parentTitle": "空",
+            "content": "日均访问量高于10万 大量图片、视频类资源，动态和静态数据分离",
+            "product_title": "产品推荐",
+            "product_desc": null,
+            "children": [
+                  {
+                    "iconUrl": "//imagecachexxfb.yun.ccb.com/static/solution/aboutproduct_selfNet.png",
+                    "title": "私有网络",
+                    "moreUrl": "//yun.ccb.com/product/vpc1"
+                  },
+                  {
+                    "iconUrl": "//imagecachexxfb.yun.ccb.com/static/product/product_yfwq.png",
+                    "title": "云服务器",
+                    "moreUrl": "//yun.ccb.com/product/cvm"
+                  },
+                  {
+                    "iconUrl": "//imagecachexxfb.yun.ccb.com/static/solution/product_memory4.png",
+                    "title": "文件存储",
+                    "moreUrl": "//yun.ccb.com/product/productcfs"
+                  },
+                  {
+                    "iconUrl": "//imagecachexxfb.yun.ccb.com/static/solution/aboutproduct_cloud.png",
+                    "title": "云硬盘",
+                    "moreUrl": "//yun.ccb.com/product/productcbs"
+                  },
+                  {
+                    "iconUrl": "//imagecachexxfb.yun.ccb.com/static/solution/aboutproduct4.png",
+                    "title": "云数据库Mysql",
+                    "moreUrl": "//yun.ccb.com/product/productmysql"
+                  },
+                  {
+                    "iconUrl": "//imagecachexxfb.yun.ccb.com/static/solution/solution_long.png",
+                    "title": "龙御",
+                    "moreUrl": "//yun.ccb.com/product/productwaf"
+                  },
+                  {
+                    "iconUrl": "//imagecachexxfb.yun.ccb.com/static/solution/solution_long1.png",
+                    "title": "龙卫士",
+                    "moreUrl": "//yun.ccb.com/product/producthids"
+                  },
+                  {
+                    "iconUrl": "//imagecachexxfb.yun.ccb.com/static/solution/solution_balance.png",
+                    "title": "弹性负载均衡",
+                    "moreUrl": "//yun.ccb.com/product/elb"
+                  },
+                  {
+                    "iconUrl": "//imagecachexxfb.yun.ccb.com/static/solution/aboutproduct_NAT.png",
+                    "title": "NAT网关",
+                    "moreUrl": "//yun.ccb.com/product/nat"
+                  },
+                  {
+                    "iconUrl": "//imagecachexxfb.yun.ccb.com/static/solution/aboutproduct4.png",
+                    "title": "云数据库Redis",
+                    "moreUrl": "//yun.ccb.com/product/productredis"
+                  },
+                  {
+                    "iconUrl": "//imagecachexxfb.yun.ccb.com/static/solution/solution_object.png",
+                    "title": "对象存储",
+                    "moreUrl": "//yun.ccb.com/product/productcos"
+                  },
+                  {
+                    "iconUrl": "//imagecachexxfb.yun.ccb.com/static/solution/aboutproduct_CDN.png",
+                    "title": "CDN服务",
+                    "moreUrl": "//yun.ccb.com/product/cdn"
+                  }
+                ]
+              },
+              {
+                "title": "",
+                "content": "\n业务挑战：\n企业自建数据中心，成本开销大，建设周期长\n软硬件维护人力成本高\n安全可靠性差\n业务场景复杂，建设经验不足\n特点：      \n提供裸金属、虚机、容器多类型计算服务\n提供全方位安全服务，涵盖了制度合规安全、互联网安全、主机安全、网络安全、系统安全、业务安全、操作安全等多方面\n提供私有网络、对等连接、专线接入、VPN等服务，可支持多种网络场景\n提供产品专家支持及7X24小时日常运维管理服务\n提供定制化的各类专项服务和解决方案，提供架构设计优化、安全及运维管理优化建议等\n"
+              }
+        ],
+        "extra": [
+          {
+            "field": "title",
+            "label": "标题",
+            "mode": "single",
+            "required": true,
+            "validation": {
+              "type": "text",
+              "minLength": 0,
+              "maxLength": 10,
+              "trigger": "input"
+            }
+          },
+          {
+            "field": "desc",
+            "label": "描述",
+            "mode": "single",
+            "required": true,
+            "validation": {
+              "type": "text",
+              "minLength": 0,
+              "maxLength": 20,
+              "trigger": "input"
+            }
+          },
+          {
+            "field": "content",
+            "label": "内容",
+            "mode": "multiple",
+            "children": [
+              {
+                "field": "category",
+                "label": "类别",
+                "mode": "single",
+                "required": true,
+                "validation": {
+                  "type": "text",
+                  "minLength": 0,
+                  "maxLength": 5,
+                  "trigger": "input"
+                }
+              },
+              {
+                "field": "title",
+                "label": "名称",
+                "mode": "single",
+                "required": true,
+                "validation": {
+                  "type": "text",
+                  "minLength": 5,
+                  "maxLength": 10,
+                  "trigger": "input"
+                }
+              },
+            //   {
+            //     "field": "parentTitle",
+            //     "label": "父级",
+            //     "mode": "single",
+            //     "required": true,
+            //     "validation": {
+            //       "type": "text",
+            //       "minLength": 10,
+            //       "maxLength": 35,
+            //       "trigger": "input"
+            //     }
+            //   },
+            //   {
+            //     "field": "scene_title",
+            //     "label": "场景名称",
+            //     "mode": "single",
+            //     "required": true,
+            //     "validation": {
+            //       "type": "text",
+            //       "minLength": 10,
+            //       "maxLength": 35,
+            //       "trigger": "input"
+            //     }
+            //   },
+            //   {
+            //     "field": "scene_desc",
+            //     "label": "场景描述",
+            //     "mode": "single",
+            //     "required": true,
+            //     "validation": {
+            //       "type": "text",
+            //       "minLength": 10,
+            //       "maxLength": 35,
+            //       "trigger": "input"
+            //     }
+            //   },
+              {
+                "field": "iconUrl",
+                "label": "图标",
+                "mode": "single",
+                "required": true,
+                "validation": {
+                  "type": "image",
+                  "minSize": 0,
+                  "maxSize": 1024,
+                  "trigger": "blur"
+                }
+              },
+              {
+                "field": "product_title",
+                "label": "产品标题",
+                "mode": "single",
+                "required": false,
+                "validation": {
+                  "type": "text",
+                  "minLength": 0,
+                  "maxLength": 5,
+                  "trigger": "blur"
+                }
+              },
+              {
+                "field": "product_desc",
+                "label": "产品描述",
+                "mode": "single",
+                "required": false,
+                "validation": {
+                  "type": "text",
+                  "minLength": 0,
+                  "maxLength": 5,
+                  "trigger": "blur"
+                }
+              },
+              {
+                "field": "content",
+                "label": "产品描述",
+                "mode": "single",
+                "required": true,
+                "validation": {
+                  "type": "textarea",
+                  "minLength": 10,
+                  "maxLength": 30,
+                  "trigger": "blur"
+                }
+              },
+              {
+                "field": "children",
+                "label": "子项",
+                "mode": "multiple",
+                "children": [
+                  {
+                    "field": "iconUrl",
+                    "label": "图标",
+                    "mode": "single",
+                    "required": true,
+                    "validation": {
+                      "type": "image",
+                      "minSize": 0,
+                      "maxSize": 1024,
+                      "trigger": "blur"
+                    }
+                  },
+                  {
+                    "field": "moreUrl",
+                    "label": "图标",
+                    "mode": "single",
+                    "required": true,
+                    "validation": {
+                      "type": "image",
+                      "minSize": 0,
+                      "maxSize": 1024,
+                      "trigger": "blur"
+                    }
+                  },
+                  {
+                    "field": "title",
+                    "label": "产品描述",
+                    "mode": "single",
+                    "required": true,
+                    "validation": {
+                      "type": "textarea",
+                      "minLength": 10,
+                      "maxLength": 30,
+                      "trigger": "blur"
+                    }
+                  }
+                ],
+                "operations": [
+                  {
+                    "field": "edit",
+                    "label": "编辑"
+                  },
+                  {
+                    "field": "del",
+                    "label": "删除"
+                  },
+                  {
+                    "field": "up",
+                    "label": "上移"
+                  },
+                  {
+                    "field": "down",
+                    "label": "下移"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
 ]
