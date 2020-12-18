@@ -145,6 +145,15 @@ export default {
             },
           ]
         },
+        {
+          path: 'review',
+          name: 'OfficialReview',
+          component: loadOfficialView('review'),
+          meta: {
+            requiresAuth: false,
+            title: '官网审核管理'
+          },
+        },
       ]
     },
   ],

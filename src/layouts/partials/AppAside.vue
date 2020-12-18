@@ -37,6 +37,12 @@
           @click="goTo('/official/static/category')"
           >静态页面管理</el-menu-item
         >
+        <el-menu-item
+          index="/official/review"
+          @click="goTo('/official/review')"
+        >
+          审核管理
+        </el-menu-item>
       </el-menu-item-group>
     </el-submenu>
 
@@ -56,9 +62,7 @@
           @click="goTo('/document/product')"
           >产品管理</el-menu-item
         >
-        <el-menu-item
-          index="/document/edit"
-          @click="goTo('/document/edit')"
+        <el-menu-item index="/document/edit" @click="goTo('/document/edit')"
           >文档编辑</el-menu-item
         >
         <el-menu-item
@@ -68,11 +72,6 @@
         >
       </el-menu-item-group>
     </el-submenu>
-
-    <el-menu-item index="/review" @click="goTo('/review')">
-      <i class="el-icon-setting"></i>
-      <span slot="title">审核管理</span>
-    </el-menu-item>
   </el-menu>
 </template>
 
