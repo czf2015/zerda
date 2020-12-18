@@ -57,8 +57,8 @@
           >产品管理</el-menu-item
         >
         <el-menu-item
-          index="/document/document-editing"
-          @click="goTo('/document/document-editing')"
+          index="/document/edit"
+          @click="goTo('/document/edit')"
           >文档编辑</el-menu-item
         >
         <el-menu-item

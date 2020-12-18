@@ -5,7 +5,14 @@ export default [
         "usage": "Banner",
         "effect": "/images/home/banner.png",
         "title": "Banner配置",
-        "content": [],
+        "content": [
+            // {
+            //     "imgURL": "https://imagecachexxfb.yun.ccb.com/raw/cba6793909136cf277c94951b5b73d27.png",
+            //     "title": "对象存储",
+            //     "desc": "安全、稳定、海量、便捷、低延迟、低成本的云端存储服务",
+            //     "link": "https://yun.ccb.com/product/productcos"
+            // }
+        ],
         "extra": [
             {
                 "field": "title",
@@ -96,11 +103,57 @@ export default [
     {
         "id": "2",
         "type": "Container",
-        "usage": "Recommend",
-        "effect": "/images/home/recommend.png",
-        "title": "我们的推荐",
+        "usage": "Products",
+        "effect": "/images/home/products.png",
+        "title": "推荐产品",
         "desc": "",
-        "content": [],
+        "content": [
+            // {
+            //     "title": "云监控",
+            //     "link": "https://yun.ccb.com/solution/monitoring",
+            //     "iconURL": "//imagecachexxfb.yun.ccb.com/static/solution/product_yjk.png"
+            // },
+            // {
+            //     "title": "云硬盘",
+            //     "link": "https://yun.ccb.com/product/productcbs",
+            //     "iconURL": "//imagecachexxfb.yun.ccb.com/static/product/product_memory5.png"
+            // },
+            // {
+            //     "title": "虚拟私有网络",
+            //     "link": "https://yun.ccb.com/product/vpc1",
+            //     "iconURL": "//imagecachexxfb.yun.ccb.com/static/solution/product_wl_xnsywl.png"
+            // },
+            // {
+            //     "title": "云服务器",
+            //     "link": "https://yun.ccb.com/product/cvm",
+            //     "iconURL": "//imagecachexxfb.yun.ccb.com/static/solution/product_yfwq.png"
+            // },
+            // {
+            //     "title": "容器服务",
+            //     "link": "https://yun.ccb.com/product/tke",
+            //     "iconURL": "//imagecachexxfb.yun.ccb.com/static/solution/product_yfwq.png"
+            // },
+            // {
+            //     "title": "容器服务",
+            //     "link": "https://yun.ccb.com/product/tke",
+            //     "iconURL": "//imagecachexxfb.yun.ccb.com/static/solution/product_yfwq.png"
+            // },
+            // {
+            //     "title": "容器服务",
+            //     "link": "https://yun.ccb.com/product/tke",
+            //     "iconURL": "//imagecachexxfb.yun.ccb.com/static/solution/product_yfwq.png"
+            // },
+            // {
+            //     "title": "容器服务",
+            //     "link": "https://yun.ccb.com/product/tke",
+            //     "iconURL": "//imagecachexxfb.yun.ccb.com/static/solution/product_yfwq.png"
+            // },
+            // {
+            //     "title": "容器服务",
+            //     "link": "https://yun.ccb.com/product/tke",
+            //     "iconURL": "//imagecachexxfb.yun.ccb.com/static/solution/product_yfwq.png"
+            // }
+        ],
         "extra": [
             {
                 "field": "title",
@@ -134,57 +187,33 @@ export default [
                     {
                         "field": "title",
                         "label": "名称",
-                        "mode": "single",
                         "required": true,
                         "validation": {
                             "type": "text",
-                            "minLength": 3,
-                            "maxLength": 5,
-                            "trigger": "input"
-                        }
-                    },
-                    {
-                        "field": "imgURL",
-                        "label": "图片",
-                        "mode": "single",
-                        "required": true,
-                        "validation": {
-                            "type": "image",
-                            "minSize": 0,
-                            "maxSize": 1024,
+                            "minLength": 5,
+                            "maxLength": 10,
                             "trigger": "blur"
                         }
                     },
                     {
                         "field": "link",
                         "label": "链接",
-                        "mode": "single",
                         "required": true,
                         "validation": {
                             "type": "link",
-                            "pattern": "^\/\/yun.ccb.com",
+                            "pattern": "/^//yun.ccb.com/",
                             "trigger": "blur"
                         }
                     },
                     {
-                        "field": "button",
-                        "label": "按钮",
-                        "mode": "single",
+                        "field": "iconURL",
+                        "label": "默认图标",
+                        "required": true,
                         "validation": {
-                            "type": "link",
-                            "pattern": "^\/\/yun.ccb.com",
+                            "type": "image",
+                            "minSize": 0,
+                            "maxSize": 1024,
                             "trigger": "blur"
-                        }
-                    },
-                    {
-                        "field": "desc",
-                        "label": "描述",
-                        "mode": "single",
-                        "validation": {
-                            "type": "text",
-                            "minLength": 10,
-                            "maxLength": 20,
-                            "trigger": "input"
                         }
                     }
                 ],
@@ -212,162 +241,22 @@ export default [
     {
         "id": "3",
         "type": "Panel",
-        "usage": "Products",
-        "effect": "/images/home/products.png",
-        "title": "我们的云产品",
-        "desc": "计算、存储、网络、安全、数据库等全栈式产品，助您顺利上云",
-        "content": [
-            {
-                "category": "tab1",
-                "iconURL": "",
-                "iconHoverURL": "",
-                "children": [
-                ]
-            }
-        ],
-        "extra": [
-            {
-                "field": "title",
-                "label": "标题",
-                "mode": "single",
-                "required": true,
-                "validation": {
-                    "type": "text",
-                    "minLength": 0,
-                    "maxLength": 10,
-                    "trigger": "input"
-                }
-            },
-            {
-                "field": "desc",
-                "label": "描述",
-                "mode": "single",
-                "required": true,
-                "validation": {
-                    "type": "text",
-                    "minLength": 0,
-                    "maxLength": 20,
-                    "trigger": "input"
-                }
-            },
-            {
-                "field": "content",
-                "label": "内容",
-                "mode": "multiple",
-                "children": [
-                    {
-                        "field": "category",
-                        "label": "类别",
-                        "mode": "single",
-                        "required": true,
-                        "validation": {
-                            "type": "text",
-                            "minLength": 0,
-                            "maxLength": 5,
-                            "trigger": "input"
-                        }
-                    },
-                    {
-                        "field": "iconURL",
-                        "label": "默认图标",
-                        "required": true,
-                        "mode": "single",
-                        "validation": {
-                            "type": "image",
-                            "minSize": 0,
-                            "maxSize": 1024,
-                            "trigger": "blur"
-                        }
-                    },
-                    {
-                        "field": "iconHoverURL",
-                        "label": "选中图标",
-                        "mode": "single",
-                        "required": true,
-                        "validation": {
-                            "type": "image",
-                            "minSize": 0,
-                            "maxSize": 1024,
-                            "trigger": "blur"
-                        }
-                    },
-                    {
-                        "field": "children",
-                        "label": "子项",
-                        "mode": "multiple",
-                        "children": [
-                            {
-                                "field": "name",
-                                "label": "名称",
-                                "mode": "single",
-                                "required": true,
-                                "validation": {
-                                    "type": "text",
-                                    "minLength": 5,
-                                    "maxLength": 10,
-                                    "trigger": "input"
-                                }
-                            },
-                            {
-                                "field": "desc",
-                                "label": "描述",
-                                "mode": "single",
-                                "required": true,
-                                "validation": {
-                                    "type": "text",
-                                    "minLength": 5,
-                                    "maxLength": 10,
-                                    "trigger": "input"
-                                }
-                            },
-                            {
-                                "field": "link",
-                                "label": "链接",
-                                "mode": "single",
-                                "required": false,
-                                "validation": {
-                                    "type": "link",
-                                    "pattern": "^\/\/yun.ccb.com",
-                                    "trigger": "blur"
-                                }
-                            }
-                        ],
-                        "operations": [
-                            {
-                                "field": "edit",
-                                "label": "编辑"
-                            },
-                            {
-                                "field": "del",
-                                "label": "删除"
-                            },
-                            {
-                                "field": "up",
-                                "label": "上移"
-                            },
-                            {
-                                "field": "down",
-                                "label": "下移"
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "id": "4",
-        "type": "Panel",
-        "usage": "Solutions",
+        "usage": "Scenes",
         "effect": "/images/home/solutions.png",
-        "title": "我们的解决方案",
+        "title": "应用场景",
         "desc": "",
         "content": [
-            {
-                "category": "tab1",
-                "children": [
-                ]
-              }
+            // {
+            //     "category": "云网络",
+            //     "children": [
+            //         {
+            //             "iconURL": "https://yun.ccb.com/common/images/index/solution/云网络1.png",
+            //             "name": "云网络",
+            //             "desc": "提供一站式服务平台，跨界支持行业发展",
+            //             "hover": false
+            //         }
+            //     ]
+            // }
         ],
         "extra": [
             {
@@ -419,7 +308,6 @@ export default [
                             {
                                 "field": "iconURL",
                                 "label": "图标",
-                                "mode": "single",
                                 "required": true,
                                 "validation": {
                                     "type": "image",
@@ -431,31 +319,28 @@ export default [
                             {
                                 "field": "name",
                                 "label": "标题",
-                                "mode": "single",
                                 "required": true,
                                 "validation": {
                                     "type": "text",
                                     "minLength": 0,
                                     "maxLength": 5,
-                                    "trigger": "input"
+                                    "trigger": "blur"
                                 }
                             },
                             {
                                 "field": "desc",
                                 "label": "描述",
-                                "mode": "single",
                                 "required": true,
                                 "validation": {
                                     "type": "textarea",
                                     "minLength": 10,
                                     "maxLength": 30,
-                                    "trigger": "input"
+                                    "trigger": "blur"
                                 }
                             },
                             {
                                 "field": "hover",
                                 "label": "hover状态",
-                                "mode": "single",
                                 "required": true,
                                 "validation": {
                                     "type": "boolean",
@@ -487,14 +372,94 @@ export default [
         ]
     },
     {
-        "id": "5",
-        "type": "Container",
-        "usage": "Trades",
-        "effect": "/images/home/trades.png",
-        "title": "我们的行业平台",
-        "desc": "提供一站式服务平台，跨界支持行业发展",
-        "background": "https://yun.ccb.com/common/images/index/business/hangye-bg-gq.png",
-        "content": [],
+        "id": "4",
+        "type": "Panel",
+        "usage": "Solutions",
+        "effect": "/images/home/solutions.png",
+        "title": "方案简介",
+        "desc": "建行云根据不同的网站规模需求提供弹性灵活、成本可控的架构和方案，使您即刻拥有互联网门户，轻松拥抱互联网+",
+        "content": [
+            // {
+            //     "category": "场景一",
+            //     "title": "业务上云",
+            //     "desc": "在传统的贸易金融业务模式中，普遍使用线下传输纸质单证信息，效率不高耗时较长；同时银行业内信息不互通，企业间信用信息不同步，存在伪造篡改单据、信用欺诈等风险。通过区块链技术应用实现国内信用证、福费廷、国际保理等贸易金融业务交易信息的传递、债权的确认及单据的转让全电子化流程，弥补相关系统平台缺失，提升业务处理效率。",
+            //     "iconURL": "https://yun.ccb.com/solution/images/云上数据中心.png",
+            //     "children": [
+            //         {
+            //             "title": "",
+            //             "content": "    \n业务挑战：\n企业自建数据中心，成本开销大，建设周期长\n软硬件维护人力成本高\n安全可靠性差\n业务场景复杂，建设经验不足\n特点：      \n提供裸金属、虚机、容器多类型计算服务\n提供全方位安全服务，涵盖了制度合规安全、互联网安全、主机安全、网络安全、系统安全、业务安全、操作安全等多方面\n提供私有网络、对等连接、专线接入、VPN等服务，可支持多种网络场景\n提供产品专家支持及7X24小时日常运维管理服务\n提供定制化的各类专项服务和解决方案，提供架构设计优化、安全及运维管理优化建议等\n"
+            //         },
+            //         {
+            //             "title": "",
+            //             "content": "\n业务挑战：\n企业自建数据中心，成本开销大，建设周期长\n软硬件维护人力成本高\n安全可靠性差\n业务场景复杂，建设经验不足\n特点：      \n提供裸金属、虚机、容器多类型计算服务\n提供全方位安全服务，涵盖了制度合规安全、互联网安全、主机安全、网络安全、系统安全、业务安全、操作安全等多方面\n提供私有网络、对等连接、专线接入、VPN等服务，可支持多种网络场景\n提供产品专家支持及7X24小时日常运维管理服务\n提供定制化的各类专项服务和解决方案，提供架构设计优化、安全及运维管理优化建议等\n"
+            //         }
+            //     ]
+            // },
+            // {
+            //     "category": "场景二",
+            //     "title": "业务上云",
+            //     "desc": "多类型计算服务、公有云、私有云混合云架构，支持业务快速上云",
+            //     "iconURL": "https://yun.ccb.com/solution/images/云上数据中心.png",
+            //     "children": [
+            //         {
+            //             "title": "",
+            //             "content": "    \n业务挑战：\n企业自建数据中心，成本开销大，建设周期长\n软硬件维护人力成本高\n安全可靠性差\n业务场景复杂，建设经验不足\n特点：      \n提供裸金属、虚机、容器多类型计算服务\n提供全方位安全服务，涵盖了制度合规安全、互联网安全、主机安全、网络安全、系统安全、业务安全、操作安全等多方面\n提供私有网络、对等连接、专线接入、VPN等服务，可支持多种网络场景\n提供产品专家支持及7X24小时日常运维管理服务\n提供定制化的各类专项服务和解决方案，提供架构设计优化、安全及运维管理优化建议等\n"
+            //         },
+            //         {
+            //             "title": "",
+            //             "content": "\n业务挑战：\n企业自建数据中心，成本开销大，建设周期长\n软硬件维护人力成本高\n安全可靠性差\n业务场景复杂，建设经验不足\n特点：      \n提供裸金属、虚机、容器多类型计算服务\n提供全方位安全服务，涵盖了制度合规安全、互联网安全、主机安全、网络安全、系统安全、业务安全、操作安全等多方面\n提供私有网络、对等连接、专线接入、VPN等服务，可支持多种网络场景\n提供产品专家支持及7X24小时日常运维管理服务\n提供定制化的各类专项服务和解决方案，提供架构设计优化、安全及运维管理优化建议等\n"
+            //         }
+            //     ]
+            // },
+            // {
+            //     "category": "场景三",
+            //     "title": "业务上云",
+            //     "desc": "在传统的贸易金融业务模式中，普遍使用线下传输纸质单证信息，效率不高耗时较长；同时银行业内信息不互通，企业间信用信息不同步，存在伪造篡改单据、信用欺诈等风险。通过区块链技术应用实现国内信用证、福费廷、国际保理等贸易金融业务交易信息的传递、债权的确认及单据的转让全电子化流程，弥补相关系统平台缺失，提升业务处理效率。",
+            //     "iconURL": "https://yun.ccb.com/solution/images/云上数据中心.png",
+            //     "children": [
+            //         {
+            //             "title": "",
+            //             "content": "    \n业务挑战：\n企业自建数据中心，成本开销大，建设周期长\n软硬件维护人力成本高\n安全可靠性差\n业务场景复杂，建设经验不足\n特点：      \n提供裸金属、虚机、容器多类型计算服务\n提供全方位安全服务，涵盖了制度合规安全、互联网安全、主机安全、网络安全、系统安全、业务安全、操作安全等多方面\n提供私有网络、对等连接、专线接入、VPN等服务，可支持多种网络场景\n提供产品专家支持及7X24小时日常运维管理服务\n提供定制化的各类专项服务和解决方案，提供架构设计优化、安全及运维管理优化建议等\n"
+            //         },
+            //         {
+            //             "title": "",
+            //             "content": "\n业务挑战：\n企业自建数据中心，成本开销大，建设周期长\n软硬件维护人力成本高\n安全可靠性差\n业务场景复杂，建设经验不足\n特点：      \n提供裸金属、虚机、容器多类型计算服务\n提供全方位安全服务，涵盖了制度合规安全、互联网安全、主机安全、网络安全、系统安全、业务安全、操作安全等多方面\n提供私有网络、对等连接、专线接入、VPN等服务，可支持多种网络场景\n提供产品专家支持及7X24小时日常运维管理服务\n提供定制化的各类专项服务和解决方案，提供架构设计优化、安全及运维管理优化建议等\n"
+            //         }
+            //     ]
+            // },
+            // {
+            //     "category": "场景四",
+            //     "title": "业务上云",
+            //     "desc": "在传统的贸易金融业务模式中，普遍使用线下传输纸质单证信息，效率不高耗时较长；同时银行业内信息不互通，企业间信用信息不同步，存在伪造篡改单据、信用欺诈等风险。通过区块链技术应用实现国内信用证、福费廷、国际保理等贸易金融业务交易信息的传递、债权的确认及单据的转让全电子化流程，弥补相关系统平台缺失，提升业务处理效率。",
+            //     "iconURL": "https://yun.ccb.com/solution/images/云上数据中心.png",
+            //     "children": [
+            //         {
+            //             "title": "",
+            //             "content": "    \n业务挑战：\n企业自建数据中心，成本开销大，建设周期长\n软硬件维护人力成本高\n安全可靠性差\n业务场景复杂，建设经验不足\n特点：      \n提供裸金属、虚机、容器多类型计算服务\n提供全方位安全服务，涵盖了制度合规安全、互联网安全、主机安全、网络安全、系统安全、业务安全、操作安全等多方面\n提供私有网络、对等连接、专线接入、VPN等服务，可支持多种网络场景\n提供产品专家支持及7X24小时日常运维管理服务\n提供定制化的各类专项服务和解决方案，提供架构设计优化、安全及运维管理优化建议等\n"
+            //         },
+            //         {
+            //             "title": "",
+            //             "content": "\n业务挑战：\n企业自建数据中心，成本开销大，建设周期长\n软硬件维护人力成本高\n安全可靠性差\n业务场景复杂，建设经验不足\n特点：      \n提供裸金属、虚机、容器多类型计算服务\n提供全方位安全服务，涵盖了制度合规安全、互联网安全、主机安全、网络安全、系统安全、业务安全、操作安全等多方面\n提供私有网络、对等连接、专线接入、VPN等服务，可支持多种网络场景\n提供产品专家支持及7X24小时日常运维管理服务\n提供定制化的各类专项服务和解决方案，提供架构设计优化、安全及运维管理优化建议等\n"
+            //         }
+            //     ]
+            // },
+            // {
+            //     "category": "场景五",
+            //     "title": "业务上云",
+            //     "desc": "在传统的贸易金融业务模式中，普遍使用线下传输纸质单证信息，效率不高耗时较长；同时银行业内信息不互通，企业间信用信息不同步，存在伪造篡改单据、信用欺诈等风险。通过区块链技术应用实现国内信用证、福费廷、国际保理等贸易金融业务交易信息的传递、债权的确认及单据的转让全电子化流程，弥补相关系统平台缺失，提升业务处理效率。",
+            //     "iconURL": "https://yun.ccb.com/solution/images/云上数据中心.png",
+            //     "children": [
+            //         {
+            //             "title": "",
+            //             "content": "    \n业务挑战：\n企业自建数据中心，成本开销大，建设周期长\n软硬件维护人力成本高\n安全可靠性差\n业务场景复杂，建设经验不足\n特点：      \n提供裸金属、虚机、容器多类型计算服务\n提供全方位安全服务，涵盖了制度合规安全、互联网安全、主机安全、网络安全、系统安全、业务安全、操作安全等多方面\n提供私有网络、对等连接、专线接入、VPN等服务，可支持多种网络场景\n提供产品专家支持及7X24小时日常运维管理服务\n提供定制化的各类专项服务和解决方案，提供架构设计优化、安全及运维管理优化建议等\n"
+            //         },
+            //         {
+            //             "title": "",
+            //             "content": "\n业务挑战：\n企业自建数据中心，成本开销大，建设周期长\n软硬件维护人力成本高\n安全可靠性差\n业务场景复杂，建设经验不足\n特点：      \n提供裸金属、虚机、容器多类型计算服务\n提供全方位安全服务，涵盖了制度合规安全、互联网安全、主机安全、网络安全、系统安全、业务安全、操作安全等多方面\n提供私有网络、对等连接、专线接入、VPN等服务，可支持多种网络场景\n提供产品专家支持及7X24小时日常运维管理服务\n提供定制化的各类专项服务和解决方案，提供架构设计优化、安全及运维管理优化建议等\n"
+            //         }
+            //     ]
+            // }
+        ],
         "extra": [
             {
                 "field": "title",
@@ -526,14 +491,26 @@ export default [
                 "mode": "multiple",
                 "children": [
                     {
+                        "field": "category",
+                        "label": "类别",
+                        "mode": "single",
+                        "required": true,
+                        "validation": {
+                            "type": "text",
+                            "minLength": 0,
+                            "maxLength": 5,
+                            "trigger": "input"
+                        }
+                    },
+                    {
                         "field": "title",
                         "label": "名称",
                         "mode": "single",
                         "required": true,
                         "validation": {
                             "type": "text",
-                            "minLength": 3,
-                            "maxLength": 5,
+                            "minLength": 5,
+                            "maxLength": 10,
                             "trigger": "input"
                         }
                     },
@@ -543,95 +520,12 @@ export default [
                         "mode": "single",
                         "required": true,
                         "validation": {
-                            "type": "textarea",
+                            "type": "text",
                             "minLength": 10,
-                            "maxLength": 30,
+                            "maxLength": 35,
                             "trigger": "input"
                         }
                     },
-                    {
-                        "field": "link",
-                        "label": "链接",
-                        "mode": "single",
-                        "required": true,
-                        "validation": {
-                            "type": "link",
-                            "pattern": "^\/\/yun.ccb.com",
-                            "trigger": "blur"
-                        }
-                    },
-                    {
-                        "field": "iconURL",
-                        "label": "图标",
-                        "mode": "single",
-                        "required": true,
-                        "validation": {
-                            "type": "image",
-                            "minSize": 0,
-                            "maxSize": 1028,
-                            "trigger": "blur"
-                        }
-                    }
-                ],
-                "operations": [
-                    {
-                        "field": "edit",
-                        "label": "编辑"
-                    },
-                    {
-                        "field": "del",
-                        "label": "删除"
-                    },
-                    {
-                        "field": "up",
-                        "label": "上移"
-                    },
-                    {
-                        "field": "down",
-                        "label": "下移"
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "id": "6",
-        "type": "Container",
-        "usage": "Certification",
-        "effect": "/images/home/certification.png",
-        "title": "合规认证",
-        "desc": "建设安全可靠的云生态环境，提供值得依赖的优质云服务",
-        "content": [],
-        "extra": [
-            {
-                "field": "title",
-                "label": "标题",
-                "mode": "single",
-                "required": true,
-                "validation": {
-                    "type": "text",
-                    "minLength": 0,
-                    "maxLength": 10,
-                    "trigger": "input"
-                }
-            },
-            {
-                "field": "desc",
-                "label": "描述",
-                "mode": "single",
-                "required": true,
-                "validation": {
-                    "type": "text",
-                    "minLength": 0,
-                    "maxLength": 20,
-                    "trigger": "input"
-                }
-            },
-            {
-                "field": "content",
-                "label": "内容",
-                "mode": "multiple",
-                "children": [
                     {
                         "field": "iconURL",
                         "label": "图标",
@@ -645,34 +539,53 @@ export default [
                         }
                     },
                     {
-                        "field": "title",
-                        "label": "标题",
-                        "mode": "single",
-                        "required": false,
-                        "validation": {
-                            "type": "text",
-                            "minLength": 5,
-                            "maxLength": 10,
-                            "trigger": "input"
-                        }
-                    }
-                ],
-                "operations": [
-                    {
-                        "field": "edit",
-                        "label": "编辑"
-                    },
-                    {
-                        "field": "del",
-                        "label": "删除"
-                    },
-                    {
-                        "field": "up",
-                        "label": "上移"
-                    },
-                    {
-                        "field": "down",
-                        "label": "下移"
+                        "field": "children",
+                        "label": "子项",
+                        "mode": "multiple",
+                        "children": [
+                            {
+                                "field": "title",
+                                "label": "标题",
+                                "mode": "single",
+                                "required": false,
+                                "validation": {
+                                    "type": "text",
+                                    "minLength": 0,
+                                    "maxLength": 5,
+                                    "trigger": "blur"
+                                }
+                            },
+                            {
+                                "field": "content",
+                                "label": "描述",
+                                "mode": "single",
+                                "required": true,
+                                "validation": {
+                                    "type": "textarea",
+                                    "minLength": 10,
+                                    "maxLength": 30,
+                                    "trigger": "blur"
+                                }
+                            }
+                        ],
+                        "operations": [
+                            {
+                                "field": "edit",
+                                "label": "编辑"
+                            },
+                            {
+                                "field": "del",
+                                "label": "删除"
+                            },
+                            {
+                                "field": "up",
+                                "label": "上移"
+                            },
+                            {
+                                "field": "down",
+                                "label": "下移"
+                            }
+                        ]
                     }
                 ]
             }

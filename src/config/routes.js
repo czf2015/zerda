@@ -58,16 +58,16 @@ export default {
           meta: { title: '产品管理' }
         },
         {
-          path: 'document-editing',
-          name: 'DocumentEditing',
-          component: loadDocumentView('document-editing'),
+          path: 'edit',
+          name: 'DocumentEdit',
+          component: loadDocumentView('edit'),
           meta: { title: '文档编辑' }
         },
         {
           path: 'document-review',
           name: 'DocumentReview',
           component: loadDocumentView('document-review'),
-          meta: { title: '文档编辑' }
+          meta: { title: '文档审核' }
         }
       ]
     },
