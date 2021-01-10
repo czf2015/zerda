@@ -5,7 +5,6 @@
       placeholder="未设置"
       v-model="inputText"
       @blur="handleInput"
-      hidden
     />
     <div class="picture" :style="{ display: isUploaded ? 'inline-block' : 'none' }">
       <img
